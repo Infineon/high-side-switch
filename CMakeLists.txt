@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.12.4)  
 
 # Arduino Library Template 
-set(lib arduino-lib-template)
+set(lib high-side-switch)
 
 project(${lib} CXX C)
 
@@ -16,17 +16,11 @@ set(CMAKE_C_FLAGS "-g -O0 -Wall -fprofile-arcs -ftest-coverage")
 
 # Header & Source Files
 set(Headers
-    src/library-ino.h
-    src/library/library-types.h
-    src/library/library-pal.h
-    src/library/library.h
-    src/utils/utility.h
+    src/corelib/high-side-switch.h
     )
 
 set(Sources
-    src/library-ino.cpp
-    src/library/library.c
-    src/utils/utility.cpp
+    src/corelib/high-side-switch.cpp
     )
 
 # Add Library

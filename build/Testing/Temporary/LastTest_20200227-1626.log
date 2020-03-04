@@ -1,0 +1,38 @@
+Start testing: Feb 27 17:26 W. Europe Standard Time
+----------------------------------------------------------
+1/1 Testing: high-side-switch-test
+1/1 Test: high-side-switch-test
+Command: "C:/Users/jaumann/Documents/Arduino/libraries/high-side-switch/build/test/high-side-switch-test.exe"
+Directory: C:/Users/jaumann/Documents/Arduino/libraries/high-side-switch/build/test
+"high-side-switch-test" start time: Feb 27 17:26 W. Europe Standard Time
+Output:
+----------------------------------------------------------
+Running main() from C:\Users\jaumann\Documents\Arduino\libraries\high-side-switch\googletest\googletest\src\gtest_main.cc
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from HSSwitchAPI
+[ RUN      ] HSSwitchAPI.checkBegin
+C:\Users\jaumann\Documents\Arduino\libraries\high-side-switch\test\test_high-side-switch.cpp:33: Failure
+Expected equality of these values:
+  hsswitch.begin()
+    Which is: 1
+  0
+[  FAILED  ] HSSwitchAPI.checkBegin (0 ms)
+[----------] 1 test from HSSwitchAPI (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 0 tests.
+[  FAILED  ] 1 test, listed below:
+[  FAILED  ] HSSwitchAPI.checkBegin
+
+ 1 FAILED TEST
+<end of output>
+Test time =   1.43 sec
+----------------------------------------------------------
+Test Failed.
+"high-side-switch-test" end time: Feb 27 17:26 W. Europe Standard Time
+"high-side-switch-test" time elapsed: 00:00:01
+----------------------------------------------------------
+
+End testing: Feb 27 17:26 W. Europe Standard Time

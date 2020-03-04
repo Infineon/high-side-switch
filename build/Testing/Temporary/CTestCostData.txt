@@ -1,0 +1,3 @@
+high-side-switch-test 0 0
+---
+high-side-switch-test

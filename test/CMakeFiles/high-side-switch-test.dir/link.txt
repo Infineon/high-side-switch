@@ -1,3 +1,0 @@
-"C:\Program Files\CMake\bin\cmake.exe" -E rm -f CMakeFiles\high-side-switch-test.dir/objects.a
-C:\MinGW\bin\ar.exe cr CMakeFiles\high-side-switch-test.dir/objects.a @CMakeFiles\high-side-switch-test.dir\objects1.rsp
-C:\MinGW\bin\g++.exe -g -O0 -Wall -fprofile-arcs -ftest-coverage   -Wl,--whole-archive CMakeFiles\high-side-switch-test.dir/objects.a -Wl,--no-whole-archive  -o high-side-switch-test.exe -Wl,--out-implib,libhigh-side-switch-test.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles\high-side-switch-test.dir\linklibs.rsp

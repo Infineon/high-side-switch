@@ -1,7 +1,6 @@
 #ifndef ADC_ARDUINO_H
 #define ADC_ARDUINO_H
 
-#include <stdint.h>
 #include "../../common/hss.h"
 
 class ADCIno : virtual public ADC
@@ -15,6 +14,8 @@ class ADCIno : virtual public ADC
                 ~ADCIno();
     Error_t     init();
     Error_t     deinit();
+    Error_t     enable();
+    Error_t     disable();
     Error_t     setReadResolution(uint8_t resolution);
     Error_t     setWriteResolution(uint8_t resolution);
     uint16_t    ADCRead();

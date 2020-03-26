@@ -1,13 +1,13 @@
 {  
-    "name": "arduino-lib-template",
-    "keywords": "arduino, library, template",
-    "description": "Arduino library template for IFX Makers NPI support.",
+    "name": "High-Side-Switch",
+    "keywords": "high side swithc, profet, smart switch",
+    "description": "This library provides an interface to interact with the PROFET-Family of IFX",
     "repository":{  
        "type":"git",
-       "url":"https://github.com/Infineon/#repository name#.git",
+       "url":"https://github.com/Infineon/high-side-switch",
        "branch":"master"
     },
-    "version":"1.2.1",
+    "version":"1.1.1",
     "license":"MIT",
     "frameworks":"arduino",
     "platforms":[  

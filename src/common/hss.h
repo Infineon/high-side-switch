@@ -8,9 +8,10 @@
 #ifndef HSS_H
 #define HSS_H
 
-
+#include <Arduino.h>
 #include <stdlib.h>
 #include <stdint.h>
+#include <unistd.h>
 #include "gpio.h"
 #include "adc.h"
 
@@ -56,11 +57,10 @@ class Hss
      */
 
     enum DiagEnable_t{
-        DISABLED    = 0,    /**< Disabled */
-        ENABLED     = 1,    /**< Enabled */
+        DIAG_EN      = 0,    /**< Disabled */
+        DIAG_DIS     = 1,    /**< Enabled */
     };
     /** @} */
-
     /**
      * @name Diagnosis enabled
      * @{

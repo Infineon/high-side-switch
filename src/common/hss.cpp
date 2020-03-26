@@ -9,6 +9,7 @@
 
 #include "hss.h"
 
+
 /**
  * @addtogroup hallswitchcpphal
  * @{
@@ -26,7 +27,7 @@ Hss::Hss()
     in = NULL;
     is = NULL;
     status = UNINITED;
-    diagEnb = DISABLED;
+    diagEnb = DIAG_DIS;
     diagStatus = NOT_ENABLED;
 }
 
@@ -35,6 +36,9 @@ Hss::Hss(GPIO *den, GPIO *in, ADC *is)
     this->den = den;
     this->in = in;
     this->is = is;
+    status = UNINITED;
+    diagEnb = DIAG_DIS;
+    diagStatus = NOT_ENABLED;
 }
 
 Hss::~Hss()
@@ -43,7 +47,7 @@ Hss::~Hss()
     in = NULL;
     is = NULL;
     status = UNINITED;
-    diagEnb = DISABLED;
+    diagEnb = DIAG_DIS;
     diagStatus = NOT_ENABLED;
 }
 
@@ -108,7 +112,7 @@ Hss::Error_t Hss::enableDiag()
     den->enable();
     if(den->checkErrorStatus() != OK) return err = CONF_ERROR;
 
-    diagEnb = ENABLED;
+    diagEnb = DIAG_EN;
     return err;
 }
 
@@ -119,7 +123,7 @@ Hss::Error_t Hss::disableDiag()
     den->disable();
     if(den->checkErrorStatus() != OK) return err = CONF_ERROR;
 
-    diagEnb = DISABLED;
+    diagEnb = DIAG_EN;
     return err;
 }
 
@@ -129,7 +133,7 @@ Hss::Error_t Hss::diagReset()
 
     in->disable();
     if(in->checkErrorStatus() != OK) return err = CONF_ERROR;
-    Sleep(100);
+    sleep(100);
     in->enable();
     if(in->checkErrorStatus() != OK) return err = CONF_ERROR;
 
@@ -140,8 +144,8 @@ Hss::DiagStatus_t Hss::diagRead()
 {
     uint16_t ADCResult = 0;
 
-    if(diagEnb == ENABLED){
-        ADCResult = is->ADCread();
+    if(diagEnb == DIAG_EN){
+        ADCResult = is->ADCRead();
     }
     else{
         return Hss::DiagStatus_t::NOT_ENABLED;

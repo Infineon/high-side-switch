@@ -8,7 +8,6 @@
  * @copyright   Copyright (c) 2020 Infineon Technologies AG
  */
 
-#include <Arduino.h>
 #include "gpio-arduino.h"
 
 GPIOIno::GPIOIno() : pin(0), mode(INPUT_PULLUP), logic(POSITIVE)

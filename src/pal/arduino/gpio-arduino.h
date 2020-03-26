@@ -12,7 +12,6 @@
 #ifndef GPIO_ARDUINO_H
 #define GPIO_ARDUINO_H
 
-#include <stdint.h>
 #include "../../common/hss.h"
 
 class GPIOIno: virtual public GPIO

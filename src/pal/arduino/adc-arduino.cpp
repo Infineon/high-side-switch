@@ -1,4 +1,4 @@
-#include <Arduino.h>
+
 #include "adc-arduino.h"
 
 ADCIno::ADCIno() : pin(0)
@@ -19,6 +19,7 @@ ADCIno::~ADCIno()
 ADCIno::Error_t ADCIno::init()
 {
     pinMode(pin, INPUT);
+    
     return OK;
 }
 
@@ -26,6 +27,17 @@ ADCIno::Error_t ADCIno::deinit()
 {
     return OK;
 }
+
+ADCIno::Error_t ADCIno::enable()
+{
+    return OK;
+}
+
+ADCIno::Error_t ADCIno::disable()
+{
+    return OK;
+}
+
 
 ADCIno::Error_t ADCIno::setReadResolution(uint8_t resolution)
 {
@@ -36,7 +48,9 @@ ADCIno::Error_t ADCIno::setReadResolution(uint8_t resolution)
 
 ADCIno::Error_t ADCIno::setWriteResolution(uint8_t resolution)
 {
-
+    analogWriteResolution(resolution);
+    
+    return OK;
 }
 
 uint16_t ADCIno::ADCRead()
@@ -54,4 +68,4 @@ ADCIno::Error_t ADCIno::ADCWrite(uint8_t value)
     
     return OK;
 }
- 
+

@@ -110,8 +110,8 @@ Hss::Error_t Hss::enableDiag()
     Error_t err = OK;
 
     den->enable();
-    if(den->checkErrorStatus() != OK) return err = CONF_ERROR;
-
+    //if(den->checkErrorStatus() != OK) return err = CONF_ERROR;
+    
     diagEnb = DIAG_EN;
     return err;
 }
@@ -123,7 +123,7 @@ Hss::Error_t Hss::disableDiag()
     den->disable();
     if(den->checkErrorStatus() != OK) return err = CONF_ERROR;
 
-    diagEnb = DIAG_EN;
+    diagEnb = DIAG_DIS;
     return err;
 }
 
@@ -146,6 +146,8 @@ Hss::DiagStatus_t Hss::diagRead()
 
     if(diagEnb == DIAG_EN){
         ADCResult = is->ADCRead();
+        Serial.print("Value: ");
+        Serial.println(ADCResult);
     }
     else{
         return Hss::DiagStatus_t::NOT_ENABLED;

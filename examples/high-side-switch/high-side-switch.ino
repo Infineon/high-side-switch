@@ -1,8 +1,8 @@
 #include <Arduino.h>
 #include <stdint.h>
-#include "pal/arduino/hss-arduino.h"
+#include <hss-arduino.h>
 
-HssIno  hssTest(6, 9, 19);
+HssIno  hssTest(6, 9, A1);
 
 void setup()
 {
@@ -11,14 +11,16 @@ void setup()
     Serial.println("Serial initialized");
     delay(2000);
     hssTest.init();
+    delay(1000);
+    hssTest.enableDiag();
 }
 
 void loop()
 {
     Serial.println("Start");
-    delay(5000);
-    hssTest.enable();
-    delay(5000);
-    hssTest.disable();
-    delay(5000);
+    delay(2000);
+    //hssTest.enable();
+    delay(2000);
+    Serial.println(hssTest.diagRead());
+    delay(2000);
 }

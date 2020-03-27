@@ -10,7 +10,7 @@
 
 #include "gpio-arduino.h"
 
-GPIOIno::GPIOIno() : pin(0), mode(INPUT_PULLUP), logic(POSITIVE)
+GPIOIno::GPIOIno() : pin(0), mode(OUTPUT), logic(POSITIVE)
 {
 
 }

@@ -8,7 +8,7 @@ ADCIno::ADCIno() : pin(0)
 
 ADCIno::ADCIno(uint8_t pin) : pin(pin)
 {
-
+    setReadResolution(12);
 }
 
 ADCIno::~ADCIno()
@@ -18,7 +18,7 @@ ADCIno::~ADCIno()
 
 ADCIno::Error_t ADCIno::init()
 {
-    pinMode(pin, INPUT);
+    //pinMode(pin, INPUT);
     
     return OK;
 }

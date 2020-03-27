@@ -1,9 +1,12 @@
 #ifndef HSS_ARDUINO_H
 #define HSS_ARDUINO_H
 
-#include "../../common/hss.h"
-#include "adc-arduino.h"
-#include "gpio-arduino.h"
+#include "common/hss.h"
+
+//this i would say you don´t need here... 
+#include "pal/arduino/adc-arduino.h"
+#include "pal/arduino/gpio-arduino.h"
+//
 
 class HssIno : public Hss
 {
@@ -18,9 +21,6 @@ class HssIno : public Hss
     // Error_t         disableDiag();
     // Error_t         diagReset();
     // DiagStatus_t    diagRead();    
-    
-    private:
-    Hss hss_ino;
 };
 
 #endif

@@ -1,6 +1,5 @@
 #include "hss.h"
 
-
 class HssBoard : Hss
 {
     public:
@@ -11,19 +10,17 @@ class HssBoard : Hss
 
     Error_t switchHxOn(uint8_t x);
     Error_t switchHxOff(uint8_t x);
+    Error_t switchesHxOn(bool h1 = NULL, bool h2 = NULL, bool h3 = NULL, bool h4 = NULL);
+    Error_t switchesHxOff(bool h1 = NULL, bool h2 = NULL, bool h3 = NULL, bool h4 = NULL); // replace it only with one function e.g. switchHx()????
 
+    DiagStatus_t readDiagx(uint8_t x);
+    
+    float readIsx(uint8_t x);
+    
 
-    // Error_t enableDiag1_3();
-    // Error_t enableDiag2_4();
-
-    Error_t disableDiag1_3();
-    Error_t disableDiag2_4();
-
-    DiagStatus_t readIsx(uint8_t x);
-
-    Error_t ledxOn(uint8_t x);
-    Error_t ledxOff(uint8_t x);
-
+    float readVss();
+    bool digitalReadButton();
+    bool analogReadButton();
 
     protected:
 
@@ -32,15 +29,17 @@ class HssBoard : Hss
     GPIO *led3;
     GPIO *led4;
 
-    GPIO *in1;  //Or put them in a GPIO-Struct and call them depending on X ???
-    GPIO *in2;
-    GPIO *in3;
-    GPIO *in4;
+    Hss *hss1;
+    Hss *hss2;
+    Hss *hss3;
+    Hss *hss4;
 
-    GPIO *den1_den3;
-    GPIO *den2_den4;
+    GPIO *oloff;
+    GPIO *pushButtonDigital;
 
+    ADC *pushButtonAnalog;        //only if a push button is assambled
     ADC *vBat;
-    ADC *is1_is2;
-    ADC *is3_is4;
+
+    const float vBatGain = 1.045;
+    const float vBatOffset = 0.0;
 };

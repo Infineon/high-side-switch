@@ -14,6 +14,7 @@
 #include <unistd.h>
 #include "gpio.h"
 #include "adc.h"
+#include "variants.h"
 
 /**
  * @class Hss(High-Side-Switch)
@@ -81,7 +82,7 @@ class Hss
     /** @} */
 
                     Hss();
-                    Hss(GPIO *den, GPIO *in, ADC *is);
+                    Hss(GPIO *den, GPIO *in, ADC *is, BtsVariants_t *variant);
                     ~Hss();
     Error_t         init();
     Error_t         deinit();
@@ -90,12 +91,18 @@ class Hss
     Error_t         enableDiag();
     Error_t         disableDiag();
     Error_t         diagReset();
+
+    //TODO: Include the PWM functionality
+
+    float           readIs();
     DiagStatus_t    diagRead();
     
     protected:
     GPIO            *den;
     GPIO            *in;
     ADC             *is;
+
+    BtsVariants_t   *btsVariant;
     Status_t        status;
     DiagEnable_t    diagEnb;
     DiagStatus_t    diagStatus;

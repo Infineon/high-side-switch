@@ -26,16 +26,18 @@ Hss::Hss()
     den = NULL;
     in = NULL;
     is = NULL;
+    btsVariant = NULL;
     status = UNINITED;
     diagEnb = DIAG_DIS;
     diagStatus = NOT_ENABLED;
 }
 
-Hss::Hss(GPIO *den, GPIO *in, ADC *is)
+Hss::Hss(GPIO *den, GPIO *in, ADC *is, BtsVariants_t *variant)
 {
     this->den = den;
     this->in = in;
     this->is = is;
+    btsVariant = variant;
     status = UNINITED;
     diagEnb = DIAG_DIS;
     diagStatus = NOT_ENABLED;
@@ -140,31 +142,52 @@ Hss::Error_t Hss::diagReset()
     return err;
 }
 
+float Hss::readIs()
+{
+    uint16_t ADCResult = 0;
+    float amps = 0.0;
+
+    if(diagEnb == DIAG_EN){
+        delay(1);                                                       //wait for 1ms to ensure that the Profet will provide a valid sense signal
+        ADCResult = is->ADCRead();
+
+        amps = float(ADCResult/4096) * 5.0;
+        amps = (amps * btsVariant->kilis)/1000;
+        amps = (amps - btsVariant->ampsOffset) * btsVariant->ampsGain;
+        //TODO: Include filter for the current measurement
+    }
+    return amps;
+}
+
 Hss::DiagStatus_t Hss::diagRead()
 {
     uint16_t ADCResult = 0;
+    float amps = 0.0;
 
     if(diagEnb == DIAG_EN){
+        delay(1);                                                       //wait for 1ms to ensure that the Profet will provide a valid sense signal
         ADCResult = is->ADCRead();
-        Serial.print("Value: ");
-        Serial.println(ADCResult);
+
+        amps = float(ADCResult/4096) * 5.0;
+        amps = (amps * btsVariant->kilis)/1000;
+        amps = (amps - btsVariant->ampsOffset) * btsVariant->ampsGain;
+        //TODO: Include Filter
+
+        if(amps > (0.0044*btsVariant->kilis)){
+            return Hss::DiagStatus_t::OVERLOAD;
+        }
+        else if(amps < (0.00002*btsVariant->kilis)){
+            return Hss::DiagStatus_t::OPEN_LOAD;
+        }
+        else{
+            return Hss::DiagStatus_t::NORMAL;
+        }
     }
+
     else{
         return Hss::DiagStatus_t::NOT_ENABLED;
     }
 
-    if(ADCResult > 4050 && ADCResult < 4080){
-        diagStatus = NORMAL;
-    }
-    else if(ADCResult < 4050){
-        diagStatus = OVERLOAD;
-    }
-    else if(ADCResult < 20){
-        diagStatus = SHORT_TO_GND;
-    }
-    else if(ADCResult >= 4080){
-        diagStatus = SHORT_TO_VSS;
-    }
     return diagStatus;
 }
 

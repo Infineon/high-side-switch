@@ -7,6 +7,7 @@
  * SPDX-License-Identifier: MIT
  */
 
+#include <Arduino.h>
 #include "gpio-arduino.hpp"
 
 GPIOIno::GPIOIno() : pin(0), mode(OUTPUT), logic(POSITIVE)

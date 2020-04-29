@@ -1,6 +1,6 @@
 #include <Arduino.h>
 #include <stdint.h>
-#include <hss-board-arduino.h>
+#include <hss-board-arduino.hpp>
 
 HssBoardIno hssTest = HssBoardIno(&BTS7002);
 
@@ -15,12 +15,12 @@ void setup()
 
 void loop()
 {
-    hssTest.switchesHxOn(1);
+    // hssTest.switchesHxOn(1);
     Serial.print("Supply Voltage: ");
     Serial.println(hssTest.readVss());
-    Serial.println("Diagnosis status = ");
-    Serial.println(hssTest.readDiagx(1));
-    Serial.println("Check raw ADC current value = ");
+    Serial.print("Measured Amps: ");
     Serial.println(hssTest.readIsx(1));
-    delay(2000);
+    Serial.print("Diag Status: ");
+    Serial.println(hssTest.readDiagx(1));
+    delay(100);
 }

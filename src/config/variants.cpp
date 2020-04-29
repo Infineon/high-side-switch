@@ -1,4 +1,13 @@
-#include "variants.h"
+/** 
+ * @file        variants.cpp
+ * @brief       Defines the characteristic values of the different BTS700x variants  
+ * @date        May 2020
+ * @copyright   Copyright (c) 2019-2020 Infineon Technologies AG
+ * 
+ * SPDX-License-Identifier: MIT
+ */
+
+#include "variants.hpp"
 
 BtsVariants_t BTS7002 {
     .kilis = 22700,
@@ -31,3 +40,5 @@ BtsVariants_t BTS7008 {
     .vBatGain = 1.045,
     .vBatOffset = 0.0
 };
+
+

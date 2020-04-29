@@ -1,7 +1,18 @@
-#include "hss-board.h"
+/** 
+ * @file        hss-board.cpp
+ * @brief       Defenition of the High-Side-Switch-Board class fucntions
+ * @date        May 2020
+ * @copyright   Copyright (c) 2019-2020 Infineon Technologies AG
+ * 
+ * SPDX-License-Identifier: MIT
+ */
+
+#include "hss-board.hpp"
 
 HssBoard::HssBoard()
 {
+    filterVbat = NULL;
+
     led1 = NULL;
     led2 = NULL;
     led3 = NULL;
@@ -26,6 +37,8 @@ HssBoard::~HssBoard()
 
 HssBoard::Error_t HssBoard::init()
 {
+    filterVbat = new ExponentialFilter(0.0, 3);
+
     led1->init();
     led2->init();
     led3->init();
@@ -151,7 +164,7 @@ HssBoard::Error_t HssBoard::switchesHxOff(bool h1 = NULL, bool h2 = NULL, bool h
 
 float HssBoard::readIsx(uint8_t x)
 {
-    uint16_t result;
+    float result;
 
     switch (x)
     {
@@ -184,36 +197,106 @@ float HssBoard::readIsx(uint8_t x)
 
 HssBoard::DiagStatus_t HssBoard::readDiagx(uint8_t x)
 {
-    DiagStatus_t diagStatus;
+    DiagStatus_t diagStatus = NORMAL;
+
+    float currentOn = 0.0;
+    float currentOff = 0.0;
 
     switch(x)
     {
         case 1:
             hss1->enableDiag();
-            diagStatus = hss1->diagRead();
+            if(hss1->getSwitchStatus() == POWER_ON){
+               diagStatus = hss1->diagRead();
+            }
+            else{
+                oloff->enable();
+                delayMicroseconds(300);
+                currentOn = hss1->readIs();
+    
+                oloff->disable();
+                delayMicroseconds(400);
+                currentOff = hss1->readIs();
+                diagStatus = diagnosisOff(currentOn, currentOff);
+            }
             hss1->disableDiag();
             break;
 
         case 2:
             hss2->enableDiag();
-            diagStatus = hss2->diagRead();
+            if(hss2->getSwitchStatus() == Hss::Status_t::POWER_ON){
+                diagStatus = hss2->diagRead();
+            }
+            else{
+                oloff->enable();
+                delayMicroseconds(300);
+                currentOn = hss2->readIs();
+
+                oloff->disable();
+                delayMicroseconds(400);
+                currentOff = hss2->readIs();
+                diagStatus = diagnosisOff(currentOn, currentOff);
+            }
             hss2->disableDiag();
             break;
         
         case 3:
             hss3->enableDiag();
-            diagStatus = hss3->diagRead();
+            if(hss3->getSwitchStatus() == Hss::Status_t::POWER_ON){
+                diagStatus = hss3->diagRead();
+            }
+            else{
+                oloff->enable();
+                delayMicroseconds(300);
+                currentOn = hss3->readIs();
+
+                oloff->disable();
+                delayMicroseconds(400);
+                currentOff = hss3->readIs();
+                diagStatus = diagnosisOff(currentOn, currentOff);
+            }
             hss3->disableDiag();
             break;
         
         case 4:
             hss4->enableDiag();
-            diagStatus = hss4->diagRead();
+            if(hss4->getSwitchStatus() == Hss::Status_t::POWER_ON){
+                diagStatus = hss4->diagRead();
+            }
+            else{
+                oloff->enable();
+                delayMicroseconds(300);
+                currentOn = hss4->readIs();
+
+                oloff->disable();
+                delayMicroseconds(400);
+                currentOff = hss4->readIs();
+                diagStatus = diagnosisOff(currentOn, currentOff);
+            }
             hss4->disableDiag();
             break;
     }
-    
     return diagStatus;
+}
+
+HssBoard::DiagStatus_t HssBoard::diagnosisOff(float currentOn, float currentOff)
+{
+    if((currentOn > (0.0018 * btsVariant->kilis)) && (currentOn < (0.0044 * btsVariant->kilis))){
+        if((currentOff > (0.0018 * btsVariant->kilis)) && (currentOff < (0.0044 * btsVariant->kilis))){
+            return DiagStatus_t::SHORT_TO_VSS;
+        }
+        else{
+            return DiagStatus_t::OPEN_LOAD;
+        }
+    }
+    else{
+        if((currentOn > (0.0044 * btsVariant->kilis))){
+            return DiagStatus_t::SHORT_TO_GND;
+        }
+        else{
+            return DiagStatus_t::NORMAL;
+        }
+    }
 }
 
 float HssBoard::readVss()
@@ -226,9 +309,9 @@ float HssBoard::readVss()
     voltage = (voltage - vBatOffset) * vBatGain;
     voltage = voltage * ((float)57/(float)10);
 
-    //TODO: Include Filter
-
-    return voltage;
+    filterVbat->input(voltage);
+    
+    return filterVbat->output();
 }
 
 bool HssBoard::digitalReadButton()

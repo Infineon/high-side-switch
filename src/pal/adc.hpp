@@ -1,3 +1,15 @@
+/** 
+ * @file        adc.hpp
+ * @brief       PAL of the ADC 
+ * @date        May 2020
+ * @copyright   Copyright (c) 2019-2020 Infineon Technologies AG
+ * 
+ * SPDX-License-Identifier: MIT
+ */
+
+#ifndef ADC_HPP_
+#define ADC_HPP_
+
 #include <stdint.h>
 
 /**
@@ -13,7 +25,7 @@ class ADC
 
     enum Error_t
     {
-        OK          = 0,     /**< No error */
+        OK          =  0,    /**< No error */
         INTF_ERROR  = -1,    /**< Interface error */
         CONF_ERROR  = -2,    /**< Configuration error */
         READ_ERROR  = -3,    /**< Read error */
@@ -36,5 +48,6 @@ class ADC
 };
 /** @} */
 
+#endif /** ADC_HPP_ **/
 
 

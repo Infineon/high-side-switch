@@ -1,13 +1,14 @@
 /** 
  * @file        hss.cpp
- * @brief       High Side Switch Hardware Abstraction Layer
- *              Features: 
+ * @brief       Defenition of the High-Side-Switch class fucntions
+ * @date        May 2020
+ * @copyright   Copyright (c) 2019-2020 Infineon Technologies AG
  * 
- * @date        March 2020
- * @copyright   Copyright (c) 2020 Infineon Technologies AG
+ * SPDX-License-Identifier: MIT
  */
 
-#include "hss.h"
+#include <Arduino.h>
+#include "hss.hpp"
 
 
 /**
@@ -26,6 +27,9 @@ Hss::Hss()
     den = NULL;
     in = NULL;
     is = NULL;
+
+    currentFilter = NULL;
+
     btsVariant = NULL;
     status = UNINITED;
     diagEnb = DIAG_DIS;
@@ -37,6 +41,7 @@ Hss::Hss(GPIO *den, GPIO *in, ADC *is, BtsVariants_t *variant)
     this->den = den;
     this->in = in;
     this->is = is;
+
     btsVariant = variant;
     status = UNINITED;
     diagEnb = DIAG_DIS;
@@ -61,9 +66,11 @@ Hss::Error_t Hss::init()
     in->init();
     is->init();
 
+    currentFilter = new ExponentialFilter(0.0, 0.3);
+
     status = INITED;
-    if(den->checkErrorStatus() != OK && in->checkErrorStatus() != OK
-    && is->checkErrorStatus() != OK) return err = CONF_ERROR;                  //Only return Error if something went wrong
+    // if(den->checkErrorStatus() != OK && in->checkErrorStatus() != OK
+    // && is->checkErrorStatus() != OK) return err = CONF_ERROR;                  //Only return Error if something went wrong
 
     return err;
 }
@@ -77,8 +84,8 @@ Hss::Error_t Hss::deinit()
     is->deinit();
     
     
-    if(den->checkErrorStatus() != OK && in->checkErrorStatus() != OK
-    && is->checkErrorStatus() != OK) return err = CONF_ERROR;                  //Only return Error if something went wrong
+    //if(den->checkErrorStatus() != OK && in->checkErrorStatus() != OK
+    //&& is->checkErrorStatus() != OK) return err = CONF_ERROR;                  //Only return Error if something went wrong
     
     status = UNINITED;
     return err;
@@ -90,7 +97,7 @@ Hss::Error_t Hss::enable()
 
     in->enable();
 
-    if(in->checkErrorStatus() != OK) return err = CONF_ERROR;
+    //if(in->checkErrorStatus() != OK) return err = CONF_ERROR;
 
     status = POWER_ON;
     return err;
@@ -101,7 +108,7 @@ Hss::Error_t Hss::disable()
     Error_t err = OK;
 
     in->disable();
-    if(in->checkErrorStatus() != OK) return err = CONF_ERROR;
+    //if(in->checkErrorStatus() != OK) return err = CONF_ERROR;
 
     status = POWER_OFF;
     return err;
@@ -123,7 +130,7 @@ Hss::Error_t Hss::disableDiag()
     Error_t err = OK;
 
     den->disable();
-    if(den->checkErrorStatus() != OK) return err = CONF_ERROR;
+    //if(den->checkErrorStatus() != OK) return err = CONF_ERROR;
 
     diagEnb = DIAG_DIS;
     return err;
@@ -134,12 +141,17 @@ Hss::Error_t Hss::diagReset()
     Error_t err = OK;
 
     in->disable();
-    if(in->checkErrorStatus() != OK) return err = CONF_ERROR;
+    //if(in->checkErrorStatus() != OK) return err = CONF_ERROR;
     sleep(100);
     in->enable();
-    if(in->checkErrorStatus() != OK) return err = CONF_ERROR;
+    //if(in->checkErrorStatus() != OK) return err = CONF_ERROR;
 
     return err;
+}
+
+Hss::Status_t Hss::getSwitchStatus()
+{
+    return status;
 }
 
 float Hss::readIs()
@@ -151,12 +163,12 @@ float Hss::readIs()
         delay(1);                                                       //wait for 1ms to ensure that the Profet will provide a valid sense signal
         ADCResult = is->ADCRead();
 
-        amps = float(ADCResult/4096) * 5.0;
+        amps = ((float)ADCResult/(float)4096) * 5.0;
         amps = (amps * btsVariant->kilis)/1000;
         amps = (amps - btsVariant->ampsOffset) * btsVariant->ampsGain;
-        //TODO: Include filter for the current measurement
+        currentFilter->input(amps);
     }
-    return amps;
+    return currentFilter->output();
 }
 
 Hss::DiagStatus_t Hss::diagRead()
@@ -165,14 +177,8 @@ Hss::DiagStatus_t Hss::diagRead()
     float amps = 0.0;
 
     if(diagEnb == DIAG_EN){
-        delay(1);                                                       //wait for 1ms to ensure that the Profet will provide a valid sense signal
-        ADCResult = is->ADCRead();
-
-        amps = float(ADCResult/4096) * 5.0;
-        amps = (amps * btsVariant->kilis)/1000;
-        amps = (amps - btsVariant->ampsOffset) * btsVariant->ampsGain;
-        //TODO: Include Filter
-
+        amps = readIs();
+        
         if(amps > (0.0044*btsVariant->kilis)){
             return Hss::DiagStatus_t::OVERLOAD;
         }

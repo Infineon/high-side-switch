@@ -1,14 +1,13 @@
 /** 
- * @file        hss-arduino.cpp
- * @brief       High-Side-Switch Arduino interface
+ * @file        gpio-arduino.hpp
+ * @brief       Arduino PAL for the GPIO
+ * @date        May 2020
+ * @copyright   Copyright (c) 2019-2020 Infineon Technologies AG
  * 
- *  Wraps the Arduino GPIO Reference Language calls
- * 
- * @date        March 2020
- * @copyright   Copyright (c) 2020 Infineon Technologies AG
+ * SPDX-License-Identifier: MIT
  */
 
-#include "gpio-arduino.h"
+#include "gpio-arduino.hpp"
 
 GPIOIno::GPIOIno() : pin(0), mode(OUTPUT), logic(POSITIVE)
 {

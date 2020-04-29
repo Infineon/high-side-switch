@@ -1,5 +1,14 @@
+/** 
+ * @file        adc-arduino.cpp
+ * @brief       Arduino PAL for the ADC
+ * @date        May 2020
+ * @copyright   Copyright (c) 2019-2020 Infineon Technologies AG
+ * 
+ * SPDX-License-Identifier: MIT
+ */
 
-#include "adc-arduino.h"
+#include <Arduino.h>
+#include "adc-arduino.hpp"
 
 ADCIno::ADCIno() : pin(0)
 {
@@ -18,7 +27,7 @@ ADCIno::~ADCIno()
 
 ADCIno::Error_t ADCIno::init()
 {
-    //pinMode(pin, INPUT);
+    // pinMode(this->pin, INPUT);
     
     return OK;
 }

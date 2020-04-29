@@ -1,18 +1,17 @@
 /** 
- * @file        hss-arduino.h
- * @brief       High-Side-Switch Arduino interface
+ * @file        gpio-arduino.hpp
+ * @brief       Arduino PAL for the GPIO
+ * @date        May 2020
+ * @copyright   Copyright (c) 2019-2020 Infineon Technologies AG
  * 
- *  Wraps the Arduino GPIO Reference Language calls
- * 
- * @date        March 2020
- * @copyright   Copyright (c) 2020 Infineon Technologies AG
+ * SPDX-License-Identifier: MIT
  */
 
 
-#ifndef GPIO_ARDUINO_H
-#define GPIO_ARDUINO_H
+#ifndef GPIO_ARDUINO_H_
+#define GPIO_ARDUINO_H_
 
-#include "../../common/hss.h"
+#include "../../../corelib/hss.hpp"
 
 class GPIOIno: virtual public GPIO
 {
@@ -33,4 +32,4 @@ public:
     Error_t     disable();
 };
 
-#endif
+#endif /** GPIO_ARDUINO_H_ **/

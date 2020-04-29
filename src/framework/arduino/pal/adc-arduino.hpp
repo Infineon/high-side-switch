@@ -1,7 +1,16 @@
-#ifndef ADC_ARDUINO_H
-#define ADC_ARDUINO_H
+/** 
+ * @file        adc-arduino.hpp
+ * @brief       Arduino PAL for the ADC
+ * @date        May 2020
+ * @copyright   Copyright (c) 2019-2020 Infineon Technologies AG
+ * 
+ * SPDX-License-Identifier: MIT
+ */
 
-#include "../../common/hss.h"
+#ifndef ADC_ARDUINO_H_
+#define ADC_ARDUINO_H_
+
+#include "../../../corelib/hss.hpp"
 
 class ADCIno : virtual public ADC
 {
@@ -22,4 +31,4 @@ class ADCIno : virtual public ADC
     Error_t     ADCWrite(uint8_t value);
 };
 
-#endif
+#endif /** ADC_ARDUINO_H_ **/

@@ -1,3 +1,14 @@
+/** 
+ * @file        gpio.hpp
+ * @brief       PAL of the GPIO
+ * @date        May 2020
+ * @copyright   Copyright (c) 2019-2020 Infineon Technologies AG
+ * 
+ * SPDX-License-Identifier: MIT
+ */
+
+#ifndef GPIO_HPP_
+#define GPIO_HPP_
 
 class GPIO
 {
@@ -129,3 +140,5 @@ class GPIO
     Error_t errorStatus;
 
 };
+
+#endif /** GPIO_HPP_ **/

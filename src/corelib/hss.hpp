@@ -1,20 +1,21 @@
-/**
- * @file hss.h
- * @brief High-Side-Switch Abstraction Layer
- * @date March 2020
- * @copyright Copyright (c) 2020 Infineon Technologies AG
-*/
+/** 
+ * @file        hss.hpp
+ * @brief       Defenition of the High-Side-Switch class fucntions
+ * @date        May 2020
+ * @copyright   Copyright (c) 2019-2020 Infineon Technologies AG
+ * 
+ * SPDX-License-Identifier: MIT
+ */
+#ifndef HSS_H_
+#define HSS_H_
 
-#ifndef HSS_H
-#define HSS_H
-
-#include <Arduino.h>
 #include <stdlib.h>
 #include <stdint.h>
 #include <unistd.h>
-#include "gpio.h"
-#include "adc.h"
-#include "variants.h"
+#include "../pal/gpio.hpp"
+#include "../pal/adc.hpp"
+#include "../config/variants.hpp"
+#include "../pal/filter.hpp"
 
 /**
  * @class Hss(High-Side-Switch)
@@ -93,14 +94,20 @@ class Hss
     Error_t         diagReset();
 
     //TODO: Include the PWM functionality
+    
+    Status_t        getSwitchStatus();
+
+    DiagStatus_t    diagRead();
 
     float           readIs();
-    DiagStatus_t    diagRead();
+    
     
     protected:
     GPIO            *den;
     GPIO            *in;
     ADC             *is;
+
+    ExponentialFilter *currentFilter;
 
     BtsVariants_t   *btsVariant;
     Status_t        status;
@@ -110,5 +117,5 @@ class Hss
 };
 /** @} */
 
-#endif /** HSS_H **/
+#endif /** HSS_H_ **/
  

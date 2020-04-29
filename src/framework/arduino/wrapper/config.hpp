@@ -1,3 +1,15 @@
+/** 
+ * @file        config.hpp
+ * @brief       Configurations for the different platfroms
+ * @date        May 2020
+ * @copyright   Copyright (c) 2019-2020 Infineon Technologies AG
+ * 
+ * SPDX-License-Identifier: MIT
+ */
+
+#ifndef CONFIG_HPP_
+#define CONFIG_HPP_
+
 #include <stdint.h>
 
 struct hardwareconfig_t
@@ -25,4 +37,6 @@ struct hardwareconfig_t
     uint8_t is3_is4;    
 };
 
-extern hardwareconfig_t xmc_1100_bootkit;
+extern hardwareconfig_t ARDUINO_UNO;
+
+#endif /** CONFIG_HPP_ **/

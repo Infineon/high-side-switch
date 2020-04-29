@@ -1,7 +1,16 @@
-#include "config.h"
+/** 
+ * @file        config.cpp
+ * @brief       Configurations for the different Platfroms
+ * @date        May 2020
+ * @copyright   Copyright (c) 2019-2020 Infineon Technologies AG
+ * 
+ * SPDX-License-Identifier: MIT
+ */
+
+#include "config.hpp"
 #include <Arduino.h>
 
-hardwareconfig_t xmc_1100_bootkit
+hardwareconfig_t ARDUINO_UNO
 {
     .led1 = 4,                      //LED 1
     .led2 = 5,                      //LED 2

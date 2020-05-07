@@ -14,6 +14,10 @@
 #include "framework/arduino/pal/gpio-arduino.hpp"
 #include "framework/arduino/pal/adc-arduino.hpp"
 
+/**
+ * @brief Arduino class of the High-Side-Swich
+ * 
+ */
 class HssIno : public Hss
 {
     public:

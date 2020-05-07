@@ -21,6 +21,10 @@
  * @class Hss(High-Side-Switch)
  */
 
+/**
+ * @brief High-Side-Swithch class
+ * This class defines the High-Side-Switch Class with all its functionality
+ */
 class Hss
 {
     public:
@@ -33,7 +37,6 @@ class Hss
      * @name Error codes
      * @{
      */
-
     enum Error_t{
         OK          = 0,     /**< No error */
         INTF_ERROR  = -1,    /**< Interface error */
@@ -57,28 +60,27 @@ class Hss
      * @name Diagnosis enabled
      * @{
      */
-
     enum DiagEnable_t{
-        DIAG_EN      = 0,    /**< Disabled */
-        DIAG_DIS     = 1,    /**< Enabled */
+        DIAG_EN      = 0,    /**< Enabled */
+        DIAG_DIS     = 1,    /**< Disabled */
     };
     /** @} */
+
     /**
      * @name Diagnosis enabled
      * @{
      */
-
     enum DiagStatus_t{
-        READ_ERROR = -1,
-        NOT_ENABLED = -2,
-        NORMAL = 0,
-        OVERLOAD = 1,
-        SHORT_TO_GND = 2,
-        OVERTEMPERATURE = 3,
-        SHORT_TO_VSS = 4,
-        OPEN_LOAD = 5,
-        UNDER_LOAD = 6,
-        INVERSE_CURRENT = 7,
+        READ_ERROR = -1,        /**< Read Error */
+        NOT_ENABLED = -2,       /**< Diagnosis not enabled */
+        NORMAL = 0,             /**< Switch works correctly */
+        OVERLOAD = 1,           /**< Overload of the Switch */
+        SHORT_TO_GND = 2,       /**< Short to the ground */
+        OVERTEMPERATURE = 3,    /**< Overtemperature */
+        SHORT_TO_VSS = 4,       /**< Short to the supply voltage */
+        OPEN_LOAD = 5,          /**< Open load detected */
+        UNDER_LOAD = 6,         /**< Under load condition */
+        INVERSE_CURRENT = 7,    /**< Inverse current */
     };
     /** @} */
 
@@ -87,20 +89,17 @@ class Hss
                     ~Hss();
     Error_t         init();
     Error_t         deinit();
-    Error_t         enable();
+    Error_t         enable(uint8_t dutycycle = NULL);
     Error_t         disable();
     Error_t         enableDiag();
     Error_t         disableDiag();
     Error_t         diagReset();
 
-    //TODO: Include the PWM functionality
-    
     Status_t        getSwitchStatus();
 
     DiagStatus_t    diagRead();
 
     float           readIs();
-    
     
     protected:
     GPIO            *den;

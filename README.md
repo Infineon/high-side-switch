@@ -6,27 +6,14 @@
 
 C++ library for Infineon's Arduino shield SHIELD_BTS700x-1EPP with the **Smart High-Side Power Swicht BTS700x-1EPP**
 
-1. [Overview](#ovw)  
-2. [Supported Hardware](#s-hw)  
-3. [Software Requirements](#sw-req)
-4. [Library Usage](#lib-usage)
-5. [Demo Applications Example](#demo-ex)
-6. [References](#refs)
-
-<a name="ovw"></a>
-
-## 1. Overview
-
-<a name="s-hw"></a>
-
 ## 2. Supported Hardware
 
 ### SHIELD_BTS7002-1EPP
 The library has been customized for the Arduino-Adapter-Shield ***SHIELD_BTS700x-1EPP*** and for the Arduino environment. It works with all available versions of the board (SHIELD_BTS7002-1EPP, SHIELD_BTS7004-1EPP, SHIELD_BTS7006-1EPP, SHIELD_BTS7008-1EPP).
 
-<img src="docs/img/high-side-switch.jpg" width="250px">
+<img src="docs/img/Profet+2.png" width="250px">
 
-A detailed explanation of the board and its features can be found in the [user manual](https://www.infineon.com/dgdl/Infineon-PROFET+2_12V_Arduino_Shield-UserManual-v01_00-EN.pdf?fileId=5546d4626df6ee62016dfe3f1eff118b). The user manual also contains the pinout as well as the schematics of the board.
+A detailed explanation of the board and its features can be found in the [user manual](https://www.infineon.com/dgdl/Infineon-PROFET+2_12V_Arduino_Shield-UserManual-v01_00-EN.pdf?fileId=5546d4626df6ee62016dfe3f1eff118b). The user manual also contains the pinout as well as the schematics of the board. The data sheets of the board, as well as the bulk switch can also be found in the [docs folder](Infineon-PROFET+2_12V_Arduino_Shield-UserManual-v01_00-EN.pdf)
 
 ### Verified Hardware
 The shield is designed to be directly stacked on boards which have the Arduino UNO form factor.
@@ -35,7 +22,6 @@ Therefore, the library has been built and successfully deployed to the following
 MCU Platforms |
 ---           |
 [XMC1100 Boot Kit](https://www.infineon.com/cms/en/product/evaluation-boards/kit_xmc11_boot_001/#ispnTab1) |
-[XMC4700 Relax Kit for 5V Shields](https://www.infineon.com/cms/en/product/evaluation-boards/kit_xmc47_relax_5v_ad_v1/) |
 [Arduino Uno Rev3](https://store.arduino.cc/arduino-uno-rev3) |
 
 ### Additional hardware platforms

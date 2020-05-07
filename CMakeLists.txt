@@ -16,11 +16,11 @@ set(CMAKE_C_FLAGS "-g -O0 -Wall -fprofile-arcs -ftest-coverage")
 
 # Header & Source Files
 set(Headers
-    src/corelib/high-side-switch.h
+    src/corelib/hss.hpp
     )
 
 set(Sources
-    src/corelib/high-side-switch.cpp
+    src/corelib/hss.cpp
     )
 
 # Add Library

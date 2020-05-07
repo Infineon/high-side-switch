@@ -12,6 +12,10 @@
 
 #include "../../../corelib/hss.hpp"
 
+/**
+ * @brief Arduino ADC class
+ * 
+ */
 class ADCIno : virtual public ADC
 {
     private:

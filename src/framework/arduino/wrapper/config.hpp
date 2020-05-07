@@ -12,6 +12,10 @@
 
 #include <stdint.h>
 
+/**
+ * @brief Struct with all necessary defines of the Profet-Shield
+ * 
+ */
 struct hardwareconfig_t
 {
     uint8_t led1;

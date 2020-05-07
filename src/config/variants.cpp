@@ -9,6 +9,10 @@
 
 #include "variants.hpp"
 
+/**
+ * @brief BTS7002.
+ * Is rated for nominal 21 A and is the Profet with the highest useable power
+ */
 BtsVariants_t BTS7002 {
     .kilis = 22700,
     .ampsGain = 1.08,
@@ -17,6 +21,10 @@ BtsVariants_t BTS7002 {
     .vBatOffset = 0.0
 };
 
+/**
+ * @brief BTS7002.
+ * Is rated for nominal 15 A
+ */
 BtsVariants_t BTS7004 {
     .kilis = 20000,
     .ampsGain = 1.08,
@@ -25,6 +33,10 @@ BtsVariants_t BTS7004 {
     .vBatOffset = 0.0
 };
 
+/**
+ * @brief BTS7006.
+ * Is rated for nominal 12.5 A
+ */
 BtsVariants_t BTS7006 {
     .kilis = 17700,
     .ampsGain = 1.08,
@@ -33,6 +45,10 @@ BtsVariants_t BTS7006 {
     .vBatOffset = 0.0
 };
 
+/**
+ * @brief BTS7008.
+ * Is rated for nominal 11 A
+ */
 BtsVariants_t BTS7008 {
     .kilis = 14500,
     .ampsGain = 1.08,

@@ -14,6 +14,11 @@
 #include "hss.hpp"
 #include "../pal/filter.hpp"
 
+
+/**
+ * @brief High-Side-Switch-Board Class
+ * This class defines the the PROFET-Shield with all it's functions. 
+ */
 class HssBoard : Hss
 {
     public:
@@ -23,10 +28,10 @@ class HssBoard : Hss
     Error_t init();
 
     Error_t switchHxOn(uint8_t x);
+    //Error_t switchHxOnPWM(uint8_t x, uint8_t dutycycle); tbd
     Error_t switchHxOff(uint8_t x);
     Error_t switchesHxOn(bool h1 = NULL, bool h2 = NULL, bool h3 = NULL, bool h4 = NULL);
-    Error_t switchesHxOff(bool h1 = NULL, bool h2 = NULL, bool h3 = NULL, bool h4 = NULL); // replace it only with one function e.g. switchHx()????
-
+    Error_t switchesHxOff(bool h1 = NULL, bool h2 = NULL, bool h3 = NULL, bool h4 = NULL);
     DiagStatus_t readDiagx(uint8_t x);
     DiagStatus_t diagnosisOff(float currentOn, float currentOff);
     

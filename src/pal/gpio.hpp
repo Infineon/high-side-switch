@@ -7,6 +7,8 @@
  * SPDX-License-Identifier: MIT
  */
 
+#include <stdint.h>
+
 #ifndef GPIO_HPP_
 #define GPIO_HPP_
 
@@ -113,6 +115,15 @@ class GPIO
      * @retval      WRITE_ERROR if write error
      */
     virtual Error_t        write       (VLevel_t level) = 0;
+
+    // /**
+    //  * @brief       Writes the GPIO with a certain dutycycle 
+    //  * @param[in]   dutycycle   Desired dutycycle (0 to 255) 
+    //  * @return      GPIO error code
+    //  * @retval      OK if success
+    //  * @retval      WRITE_ERROR if write error
+    //  */
+    // virtual Error_t        writePWM (uint8_t dutycycle) = 0;
 
     /**
      * @brief       Enables the GPIO output according to the GPIO logic

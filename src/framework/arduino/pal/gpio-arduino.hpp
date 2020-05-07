@@ -13,6 +13,10 @@
 
 #include "../../../corelib/hss.hpp"
 
+/**
+ * @brief Arduino GPIO class
+ * 
+ */
 class GPIOIno: virtual public GPIO
 {
 private:
@@ -27,7 +31,8 @@ public:
     Error_t     init();
     Error_t     deinit();
     VLevel_t    read();
-    Error_t     write (VLevel_t level);
+    Error_t     write(VLevel_t level);
+    // Error_t     writePWM(uint8_t dutycycle);
     Error_t     enable();
     Error_t     disable();
 };

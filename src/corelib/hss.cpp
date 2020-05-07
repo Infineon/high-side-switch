@@ -7,7 +7,9 @@
  * SPDX-License-Identifier: MIT
  */
 
+
 #include <Arduino.h>
+#include <stdint.h>
 #include "hss.hpp"
 
 
@@ -17,11 +19,11 @@
  */
 
 /**
- * @brief High Side Switch default constructor
+ * @brief High-Side-Switch default constructor
  *          
- * 
+ * Initialize all protected class pointers with a null pointer.
+ * Also sets the class variables into a default state
  */
-
 Hss::Hss()
 {
     den = NULL;
@@ -36,6 +38,17 @@ Hss::Hss()
     diagStatus = NOT_ENABLED;
 }
 
+/**
+ * @brief High-Side-Switch constructor
+ * 
+ * This constructor is used to define all necessary pins and the variant
+ * of the PROFET.
+ * 
+ * @param[in]   den         Pin number of DEN 
+ * @param[in]   in          Pin number of IN
+ * @param[in]   is          Pin number of IS
+ * @param[in]   variant     Variant of the BTS700x
+ */
 Hss::Hss(GPIO *den, GPIO *in, ADC *is, BtsVariants_t *variant)
 {
     this->den = den;
@@ -48,6 +61,10 @@ Hss::Hss(GPIO *den, GPIO *in, ADC *is, BtsVariants_t *variant)
     diagStatus = NOT_ENABLED;
 }
 
+/**
+ * @brief Destructor of the High-Side-Switch class
+ * 
+ */
 Hss::~Hss()
 {
     den = NULL;
@@ -58,6 +75,14 @@ Hss::~Hss()
     diagStatus = NOT_ENABLED;
 }
 
+/**
+ * @brief Initialize the High-Side-Switch
+ * 
+ * This function initializes all necessary objects of the High-Side-Switch.
+ * It retruns an error code to see if everything was initialized correctly.
+ * 
+ * @return Hss::Error_t 
+ */
 Hss::Error_t Hss::init()
 {
     Error_t err = OK;
@@ -71,10 +96,14 @@ Hss::Error_t Hss::init()
     status = INITED;
     // if(den->checkErrorStatus() != OK && in->checkErrorStatus() != OK
     // && is->checkErrorStatus() != OK) return err = CONF_ERROR;                  //Only return Error if something went wrong
-
     return err;
 }
 
+/**
+ * @brief Deinitialize the High-Side-Switch
+ * 
+ * @return Hss::Error_t 
+ */
 Hss::Error_t Hss::deinit()
 {
     Error_t err = OK;
@@ -91,18 +120,39 @@ Hss::Error_t Hss::deinit()
     return err;
 }
 
-Hss::Error_t Hss::enable()
+/**
+ * @brief Enable the High-Side-Switch
+ * 
+ * This function is turning on the High-Side-Switch.
+ * If no dutycycle is set, the dutycycle is set to 100%
+ * It is also setting the status of the switch to ON.
+ * 
+ * @return Hss::Error_t 
+ */
+Hss::Error_t Hss::enable(uint8_t dutycycle = NULL)
 {
     Error_t err = OK;
-
-    in->enable();
-
+    
+    if(dutycycle == NULL){
+        in->enable();
+    }
+    // else
+    // {
+    //    // in->writePWM(dutycycle);
+    // }
     //if(in->checkErrorStatus() != OK) return err = CONF_ERROR;
-
     status = POWER_ON;
     return err;
 }
 
+/**
+ * @brief Disable the High-Side-Switch
+ * 
+ * This function turns off the High-Side-Switch.
+ * It is also setting the status of the switch to OFF.
+ * 
+ * @return Hss::Error_t 
+ */
 Hss::Error_t Hss::disable()
 {
     Error_t err = OK;
@@ -114,6 +164,13 @@ Hss::Error_t Hss::disable()
     return err;
 }
 
+/**
+ * @brief Enable diagnosis function
+ * 
+ * This funtion is enabling the diagnosis function of the High-Side-Switch.
+ * 
+ * @return Hss::Error_t 
+ */
 Hss::Error_t Hss::enableDiag()
 {
     Error_t err = OK;
@@ -125,6 +182,13 @@ Hss::Error_t Hss::enableDiag()
     return err;
 }
 
+/**
+ * @brief Disable diagnosis function
+ * 
+ * This function is disabling the diagnosis function of the High-Side-Switch.
+ * 
+ * @return Hss::Error_t 
+ */
 Hss::Error_t Hss::disableDiag()
 {
     Error_t err = OK;
@@ -136,6 +200,15 @@ Hss::Error_t Hss::disableDiag()
     return err;
 }
 
+/**
+ * @brief Reset the diagnostic
+ * 
+ * This function resets the diagnostic function of the switch.
+ * Any error, for exmaple an overcurrent event, will set the internal
+ * latch of the switch to "1". This function is reseting the latch.
+ * 
+ * @return Hss::Error_t 
+ */
 Hss::Error_t Hss::diagReset()
 {
     Error_t err = OK;
@@ -149,11 +222,31 @@ Hss::Error_t Hss::diagReset()
     return err;
 }
 
+/**
+ * @brief Get the switch status
+ * 
+ * This function returns the current status of the switch.
+ * 
+ * @return Hss::Status_t
+ * 
+ * @retval  0   Uninitialized
+ * @retval  1   Initialized
+ * @retval  2   Power on
+ * @retval  3   Power off
+ */
 Hss::Status_t Hss::getSwitchStatus()
 {
     return status;
 }
 
+/**
+ * @brief Read IS
+ * 
+ * This functions is reading the IS signal of the switch.
+ * It returns the calculated current, which is depending on the IS signal.
+ * 
+ * @return Value of the current flowing through the switch in [A] 
+ */
 float Hss::readIs()
 {
     uint16_t ADCResult = 0;
@@ -162,8 +255,7 @@ float Hss::readIs()
     if(diagEnb == DIAG_EN){
         delay(1);                                                       //wait for 1ms to ensure that the Profet will provide a valid sense signal
         ADCResult = is->ADCRead();
-
-        amps = ((float)ADCResult/(float)4096) * 5.0;
+        amps = ((float)ADCResult/(float)1024) * (float)5;
         amps = (amps * btsVariant->kilis)/1000;
         amps = (amps - btsVariant->ampsOffset) * btsVariant->ampsGain;
         currentFilter->input(amps);
@@ -171,6 +263,20 @@ float Hss::readIs()
     return currentFilter->output();
 }
 
+/**
+ * @brief Diagnosis of the Sensor
+ * 
+ * This function is using the IS signal to determine the state of the switch.
+ * It returns an diagnosis state of the switch.
+ * 
+ * @return Hss::DiagStatus_t
+ * 
+ * @retval  -2  Not enabled
+ * @retval  0   Switch is working fine
+ * @retval  1   Overload detected 
+ * @retval  5   Open load detected
+ 
+ */
 Hss::DiagStatus_t Hss::diagRead()
 {
     uint16_t ADCResult = 0;

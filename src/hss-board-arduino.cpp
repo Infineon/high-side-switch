@@ -10,6 +10,15 @@
 #include "Arduino.h"
 #include "hss-board-arduino.hpp"
 
+/**
+ * @brief Default constructor of the Arduino High-Side-Switch-Board
+ * 
+ * This default constructor defines all necessary things for the Profet-Shield.
+ * He is meant for all controllers that support the Arduino-Uno form factor.
+ * But it is still necessary to chose the variant of the High-Side-Switch.
+ * 
+ * @param[in]   variantSel      Variant of the High-Side-Switch(see variants.cpp) 
+ */
 HssBoardIno::HssBoardIno(BtsVariants_t *variantSel)
 {
     led1 = new GPIOIno(ARDUINO_UNO.led1, OUTPUT, GPIOIno::POSITIVE);
@@ -29,6 +38,15 @@ HssBoardIno::HssBoardIno(BtsVariants_t *variantSel)
     vBat = new ADCIno(ARDUINO_UNO.vBat);
 }
 
+/**
+ * @brief Constructor of the Arduino High-Side-Switch-Board
+ * 
+ * This constructor can be used in case of an other board the boards that
+ * support the Arduino form factor or if the board is modified.
+ * 
+ * @param variantSel 
+ * @param config 
+ */
 HssBoardIno::HssBoardIno(BtsVariants_t *variantSel, hardwareconfig_t config)
 {
     led1 = new GPIOIno(config.led1, OUTPUT, GPIOIno::POSITIVE);
@@ -48,9 +66,13 @@ HssBoardIno::HssBoardIno(BtsVariants_t *variantSel, hardwareconfig_t config)
     vBat =  new ADCIno(config.vBat);
 }
 
+/**
+ * @brief Destructor of the Arduino High-Side-Switch-Board
+ * 
+ */
 HssBoardIno::~HssBoardIno()
 {
-    //TODO: Find a way to properly distruct the instance
+
 }
 
 

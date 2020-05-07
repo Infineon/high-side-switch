@@ -14,6 +14,10 @@
 #include "hss-arduino.hpp"
 #include "framework/arduino/wrapper/config.hpp"
 
+/**
+ * @brief Arduino Class of the High-Side-Switch-Board
+ * 
+ */
 class HssBoardIno : public HssBoard
 {
     public:

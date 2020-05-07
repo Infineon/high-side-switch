@@ -5,3 +5,4 @@ googletest/
 CMakeCache.txt
 cmake_install.cmake
 CTestTestfile.cmake
+InfineonDoxyGenerator/

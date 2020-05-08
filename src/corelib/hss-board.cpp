@@ -453,21 +453,21 @@ float HssBoard::readVss()
  * @brief Read the button state
  * 
  * @retval true if button is pressed
- * @retval FALSE if button is not pressed 
+ * @retval false if button is not pressed 
  */
 bool HssBoard::digitalReadButton()
 {
     if(pushButtonDigital->read() == GPIO::GPIO_HIGH)
     return true;
     else
-    return FALSE;
+    return false;
 }
 
 /**
  * @brief Read the button state (analog)
  * 
  * @retval true if button is pressed
- * @retval FALSE if button is not pressed 
+ * @retval false if button is not pressed 
  */
 bool HssBoard::analogReadButton()
 {
@@ -478,7 +478,7 @@ bool HssBoard::analogReadButton()
         return true;
     }
     else{
-        return FALSE;
+        return false;
     }
 }
 

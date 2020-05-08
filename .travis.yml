@@ -19,7 +19,7 @@ addons:
             - ubuntu-toolchain-r-test
 env:
     matrix:
-        - PLATFORMIO_CI_SRC=examples/exampleA
+        - PLATFORMIO_CI_SRC=examples/high-side-switch
 
 jobs:
   include:

@@ -215,7 +215,7 @@ Hss::Error_t Hss::diagReset()
 
     in->disable();
     //if(in->checkErrorStatus() != OK) return err = CONF_ERROR;
-    sleep(100);
+    delay(100);
     in->enable();
     //if(in->checkErrorStatus() != OK) return err = CONF_ERROR;
 

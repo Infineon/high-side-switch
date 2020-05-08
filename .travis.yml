@@ -38,13 +38,13 @@ jobs:
       name: "Testing"
       install:
         # Install cpp-coveralls
-        - pip install cpp-coveralls==0.4.2
+        # - pip install cpp-coveralls==0.4.2
         # Clone Google Test
-        - git clone https://github.com/google/googletest.git --branch v1.10.x
+        # - git clone https://github.com/google/googletest.git --branch v1.10.x
       script: 
         # Cmake Build and Run Test
-        - mkdir build && cd build
-        - cmake ..
+        # - mkdir build && cd build
+        # - cmake ..
         # - cmake --build . 
         # - ctest
       after_success: 
@@ -59,8 +59,8 @@ jobs:
       if: tag IS present
       name: "GitHub Pages Deployment"
       install:
-        - git clone https://github.com/Infineon/InfineonDoxyGenerator.git --branch v.0.2.0
+        # - git clone https://github.com/Infineon/InfineonDoxyGenerator.git --branch v.0.2.0
       script: 
-        - cd InfineonDoxyGenerator
-        - python doxyifx.py html
-        - python doxyifx.py release $GH_USER $GH_PASS_TOKEN
+        # - cd InfineonDoxyGenerator
+        # - python doxyifx.py html
+        # - python doxyifx.py release $GH_USER $GH_PASS_TOKEN

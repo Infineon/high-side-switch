@@ -20,6 +20,7 @@ addons:
 env:
     matrix:
         - PLATFORMIO_CI_SRC=examples/high-side-switch
+        - PLATFORMIO_CI_SRC=examples/high-side-switch
 
 jobs:
   include:

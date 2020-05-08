@@ -2,6 +2,8 @@ language: python
 python:
     - 3.8.0
 
+install: pip install --user -r requirements.txt
+
 sudo: required
         
 branches:

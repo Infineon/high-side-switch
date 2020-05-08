@@ -47,6 +47,10 @@ void loop()
 
     int switchStatus = 0;
 
+    /**
+     * This small if-case is checking for an user input.
+     * To use this press the "+" symbol on your keyboard, this is equal to the "43" in ASCII.
+     */
     if(Serial.available() > 0){
         incomingSerial = Serial.read();
 
@@ -55,6 +59,36 @@ void loop()
         }
     }
 
+    /**
+     * This if-case are used to show all functions of the board.
+     * Depending on the value of the counter the board will do the following:
+     *      - From 1 to 4:
+     *          Switch on all four channels, one after the other starting with channel 1
+     *          Also reads out the diagnostic channel of the corresponding channel
+     *      - From 5 to 8:
+     *          Switch off all four channels, one after the other starting with channel 1
+     *          Also reads out the diagnostic channel of the corresponding channel
+     *      - From 9 to 10:
+     *          First turns on all channels at once
+     *          Then turns off all channels at once
+     *      - After that the counter will be reset and you can use the programm again
+     * 
+     * The status of the switch can be determined with the following table:
+     *      || Diagnosis Status || Description                                                      ||
+     *      ------------------------------------------------------------------------------------------
+     *      ||          0       || NORMAL = Everything is working correctly                         ||
+     *      ||          1       || OVERLOAD = Exceeded the board's current limit                    ||
+     *      ||          2       || SHORT_TO_GND = Short the ground of the board                     ||
+     *      ||          3       || OVERTEMPERATURE = Board got to hot                               ||
+     *      ||          4       || SHORT_TO_VSS = Short to the Battery pad of the board             ||
+     *      ||          5       || OPEN_LOAD = No load is connected                                 ||
+     *      ||          6       || UNDER_LOAD = Not enough voltage/current to turn on the switch    ||
+     *      ||          7       || INVERSE_CURRENT = Inverse current flows into the board           ||
+     * 
+     * Please note: If you use the diagnosis function when the switch is off and no load is connected
+     * the status will be SHORT_TO_GND, because this state is not clear because of the provided IS signal
+     * of the board. Read more about this in the data sheet of the PROFET on page 40.
+     */
     if(counter > 0 && counter < 5 && oldCounter != counter){
         HSS.switchHxOn(counter);
         Serial.print("Switched half bridge ");

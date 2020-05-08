@@ -188,30 +188,30 @@ HssBoard::Error_t HssBoard::switchHxOff(uint8_t x)
  * 
  * This function is used to enable multiple switches at once.
  *  
- * @param[in] h1    Enable the first switch if h1 == TRUE   
- * @param[in] h2    Enable the second switch if h2 == TRUE 
- * @param[in] h3    Enable the third switch if h3 == TRUE 
- * @param[in] h4    Enable the fourth switch if h4 == TRUE 
+ * @param[in] h1    Enable the first switch if h1 == true   
+ * @param[in] h2    Enable the second switch if h2 == true 
+ * @param[in] h3    Enable the third switch if h3 == true 
+ * @param[in] h4    Enable the fourth switch if h4 == true 
  * @return          HssBoard::Error_t 
  */
 HssBoard::Error_t HssBoard::switchesHxOn(bool h1 = NULL, bool h2 = NULL, bool h3 = NULL, bool h4 = NULL)
 {
-    if(h1 == TRUE){
+    if(h1 == true){
         hss1->enable();
         led1->enable();
     }
 
-    if(h2 == TRUE){
+    if(h2 == true){
         hss2->enable();
         led2->enable();
     }
 
-    if(h3 == TRUE){
+    if(h3 == true){
         hss3->enable();
         led3->enable();
     }
 
-    if(h4 == TRUE){
+    if(h4 == true){
         hss4->enable();
         led4->enable();
     }
@@ -224,30 +224,30 @@ HssBoard::Error_t HssBoard::switchesHxOn(bool h1 = NULL, bool h2 = NULL, bool h3
  * 
  * This function is used to disable multiple switches at once.
  *  
- * @param[in] h1    Disable the first switch if h1 == TRUE   
- * @param[in] h2    Disable the second switch if h2 == TRUE 
- * @param[in] h3    Disable the third switch if h3 == TRUE 
- * @param[in] h4    Disable the fourth switch if h4 == TRUE 
+ * @param[in] h1    Disable the first switch if h1 == true   
+ * @param[in] h2    Disable the second switch if h2 == true 
+ * @param[in] h3    Disable the third switch if h3 == true 
+ * @param[in] h4    Disable the fourth switch if h4 == true 
  * @return          HssBoard::Error_t 
  */
 HssBoard::Error_t HssBoard::switchesHxOff(bool h1 = NULL, bool h2 = NULL, bool h3 = NULL, bool h4 = NULL)
 {
-    if(h1 == TRUE){
+    if(h1 == true){
         hss1->disable();
         led1->disable();
     }
 
-    if(h2 == TRUE){
+    if(h2 == true){
         hss2->disable();
         led2->disable();
     }
 
-    if(h3 == TRUE){
+    if(h3 == true){
         hss3->disable();
         led3->disable();
     }
 
-    if(h4 == TRUE){
+    if(h4 == true){
         hss4->disable();
         led4->disable();
     }
@@ -452,13 +452,13 @@ float HssBoard::readVss()
 /**
  * @brief Read the button state
  * 
- * @retval TRUE if button is pressed
+ * @retval true if button is pressed
  * @retval FALSE if button is not pressed 
  */
 bool HssBoard::digitalReadButton()
 {
     if(pushButtonDigital->read() == GPIO::GPIO_HIGH)
-    return TRUE;
+    return true;
     else
     return FALSE;
 }
@@ -466,7 +466,7 @@ bool HssBoard::digitalReadButton()
 /**
  * @brief Read the button state (analog)
  * 
- * @retval TRUE if button is pressed
+ * @retval true if button is pressed
  * @retval FALSE if button is not pressed 
  */
 bool HssBoard::analogReadButton()
@@ -475,7 +475,7 @@ bool HssBoard::analogReadButton()
 
     result = pushButtonAnalog->ADCRead();
     if(result > 3000){
-        return TRUE;
+        return true;
     }
     else{
         return FALSE;

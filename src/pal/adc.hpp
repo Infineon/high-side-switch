@@ -7,19 +7,19 @@
  * SPDX-License-Identifier: MIT
  */
 
-#ifndef ADC_HPP_
-#define ADC_HPP_
+#ifndef AnalogDigitalConverter_HPP_
+#define AnalogDigitalConverter_HPP_
 
 #include <stdint.h>
 
 /**
- * @class ADC
+ * @class AnalogDigitalConverter
  */
 /**
  * @addtogroup hallswitchhwi
  * @{
  */ 
-class ADC
+class AnalogDigitalConverter
 {
     public:
 
@@ -48,6 +48,6 @@ class ADC
 };
 /** @} */
 
-#endif /** ADC_HPP_ **/
+#endif /** AnalogDigitalConverter_HPP_ **/
 
 

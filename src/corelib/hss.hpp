@@ -85,7 +85,7 @@ class Hss
     /** @} */
 
                     Hss();
-                    Hss(GPIO *den, GPIO *in, ADC *is, BtsVariants_t *variant);
+                    Hss(GPIO *den, GPIO *in, AnalogDigitalConverter *is, BtsVariants_t *variant);
                     ~Hss();
     Error_t         init();
     Error_t         deinit();
@@ -102,9 +102,9 @@ class Hss
     float           readIs();
     
     protected:
-    GPIO            *den;
-    GPIO            *in;
-    ADC             *is;
+    GPIO                    *den;
+    GPIO                    *in;
+    AnalogDigitalConverter  *is;
 
     ExponentialFilter *currentFilter;
 

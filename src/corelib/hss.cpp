@@ -49,7 +49,7 @@ Hss::Hss()
  * @param[in]   is          Pin number of IS
  * @param[in]   variant     Variant of the BTS700x
  */
-Hss::Hss(GPIO *den, GPIO *in, ADC *is, BtsVariants_t *variant)
+Hss::Hss(GPIO *den, GPIO *in, AnalogDigitalConverter *is, BtsVariants_t *variant)
 {
     this->den = den;
     this->in = in;
@@ -249,13 +249,13 @@ Hss::Status_t Hss::getSwitchStatus()
  */
 float Hss::readIs()
 {
-    uint16_t ADCResult = 0;
+    uint16_t AnalogDigitalConverterResult = 0;
     float amps = 0.0;
 
     if(diagEnb == DIAG_EN){
         delay(1);                                                       //wait for 1ms to ensure that the Profet will provide a valid sense signal
-        ADCResult = is->ADCRead();
-        amps = ((float)ADCResult/(float)1024) * (float)5;
+        AnalogDigitalConverterResult = is->ADCRead();
+        amps = ((float)AnalogDigitalConverterResult/(float)1024) * (float)5;
         amps = (amps * btsVariant->kilis)/1000;
         amps = (amps - btsVariant->ampsOffset) * btsVariant->ampsGain;
         currentFilter->input(amps);
@@ -279,7 +279,7 @@ float Hss::readIs()
  */
 Hss::DiagStatus_t Hss::diagRead()
 {
-    uint16_t ADCResult = 0;
+    uint16_t AnalogDigitalConverterResult = 0;
     float amps = 0.0;
 
     if(diagEnb == DIAG_EN){

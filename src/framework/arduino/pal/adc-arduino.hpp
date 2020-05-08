@@ -16,7 +16,7 @@
  * @brief Arduino ADC class
  * 
  */
-class ADCIno : virtual public ADC
+class ADCIno : virtual public AnalogDigitalConverter
 {
     private:
     uint8_t pin;

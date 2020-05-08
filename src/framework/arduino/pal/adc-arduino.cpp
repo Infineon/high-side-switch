@@ -94,7 +94,7 @@ ADCIno::Error_t ADCIno::disable()
  */
 ADCIno::Error_t ADCIno::setReadResolution(uint8_t resolution)
 {
-    analogReadResolution(resolution);
+    // analogReadResolution(resolution);
     
     return OK;
 }
@@ -109,7 +109,7 @@ ADCIno::Error_t ADCIno::setReadResolution(uint8_t resolution)
  */
 ADCIno::Error_t ADCIno::setWriteResolution(uint8_t resolution)
 {
-    analogWriteResolution(resolution);
+    // analogWriteResolution(resolution);
     
     return OK;
 }

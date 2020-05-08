@@ -1,8 +1,6 @@
 # Smart High-Side Swicht
 
-[![Build Status](https://travis-ci.com/Infineon/arduino-lib-template.svg?token=6kUNarYqBqa7EKjMmBcQ&branch=master)](https://travis-ci.com/Infineon/arduino-lib-template)
-<a href='https://coveralls.io/github/Infineon/arduino-lib-template'><img src='https://coveralls.io/repos/github/Infineon/arduino-lib-template/badge.svg' alt='Coverage Status' /></a>
-
+[![Build Status](https://travis-ci.com/Infineon/high-side-switch.svg?branch=master)](https://travis-ci.com/github/Infineon/high-side-switch)
 
 C++ library for Infineon's Arduino shield SHIELD_BTS700x-1EPP with the **Smart High-Side Power Swicht BTS700x-1EPP**
 

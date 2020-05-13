@@ -56,6 +56,8 @@ class HssBoard : Hss
     Hss *hss3;
     Hss *hss4;
 
+    Timer *timer;
+
     GPIO *oloff;
     GPIO *pushButtonDigital;
 

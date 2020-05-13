@@ -16,23 +16,23 @@ class ExponentialFilter
 {
     public:
 
-    ExponentialFilter();
-    ExponentialFilter(float y);
-    ExponentialFilter(float y, uint16_t t);
+        ExponentialFilter();
+        ExponentialFilter(float y);
+        ExponentialFilter(float y, uint16_t t);
 
-    void setFilter(float y, uint16_t t);
-    void setTau(uint16_t t);
-    void setToNewValue(float y);
-    float input(float x);
-    float output();
-    uint16_t pow2(uint16_t p);
-    
-    private:
-    uint16_t tau;
+        void setFilter(float y, uint16_t t);
+        void setTau(uint16_t t);
+        void setToNewValue(float y);
+        float input(float x);
+        float output();
+        uint16_t pow2(uint16_t p);
+        
+        private:
+        uint16_t tau;
 
-    float y;
-    float y_last;
-    float x;
+        float y;
+        float y_last;
+        float x;
 };
 
 #endif /** FILTER_H_ **/

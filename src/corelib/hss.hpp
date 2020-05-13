@@ -1,6 +1,6 @@
 /** 
  * @file        hss.hpp
- * @brief       Defenition of the High-Side-Switch class fucntions
+ * @brief       Definition of the High-Side-Switch class functions
  * @date        May 2020
  * @copyright   Copyright (c) 2019-2020 Infineon Technologies AG
  * 
@@ -12,6 +12,7 @@
 #include <stdlib.h>
 #include <stdint.h>
 #include <unistd.h>
+#include "../pal/timer.hpp"
 #include "../pal/gpio.hpp"
 #include "../pal/adc.hpp"
 #include "../config/variants.hpp"
@@ -106,12 +107,14 @@ class Hss
     GPIO                    *in;
     AnalogDigitalConverter  *is;
 
-    ExponentialFilter *currentFilter;
+    Timer                   *timer;
 
-    BtsVariants_t   *btsVariant;
-    Status_t        status;
-    DiagEnable_t    diagEnb;
-    DiagStatus_t    diagStatus;
+    ExponentialFilter       *currentFilter;
+
+    BtsVariants_t           *btsVariant;
+    Status_t                status;
+    DiagEnable_t            diagEnb;
+    DiagStatus_t            diagStatus;
     
 };
 /** @} */

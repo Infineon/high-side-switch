@@ -1,6 +1,6 @@
 /** 
  * @file        hss.cpp
- * @brief       Defenition of the High-Side-Switch class fucntions
+ * @brief       Definition of the High-Side-Switch class functions
  * @date        May 2020
  * @copyright   Copyright (c) 2019-2020 Infineon Technologies AG
  * 
@@ -30,6 +30,8 @@ Hss::Hss()
     in = NULL;
     is = NULL;
 
+    timer = NULL;
+
     currentFilter = NULL;
 
     btsVariant = NULL;
@@ -55,6 +57,10 @@ Hss::Hss(GPIO *den, GPIO *in, AnalogDigitalConverter *is, BtsVariants_t *variant
     this->in = in;
     this->is = is;
 
+    timer = NULL;
+
+    currentFilter = NULL;
+
     btsVariant = variant;
     status = UNINITED;
     diagEnb = DIAG_DIS;
@@ -70,6 +76,11 @@ Hss::~Hss()
     den = NULL;
     in = NULL;
     is = NULL;
+
+    timer = NULL;
+
+    currentFilter = NULL;
+
     status = UNINITED;
     diagEnb = DIAG_DIS;
     diagStatus = NOT_ENABLED;
@@ -90,6 +101,8 @@ Hss::Error_t Hss::init()
     den->init();
     in->init();
     is->init();
+
+    timer->init();
 
     currentFilter = new ExponentialFilter(0.0, 0.3);
 
@@ -112,7 +125,7 @@ Hss::Error_t Hss::deinit()
     in->deinit();
     is->deinit();
     
-    
+    timer->deinit();
     //if(den->checkErrorStatus() != OK && in->checkErrorStatus() != OK
     //&& is->checkErrorStatus() != OK) return err = CONF_ERROR;                  //Only return Error if something went wrong
     
@@ -204,7 +217,7 @@ Hss::Error_t Hss::disableDiag()
  * @brief Reset the diagnostic
  * 
  * This function resets the diagnostic function of the switch.
- * Any error, for exmaple an overcurrent event, will set the internal
+ * Any error, for example an overcurrent event, will set the internal
  * latch of the switch to "1". This function is reseting the latch.
  * 
  * @return Hss::Error_t 
@@ -215,7 +228,7 @@ Hss::Error_t Hss::diagReset()
 
     in->disable();
     //if(in->checkErrorStatus() != OK) return err = CONF_ERROR;
-    delay(100);
+    timer->delay(100);
     in->enable();
     //if(in->checkErrorStatus() != OK) return err = CONF_ERROR;
 
@@ -253,7 +266,7 @@ float Hss::readIs()
     float amps = 0.0;
 
     if(diagEnb == DIAG_EN){
-        delay(1);                                                       //wait for 1ms to ensure that the Profet will provide a valid sense signal
+        timer->delay(1);                                                       //wait for 1ms to ensure that the Profet will provide a valid sense signal
         AnalogDigitalConverterResult = is->ADCRead();
         amps = ((float)AnalogDigitalConverterResult/(float)1024) * (float)5;
         amps = (amps * btsVariant->kilis)/1000;

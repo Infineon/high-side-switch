@@ -272,7 +272,6 @@ HssBoard::Error_t HssBoard::switchesHxOff(bool h1 = NULL, bool h2 = NULL, bool h
 float HssBoard::readIsx(uint8_t x)
 {
     float result;
-
     switch (x)
     {
         case 1:
@@ -327,16 +326,16 @@ HssBoard::DiagStatus_t HssBoard::readDiagx(uint8_t x)
     {
         case 1:
             hss1->enableDiag();
-            if(hss1->getSwitchStatus() == POWER_ON){
+            if(hss1->getSwitchStatus() == Hss::Status_t::POWER_ON){
                diagStatus = hss1->diagRead();
             }
             else{
                 oloff->enable();
-                timer->delayMicroseconds(300);
+                timer->delayMicro(300);
                 currentOn = hss1->readIs();
     
                 oloff->disable();
-                timer->delayMicroseconds(400);
+                timer->delayMicro(400);
                 currentOff = hss1->readIs();
                 diagStatus = diagnosisOff(currentOn, currentOff);
             }
@@ -350,11 +349,11 @@ HssBoard::DiagStatus_t HssBoard::readDiagx(uint8_t x)
             }
             else{
                 oloff->enable();
-                timer->delayMicroseconds(300);
+                timer->delayMicro(300);
                 currentOn = hss2->readIs();
 
                 oloff->disable();
-                timer->delayMicroseconds(400);
+                timer->delayMicro(400);
                 currentOff = hss2->readIs();
                 diagStatus = diagnosisOff(currentOn, currentOff);
             }
@@ -368,11 +367,11 @@ HssBoard::DiagStatus_t HssBoard::readDiagx(uint8_t x)
             }
             else{
                 oloff->enable();
-                timer->delayMicroseconds(300);
+                timer->delayMicro(300);
                 currentOn = hss3->readIs();
 
                 oloff->disable();
-                timer->delayMicroseconds(400);
+                timer->delayMicro(400);
                 currentOff = hss3->readIs();
                 diagStatus = diagnosisOff(currentOn, currentOff);
             }
@@ -386,11 +385,11 @@ HssBoard::DiagStatus_t HssBoard::readDiagx(uint8_t x)
             }
             else{
                 oloff->enable();
-                timer->delayMicroseconds(300);
+                timer->delayMicro(300);
                 currentOn = hss4->readIs();
 
                 oloff->disable();
-                timer->delayMicroseconds(400);
+                timer->delayMicro(400);
                 currentOff = hss4->readIs();
                 diagStatus = diagnosisOff(currentOn, currentOff);
             }

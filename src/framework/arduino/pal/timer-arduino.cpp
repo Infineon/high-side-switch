@@ -108,7 +108,7 @@ TimerIno::Error_t TimerIno::stop()
  * @param[in]   timeout                 Desired timeout in ms 
  * @return      TimerIno::Error_t 
  */
-TimerIno::Error_t TimerIno::delay(uint32_t timeout)
+TimerIno::Error_t TimerIno::delayMilli(uint32_t timeout)
 {
     delay(timeout);
     return OK;
@@ -123,7 +123,7 @@ TimerIno::Error_t TimerIno::delay(uint32_t timeout)
  * @param[in]   timeout                 Desired timeout in us 
  * @return      TimerIno::Error_t 
  */
-TimerIno::Error_t TimerIno::delayMicroseconds(uint32_t timeout)
+TimerIno::Error_t TimerIno::delayMicro(uint32_t timeout)
 {
     delayMicroseconds(timeout);
     return OK;

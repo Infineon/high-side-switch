@@ -13,6 +13,7 @@
 #include "corelib/hss.hpp"
 #include "framework/arduino/pal/gpio-arduino.hpp"
 #include "framework/arduino/pal/adc-arduino.hpp"
+#include "framework/arduino/pal/timer-arduino.hpp"
 
 /**
  * @brief Arduino class of the High-Side-Swich

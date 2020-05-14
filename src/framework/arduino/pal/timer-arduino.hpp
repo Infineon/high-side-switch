@@ -22,8 +22,8 @@ class TimerIno: virtual public Timer
         Error_t start();
         Error_t elapsed(uint32_t &elapsed);
         Error_t stop();
-        Error_t delay(uint32_t timeout);
-        Error_t delayMicroseconds(uint32_t timeout);
+        Error_t delayMilli(uint32_t timeout);
+        Error_t delayMicro(uint32_t timeout);
 
     private:
         uint32_t startTime;

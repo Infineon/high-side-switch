@@ -71,7 +71,7 @@ class Timer
          * @retval      OK if success
          * @retval      INIT_ERROR if hardware interface error
          */
-        virtual  Error_t         delay   (uint32_t timeout) = 0;
+        virtual  Error_t        delayMilli (uint32_t timeout) = 0;
         
         /**
          * @brief       Introduces a delay during the specified time
@@ -80,7 +80,7 @@ class Timer
          * @retval      OK if success
          * @retval      INIT_ERROR if hardware interface error
          */
-        virtual  Error_t        delayMicroseconds(uint32_t timeout) = 0;
+        virtual  Error_t        delayMicro  (uint32_t timeout) = 0;
 };
 
 /** @} */

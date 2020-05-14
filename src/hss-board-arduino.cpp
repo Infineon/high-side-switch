@@ -30,6 +30,8 @@ HssBoardIno::HssBoardIno(BtsVariants_t *variantSel)
     hss2 = new HssIno(ARDUINO_UNO.den2_den4, ARDUINO_UNO.in2, ARDUINO_UNO.is1_is2, variantSel);
     hss3 = new HssIno(ARDUINO_UNO.den1_den3, ARDUINO_UNO.in3, ARDUINO_UNO.is3_is4, variantSel);
     hss4 = new HssIno(ARDUINO_UNO.den2_den4, ARDUINO_UNO.in4, ARDUINO_UNO.is3_is4, variantSel);
+
+    timer = new TimerIno();
     
     oloff = new GPIOIno(ARDUINO_UNO.oloff, OUTPUT, GPIOIno::POSITIVE);
     pushButtonDigital = new GPIOIno(ARDUINO_UNO.pushButtonDigital, INPUT_PULLUP, GPIOIno::POSITIVE);
@@ -58,6 +60,8 @@ HssBoardIno::HssBoardIno(BtsVariants_t *variantSel, hardwareconfig_t config)
     hss2 = new HssIno(config.den2_den4, config.in2, config.is1_is2, variantSel);
     hss3 = new HssIno(config.den1_den3, config.in3, config.is3_is4, variantSel);
     hss4 = new HssIno(config.den2_den4, config.in4, config.is3_is4, variantSel);
+
+    timer = new TimerIno();
 
     oloff = new GPIOIno(config.oloff, OUTPUT, GPIOIno::POSITIVE);
     pushButtonDigital = new GPIOIno(config.pushButtonDigital, INPUT_PULLUP, GPIOIno::POSITIVE);

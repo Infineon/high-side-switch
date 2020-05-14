@@ -190,7 +190,6 @@ Hss::Error_t Hss::enableDiag()
 
     den->enable();
     //if(den->checkErrorStatus() != OK) return err = CONF_ERROR;
-    
     diagEnb = DIAG_EN;
     return err;
 }
@@ -228,7 +227,7 @@ Hss::Error_t Hss::diagReset()
 
     in->disable();
     //if(in->checkErrorStatus() != OK) return err = CONF_ERROR;
-    timer->delay(100);
+    timer->delayMilli(100);
     in->enable();
     //if(in->checkErrorStatus() != OK) return err = CONF_ERROR;
 
@@ -266,7 +265,7 @@ float Hss::readIs()
     float amps = 0.0;
 
     if(diagEnb == DIAG_EN){
-        timer->delay(1);                                                       //wait for 1ms to ensure that the Profet will provide a valid sense signal
+        timer->delayMilli(1);                                                       //wait for 1ms to ensure that the Profet will provide a valid sense signal
         AnalogDigitalConverterResult = is->ADCRead();
         amps = ((float)AnalogDigitalConverterResult/(float)1024) * (float)5;
         amps = (amps * btsVariant->kilis)/1000;

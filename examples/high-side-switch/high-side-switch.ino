@@ -1,8 +1,8 @@
 /**
  * @file        high-side-switch.ino
- * @brief       High-Side-Switch Exmpale for the Arduino form factor
+ * @brief       High-Side-Switch Example for the Arduino form factor
  *              
- *              This exmaple shows the usage of the Arduino API.
+ *              This example shows the usage of the Arduino API.
  *              It covers all functions of the PROFET-Shield and shows how the functions are used.
  *              It can be deployed to the Arduino Uno or the XMC's with corresponding form factor.
  * 
@@ -15,7 +15,7 @@
  * Here we create an object of the High-Side-Switch-Board class with the Name HSS.
  * The constructor needs the used version of the Profet.
  * 
- * Available verison are:
+ * Available versions are:
  * - BTS7002
  * - BTS7004
  * - BTS7006
@@ -26,7 +26,7 @@
 HssBoardIno HSS = HssBoardIno(&BTS7002);
 
 void setup()
-{   /** Serial intitialization */
+{   /** Serial initialization */
     Serial.begin(115200);
     delay(2000);
     Serial.println("Serial initialized");
@@ -34,6 +34,7 @@ void setup()
     /** Initialization of the High-Side-Switch-Board */
     HSS.init();
     delay(1000);
+    Serial.println("High-Side-Switch is initialized");
 }
 
 void loop()
@@ -71,7 +72,7 @@ void loop()
      *      - From 9 to 10:
      *          First turns on all channels at once
      *          Then turns off all channels at once
-     *      - After that the counter will be reset and you can use the programm again
+     *      - After that the counter will be reset and you can use the program again
      * 
      * The status of the switch can be determined with the following table:
      *      || Diagnosis Status || Description                                                      ||
@@ -104,6 +105,7 @@ void loop()
         Serial.print("Diagnosis status of the switch: ");
         Serial.println(switchStatus);
 
+        batteryVoltage = HSS.readVss();
         Serial.print("Current battery voltage : ");
         Serial.print(batteryVoltage);Serial.println(" V\n");
 
@@ -116,7 +118,6 @@ void loop()
         Serial.println(" off");
 
         Serial.println("Reading the current and diagnosis status of this switch ...");
-
         readAmps = HSS.readIsx(counter - 4);
         Serial.print("Current flowing through the switch: ");
         Serial.print(readAmps);Serial.println(" A");

@@ -13,7 +13,7 @@
 
 /**
  * Here we create an object of the High-Side-Switch-Board class with the Name HSS.
- * The constructor needs the used version of the Profet.
+ * The constructor needs the used version of the PROFET.
  * 
  * Available versions are:
  * - BTS7002

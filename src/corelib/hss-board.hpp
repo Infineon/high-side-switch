@@ -61,7 +61,7 @@ class HssBoard : Hss
     GPIO *oloff;
     GPIO *pushButtonDigital;
 
-    AnalogDigitalConverter *pushButtonAnalog;        //only if a push button is assambled
+    AnalogDigitalConverter *pushButtonAnalog;
     AnalogDigitalConverter *vBat;
 
     const float vBatGain = 1.045;

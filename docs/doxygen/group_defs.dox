@@ -1,0 +1,9 @@
+/**
+ * @defgroup hsscorelib     Core Library
+ * @{
+*/
+
+/**
+ * @defgroup hsspal         Platform Abstraction Layer */
+
+/** @} */

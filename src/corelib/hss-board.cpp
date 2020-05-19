@@ -79,6 +79,37 @@ HssBoard::Error_t HssBoard::init()
 }
 
 /**
+ * @brief Deinitialize all necessary objects of the High-Side-Switch-Board
+ * 
+ * This function deinitializes all necessary objects of the High-Side-Switch-Board.
+ * It retruns an error code to see if everything was deinitialized correctly.
+ * 
+ * @return HssBoard::Error_t
+ */
+HssBoard::Error_t HssBoard::deinit()
+{
+    led1->deinit();
+    led2->deinit();
+    led3->deinit();
+    led4->deinit();
+
+    hss1->deinit();
+    hss2->deinit();
+    hss3->deinit();
+    hss4->deinit();
+
+    timer->deinit();
+
+    oloff->deinit();
+    pushButtonDigital->deinit();
+    
+    pushButtonAnalog->deinit();
+    vBat->deinit();
+
+    return OK;
+}
+
+/**
  * @brief Switch on the selected High-Side-Switch
  * 
  * This function turns on the desired High-Side-Switch.

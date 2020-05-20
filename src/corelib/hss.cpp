@@ -124,7 +124,6 @@ Hss::Error_t Hss::deinit()
     is->deinit();
     
     timer->deinit();
-
     status = UNINITED;
     return err;
 }
@@ -177,7 +176,6 @@ Hss::Error_t Hss::enableDiag()
     Error_t err = OK;
 
     den->enable();
-
     diagEnb = DIAG_EN;
     return err;
 }

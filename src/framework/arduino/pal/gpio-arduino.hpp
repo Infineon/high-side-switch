@@ -32,7 +32,6 @@ public:
     Error_t     deinit();
     VLevel_t    read();
     Error_t     write(VLevel_t level);
-    // Error_t     writePWM(uint8_t dutycycle);
     Error_t     enable();
     Error_t     disable();
 };

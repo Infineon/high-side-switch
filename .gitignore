@@ -6,3 +6,4 @@ CMakeCache.txt
 cmake_install.cmake
 CTestTestfile.cmake
 InfineonDoxyGenerator/
+docs/doxygen/doxyfile_auto

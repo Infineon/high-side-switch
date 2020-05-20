@@ -16,11 +16,7 @@
 #include "../pal/gpio.hpp"
 #include "../pal/adc.hpp"
 #include "../config/variants.hpp"
-<<<<<<< HEAD
-#include "../pal/filter.hpp"
-=======
 #include "../utils/filter.hpp"
->>>>>>> release-0.1.0
 
 /**
  * @class Hss(High-Side-Switch)

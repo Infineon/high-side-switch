@@ -12,11 +12,7 @@
 
 #include <Arduino.h>
 #include "hss.hpp"
-<<<<<<< HEAD
-#include "../pal/filter.hpp"
-=======
 #include "../utils/filter.hpp"
->>>>>>> release-0.1.0
 
 
 /**

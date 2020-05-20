@@ -13,7 +13,7 @@
 #define TIMER_HPP_
 
 /**
- * @addtogroup @defgroup hssPal 
+ * @addtogroup hssPal 
  * @{
  */
 

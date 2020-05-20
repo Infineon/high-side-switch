@@ -23,10 +23,13 @@ MCU Platforms |
 [Arduino Uno Rev3](https://store.arduino.cc/arduino-uno-rev3) |
 
 ### Additional hardware platforms
-The library should be directly compatible with other platforms that support the Arduino API (Arduino reference language). The library is also written in a way that porting the library to anohter platform requires the developer only to provide a API for the specific platform, using the platform specific low level drivers. A porting guide is available in the [Wiki]().
+The library should be directly compatible with other platforms that support the Arduino API (Arduino reference language). The library is also written in a way that porting the library to another platform requires the developer only to provide a API for the specific platform, using the platform specific low level drivers. A porting guide is available in the [Wiki](https://github.com/Infineon/high-side-switch/wiki).
+
+## Software documentation
+A detailed explanation of the software structure as well as the API can be found [here](https://github.com/Infineon/high-side-switch/wiki/Library-Details). And there is also a ***Doxygen-File*** available, which can be found [here](https://infineon.github.io/high-side-switch/).
 
 ## More information
-The complete documentation of the library as well as detailled information about the PROFET-shield, can be found in the [Wiki]().
+The complete documentation of the library as well as detailled information about the PROFET-shield, can be found in the [Wiki](https://github.com/Infineon/high-side-switch/wiki).
 
 ## License
 This project is licensed under the MIT License - click [here](https://github.com/Infineon/high-side-switch/blob/master/LICENSE) for details.

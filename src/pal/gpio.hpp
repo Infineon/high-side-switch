@@ -12,6 +12,11 @@
 #ifndef GPIO_HPP_
 #define GPIO_HPP_
 
+/**
+ * @addtogroup @defgroup hsspal 
+ * @{
+ */
+
 class GPIO
 {
     public:
@@ -117,5 +122,7 @@ class GPIO
         Error_t errorStatus;
 
 };
+
+/** @} */ 
 
 #endif /** GPIO_HPP_ **/

@@ -107,8 +107,6 @@ Hss::Error_t Hss::init()
     currentFilter = new ExponentialFilter(0.0, 0.3);
 
     status = INITED;
-    // if(den->checkErrorStatus() != OK && in->checkErrorStatus() != OK
-    // && is->checkErrorStatus() != OK) return err = CONF_ERROR;                  //Only return Error if something went wrong
     return err;
 }
 
@@ -126,9 +124,6 @@ Hss::Error_t Hss::deinit()
     is->deinit();
     
     timer->deinit();
-    //if(den->checkErrorStatus() != OK && in->checkErrorStatus() != OK
-    //&& is->checkErrorStatus() != OK) return err = CONF_ERROR;                  //Only return Error if something went wrong
-    
     status = UNINITED;
     return err;
 }
@@ -137,23 +132,16 @@ Hss::Error_t Hss::deinit()
  * @brief Enable the High-Side-Switch
  * 
  * This function is turning on the High-Side-Switch.
- * If no dutycycle is set, the dutycycle is set to 100%
  * It is also setting the status of the switch to ON.
  * 
  * @return Hss::Error_t 
  */
-Hss::Error_t Hss::enable(uint8_t dutycycle = NULL)
+Hss::Error_t Hss::enable()
 {
     Error_t err = OK;
     
-    if(dutycycle == NULL){
-        in->enable();
-    }
-    // else
-    // {
-    //    // in->writePWM(dutycycle);
-    // }
-    //if(in->checkErrorStatus() != OK) return err = CONF_ERROR;
+    in->enable();
+
     status = POWER_ON;
     return err;
 }
@@ -171,7 +159,6 @@ Hss::Error_t Hss::disable()
     Error_t err = OK;
 
     in->disable();
-    //if(in->checkErrorStatus() != OK) return err = CONF_ERROR;
 
     status = POWER_OFF;
     return err;
@@ -189,7 +176,6 @@ Hss::Error_t Hss::enableDiag()
     Error_t err = OK;
 
     den->enable();
-    //if(den->checkErrorStatus() != OK) return err = CONF_ERROR;
     diagEnb = DIAG_EN;
     return err;
 }
@@ -206,7 +192,6 @@ Hss::Error_t Hss::disableDiag()
     Error_t err = OK;
 
     den->disable();
-    //if(den->checkErrorStatus() != OK) return err = CONF_ERROR;
 
     diagEnb = DIAG_DIS;
     return err;
@@ -226,10 +211,9 @@ Hss::Error_t Hss::diagReset()
     Error_t err = OK;
 
     in->disable();
-    //if(in->checkErrorStatus() != OK) return err = CONF_ERROR;
+
     timer->delayMilli(100);
     in->enable();
-    //if(in->checkErrorStatus() != OK) return err = CONF_ERROR;
 
     return err;
 }

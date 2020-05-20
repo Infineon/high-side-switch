@@ -91,24 +91,6 @@ GPIOIno::Error_t GPIOIno::write(VLevel_t level)
     return OK;
 }
 
-// /**
-//  * @brief Set GPIO with certain PWM
-//  * 
-//  * This functions sets a desired PWM signal on the GPIO.
-//  * The dutycycle has to be in the range from 0 to 255.
-//  * 
-//  * @param[in]   dutycycle   Desired dutycycle 
-//  * @return      GPIO::Error_t
-//  */
-// GPIO::Error_t GPIOIno::writePWM(uint8_t dutycycle)
-// {
-//     if(dutycycle < 0) dutycycle = 0;
-//     if(dutycycle > 255) dutycycle = 255;
-//     analogWrite(this->pin, dutycycle);
-
-//     return OK;
-// }
-
 /**
  * @brief Enable the GPIO
  * 

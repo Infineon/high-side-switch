@@ -79,6 +79,37 @@ HssBoard::Error_t HssBoard::init()
 }
 
 /**
+ * @brief Deinitialize all necessary objects of the High-Side-Switch-Board
+ * 
+ * This function deinitializes all necessary objects of the High-Side-Switch-Board.
+ * It retruns an error code to see if everything was deinitialized correctly.
+ * 
+ * @return HssBoard::Error_t
+ */
+HssBoard::Error_t HssBoard::deinit()
+{
+    led1->deinit();
+    led2->deinit();
+    led3->deinit();
+    led4->deinit();
+
+    hss1->deinit();
+    hss2->deinit();
+    hss3->deinit();
+    hss4->deinit();
+
+    timer->deinit();
+
+    oloff->deinit();
+    pushButtonDigital->deinit();
+    
+    pushButtonAnalog->deinit();
+    vBat->deinit();
+
+    return OK;
+}
+
+/**
  * @brief Switch on the selected High-Side-Switch
  * 
  * This function turns on the desired High-Side-Switch.
@@ -113,43 +144,6 @@ HssBoard::Error_t HssBoard::switchHxOn(uint8_t x)
     }
     return OK;
 }
-
-// /**
-//  * @brief Switch on the selected High-Side-Switch with PWM
-//  * 
-//  * This function turns on the desired High-Side-Switch with PWM.
-//  * It also turns on the corresponding LED of the switch.
-//  * 
-//  * @param[in]   x           Number of the Switch the should be turned on (1-4)  
-//  * @param[in]   dutycyle    Desired dutycyle of the switch (0-255)
-//  * @return      HssBoard::Error_t 
-//  */
-// HssBoard::Error_t HssBoard::switchHxOnPWM(uint8_t x, uint8_t dutycyle)
-// {
-//     switch(x)
-//     {
-//         case 1:
-//             hss1->enable(dutycyle);
-//             led1->enable();
-//             break;
-        
-//         case 2:
-//             hss2->enable(dutycyle);
-//             led2->enable();
-//             break;
-        
-//         case 3:
-//             hss3->enable(dutycyle);
-//             led3->enable();
-//             break;
-        
-//         case 4:
-//             hss4->enable(dutycyle);
-//             led4->enable();
-//             break;
-//     }
-//     return OK;
-// }
 
 /**
  * @brief Switch off the selected High-Side-Switch
@@ -442,7 +436,6 @@ float HssBoard::readVss()
     float voltage = 0.0;
     
     adcResult = vBat->ADCRead();
-    // Serial.print("Raw ADC vlaue");Serial.println(adcResult);
     voltage = adcResult * ((float)5/(float)1024);  // Vmax/1024 LSB = Resolution of the ADC, 57/10 = Reverse Voltage devider to get the Supplyvoltage
     voltage = (voltage - vBatOffset) * vBatGain;
     voltage = voltage * ((float)57/(float)10);
@@ -460,7 +453,7 @@ float HssBoard::readVss()
  */
 bool HssBoard::digitalReadButton()
 {
-    if(pushButtonDigital->read() == GPIO::GPIO_HIGH)
+    if(pushButtonDigital->read() == GPIO::GPIO_LOW)
     return true;
     else
     return false;
@@ -477,7 +470,7 @@ bool HssBoard::analogReadButton()
     uint16_t result = 0;
 
     result = pushButtonAnalog->ADCRead();
-    if(result > 3000){
+    if(result < 20){
         return true;
     }
     else{

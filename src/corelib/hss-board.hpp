@@ -12,7 +12,11 @@
 
 #include <Arduino.h>
 #include "hss.hpp"
+<<<<<<< HEAD
 #include "../pal/filter.hpp"
+=======
+#include "../utils/filter.hpp"
+>>>>>>> release-0.1.0
 
 
 /**
@@ -26,9 +30,9 @@ class HssBoard : Hss
     HssBoard();
     ~HssBoard();
     Error_t init();
+    Error_t deinit();
 
     Error_t switchHxOn(uint8_t x);
-    //Error_t switchHxOnPWM(uint8_t x, uint8_t dutycycle); tbd
     Error_t switchHxOff(uint8_t x);
     Error_t switchesHxOn(bool h1 = NULL, bool h2 = NULL, bool h3 = NULL, bool h4 = NULL);
     Error_t switchesHxOff(bool h1 = NULL, bool h2 = NULL, bool h3 = NULL, bool h4 = NULL);

@@ -5,9 +5,15 @@
     "repository":{  
        "type":"git",
        "url":"https://github.com/Infineon/high-side-switch",
+<<<<<<< HEAD
        "branch":"feature/corelib"
     },
     "version":"1.0.0",
+=======
+       "branch":"master"
+    },
+    "version":"0.1.0",
+>>>>>>> release-0.1.0
     "license":"MIT",
     "frameworks":"arduino",
     "platforms":[  

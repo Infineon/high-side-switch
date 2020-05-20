@@ -1,9 +1,21 @@
-/**
- * @defgroup hsscorelib     Core Library
- * @{
-*/
+/** @defgroup hssCorelib            Core Library */
 
-/**
- * @defgroup hsspal         Platform Abstraction Layer */
+/** @defgroup hssPal                Platform Abstraction Layer */
 
-/** @} */
+/** @defgroup hssUtils              Utils */
+
+/** @defgroup hssConfig             Config */
+
+/** @defgroup hssFrameworks         HSS Frameworks
+ *  @{
+ */
+
+ /** @defgroup frameworkArduino     Arduino
+  *  @{
+  */
+ /** @defgroup arduinoPal           PAL */
+ /** @defgroup arduinoWrapper       Wrapper */
+ /** @} */
+
+ /** @} */
+  

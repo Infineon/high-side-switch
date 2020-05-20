@@ -14,6 +14,12 @@
 #include "../../../corelib/hss.hpp"
 
 /**
+ * @addtogroup arduinoPal
+ * @{
+ */
+
+
+/**
  * @brief Arduino GPIO class
  * 
  */
@@ -35,5 +41,6 @@ public:
     Error_t     enable();
     Error_t     disable();
 };
+/** @} */
 
 #endif /** GPIO_ARDUINO_H_ **/

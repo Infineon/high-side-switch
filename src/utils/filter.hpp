@@ -12,6 +12,12 @@
 
 #include <stdint.h>
 
+/**
+ * @addtogroup @defgroup hssUtils 
+ * @{
+ */
+
+
 class ExponentialFilter
 {
     public:
@@ -34,5 +40,6 @@ class ExponentialFilter
         float y_last;
         float x;
 };
+/** @} */
 
 #endif /** FILTER_H_ **/

@@ -13,12 +13,10 @@
 #include <stdint.h>
 
 /**
- * @class AnalogDigitalConverter
- */
-/**
- * @addtogroup hallswitchhwi
+ * @addtogroup @defgroup hssPal 
  * @{
- */ 
+ */
+
 class AnalogDigitalConverter
 {
     public:

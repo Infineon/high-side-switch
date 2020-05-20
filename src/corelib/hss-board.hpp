@@ -14,6 +14,11 @@
 #include "hss.hpp"
 #include "../utils/filter.hpp"
 
+/**
+ * @addtogroup hssCorelib
+ * @{
+ */
+
 
 /**
  * @brief High-Side-Switch-Board Class
@@ -67,5 +72,7 @@ class HssBoard : Hss
     const float vBatGain = 1.045;
     const float vBatOffset = 0.0;
 };
+
+/** @} */
 
 #endif /** HSS_BOARD_HPP_ **/

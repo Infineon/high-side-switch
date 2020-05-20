@@ -13,6 +13,12 @@
 #include <stdint.h>
 
 /**
+ * @addtogroup arduinoWrapper
+ * @{
+ */
+
+
+/**
  * @brief Struct with all necessary defines of the Profet-Shield
  * 
  */
@@ -42,5 +48,6 @@ struct hardwareconfig_t
 };
 
 extern hardwareconfig_t ARDUINO_UNO;
+/** @} */
 
 #endif /** CONFIG_HPP_ **/

@@ -12,6 +12,12 @@
 
 #include "../../../pal/timer.hpp"
 
+/**
+ * @addtogroup arduinoPal
+ * @{
+ */
+
+
 class TimerIno: virtual public Timer
 {
     public:
@@ -28,5 +34,6 @@ class TimerIno: virtual public Timer
     private:
         uint32_t startTime;
 };
+/** @} */
 
 #endif /** TIMER_ARDUINO_HPP_ **/

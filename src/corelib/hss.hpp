@@ -19,20 +19,18 @@
 #include "../utils/filter.hpp"
 
 /**
- * @class Hss(High-Side-Switch)
+ * @addtogroup hssCorelib
+ * @{
  */
 
+
 /**
- * @brief High-Side-Swithch class
+ * @brief High-Side-Switch class
  * This class defines the High-Side-Switch Class with all its functionality
  */
 class Hss
 {
     public:
-    /**
-     * @addtogroup HssData
-     * @{
-     */
 
     /**
      * @name Error codes

@@ -12,6 +12,11 @@
 #ifndef TIMER_HPP_
 #define TIMER_HPP_
 
+/**
+ * @addtogroup @defgroup hssPal 
+ * @{
+ */
+
 class Timer
 {
     public:

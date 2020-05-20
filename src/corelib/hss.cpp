@@ -12,12 +12,6 @@
 #include <stdint.h>
 #include "hss.hpp"
 
-
-/**
- * @addtogroup hallswitchcpphal
- * @{
- */
-
 /**
  * @brief High-Side-Switch default constructor
  *          

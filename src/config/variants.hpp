@@ -13,6 +13,12 @@
 #include <stdint.h>
 
 /**
+ * @addtogroup hssConfig
+ * @{
+ */
+
+
+/**
  * @brief   Structure for the differen types of the BTS700x
  *          It contains all important parameters for the correct usage of
  *          of the diagnosis functions of the Switch
@@ -30,5 +36,6 @@ extern BtsVariants_t BTS7002;
 extern BtsVariants_t BTS7004;
 extern BtsVariants_t BTS7006;
 extern BtsVariants_t BTS7008;
+/** @} */
 
 #endif /** VARIANTS_HPP_ **/

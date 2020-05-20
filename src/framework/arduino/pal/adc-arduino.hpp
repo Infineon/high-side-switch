@@ -13,6 +13,12 @@
 #include "../../../corelib/hss.hpp"
 
 /**
+ * @addtogroup arduinoPal
+ * @{
+ */
+
+
+/**
  * @brief Arduino ADC class
  * 
  */
@@ -34,5 +40,6 @@ class ADCIno : virtual public AnalogDigitalConverter
     uint16_t    ADCRead();
     Error_t     ADCWrite(uint8_t value);
 };
+/** @} */
 
 #endif /** ADC_ARDUINO_H_ **/

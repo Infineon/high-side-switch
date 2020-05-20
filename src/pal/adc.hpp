@@ -13,7 +13,7 @@
 #include <stdint.h>
 
 /**
- * @addtogroup @defgroup hsspal 
+ * @addtogroup @defgroup hssPal 
  * @{
  */
 

@@ -15,7 +15,7 @@
 #include "../utils/filter.hpp"
 
 /**
- * @addtogroup hsscorelib
+ * @addtogroup hssCorelib
  * @{
  */
 

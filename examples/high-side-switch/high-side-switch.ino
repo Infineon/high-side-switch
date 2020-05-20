@@ -50,7 +50,7 @@ void loop()
 
     /**
      * This small if-case is checking for an user input.
-     * To use this press the "+" symbol on your keyboard, this is equal to the "43" in ASCII.
+     * To use this press the "+" symbol on your keyboard, this is equal to "43" in ASCII.
      */
     if(Serial.available() > 0){
         incomingSerial = Serial.read();

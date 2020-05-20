@@ -16,7 +16,7 @@
 #include "../pal/gpio.hpp"
 #include "../pal/adc.hpp"
 #include "../config/variants.hpp"
-#include "../pal/filter.hpp"
+#include "../utils/filter.hpp"
 
 /**
  * @class Hss(High-Side-Switch)
@@ -90,7 +90,7 @@ class Hss
                     ~Hss();
     Error_t         init();
     Error_t         deinit();
-    Error_t         enable(uint8_t dutycycle = NULL);
+    Error_t         enable();
     Error_t         disable();
     Error_t         enableDiag();
     Error_t         disableDiag();

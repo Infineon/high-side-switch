@@ -74,31 +74,6 @@ class GPIO
          */
         virtual Error_t       deinit      () = 0;
 
-        // /**
-        //  * @brief       Enables the hardware interrupt
-        //  * @param[in]   *ptr HallSwith object pointer which holds the interrupt
-        //  * @return      GPIO error code
-        //  * @retval      OK if success
-        //  * @retval      INIT_ERROR if initialization error
-        //  */
-        // virtual Error_t        enableInt   (Hss *ptr) = 0;
-        
-        // /**
-        //  * @brief       Disables the hardware interrupt
-        //  * @return      GPIO error code
-        //  * @retval      OK if success
-        //  * @retval      INIT_ERROR if disable error
-        //  */
-        // virtual Error_t        disableInt  () = 0;
-
-        // /**
-        //  * @brief       Gets the latest interrupt event 
-        //  * @return      GPIO interrupt event
-        //  * @retval      INT_FALLING_EDGE if falling edge event
-        //  * @retval      INT_RISING_EDGE if rising edge event
-        //  */
-        // virtual IntEvent_t     intEvent    () = 0;
-        
         /**
          * @brief       Reads the GPIO voltage level
          * @return      GPIO voltage level
@@ -115,15 +90,6 @@ class GPIO
          * @retval      WRITE_ERROR if write error
          */
         virtual Error_t        write       (VLevel_t level) = 0;
-
-        // /**
-        //  * @brief       Writes the GPIO with a certain dutycycle 
-        //  * @param[in]   dutycycle   Desired dutycycle (0 to 255) 
-        //  * @return      GPIO error code
-        //  * @retval      OK if success
-        //  * @retval      WRITE_ERROR if write error
-        //  */
-        // virtual Error_t        writePWM (uint8_t dutycycle) = 0;
 
         /**
          * @brief       Enables the GPIO output according to the GPIO logic

@@ -1,4 +1,4 @@
-# Smart High-Side Swicht
+# Smart High-Side Switch
 
 [![Build Status](https://travis-ci.com/Infineon/high-side-switch.svg?branch=master)](https://travis-ci.com/github/Infineon/high-side-switch)
 

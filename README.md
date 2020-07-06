@@ -1,8 +1,8 @@
-# Smart High-Side Swicht
+# Smart High-Side Switch
 
 [![Build Status](https://travis-ci.com/Infineon/high-side-switch.svg?branch=master)](https://travis-ci.com/github/Infineon/high-side-switch)
 
-C++ library for Infineon's Arduino shield SHIELD_BTS700x-1EPP with the **Smart High-Side Power Swicht BTS700x-1EPP**
+C++ library for Infineon's Arduino shield SHIELD_BTS700x-1EPP with the **Smart High-Side Power Switch BTS700x-1EPP**
 
 ## Supported Hardware
 
@@ -29,7 +29,7 @@ The library should be directly compatible with other platforms that support the 
 A detailed explanation of the software structure as well as the API can be found [here](https://github.com/Infineon/high-side-switch/wiki/Library-Details). And there is also a ***Doxygen-File*** available, which can be found [here](https://infineon.github.io/high-side-switch/).
 
 ## More information
-The complete documentation of the library as well as detailled information about the PROFET-shield, can be found in the [Wiki](https://github.com/Infineon/high-side-switch/wiki).
+The complete documentation of the library as well as detailed information about the PROFET-shield, can be found in the [Wiki](https://github.com/Infineon/high-side-switch/wiki).
 
 ## License
 This project is licensed under the MIT License - click [here](https://github.com/Infineon/high-side-switch/blob/master/LICENSE) for details.

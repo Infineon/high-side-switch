@@ -199,10 +199,14 @@ Hss::Error_t Hss::deinit()
 }
 
 /**
- * @brief Configures the PWM to apply to the the High-Side-Switch input 
+ * @brief Configures the PWM signal to be applied to the the High-Side-Switch input 
  * 
  * This function will enable the pwm mode if a pwm instance was provided
  * in the constructor
+ * 
+ * @param[in]   freq    PWM frequency (in Hz)
+ * @param[in]   duty    PWM duty cycle (in percentage XX.X).
+ *                      From 0.00 to 100.00.
  * 
  * @return Hss::Error_t 
  */

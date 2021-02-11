@@ -35,6 +35,7 @@ class HssBoard : Hss
 
     Error_t switchHxOn(uint8_t x);
     Error_t switchHxOff(uint8_t x);
+    Error_t switchHxConfigPWM(uint8_t x, uint32_t freq, float duty);
     Error_t switchesHxOn(bool h1 = NULL, bool h2 = NULL, bool h3 = NULL, bool h4 = NULL);
     Error_t switchesHxOff(bool h1 = NULL, bool h2 = NULL, bool h3 = NULL, bool h4 = NULL);
     DiagStatus_t readDiagx(uint8_t x);

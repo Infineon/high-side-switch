@@ -182,6 +182,42 @@ HssBoard::Error_t HssBoard::switchHxOff(uint8_t x)
 }
 
 /**
+ * @brief Configures the PWM signal to be applied to the the High-Side-Switch input 
+ * 
+ * This function will enable the pwm mode if a pwm instance was provided
+ * in the constructor 
+ * 
+ * @param[in]   x       Number of the Switch to be configured (1-4)
+ * @param[in]   freq    PWM frequency (in Hz)
+ * @param[in]   duty    PWM duty cycle (in percentage XX.X).
+ *                      From 0.00 to 100.00.
+ * 
+ * @return Hss::Error_t 
+ */
+HssBoard::Error_t HssBoard::switchHxConfigPWM(uint8_t x, uint32_t freq, float duty)
+{
+    switch(x)
+    {
+        case 1:
+            hss1->configPWM(freq, duty);
+            break;
+        
+        case 2:
+            hss2->configPWM(freq, duty);
+            break;
+        
+        case 3:
+            hss3->configPWM(freq, duty);
+            break;
+        
+        case 4:
+            hss4->configPWM(freq, duty);
+            break;
+    }
+    return OK;
+}
+
+/**
  * @brief Turn on the selected High-Side-Switches
  * 
  * This function is used to enable multiple switches at once.

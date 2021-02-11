@@ -1,5 +1,5 @@
 /** 
- * @file        PWM.hpp
+ * @file        pwm.hpp
  * @brief       PWM Platform Abstraction Layer
  * @date        May 2020
  * @copyright   Copyright (c) 2019-2020 Infineon Technologies AG

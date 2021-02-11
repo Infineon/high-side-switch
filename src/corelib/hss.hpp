@@ -15,6 +15,7 @@
 #include "../pal/timer.hpp"
 #include "../pal/gpio.hpp"
 #include "../pal/adc.hpp"
+#include "../pal/pwm.hpp"
 #include "../config/variants.hpp"
 #include "../utils/filter.hpp"
 
@@ -85,13 +86,12 @@ class Hss
 
                     Hss();
                     Hss(GPIO *den, GPIO *in, AnalogDigitalConverter *is, BtsVariants_t *variant);
-                    Hss(GPIO *den, PWM  *pwm, ...);
+                    Hss(GPIO *den, PWM  *pwm, AnalogDigitalConverter *is,  BtsVariants_t *variant);
                     ~Hss();
     Error_t         init();
     Error_t         deinit();
+    Error_t         configPWM(uint32_t freq, float duty);
     Error_t         enable();
-    Error_t         enablePWM(freq, duty);
-    Error_t         disablePWM();
     Error_t         disable();
     Error_t         enableDiag();
     Error_t         disableDiag();
@@ -117,7 +117,8 @@ class Hss
     Status_t                status;
     DiagEnable_t            diagEnb;
     DiagStatus_t            diagStatus;
-    
+
+    bool                    pwmMode;    
 };
 /** @} */
 

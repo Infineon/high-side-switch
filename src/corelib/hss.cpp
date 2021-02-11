@@ -22,6 +22,7 @@ Hss::Hss()
 {
     den = NULL;
     in = NULL;
+    pwm = NULL;
     is = NULL;
 
     timer = NULL;
@@ -32,6 +33,8 @@ Hss::Hss()
     status = UNINITED;
     diagEnb = DIAG_DIS;
     diagStatus = NOT_ENABLED;
+
+    pwmMode = false;
 }
 
 /**
@@ -49,6 +52,7 @@ Hss::Hss(GPIO *den, GPIO *in, AnalogDigitalConverter *is, BtsVariants_t *variant
 {
     this->den = den;
     this->in = in;
+    this->pwm = NULL;
     this->is = is;
 
     timer = NULL;
@@ -59,6 +63,36 @@ Hss::Hss(GPIO *den, GPIO *in, AnalogDigitalConverter *is, BtsVariants_t *variant
     status = UNINITED;
     diagEnb = DIAG_DIS;
     diagStatus = NOT_ENABLED;
+    pwmMode = false;
+}
+
+/**
+ * @brief High-Side-Switch constructor
+ * 
+ * This constructor is used to define all necessary pins and the variant
+ * of the PROFET.
+ * 
+ * @param[in]   den         Pin number of DEN 
+ * @param[in]   pwm         PWM instance
+ * @param[in]   is          Pin number of IS
+ * @param[in]   variant     Variant of the BTS700x
+ */
+Hss::Hss(GPIO *den, PWM *pwm, AnalogDigitalConverter *is, BtsVariants_t *variant)
+{
+    this->den = den;
+    this->in = NULL;
+    this->pwm = pwm;
+    this->is = is;
+
+    timer = NULL;
+
+    currentFilter = NULL;
+
+    btsVariant = variant;
+    status = UNINITED;
+    diagEnb = DIAG_DIS;
+    diagStatus = NOT_ENABLED;
+    pwmMode = false;
 }
 
 /**
@@ -69,6 +103,7 @@ Hss::~Hss()
 {
     den = NULL;
     in = NULL;
+    pwm = NULL;
     is = NULL;
 
     timer = NULL;
@@ -78,6 +113,8 @@ Hss::~Hss()
     status = UNINITED;
     diagEnb = DIAG_DIS;
     diagStatus = NOT_ENABLED;
+
+    pwmMode = false;
 }
 
 /**
@@ -92,11 +129,30 @@ Hss::Error_t Hss::init()
 {
     Error_t err = OK;
 
-    den->init();
-    in->init();
-    is->init();
+    if(NULL != den)
+    {
+        den->init();
+    }
+        
+    if(NULL != in)
+    {
+        in->init();
+    }
 
-    timer->init();
+    if(NULL != pwm)
+    {
+        pwm->init();
+    }
+
+    if(NULL != in)
+    {
+        is->init();
+    }
+
+    if(NULL != timer)
+    {
+        timer->init();
+    }
 
     currentFilter = new ExponentialFilter(0.0, 0.3);
 
@@ -113,12 +169,53 @@ Hss::Error_t Hss::deinit()
 {
     Error_t err = OK;
 
-    den->deinit();
-    in->deinit();
-    is->deinit();
-    
-    timer->deinit();
+    if(NULL != den)
+    {
+        den->deinit();
+    }
+
+    if(NULL != in)
+    {
+        in->deinit();
+    }
+
+    if(NULL != pwm)
+    {
+        pwm->deinit();
+    }
+
+    if(NULL != is)
+    { 
+        is->deinit();
+    }
+
+    if(NULL != timer)
+    {
+        timer->deinit();
+    }
+
     status = UNINITED;
+    return err;
+}
+
+/**
+ * @brief Configures the PWM to apply to the the High-Side-Switch input 
+ * 
+ * This function will enable the pwm mode if a pwm instance was provided
+ * in the constructor
+ * 
+ * @return Hss::Error_t 
+ */
+Hss::Error_t  Hss::configPWM(uint32_t freq, float duty)
+{
+    Error_t err = OK;
+
+    if(NULL != pwm)
+    {
+        pwmMode = true;
+        pwm->config(freq, duty);
+    }
+
     return err;
 }
 
@@ -134,7 +231,14 @@ Hss::Error_t Hss::enable()
 {
     Error_t err = OK;
     
-    in->enable();
+    if( NULL != in)
+    {
+        in->enable();
+    }
+    else if(NULL != pwm && pwmMode)
+    {
+        pwm->enable();
+    }
 
     status = POWER_ON;
     return err;
@@ -152,7 +256,14 @@ Hss::Error_t Hss::disable()
 {
     Error_t err = OK;
 
-    in->disable();
+    if( NULL != in)
+    {
+        in->disable();
+    }
+    else if(NULL != pwm && pwmMode)
+    {
+        pwm->disable();
+    }
 
     status = POWER_OFF;
     return err;
@@ -169,7 +280,11 @@ Hss::Error_t Hss::enableDiag()
 {
     Error_t err = OK;
 
-    den->enable();
+    if( NULL != den)
+    {
+        den->enable();
+    }
+
     diagEnb = DIAG_EN;
     return err;
 }
@@ -185,7 +300,10 @@ Hss::Error_t Hss::disableDiag()
 {
     Error_t err = OK;
 
-    den->disable();
+    if( NULL != den)
+    {
+        den->disable();
+    }
 
     diagEnb = DIAG_DIS;
     return err;
@@ -204,11 +322,21 @@ Hss::Error_t Hss::diagReset()
 {
     Error_t err = OK;
 
-    in->disable();
+    if( NULL != in)
+    {
+        in->disable();
+    }
 
-    timer->delayMilli(100);
-    in->enable();
+    if( NULL != timer)
+    {
+        timer->delayMilli(100);
+    }
 
+    if( NULL != in)
+    {
+        in->enable();
+    }
+    
     return err;
 }
 
@@ -242,7 +370,7 @@ float Hss::readIs()
     uint16_t AnalogDigitalConverterResult = 0;
     float amps = 0.0;
 
-    if(diagEnb == DIAG_EN){
+    if(diagEnb == DIAG_EN && NULL != is){
         timer->delayMilli(1);                                                       //wait for 1ms to ensure that the Profet will provide a valid sense signal
         AnalogDigitalConverterResult = is->ADCRead();
         amps = ((float)AnalogDigitalConverterResult/(float)1024) * (float)5;

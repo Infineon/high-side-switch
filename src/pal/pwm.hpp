@@ -70,7 +70,7 @@ class PWM
          * @retval  OK if success
          * @retval  INIT_ERROR if hardware interface error
          */
-        virtual  Error_t        disable    (uint32_t &elapsed) = 0;
+        virtual  Error_t        disable    () = 0;
 };
 
 /** @} */

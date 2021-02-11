@@ -192,7 +192,7 @@ HssBoard::Error_t HssBoard::switchHxOff(uint8_t x)
  * @param[in] h4    Enable the fourth switch if h4 == true 
  * @return          HssBoard::Error_t 
  */
-HssBoard::Error_t HssBoard::switchesHxOn(bool h1 = NULL, bool h2 = NULL, bool h3 = NULL, bool h4 = NULL)
+HssBoard::Error_t HssBoard::switchesHxOn(bool h1, bool h2, bool h3, bool h4)
 {
     if(h1 == true){
         hss1->enable();
@@ -228,7 +228,7 @@ HssBoard::Error_t HssBoard::switchesHxOn(bool h1 = NULL, bool h2 = NULL, bool h3
  * @param[in] h4    Disable the fourth switch if h4 == true 
  * @return          HssBoard::Error_t 
  */
-HssBoard::Error_t HssBoard::switchesHxOff(bool h1 = NULL, bool h2 = NULL, bool h3 = NULL, bool h4 = NULL)
+HssBoard::Error_t HssBoard::switchesHxOff(bool h1, bool h2, bool h3, bool h4)
 {
     if(h1 == true){
         hss1->disable();

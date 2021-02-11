@@ -90,4 +90,4 @@ class Timer
 
 /** @} */
 
-#endif /** HALL_PAL_TIMER_HPP_ **/
+#endif /** TIMER_HPP_ **/

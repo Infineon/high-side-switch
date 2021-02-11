@@ -85,10 +85,13 @@ class Hss
 
                     Hss();
                     Hss(GPIO *den, GPIO *in, AnalogDigitalConverter *is, BtsVariants_t *variant);
+                    Hss(GPIO *den, PWM  *pwm, ...);
                     ~Hss();
     Error_t         init();
     Error_t         deinit();
     Error_t         enable();
+    Error_t         enablePWM(freq, duty);
+    Error_t         disablePWM();
     Error_t         disable();
     Error_t         enableDiag();
     Error_t         disableDiag();
@@ -103,6 +106,7 @@ class Hss
     protected:
     GPIO                    *den;
     GPIO                    *in;
+    PWM                     *pwm;
     AnalogDigitalConverter  *is;
 
     Timer                   *timer;

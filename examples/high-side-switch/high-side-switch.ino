@@ -26,7 +26,8 @@
 HssBoardIno HSS = HssBoardIno(&BTS7002);
 
 void setup()
-{   /** Serial initialization */
+{
+    /** Serial initialization */
     Serial.begin(115200);
     delay(2000);
     Serial.println("Serial initialized");

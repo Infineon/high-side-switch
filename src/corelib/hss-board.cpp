@@ -57,10 +57,14 @@ HssBoard::Error_t HssBoard::init()
 {
     filterVbat = new ExponentialFilter(0.0, 0.3);
 
-    led1->init();
-    led2->init();
-    led3->init();
-    led4->init();
+    if (NULL != led1)
+        led1->init();
+    if (NULL != led2)
+        led2->init();
+    if (NULL != led3)
+        led3->init();
+    if (NULL != led4)
+        led4->init();
 
     hss1->init();
     hss2->init();
@@ -88,10 +92,15 @@ HssBoard::Error_t HssBoard::init()
  */
 HssBoard::Error_t HssBoard::deinit()
 {
-    led1->deinit();
-    led2->deinit();
-    led3->deinit();
-    led4->deinit();
+
+    if (NULL != led1)
+        led1->deinit();
+    if (NULL != led2)
+        led2->deinit();
+    if (NULL != led3)
+        led3->deinit();
+    if (NULL != led4)
+        led4->deinit();
 
     hss1->deinit();
     hss2->deinit();
@@ -124,22 +133,26 @@ HssBoard::Error_t HssBoard::switchHxOn(uint8_t x)
     {
         case 1:
             hss1->enable();
-            led1->enable();
+            if (NULL != led1)
+                led1->enable();
             break;
         
         case 2:
             hss2->enable();
-            led2->enable();
+            if (NULL != led2)
+                led2->enable();
             break;
         
         case 3:
             hss3->enable();
-            led3->enable();
+            if (NULL != led3)
+                led3->enable();
             break;
         
         case 4:
             hss4->enable();
-            led4->enable();
+            if (NULL != led4)
+                led4->enable();
             break;
     }
     return OK;
@@ -160,22 +173,26 @@ HssBoard::Error_t HssBoard::switchHxOff(uint8_t x)
     {
         case 1:
             hss1->disable();
-            led1->disable();
+            if (NULL != led1)
+                led1->disable();
             break;
         
         case 2:
             hss2->disable();
-            led2->disable();
+            if (NULL != led2)
+                led2->disable();
             break;
         
         case 3:
             hss3->disable();
-            led3->disable();
+            if (NULL != led3)
+                led3->disable();
             break;
         
         case 4:
             hss4->disable();
-            led4->disable();
+            if (NULL != led4) 
+                led4->disable();
             break;
     }
     return OK;
@@ -196,22 +213,26 @@ HssBoard::Error_t HssBoard::switchesHxOn(bool h1 = NULL, bool h2 = NULL, bool h3
 {
     if(h1 == true){
         hss1->enable();
-        led1->enable();
+        if (NULL != led1)
+            led1->enable();
     }
 
     if(h2 == true){
         hss2->enable();
-        led2->enable();
+        if (NULL != led2)
+            led2->enable();
     }
 
     if(h3 == true){
         hss3->enable();
-        led3->enable();
+        if (NULL != led3)
+            led3->enable();
     }
 
     if(h4 == true){
         hss4->enable();
-        led4->enable();
+        if (NULL != led4)
+            led4->enable();
     }
 
     return OK;
@@ -232,22 +253,26 @@ HssBoard::Error_t HssBoard::switchesHxOff(bool h1 = NULL, bool h2 = NULL, bool h
 {
     if(h1 == true){
         hss1->disable();
-        led1->disable();
+        if (NULL != led1)
+            led1->disable();
     }
 
     if(h2 == true){
         hss2->disable();
-        led2->disable();
+        if (NULL != led2)
+            led2->disable();
     }
 
     if(h3 == true){
         hss3->disable();
-        led3->disable();
+        if (NULL != led3)
+            led3->disable();
     }
 
     if(h4 == true){
         hss4->disable();
-        led4->disable();
+        if (NULL != led4)
+            led4->disable();
     }
 
     return OK;

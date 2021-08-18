@@ -31,6 +31,9 @@ private:
     VLogic_t    logic;
 
 public:
+
+    static constexpr uint8_t  unusedPin = 0xFFU;
+
                 GPIOIno();
                 GPIOIno(uint8_t pin, uint8_t mode, VLogic_t logic);
                 ~GPIOIno();

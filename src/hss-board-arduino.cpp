@@ -21,10 +21,10 @@
  */
 HssBoardIno::HssBoardIno(BtsVariants_t *variantSel)
 {
-    led1 = new GPIOIno(ARDUINO_UNO.led1, OUTPUT, GPIOIno::POSITIVE);
-    led2 = new GPIOIno(ARDUINO_UNO.led2, OUTPUT, GPIOIno::POSITIVE);
-    led3 = new GPIOIno(ARDUINO_UNO.led3, OUTPUT, GPIOIno::POSITIVE);
-    led4 = new GPIOIno(ARDUINO_UNO.led4, OUTPUT, GPIOIno::POSITIVE);
+    led1 = ((ARDUINO_UNO.led1 == GPIOIno::unusedPin) ? NULL : new GPIOIno(ARDUINO_UNO.led1, OUTPUT, GPIOIno::POSITIVE));
+    led2 = ((ARDUINO_UNO.led2 == GPIOIno::unusedPin) ? NULL : new GPIOIno(ARDUINO_UNO.led2, OUTPUT, GPIOIno::POSITIVE));
+    led3 = ((ARDUINO_UNO.led3 == GPIOIno::unusedPin) ? NULL : new GPIOIno(ARDUINO_UNO.led3, OUTPUT, GPIOIno::POSITIVE));
+    led4 = ((ARDUINO_UNO.led4 == GPIOIno::unusedPin) ? NULL : new GPIOIno(ARDUINO_UNO.led4, OUTPUT, GPIOIno::POSITIVE));
 
     hss1 = new HssIno(ARDUINO_UNO.den1_den3, ARDUINO_UNO.in1, ARDUINO_UNO.is1_is2, variantSel);
     hss2 = new HssIno(ARDUINO_UNO.den2_den4, ARDUINO_UNO.in2, ARDUINO_UNO.is1_is2, variantSel);
@@ -51,10 +51,10 @@ HssBoardIno::HssBoardIno(BtsVariants_t *variantSel)
  */
 HssBoardIno::HssBoardIno(BtsVariants_t *variantSel, hardwareconfig_t config)
 {
-    led1 = new GPIOIno(config.led1, OUTPUT, GPIOIno::POSITIVE);
-    led2 = new GPIOIno(config.led2, OUTPUT, GPIOIno::POSITIVE);
-    led3 = new GPIOIno(config.led3, OUTPUT, GPIOIno::POSITIVE);
-    led4 = new GPIOIno(config.led4, OUTPUT, GPIOIno::POSITIVE);
+    led1 = ((config.led1 == GPIOIno::unusedPin) ? NULL : new GPIOIno(config.led1, OUTPUT, GPIOIno::POSITIVE));
+    led2 = ((config.led2 == GPIOIno::unusedPin) ? NULL : new GPIOIno(config.led2, OUTPUT, GPIOIno::POSITIVE));
+    led3 = ((config.led3 == GPIOIno::unusedPin) ? NULL : new GPIOIno(config.led3, OUTPUT, GPIOIno::POSITIVE));
+    led4 = ((config.led4 == GPIOIno::unusedPin) ? NULL : new GPIOIno(config.led4, OUTPUT, GPIOIno::POSITIVE));
 
     hss1 = new HssIno(config.den1_den3, config.in1, config.is1_is2, variantSel);
     hss2 = new HssIno(config.den2_den4, config.in2, config.is1_is2, variantSel);

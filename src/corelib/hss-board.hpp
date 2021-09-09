@@ -69,7 +69,7 @@ class HssBoard : Hss
     AnalogDigitalConverter *pushButtonAnalog;
     AnalogDigitalConverter *vBat;
 
-    const float vBatGain = 1.045;
+    const float vBatGain = 1.0;
     const float vBatOffset = 0.0;
 };
 

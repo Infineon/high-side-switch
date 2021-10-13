@@ -1,9 +1,9 @@
-/** 
+/**
  * @file        hss.hpp
  * @brief       Definition of the High-Side-Switch class functions
  * @date        May 2020
  * @copyright   Copyright (c) 2019-2020 Infineon Technologies AG
- * 
+ *
  * SPDX-License-Identifier: MIT
  */
 #ifndef HSS_H_
@@ -12,11 +12,11 @@
 #include <stdlib.h>
 #include <stdint.h>
 #include <unistd.h>
-#include "../pal/timer.hpp"
-#include "../pal/gpio.hpp"
-#include "../pal/adc.hpp"
-#include "../config/variants.hpp"
-#include "../utils/filter.hpp"
+#include "timer.hpp"
+#include "gpio.hpp"
+#include "adc.hpp"
+#include "variants.hpp"
+#include "filter.hpp"
 
 /**
  * @addtogroup hssCorelib
@@ -99,7 +99,7 @@ class Hss
     DiagStatus_t    diagRead();
 
     float           readIs();
-    
+
     protected:
     GPIO                    *den;
     GPIO                    *in;
@@ -113,9 +113,8 @@ class Hss
     Status_t                status;
     DiagEnable_t            diagEnb;
     DiagStatus_t            diagStatus;
-    
+
 };
 /** @} */
 
 #endif /** HSS_H_ **/
- 

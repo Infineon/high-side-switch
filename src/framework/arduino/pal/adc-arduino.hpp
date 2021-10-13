@@ -1,16 +1,16 @@
-/** 
+/**
  * @file        adc-arduino.hpp
  * @brief       Arduino PAL for the ADC
  * @date        May 2020
  * @copyright   Copyright (c) 2019-2020 Infineon Technologies AG
- * 
+ *
  * SPDX-License-Identifier: MIT
  */
 
 #ifndef ADC_ARDUINO_H_
 #define ADC_ARDUINO_H_
 
-#include "../../../corelib/hss.hpp"
+#include "hss.hpp"
 
 /**
  * @addtogroup arduinoPal
@@ -20,7 +20,7 @@
 
 /**
  * @brief Arduino ADC class
- * 
+ *
  */
 class ADCIno : virtual public AnalogDigitalConverter
 {

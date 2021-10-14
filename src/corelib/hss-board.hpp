@@ -1,9 +1,9 @@
-/** 
+/**
  * @file        hss-board.hpp
  * @brief       Defenition of the High-Side-Switch-Board class
  * @date        May 2020
  * @copyright   Copyright (c) 2019-2020 Infineon Technologies AG
- * 
+ *
  * SPDX-License-Identifier: MIT
  */
 
@@ -12,7 +12,7 @@
 
 #include <Arduino.h>
 #include "hss.hpp"
-#include "../utils/filter.hpp"
+#include "filter.hpp"
 
 /**
  * @addtogroup hssCorelib
@@ -22,7 +22,7 @@
 
 /**
  * @brief High-Side-Switch-Board Class
- * This class defines the the PROFET-Shield with all it's functions. 
+ * This class defines the the PROFET-Shield with all it's functions.
  */
 class HssBoard : Hss
 {
@@ -39,16 +39,16 @@ class HssBoard : Hss
     Error_t switchesHxOff(bool h1 = NULL, bool h2 = NULL, bool h3 = NULL, bool h4 = NULL);
     DiagStatus_t readDiagx(uint8_t x);
     DiagStatus_t diagnosisOff(float currentOn, float currentOff);
-    
+
     float readIsx(uint8_t x);
-    
+
     float readVss();
 
     bool digitalReadButton();
     bool analogReadButton();
 
     protected:
-    
+
     ExponentialFilter *filterVbat;
 
     GPIO *led1;

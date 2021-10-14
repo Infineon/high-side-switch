@@ -1,22 +1,22 @@
-/** 
+/**
  * @file        hss-board-arduino.hpp
- * @brief       Definition of the High-Side-Switch-Board class in Arduino 
+ * @brief       Definition of the High-Side-Switch-Board class in Arduino
  * @date        May 2020
  * @copyright   Copyright (c) 2019-2020 Infineon Technologies AG
- * 
+ *
  * SPDX-License-Identifier: MIT
  */
 
 #ifndef HSS_BOARD_ARDUINO_HPP_
 #define HSS_BOARD_ARDUINO_HPP_
 
-#include "corelib/hss-board.hpp"
+#include "hss-board.hpp"
 #include "hss-arduino.hpp"
-#include "framework/arduino/wrapper/config.hpp"
+#include "config.hpp"
 
 /**
  * @brief Arduino Class of the High-Side-Switch-Board
- * 
+ *
  */
 class HssBoardIno : public HssBoard
 {

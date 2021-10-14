@@ -2,8 +2,6 @@
 
 /** @defgroup hssPal                Platform Abstraction Layer */
 
-/** @defgroup hssUtils              Utils */
-
 /** @defgroup hssConfig             Config */
 
 /** @defgroup hssFrameworks         HSS Frameworks
@@ -18,4 +16,4 @@
  /** @} */
 
  /** @} */
-  
+

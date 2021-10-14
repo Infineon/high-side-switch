@@ -1,9 +1,9 @@
-/** 
+/**
  * @file        gpio-arduino.hpp
  * @brief       Arduino PAL for the GPIO
  * @date        May 2020
  * @copyright   Copyright (c) 2019-2020 Infineon Technologies AG
- * 
+ *
  * SPDX-License-Identifier: MIT
  */
 
@@ -11,7 +11,7 @@
 #ifndef GPIO_ARDUINO_H_
 #define GPIO_ARDUINO_H_
 
-#include "../../../corelib/hss.hpp"
+#include "hss.hpp"
 
 /**
  * @addtogroup arduinoPal
@@ -21,7 +21,7 @@
 
 /**
  * @brief Arduino GPIO class
- * 
+ *
  */
 class GPIOIno: virtual public GPIO
 {

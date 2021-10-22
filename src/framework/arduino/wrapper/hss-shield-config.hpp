@@ -1,14 +1,13 @@
 /** 
- * @file        config.hpp
- * @brief       Configurations for the different platfroms
- * @date        May 2020
- * @copyright   Copyright (c) 2019-2020 Infineon Technologies AG
+ * @file        hss-shield-config.hpp
+ * @brief       Configurations for different shields
+ * @copyright   Copyright (c) 2021 Infineon Technologies AG
  * 
  * SPDX-License-Identifier: MIT
  */
 
-#ifndef CONFIG_HPP_
-#define CONFIG_HPP_
+#ifndef HSS_SHIELD_CONFIG_HPP_
+#define HSS_SHIELD_CONFIG_HPP_
 
 #include <stdint.h>
 
@@ -22,7 +21,7 @@
  * @brief Struct with all necessary defines of the Profet-Shield
  * 
  */
-struct hardwareconfig_t
+struct Bts700xHwConfig_t
 {
     uint8_t led1;
     uint8_t led2;
@@ -47,7 +46,7 @@ struct hardwareconfig_t
     uint8_t is3_is4;    
 };
 
-extern hardwareconfig_t ARDUINO_UNO;
+extern Bts700xHwConfig_t BTS700X_HWCONFIG;
 /** @} */
 
-#endif /** CONFIG_HPP_ **/
+#endif /** HSS_SHIELD_CONFIG_HPP_ **/

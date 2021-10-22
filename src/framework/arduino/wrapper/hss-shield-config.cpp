@@ -1,16 +1,15 @@
 /** 
- * @file        config.cpp
- * @brief       Configurations for the different Platfroms
- * @date        May 2020
- * @copyright   Copyright (c) 2019-2020 Infineon Technologies AG
+ * @file        hss-shield-config.cpp
+ * @brief       Configurations for supported Shields
+ * @copyright   Copyright (c) 2021 Infineon Technologies AG
  * 
  * SPDX-License-Identifier: MIT
  */
 
-#include "config.hpp"
+#include "hss-shield-config.hpp"
 #include <Arduino.h>
 
-hardwareconfig_t ARDUINO_UNO
+Bts700xHwConfig_t BTS700X_HWCONFIG
 {
     .led1 = 4,                      //LED 1
     .led2 = 5,                      //LED 2

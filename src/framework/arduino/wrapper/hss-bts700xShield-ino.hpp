@@ -5,11 +5,15 @@
  *
  * SPDX-License-Identifier: MIT
  */
+#ifndef HSS_BTS700xSHIELD_INO_HPP_
+#define HSS_BTS700xSHIELD_INO_HPP_
 
 #include "hss-arduino.hpp"
 #include "hss-bts700xShield.hpp"
 #include "variants.hpp"
 #include "hss-shield-config.hpp"
+
+using namespace hss;
 
 class Bts700xShieldIno : Bts700xShield
 {
@@ -17,7 +21,9 @@ class Bts700xShieldIno : Bts700xShield
                         Bts700xShieldIno(BtsVariants_t *variantSel);
                         Bts700xShieldIno(BtsVariants_t *variantSel, Bts700xHwConfig_t config);
                         ~Bts700xShieldIno();
-        Error_t         init_shield();
-        Error_t         deinit_shield();
+        Error_t         init();
+        Error_t         deinit();
 
 };
+
+#endif /**HSS_BTS700xSHIELD_INO_HPP_*/

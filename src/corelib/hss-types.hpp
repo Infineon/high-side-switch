@@ -74,7 +74,7 @@ namespace hss
      * @{
      */
     enum DiagStatus_t{
-        READ_ERROR = -1,        /**< Read Error */
+        DIAG_READ_ERROR = -1,        /**< Read Error */
         NOT_ENABLED = -2,       /**< Diagnosis not enabled */
         NORMAL = 0,             /**< Switch works correctly */
         OVERLOAD = 1,           /**< Overload of the Switch */

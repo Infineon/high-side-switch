@@ -6,8 +6,9 @@
  * SPDX-License-Identifier: MIT
  */
 
-#include "hss-bts700xShield.hpp"
+#include "hss-bts700xShield-ino.hpp"
 
+using namespace hss;
 /**
  * @brief High-Side-Switch-Board constructor
  * Initialize all protected class pointers with a null pointer.
@@ -97,7 +98,7 @@ Bts700xShieldIno::~Bts700xShieldIno()
  * 
  * @return Bts700xShieldIno::Error_t
  */
-Error_t Bts700xShieldIno::init_shield()
+Error_t Bts700xShieldIno::init()
 {
     Error_t err = OK;
 
@@ -114,7 +115,7 @@ Error_t Bts700xShieldIno::init_shield()
  * 
  * @return Bts700xShieldIno::Error_t
  */
-Error_t Bts700xShieldIno::deinit_shield()
+Error_t Bts700xShieldIno::deinit()
 {
     Error_t err = OK;
 

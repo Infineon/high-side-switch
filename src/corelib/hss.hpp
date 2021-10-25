@@ -12,12 +12,14 @@
 #include <stdlib.h>
 #include <stdint.h>
 #include <unistd.h>
+#include "hss-types.hpp"
 #include "timer.hpp"
 #include "gpio.hpp"
 #include "adc.hpp"
 #include "variants.hpp"
 #include "filter.hpp"
 
+using namespace hss;
 /**
  * @addtogroup hssCorelib
  * @{

@@ -10,6 +10,8 @@
 #include "hss-shield.hpp"
 #include "variants.hpp"
 #include "hss-shield-config.hpp"
+#include "hss.hpp"
+using namespace hss;
 
 class Bts700xShield : HssShield
 {
@@ -38,7 +40,7 @@ class Bts700xShield : HssShield
         Hss *hss2;
         Hss *hss3;
         Hss *hss4;
-    
+
         Timer *timer;
     
         GPIO *oloff;
@@ -46,8 +48,10 @@ class Bts700xShield : HssShield
     
         AnalogDigitalConverter *pushButtonAnalog;
         AnalogDigitalConverter *vBat;
-    
+
+        BtsVariants_t           *btsVariant;
+
         const float vBatGain = 1.0;
         const float vBatOffset = 0.0;
-        BtsVariants_t           *btsVariant;
+        
 };

@@ -33,3 +33,17 @@ Bts700xHwConfig_t BTS700X_HWCONFIG
     .is1_is2 =          A2,         //IS 1_2
     .is3_is4 =          A3          //IS 3_4
 };
+
+
+BTS500xxHwConfig_t BTS500XX_HWCONFIG
+{
+    .led1 = 4,                      //LED 1
+    .led2 = 9,                      //LED 2
+
+    .in1 = 6,                       //IN 1
+
+    .pushButtonAnalog = A0,         //PUSHBUTTONANALOG
+    .vBat =             A1,         //VBAT
+    .is1 =         A2,             //IS 1
+    
+};

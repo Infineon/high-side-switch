@@ -12,6 +12,7 @@
 #include <stdint.h>
 #include "hss.hpp"
 
+using namespace hss;
 /**
  * @brief High-Side-Switch default constructor
  *          
@@ -88,7 +89,7 @@ Hss::~Hss()
  * 
  * @return Hss::Error_t 
  */
-Hss::Error_t Hss::init()
+Error_t Hss::init()
 {
     Error_t err = OK;
 
@@ -109,7 +110,7 @@ Hss::Error_t Hss::init()
  * 
  * @return Hss::Error_t 
  */
-Hss::Error_t Hss::deinit()
+Error_t Hss::deinit()
 {
     Error_t err = OK;
 
@@ -130,7 +131,7 @@ Hss::Error_t Hss::deinit()
  * 
  * @return Hss::Error_t 
  */
-Hss::Error_t Hss::enable()
+Error_t Hss::enable()
 {
     Error_t err = OK;
     
@@ -148,7 +149,7 @@ Hss::Error_t Hss::enable()
  * 
  * @return Hss::Error_t 
  */
-Hss::Error_t Hss::disable()
+Error_t Hss::disable()
 {
     Error_t err = OK;
 
@@ -165,7 +166,7 @@ Hss::Error_t Hss::disable()
  * 
  * @return Hss::Error_t 
  */
-Hss::Error_t Hss::enableDiag()
+Error_t Hss::enableDiag()
 {
     Error_t err = OK;
 
@@ -181,7 +182,7 @@ Hss::Error_t Hss::enableDiag()
  * 
  * @return Hss::Error_t 
  */
-Hss::Error_t Hss::disableDiag()
+Error_t Hss::disableDiag()
 {
     Error_t err = OK;
 
@@ -200,7 +201,7 @@ Hss::Error_t Hss::disableDiag()
  * 
  * @return Hss::Error_t 
  */
-Hss::Error_t Hss::diagReset()
+Error_t Hss::diagReset()
 {
     Error_t err = OK;
 
@@ -224,7 +225,7 @@ Hss::Error_t Hss::diagReset()
  * @retval  2   Power on
  * @retval  3   Power off
  */
-Hss::Status_t Hss::getSwitchStatus()
+Status_t Hss::getSwitchStatus()
 {
     return status;
 }
@@ -237,7 +238,7 @@ Hss::Status_t Hss::getSwitchStatus()
  * 
  * @return Value of the current flowing through the switch in [A] 
  */
-float Hss::readIs()
+float Hss::readIs_BTS()
 {
     uint16_t AnalogDigitalConverterResult = 0;
     float amps = 0.0;
@@ -259,7 +260,7 @@ float Hss::readIs()
  * This function is using the IS signal to determine the state of the switch.
  * It returns an diagnosis state of the switch.
  * 
- * @return Hss::DiagStatus_t
+ * @return DiagStatus_t
  * 
  * @retval  -2  Not enabled
  * @retval  0   Switch is working fine
@@ -267,27 +268,27 @@ float Hss::readIs()
  * @retval  5   Open load detected
  
  */
-Hss::DiagStatus_t Hss::diagRead()
+DiagStatus_t Hss::diagRead_BTS()
 {
     uint16_t AnalogDigitalConverterResult = 0;
     float amps = 0.0;
 
     if(diagEnb == DIAG_EN){
-        amps = readIs();
+        amps = readIs_BTS();
         
         if(amps > (0.0044*btsVariant->kilis)){
-            return Hss::DiagStatus_t::OVERLOAD;
+            return DiagStatus_t::OVERLOAD;
         }
         else if(amps < (0.00002*btsVariant->kilis)){
-            return Hss::DiagStatus_t::OPEN_LOAD;
+            return DiagStatus_t::OPEN_LOAD;
         }
         else{
-            return Hss::DiagStatus_t::NORMAL;
+            return DiagStatus_t::NORMAL;
         }
     }
 
     else{
-        return Hss::DiagStatus_t::NOT_ENABLED;
+        return DiagStatus_t::NOT_ENABLED;
     }
 
     return diagStatus;

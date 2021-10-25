@@ -1,25 +1,19 @@
 /** 
- * @file        hss-board-arduino.cpp
- * @brief       Definition of the High-Side-Switch-Board class functions in Arduino 
- * @date        May 2020
- * @copyright   Copyright (c) 2019-2020 Infineon Technologies AG
+ * @file        hss-bts700xShield.cpp
+ * @brief       BTS700x-1EPP (12V) Shield Implementation
+ * @copyright   Copyright (c) 2021 Infineon Technologies AG
  * 
  * SPDX-License-Identifier: MIT
  */
 
-#include "Arduino.h"
-#include "hss-board-arduino.hpp"
+#include "hss-bts700xShield-ino.hpp"
 
+using namespace hss;
 /**
- * @brief Default constructor of the Arduino High-Side-Switch-Board
- * 
- * This default constructor defines all necessary things for the Profet-Shield.
- * He is meant for all controllers that support the Arduino-Uno form factor.
- * But it is still necessary to chose the variant of the High-Side-Switch.
- * 
- * @param[in]   variantSel      Variant of the High-Side-Switch(see variants.cpp) 
+ * @brief High-Side-Switch-Board constructor
+ * Initialize all protected class pointers with a null pointer.
  */
-HssBoardIno::HssBoardIno(BtsVariants_t *variantSel)
+Bts700xShieldIno::Bts700xShieldIno(BtsVariants_t *variantSel)
 {
     led1 = ((ARDUINO_UNO.led1 == GPIOIno::unusedPin) ? NULL : new GPIOIno(ARDUINO_UNO.led1, OUTPUT, GPIOIno::POSITIVE));
     led2 = ((ARDUINO_UNO.led2 == GPIOIno::unusedPin) ? NULL : new GPIOIno(ARDUINO_UNO.led2, OUTPUT, GPIOIno::POSITIVE));
@@ -38,18 +32,12 @@ HssBoardIno::HssBoardIno(BtsVariants_t *variantSel)
 
     pushButtonAnalog = new ADCIno(ARDUINO_UNO.pushButtonAnalog);
     vBat = new ADCIno(ARDUINO_UNO.vBat);
+
+    btsVariant = variantSel;
+
 }
 
-/**
- * @brief Constructor of the Arduino High-Side-Switch-Board
- * 
- * This constructor can be used in case of an other board the boards that
- * support the Arduino form factor or if the board is modified.
- * 
- * @param variantSel 
- * @param config 
- */
-HssBoardIno::HssBoardIno(BtsVariants_t *variantSel, hardwareconfig_t config)
+Bts700xShieldIno::Bts700xShieldIno(BtsVariants_t *variantSel, Bts700xHwConfig_t config)
 {
     led1 = ((config.led1 == GPIOIno::unusedPin) ? NULL : new GPIOIno(config.led1, OUTPUT, GPIOIno::POSITIVE));
     led2 = ((config.led2 == GPIOIno::unusedPin) ? NULL : new GPIOIno(config.led2, OUTPUT, GPIOIno::POSITIVE));
@@ -70,14 +58,68 @@ HssBoardIno::HssBoardIno(BtsVariants_t *variantSel, hardwareconfig_t config)
     vBat =  new ADCIno(config.vBat);
 }
 
+Bts700xShieldIno::Bts700xShieldIno()
+{
+    filterVbat = NULL;
+
+    led1 = NULL;
+    led2 = NULL;
+    led3 = NULL;
+    led4 = NULL;
+
+    hss1 = NULL;
+    hss2 = NULL;
+    hss3 = NULL;
+    hss4 = NULL;
+
+    timer = NULL;
+
+    oloff = NULL;
+    pushButtonDigital = NULL;
+    
+    pushButtonAnalog = NULL;
+    vBat = NULL;
+}
+
 /**
- * @brief Destructor of the Arduino High-Side-Switch-Board
+ * @brief Destructor of the High-Side-Switch-Board
  * 
  */
-HssBoardIno::~HssBoardIno()
+Bts700xShieldIno::~Bts700xShieldIno()
 {
 
 }
 
+/**
+ * @brief Initialize all necessary objects of the High-Side-Switch-Board
+ * 
+ * This function initializes all necessary objects of the High-Side-Switch-Board.
+ * It retruns an error code to see if everything was initialized correctly.
+ * 
+ * @return Bts700xShieldIno::Error_t
+ */
+Error_t Bts700xShieldIno::init()
+{
+    Error_t err = OK;
 
+    err = init();
 
+    return err;
+}
+
+/**
+ * @brief Deinitialize all necessary objects of the High-Side-Switch-Board
+ * 
+ * This function deinitializes all necessary objects of the High-Side-Switch-Board.
+ * It retruns an error code to see if everything was deinitialized correctly.
+ * 
+ * @return Bts700xShieldIno::Error_t
+ */
+Error_t Bts700xShieldIno::deinit()
+{
+    Error_t err = OK;
+
+    err = deinit();
+    
+    return err;
+}

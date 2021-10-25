@@ -12,77 +12,16 @@
  * @brief High-Side-Switch-Board constructor
  * Initialize all protected class pointers with a null pointer.
  */
-Bts700xShieldIno::Bts700xShieldIno(BtsVariants_t *variantSel)
+Bts700xShield::Bts700xShield()
 {
-    led1 = ((ARDUINO_UNO.led1 == GPIOIno::unusedPin) ? NULL : new GPIOIno(ARDUINO_UNO.led1, OUTPUT, GPIOIno::POSITIVE));
-    led2 = ((ARDUINO_UNO.led2 == GPIOIno::unusedPin) ? NULL : new GPIOIno(ARDUINO_UNO.led2, OUTPUT, GPIOIno::POSITIVE));
-    led3 = ((ARDUINO_UNO.led3 == GPIOIno::unusedPin) ? NULL : new GPIOIno(ARDUINO_UNO.led3, OUTPUT, GPIOIno::POSITIVE));
-    led4 = ((ARDUINO_UNO.led4 == GPIOIno::unusedPin) ? NULL : new GPIOIno(ARDUINO_UNO.led4, OUTPUT, GPIOIno::POSITIVE));
 
-    hss1 = new HssIno(ARDUINO_UNO.den1_den3, ARDUINO_UNO.in1, ARDUINO_UNO.is1_is2, variantSel);
-    hss2 = new HssIno(ARDUINO_UNO.den2_den4, ARDUINO_UNO.in2, ARDUINO_UNO.is1_is2, variantSel);
-    hss3 = new HssIno(ARDUINO_UNO.den1_den3, ARDUINO_UNO.in3, ARDUINO_UNO.is3_is4, variantSel);
-    hss4 = new HssIno(ARDUINO_UNO.den2_den4, ARDUINO_UNO.in4, ARDUINO_UNO.is3_is4, variantSel);
-
-    timer = new TimerIno();
-    
-    oloff = new GPIOIno(ARDUINO_UNO.oloff, OUTPUT, GPIOIno::POSITIVE);
-    pushButtonDigital = new GPIOIno(ARDUINO_UNO.pushButtonDigital, INPUT_PULLUP, GPIOIno::POSITIVE);
-
-    pushButtonAnalog = new ADCIno(ARDUINO_UNO.pushButtonAnalog);
-    vBat = new ADCIno(ARDUINO_UNO.vBat);
-
-}
-
-Bts700xShieldIno::Bts700xShieldIno(BtsVariants_t *variantSel, Bts700xHwConfig_t config)
-{
-    led1 = ((config.led1 == GPIOIno::unusedPin) ? NULL : new GPIOIno(config.led1, OUTPUT, GPIOIno::POSITIVE));
-    led2 = ((config.led2 == GPIOIno::unusedPin) ? NULL : new GPIOIno(config.led2, OUTPUT, GPIOIno::POSITIVE));
-    led3 = ((config.led3 == GPIOIno::unusedPin) ? NULL : new GPIOIno(config.led3, OUTPUT, GPIOIno::POSITIVE));
-    led4 = ((config.led4 == GPIOIno::unusedPin) ? NULL : new GPIOIno(config.led4, OUTPUT, GPIOIno::POSITIVE));
-
-    hss1 = new HssIno(config.den1_den3, config.in1, config.is1_is2, variantSel);
-    hss2 = new HssIno(config.den2_den4, config.in2, config.is1_is2, variantSel);
-    hss3 = new HssIno(config.den1_den3, config.in3, config.is3_is4, variantSel);
-    hss4 = new HssIno(config.den2_den4, config.in4, config.is3_is4, variantSel);
-
-    timer = new TimerIno();
-
-    oloff = new GPIOIno(config.oloff, OUTPUT, GPIOIno::POSITIVE);
-    pushButtonDigital = new GPIOIno(config.pushButtonDigital, INPUT_PULLUP, GPIOIno::POSITIVE);
-    
-    pushButtonAnalog = new ADCIno(config.pushButtonAnalog);
-    vBat =  new ADCIno(config.vBat);
-}
-
-Bts700xShieldIno::Bts700xShieldIno()
-{
-    filterVbat = NULL;
-
-    led1 = NULL;
-    led2 = NULL;
-    led3 = NULL;
-    led4 = NULL;
-
-    hss1 = NULL;
-    hss2 = NULL;
-    hss3 = NULL;
-    hss4 = NULL;
-
-    timer = NULL;
-
-    oloff = NULL;
-    pushButtonDigital = NULL;
-    
-    pushButtonAnalog = NULL;
-    vBat = NULL;
 }
 
 /**
  * @brief Destructor of the High-Side-Switch-Board
  * 
  */
-Bts700xShieldIno::~Bts700xShieldIno()
+Bts700xShield::~Bts700xShield()
 {
 
 }
@@ -93,9 +32,9 @@ Bts700xShieldIno::~Bts700xShieldIno()
  * This function initializes all necessary objects of the High-Side-Switch-Board.
  * It retruns an error code to see if everything was initialized correctly.
  * 
- * @return Bts700xShieldIno::Error_t
+ * @return Bts700xShield::Error_t
  */
-Error_t Bts700xShieldIno::init()
+Error_t Bts700xShield::init()
 {
     hss1->init();
     hss2->init();
@@ -119,9 +58,9 @@ Error_t Bts700xShieldIno::init()
  * This function deinitializes all necessary objects of the High-Side-Switch-Board.
  * It retruns an error code to see if everything was deinitialized correctly.
  * 
- * @return Bts700xShieldIno::Error_t
+ * @return Bts700xShield::Error_t
  */
-Error_t Bts700xShieldIno::deinit()
+Error_t Bts700xShield::deinit()
 {
 
     if (NULL != led1)
@@ -156,9 +95,9 @@ Error_t Bts700xShieldIno::deinit()
  * It also turns on the corresponding LED of the switch.
  * 
  * @param[in]   x   Number of the Switch the should be turned on (1-4)      
- * @return          Bts700xShieldIno::Error_t 
+ * @return          Bts700xShield::Error_t 
  */
-Error_t Bts700xShieldIno::switchHxOn(uint8_t x)
+Error_t Bts700xShield::switchHxOn(uint8_t x)
 {
     switch(x)
     {
@@ -196,9 +135,9 @@ Error_t Bts700xShieldIno::switchHxOn(uint8_t x)
  * It also turns off the corresponding LED of the switch.
  * 
  * @param[in]   x   Number of the Switch the should be turned off (1-4)  
- * @return          Bts700xShieldIno::Error_t 
+ * @return          Bts700xShield::Error_t 
  */
-Error_t Bts700xShieldIno::switchHxOff(uint8_t x)
+Error_t Bts700xShield::switchHxOff(uint8_t x)
 {
     switch(x)
     {
@@ -238,9 +177,9 @@ Error_t Bts700xShieldIno::switchHxOff(uint8_t x)
  * @param[in] h2    Enable the second switch if h2 == true 
  * @param[in] h3    Enable the third switch if h3 == true 
  * @param[in] h4    Enable the fourth switch if h4 == true 
- * @return          Bts700xShieldIno::Error_t 
+ * @return          Bts700xShield::Error_t 
  */
-Error_t Bts700xShieldIno::switchesHxOn(bool h1 = NULL, bool h2 = NULL, bool h3 = NULL, bool h4 = NULL)
+Error_t Bts700xShield::switchesHxOn(bool h1 = NULL, bool h2 = NULL, bool h3 = NULL, bool h4 = NULL)
 {
     if(h1 == true){
         hss1->enable();
@@ -278,9 +217,9 @@ Error_t Bts700xShieldIno::switchesHxOn(bool h1 = NULL, bool h2 = NULL, bool h3 =
  * @param[in] h2    Disable the second switch if h2 == true 
  * @param[in] h3    Disable the third switch if h3 == true 
  * @param[in] h4    Disable the fourth switch if h4 == true 
- * @return          Bts700xShieldIno::Error_t 
+ * @return          Bts700xShield::Error_t 
  */
-Error_t Bts700xShieldIno::switchesHxOff(bool h1 = NULL, bool h2 = NULL, bool h3 = NULL, bool h4 = NULL)
+Error_t Bts700xShield::switchesHxOff(bool h1 = NULL, bool h2 = NULL, bool h3 = NULL, bool h4 = NULL)
 {
     if(h1 == true){
         hss1->disable();
@@ -319,32 +258,32 @@ Error_t Bts700xShieldIno::switchesHxOff(bool h1 = NULL, bool h2 = NULL, bool h3 
  * @param[in]   x   Number of the desired channel (1-4)
  * @return          The value of the current in [A]      
  */
-float Bts700xShieldIno::readIsx(uint8_t x)
+float Bts700xShield::readIsx(uint8_t x)
 {
     float result;
     switch (x)
     {
         case 1:
             hss1->enableDiag();
-            result = hss1->readIs();
+            result = hss1->readIs_BTS();
             hss1->disableDiag();
             break;
         
         case 2:
             hss2->enableDiag();
-            result = hss2->readIs();
+            result = hss2->readIs_BTS();
             hss2->disableDiag();
             break;
         
         case 3:
             hss3->enableDiag();
-            result = hss3->readIs();
+            result = hss3->readIs_BTS();
             hss3->disableDiag();
             break;
 
         case 4:
             hss4->enableDiag();
-            result = hss4->readIs();
+            result = hss4->readIs_BTS();
             hss4->disableDiag();
             break;
     }
@@ -358,14 +297,14 @@ float Bts700xShieldIno::readIsx(uint8_t x)
  * It returns the different states depending on the channels condition.
  * 
  * @param[in]   x   Desired channel for the diagnosis (1-4)   
- * @return      Bts700xShieldIno::DiagStatus_t
+ * @return      Bts700xShield::DiagStatus_t
  * 
  * @retval      0   Everything works correctly
  * @retval      2   Short to ground
  * @retval      4   Short to battery
  * @retval      5   Open load     
  */
-DiagStatus_t Bts700xShieldIno::readDiagx(uint8_t x)
+DiagStatus_t Bts700xShield::readDiagx(uint8_t x)
 {
     DiagStatus_t diagStatus = NORMAL;
 
@@ -377,16 +316,16 @@ DiagStatus_t Bts700xShieldIno::readDiagx(uint8_t x)
         case 1:
             hss1->enableDiag();
             if(hss1->getSwitchStatus() == Hss::Status_t::POWER_ON){
-               diagStatus = hss1->diagRead();
+               diagStatus = hss1->diagRead_BTS();
             }
             else{
                 oloff->enable();
                 timer->delayMicro(300);
-                currentOn = hss1->readIs();
+                currentOn = hss1->readIs_BTS();
     
                 oloff->disable();
                 timer->delayMicro(400);
-                currentOff = hss1->readIs();
+                currentOff = hss1->readIs_BTS();
                 diagStatus = diagnosisOff(currentOn, currentOff);
             }
             hss1->disableDiag();
@@ -395,16 +334,16 @@ DiagStatus_t Bts700xShieldIno::readDiagx(uint8_t x)
         case 2:
             hss2->enableDiag();
             if(hss2->getSwitchStatus() == Hss::Status_t::POWER_ON){
-                diagStatus = hss2->diagRead();
+                diagStatus = hss2->diagRead_BTS();
             }
             else{
                 oloff->enable();
                 timer->delayMicro(300);
-                currentOn = hss2->readIs();
+                currentOn = hss2->readIs_BTS();
 
                 oloff->disable();
                 timer->delayMicro(400);
-                currentOff = hss2->readIs();
+                currentOff = hss2->readIs_BTS();
                 diagStatus = diagnosisOff(currentOn, currentOff);
             }
             hss2->disableDiag();
@@ -413,16 +352,16 @@ DiagStatus_t Bts700xShieldIno::readDiagx(uint8_t x)
         case 3:
             hss3->enableDiag();
             if(hss3->getSwitchStatus() == Hss::Status_t::POWER_ON){
-                diagStatus = hss3->diagRead();
+                diagStatus = hss3->diagRead_BTS();
             }
             else{
                 oloff->enable();
                 timer->delayMicro(300);
-                currentOn = hss3->readIs();
+                currentOn = hss3->readIs_BTS();
 
                 oloff->disable();
                 timer->delayMicro(400);
-                currentOff = hss3->readIs();
+                currentOff = hss3->readIs_BTS();
                 diagStatus = diagnosisOff(currentOn, currentOff);
             }
             hss3->disableDiag();
@@ -431,16 +370,16 @@ DiagStatus_t Bts700xShieldIno::readDiagx(uint8_t x)
         case 4:
             hss4->enableDiag();
             if(hss4->getSwitchStatus() == Hss::Status_t::POWER_ON){
-                diagStatus = hss4->diagRead();
+                diagStatus = hss4->diagRead_BTS();
             }
             else{
                 oloff->enable();
                 timer->delayMicro(300);
-                currentOn = hss4->readIs();
+                currentOn = hss4->readIs_BTS();
 
                 oloff->disable();
                 timer->delayMicro(400);
-                currentOff = hss4->readIs();
+                currentOff = hss4->readIs_BTS();
                 diagStatus = diagnosisOff(currentOn, currentOff);
             }
             hss4->disableDiag();
@@ -457,9 +396,9 @@ DiagStatus_t Bts700xShieldIno::readDiagx(uint8_t x)
  * 
  * @param[in]   currentOn   Measrued current with Open-Load-Detection on 
  * @param[in]   currentOff  Measrued current with Open-Load-Detection off 
- * @return Bts700xShieldIno::DiagStatus_t 
+ * @return Bts700xShield::DiagStatus_t 
  */
-DiagStatus_t Bts700xShieldIno::diagnosisOff(float currentOn, float currentOff)
+DiagStatus_t Bts700xShield::diagnosisOff(float currentOn, float currentOff)
 {
     if((currentOn > (0.0018 * btsVariant->kilis)) && (currentOn < (0.0044 * btsVariant->kilis))){
         if((currentOff > (0.0018 * btsVariant->kilis)) && (currentOff < (0.0044 * btsVariant->kilis))){
@@ -486,7 +425,7 @@ DiagStatus_t Bts700xShieldIno::diagnosisOff(float currentOn, float currentOff)
  * 
  * @return Value of the battery voltage in [V]
  */
-float Bts700xShieldIno::readVss()
+float Bts700xShield::readVss()
 {
     uint16_t adcResult = 0;
     float voltage = 0.0;
@@ -507,7 +446,7 @@ float Bts700xShieldIno::readVss()
  * @retval true if button is pressed
  * @retval false if button is not pressed 
  */
-bool Bts700xShieldIno::digitalReadButton()
+bool Bts700xShield::digitalReadButton()
 {
     if(pushButtonDigital->read() == GPIO::GPIO_LOW)
     return true;
@@ -521,7 +460,7 @@ bool Bts700xShieldIno::digitalReadButton()
  * @retval true if button is pressed
  * @retval false if button is not pressed 
  */
-bool Bts700xShieldIno::analogReadButton()
+bool Bts700xShield::analogReadButton()
 {
     uint16_t result = 0;
 

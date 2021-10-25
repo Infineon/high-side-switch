@@ -237,7 +237,7 @@ Hss::Status_t Hss::getSwitchStatus()
  * 
  * @return Value of the current flowing through the switch in [A] 
  */
-float Hss::readIs()
+float Hss::readIs_BTS()
 {
     uint16_t AnalogDigitalConverterResult = 0;
     float amps = 0.0;
@@ -267,13 +267,13 @@ float Hss::readIs()
  * @retval  5   Open load detected
  
  */
-Hss::DiagStatus_t Hss::diagRead()
+Hss::DiagStatus_t Hss::diagRead_BTS()
 {
     uint16_t AnalogDigitalConverterResult = 0;
     float amps = 0.0;
 
     if(diagEnb == DIAG_EN){
-        amps = readIs();
+        amps = readIs_BTS();
         
         if(amps > (0.0044*btsVariant->kilis)){
             return Hss::DiagStatus_t::OVERLOAD;

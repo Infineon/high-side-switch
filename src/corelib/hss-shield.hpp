@@ -23,7 +23,7 @@ using namespace hss;
  * This class is the base class for the PROFET-Shield with all it's functions.
  */
 
-class HssShield
+class HssShield : Hss
 {
     public:
                             HssShield();
@@ -36,7 +36,7 @@ class HssShield
         virtual DiagStatus_t readDiagx(uint8_t x, Channel_t ch) = 0;
         virtual DiagStatus_t diagnosisOff(float currentOn, float currentOff) = 0;
         virtual float        readIsx(uint8_t x, Channel_t ch)= 0;
-        virtual float        readVss();
+        virtual float        readVss()=0;
 };
 
 /** @} */

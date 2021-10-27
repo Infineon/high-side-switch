@@ -28,6 +28,23 @@ HssIno::HssIno(uint8_t den, uint8_t in, uint8_t is, BtsVariants_t *variant)
     HssIno::timer = new TimerIno();
 }
 
+HssIno::HssIno(uint8_t den, uint8_t in, uint8_t is)
+{
+    HssIno::den   = new GPIOIno (den, OUTPUT, GPIOIno::POSITIVE);
+    HssIno::in    = new GPIOIno (in,  OUTPUT, GPIOIno::POSITIVE);
+    HssIno::is    = new ADCIno  (is);
+    HssIno::timer = new TimerIno();
+}
+
+HssIno::HssIno(uint8_t den, uint8_t in, uint8_t dsel, uint8_t is)
+{
+    HssIno::den   = new GPIOIno (den, OUTPUT, GPIOIno::POSITIVE);
+    HssIno::in    = new GPIOIno (in,  OUTPUT, GPIOIno::POSITIVE);
+    HssIno::dsel  = new GPIOIno (in,  OUTPUT, GPIOIno::POSITIVE);
+    HssIno::is    = new ADCIno  (is);
+    HssIno::timer = new TimerIno();
+}
+
 /**
  * @brief Destructor of the Arduino High-Side-Switch
  * 

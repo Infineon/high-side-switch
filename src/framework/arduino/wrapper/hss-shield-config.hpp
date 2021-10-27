@@ -46,7 +46,32 @@ struct Bts700xHwConfig_t
     uint8_t is3_is4;    
 };
 
+struct Profet24VBTTHwConfig_t
+{
+    //Profet0 - BTT6030 (2 channel) pin config
+    uint8_t in0_0;
+    uint8_t den_0;
+    uint8_t dsel_0;
+    uint8_t in1_0;
+    uint8_t is_0;
+
+    //Profet1 - BTT6030 (2 channel) pin config
+    uint8_t in0_1;
+    uint8_t den_1;
+    uint8_t dsel_1;
+    uint8_t in1_1;
+    uint8_t is_1;
+
+    //Profet2 - BTT6020 (1 channel) pin config
+    uint8_t in0_2;
+    uint8_t den_2;
+    uint8_t is_2;
+    
+};
+
 extern Bts700xHwConfig_t BTS700X_HWCONFIG;
+extern Profet24VBTTHwConfig_t PROFET24VBTT_HWCONFIG;
+
 /** @} */
 
 #endif /** HSS_SHIELD_CONFIG_HPP_ **/

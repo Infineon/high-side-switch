@@ -10,7 +10,9 @@
 #include "hss-shield.hpp"
 #include "variants.hpp"
 #include "hss-shield-config.hpp"
+#include "hss.hpp"
 
+using namespace hss;
 
 class Bts500xxShield : HssShield 
 {

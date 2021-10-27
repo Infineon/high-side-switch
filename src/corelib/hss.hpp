@@ -1,8 +1,7 @@
 /**
  * @file        hss.hpp
  * @brief       Definition of the High-Side-Switch class functions
- * @date        May 2020
- * @copyright   Copyright (c) 2019-2020 Infineon Technologies AG
+ * @copyright   Copyright (c) 2021 Infineon Technologies AG
  *
  * SPDX-License-Identifier: MIT
  */
@@ -50,7 +49,7 @@ class Hss
 
     Status_t        getSwitchStatus();
 
-    DiagStatus_t    diagRead();
+    DiagStatus_t    diagRead(float amps, uint16_t kilis);
 
     uint16_t        readIs();
     float           calibrateIs(float inVal, uint16_t kilis, float ampsOffset, float ampsGain);

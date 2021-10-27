@@ -8,6 +8,7 @@
 
 #include "hss-bts700xShield.hpp"
 
+using namespace hss;
 /**
  * @brief High-Side-Switch-Board constructor
  * Initialize all protected class pointers with a null pointer.
@@ -36,6 +37,17 @@ Bts700xShield::~Bts700xShield()
  */
 Error_t Bts700xShield::init()
 {
+    filterVbat = new ExponentialFilter(0.0, 0.3);
+
+    if (NULL != led1)
+        led1->init();
+    if (NULL != led2)
+        led2->init();
+    if (NULL != led3)
+        led3->init();
+    if (NULL != led4)
+        led4->init();
+
     hss1->init();
     hss2->init();
     hss3->init();
@@ -97,7 +109,7 @@ Error_t Bts700xShield::deinit()
  * @param[in]   x   Number of the Switch the should be turned on (1-4)      
  * @return          Bts700xShield::Error_t 
  */
-Error_t Bts700xShield::switchHxOn(uint8_t x)
+Error_t Bts700xShield::switchHxOn(uint8_t x,Channel_t ch)
 {
     switch(x)
     {
@@ -137,7 +149,7 @@ Error_t Bts700xShield::switchHxOn(uint8_t x)
  * @param[in]   x   Number of the Switch the should be turned off (1-4)  
  * @return          Bts700xShield::Error_t 
  */
-Error_t Bts700xShield::switchHxOff(uint8_t x)
+Error_t Bts700xShield::switchHxOff(uint8_t x,Channel_t ch)
 {
     switch(x)
     {
@@ -258,38 +270,79 @@ Error_t Bts700xShield::switchesHxOff(bool h1 = NULL, bool h2 = NULL, bool h3 = N
  * @param[in]   x   Number of the desired channel (1-4)
  * @return          The value of the current in [A]      
  */
-float Bts700xShield::readIsx(uint8_t x)
+float Bts700xShield::readIsx(uint8_t x, Channel_t ch)
 {
-    float result;
+    float isVal;
+    uint16_t adcResult;
+
     switch (x)
     {
         case 1:
             hss1->enableDiag();
-            result = hss1->readIs_BTS();
+            isVal = getIs(1);
             hss1->disableDiag();
             break;
         
         case 2:
             hss2->enableDiag();
-            result = hss2->readIs_BTS();
+            isVal = getIs(2);
             hss2->disableDiag();
             break;
         
         case 3:
             hss3->enableDiag();
-            result = hss3->readIs_BTS();
+            isVal = getIs(3);
             hss3->disableDiag();
             break;
 
         case 4:
             hss4->enableDiag();
-            result = hss4->readIs_BTS();
+            isVal = getIs(4);
             hss4->disableDiag();
             break;
     }
-    return result;
+    return isVal;
 }
 
+/**
+ * @brief Read the desired current value of the chosen channel
+ * 
+ * This function reads the IS pin of the chosen High-Side-Switch
+ * and calculates the current which is flowing through the switch
+ * with the acquired ADC value.
+ * 
+ * @param[in]   x   Number of the desired channel (1-4)
+ * @return          The value of the current in [A]      
+ */
+float Bts700xShield::getIs(uint8_t x)
+{
+    uint16_t adcResult;
+    float amps, ampsCalib;
+    switch(x)
+    {
+        case 1:
+            adcResult = hss1->readIs();
+            amps = ((float)adcResult/(float)1024) * (float)5;
+            ampsCalib = hss1->calibrateIs(amps, btsVariant->kilis, btsVariant->ampsOffset, btsVariant->ampsGain);
+
+        case 2:
+            adcResult = hss2->readIs();
+            amps = ((float)adcResult/(float)1024) * (float)5;
+            ampsCalib = hss2->calibrateIs(amps, btsVariant->kilis, btsVariant->ampsOffset, btsVariant->ampsGain);
+
+        case 3:
+            adcResult = hss3->readIs();
+            amps = ((float)adcResult/(float)1024) * (float)5;
+            ampsCalib = hss3->calibrateIs(amps, btsVariant->kilis, btsVariant->ampsOffset, btsVariant->ampsGain);
+
+        case 4:
+            adcResult = hss4->readIs();
+            amps = ((float)adcResult/(float)1024) * (float)5;
+            ampsCalib = hss4->calibrateIs(amps, btsVariant->kilis, btsVariant->ampsOffset, btsVariant->ampsGain);
+
+    }
+    return ampsCalib;
+}
 /**
  * @brief Read the diagnosis of the chosen channel
  * 
@@ -304,7 +357,7 @@ float Bts700xShield::readIsx(uint8_t x)
  * @retval      4   Short to battery
  * @retval      5   Open load     
  */
-DiagStatus_t Bts700xShield::readDiagx(uint8_t x)
+DiagStatus_t Bts700xShield::readDiagx(uint8_t x,Channel_t ch)
 {
     DiagStatus_t diagStatus = NORMAL;
 
@@ -315,17 +368,19 @@ DiagStatus_t Bts700xShield::readDiagx(uint8_t x)
     {
         case 1:
             hss1->enableDiag();
-            if(hss1->getSwitchStatus() == Hss::Status_t::POWER_ON){
-               diagStatus = hss1->diagRead_BTS();
+            if(hss1->getSwitchStatus() == POWER_ON)
+            {
+                diagStatus = hss1->diagRead(getIs(1), btsVariant->kilis);
             }
-            else{
+            else
+            {
                 oloff->enable();
                 timer->delayMicro(300);
-                currentOn = hss1->readIs_BTS();
+                currentOn = getIs(1);
     
                 oloff->disable();
                 timer->delayMicro(400);
-                currentOff = hss1->readIs_BTS();
+                currentOff = getIs(1);
                 diagStatus = diagnosisOff(currentOn, currentOff);
             }
             hss1->disableDiag();
@@ -333,17 +388,19 @@ DiagStatus_t Bts700xShield::readDiagx(uint8_t x)
 
         case 2:
             hss2->enableDiag();
-            if(hss2->getSwitchStatus() == Hss::Status_t::POWER_ON){
-                diagStatus = hss2->diagRead_BTS();
+            if(hss2->getSwitchStatus() == POWER_ON)
+            {
+                diagStatus = hss2->diagRead(getIs(2), btsVariant->kilis);
             }
-            else{
+            else
+            {
                 oloff->enable();
                 timer->delayMicro(300);
-                currentOn = hss2->readIs_BTS();
+                currentOn = getIs(2);
 
                 oloff->disable();
                 timer->delayMicro(400);
-                currentOff = hss2->readIs_BTS();
+                currentOff = getIs(2);
                 diagStatus = diagnosisOff(currentOn, currentOff);
             }
             hss2->disableDiag();
@@ -351,17 +408,19 @@ DiagStatus_t Bts700xShield::readDiagx(uint8_t x)
         
         case 3:
             hss3->enableDiag();
-            if(hss3->getSwitchStatus() == Hss::Status_t::POWER_ON){
-                diagStatus = hss3->diagRead_BTS();
+            if(hss3->getSwitchStatus() == POWER_ON)
+            {
+                diagStatus = hss3->diagRead(getIs(3), btsVariant->kilis);
             }
-            else{
+            else
+            {
                 oloff->enable();
                 timer->delayMicro(300);
-                currentOn = hss3->readIs_BTS();
+                currentOn = getIs(3);
 
                 oloff->disable();
                 timer->delayMicro(400);
-                currentOff = hss3->readIs_BTS();
+                currentOff = getIs(3);
                 diagStatus = diagnosisOff(currentOn, currentOff);
             }
             hss3->disableDiag();
@@ -369,17 +428,19 @@ DiagStatus_t Bts700xShield::readDiagx(uint8_t x)
         
         case 4:
             hss4->enableDiag();
-            if(hss4->getSwitchStatus() == Hss::Status_t::POWER_ON){
-                diagStatus = hss4->diagRead_BTS();
+            if(hss4->getSwitchStatus() == POWER_ON)
+            {
+                diagStatus = hss4->diagRead(getIs(4), btsVariant->kilis);
             }
-            else{
+            else
+            {
                 oloff->enable();
                 timer->delayMicro(300);
-                currentOn = hss4->readIs_BTS();
+                currentOn = getIs(4);
 
                 oloff->disable();
                 timer->delayMicro(400);
-                currentOff = hss4->readIs_BTS();
+                currentOff = getIs(4);
                 diagStatus = diagnosisOff(currentOn, currentOff);
             }
             hss4->disableDiag();

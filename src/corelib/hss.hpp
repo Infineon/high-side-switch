@@ -1,8 +1,7 @@
 /**
  * @file        hss.hpp
  * @brief       Definition of the High-Side-Switch class functions
- * @date        May 2020
- * @copyright   Copyright (c) 2019-2020 Infineon Technologies AG
+ * @copyright   Copyright (c) 2021 Infineon Technologies AG
  *
  * SPDX-License-Identifier: MIT
  */
@@ -35,7 +34,8 @@ class Hss
     public:
 
                     Hss();
-                    Hss(GPIO *den, GPIO *in, AnalogDigitalConverter *is, BtsVariants_t *variant);
+                    Hss(GPIO *den, GPIO *in, AnalogDigitalConverter *is);
+                    Hss(GPIO *den, GPIO *in, GPIO *dsel, AnalogDigitalConverter *is);
                     ~Hss();
     Error_t         init();
     Error_t         deinit();
@@ -43,13 +43,17 @@ class Hss
     Error_t         disable();
     Error_t         enableDiag();
     Error_t         disableDiag();
+    Error_t         diagSelCh0();
+    Error_t         diagSelCh1();
     Error_t         diagReset();
 
     Status_t        getSwitchStatus();
 
-    DiagStatus_t    diagRead_BTS();
+    DiagStatus_t    diagRead(float amps, uint16_t kilis);
 
-    float           readIs_BTS();
+    uint16_t        readIs();
+    float           calibrateIs(float inVal, uint16_t kilis, float ampsOffset, float ampsGain);
+    
 
     protected:
     GPIO                    *den;
@@ -60,7 +64,6 @@ class Hss
     Timer                   *timer;
 
     ExponentialFilter       *currentFilter;
-    BtsVariants_t           *btsVariant;
 
     Status_t                status;
     DiagEnable_t            diagEnb;

@@ -1,5 +1,5 @@
 /**
- * @file        hss-bts700xShield.hpp
+ * @file        hss-bts700xShield-ino.hpp
  * @brief       Class for BTS700x-1EPP (12V) Shield
  * @copyright   Copyright (c) 2021 Infineon Technologies AG
  *
@@ -15,9 +15,10 @@
 
 using namespace hss;
 
-class Bts700xShieldIno : Bts700xShield
+class Bts700xShieldIno : public Bts700xShield
 {
     public:
+                        Bts700xShieldIno();
                         Bts700xShieldIno(BtsVariants_t *variantSel);
                         Bts700xShieldIno(BtsVariants_t *variantSel, Bts700xHwConfig_t config);
                         ~Bts700xShieldIno();

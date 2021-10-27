@@ -137,7 +137,7 @@ Error_t Bts500xxShield::switchHxoff(uint8_t x)
  * @param[in]   x   Number of the desired channel (1-4)
  * @return          The value of the current in [A]      
  */
-float Bts700xShield::readIsx(uint8_t x)
+float Bts500xxShield::readIsx(uint8_t x)
 {
     float isVal;
     uint16_t adcResult;
@@ -165,7 +165,7 @@ float Bts700xShield::readIsx(uint8_t x)
  * @param[in]   x   Number of the desired channel (1-4)
  * @return          The value of the current in [A]      
  */
-float Bts700xShield::getIs(uint8_t x)
+float Bts500xxShield::getIs(uint8_t x)
 {
     uint16_t adcResult;
     float amps, ampsCalib;
@@ -195,7 +195,7 @@ float Bts700xShield::getIs(uint8_t x)
  * @retval      4   Short to battery
  * @retval      5   Open load     
  */
-DiagStatus_t Bts700xShield::readDiagx(uint8_t x)
+DiagStatus_t Bts500xxShield::readDiagx(uint8_t x)
 {
     DiagStatus_t diagStatus = NORMAL;
 

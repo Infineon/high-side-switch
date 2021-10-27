@@ -11,9 +11,10 @@
 #include "variants.hpp"
 #include "hss-shield-config.hpp"
 #include "hss.hpp"
+
 using namespace hss;
 
-class Bts700xShield : HssShield
+class Bts700xShield : public HssShield
 {
     public:
                         Bts700xShield();
@@ -23,10 +24,15 @@ class Bts700xShield : HssShield
         Error_t         deinit();
         Error_t         switchHxOn(uint8_t x, Channel_t ch=NULL_CHANNEL);
         Error_t         switchHxOff(uint8_t x, Channel_t ch=NULL_CHANNEL);
+        Error_t         switchesHxOn(bool h1 = NULL, bool h2 = NULL, bool h3 = NULL, bool h4 = NULL);
+        Error_t         switchesHxOff(bool h1 = NULL, bool h2 = NULL, bool h3 = NULL, bool h4 = NULL);
         DiagStatus_t    readDiagx(uint8_t x, Channel_t ch=NULL_CHANNEL);
         DiagStatus_t    diagnosisOff(float currentOn, float currentOff);
         float           readIsx(uint8_t x, Channel_t ch=NULL_CHANNEL);
         float           readVss();
+
+        bool            digitalReadButton();
+        bool            analogReadButton();
     
     protected:
         ExponentialFilter *filterVbat;
@@ -49,9 +55,11 @@ class Bts700xShield : HssShield
         AnalogDigitalConverter *pushButtonAnalog;
         AnalogDigitalConverter *vBat;
 
-        BtsVariants_t           *btsVariant;
+        BtsVariants_t          *btsVariant;
 
         const float vBatGain = 1.0;
         const float vBatOffset = 0.0;
+
+        float getIs(uint8_t x);
         
 };

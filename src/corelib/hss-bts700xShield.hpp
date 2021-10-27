@@ -60,6 +60,6 @@ class Bts700xShield : public HssShield
         const float vBatGain = 1.0;
         const float vBatOffset = 0.0;
 
-        float getIs(uint8_t x);
+        float  getIs(uint8_t x);
         
 };

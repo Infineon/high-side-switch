@@ -12,8 +12,8 @@
 using namespace hss;
 
 /**
- * @brief High-Side-Switch-Board constructor
- * Initialize all protected class pointers with a null pointer.
+ * @brief BTS700x Shield constructor
+ * Initialize all protected class pointers.
  */
 Bts700xShieldIno::Bts700xShieldIno(BtsVariants_t *variantSel)
 {
@@ -40,8 +40,8 @@ Bts700xShieldIno::Bts700xShieldIno(BtsVariants_t *variantSel)
 }
 
 /**
- * @brief High-Side-Switch-Board constructor
- * Initialize all protected class pointers with a null pointer.
+ * @brief BTS700x Shield constructor
+ * Initialize all class pointers. This constructor allows to pass custom shield configuration. 
  */
 Bts700xShieldIno::Bts700xShieldIno(BtsVariants_t *variantSel, Bts700xHwConfig_t config)
 {
@@ -67,7 +67,7 @@ Bts700xShieldIno::Bts700xShieldIno(BtsVariants_t *variantSel, Bts700xHwConfig_t 
 }
 
 /**
- * @brief High-Side-Switch-Board constructor
+ * @brief BTS700x Shield constructor
  * Initialize all protected class pointers with a null pointer.
  */
 Bts700xShieldIno::Bts700xShieldIno()
@@ -94,7 +94,7 @@ Bts700xShieldIno::Bts700xShieldIno()
 }
 
 /**
- * @brief Destructor of the High-Side-Switch-Board
+ * @brief Destructor of the BTS700x Shield
  * 
  */
 Bts700xShieldIno::~Bts700xShieldIno()
@@ -103,12 +103,12 @@ Bts700xShieldIno::~Bts700xShieldIno()
 }
 
 /**
- * @brief Initialize all necessary objects of the High-Side-Switch-Board
+ * @brief Initialize all necessary objects of the BTS700x Shield
  * 
- * This function initializes all necessary objects of the High-Side-Switch-Board.
+ * This function initializes all necessary objects of the BTS700x Shield.
  * It retruns an error code to see if everything was initialized correctly.
  * 
- * @return Bts700xShieldIno::Error_t
+ * @return Error_t
  */
 Error_t Bts700xShieldIno::init()
 {
@@ -120,12 +120,12 @@ Error_t Bts700xShieldIno::init()
 }
 
 /**
- * @brief Deinitialize all necessary objects of the High-Side-Switch-Board
+ * @brief Deinitialize all necessary objects of the BTS700x Shield
  * 
- * This function deinitializes all necessary objects of the High-Side-Switch-Board.
+ * This function deinitializes all necessary objects of the BTS700x Shield.
  * It retruns an error code to see if everything was deinitialized correctly.
  * 
- * @return Bts700xShieldIno::Error_t
+ * @return Error_t
  */
 Error_t Bts700xShieldIno::deinit()
 {

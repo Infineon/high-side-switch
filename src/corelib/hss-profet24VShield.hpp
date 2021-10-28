@@ -46,9 +46,6 @@ class Profet24VBTTShield : HssShield
 
         uint16_t ris_Ohm = 1200;
 
-        const float vBatGain = 1.0;
-        const float vBatOffset = 0.0;
-
         float           getIs(uint8_t x, Channel_t ch=NULL_CHANNEL);
         DiagStatus_t    diagRead(BttTypes_t bttType, float amps, uint16_t kilis);
         

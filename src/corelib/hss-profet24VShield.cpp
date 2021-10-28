@@ -464,7 +464,7 @@ DiagStatus_t Profet24VBTTShield::readDiagx(uint8_t x,Channel_t ch)
  * @retval  0   Switch is working fine
  * @retval  1   Overload detected 
  * @retval  5   Open load detected
- 
+
  */
 DiagStatus_t Profet24VBTTShield::diagRead(BttTypes_t bttType, float amps, uint16_t kilis)
 {

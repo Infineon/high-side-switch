@@ -11,12 +11,17 @@
 #include "hss-arduino.hpp"
 #include "hss-shield.hpp"
 #include "hss.hpp"
+#include "variants.hpp"
 
 using namespace hss;
 
 class Profet24VBTTShield : HssShield
 {
     public:
+        enum BttTypes_t{
+            BTT6030T = 0,
+            BTT6020T = 1
+        };
                         Profet24VBTTShield();
                         ~Profet24VBTTShield();
 
@@ -27,7 +32,6 @@ class Profet24VBTTShield : HssShield
         Error_t         switchesHxOn(bool h1_0 = NULL, bool h2_0 = NULL, bool h1_1 = NULL, bool h2_1 = NULL, bool h2 = NULL);
         Error_t         switchesHxOff(bool h1_0 = NULL, bool h2_0 = NULL, bool h1_1 = NULL, bool h2_1 = NULL, bool h2 = NULL);
         DiagStatus_t    readDiagx(uint8_t x, Channel_t ch=NULL_CHANNEL);
-        DiagStatus_t    diagnosisOff(float currentOn, float currentOff);
         float           readIsx(uint8_t x, Channel_t ch);
     
     protected:
@@ -39,15 +43,14 @@ class Profet24VBTTShield : HssShield
         Hss *hss4;
 
         Timer *timer;
-        
-        BttVariants_t           *bttVariant;
 
         uint16_t ris_Ohm = 1200;
 
         const float vBatGain = 1.0;
         const float vBatOffset = 0.0;
 
-        float getIs(uint8_t x, Channel_t ch=NULL_CHANNEL);
+        float           getIs(uint8_t x, Channel_t ch=NULL_CHANNEL);
+        DiagStatus_t    diagRead(BttTypes_t bttType, float amps, uint16_t kilis);
         
 };
 

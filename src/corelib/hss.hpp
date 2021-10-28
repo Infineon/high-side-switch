@@ -49,6 +49,7 @@ class Hss
 
     Status_t        getSwitchStatus();
 
+    DiagEnable_t    getEnDiagStatus();
     DiagStatus_t    diagRead(float amps, uint16_t kilis);
 
     uint16_t        readIs();

@@ -1,6 +1,6 @@
 /**
  * @file        hss-shield.hpp
- * @brief       Defenition of the High-Side-Switch-Shield class
+ * @brief       Definition of the High-Side-Switch-Shield class
  * @copyright   Copyright (c) 2021 Infineon Technologies AG
  *
  * SPDX-License-Identifier: MIT
@@ -32,7 +32,6 @@ class HssShield
         virtual Error_t      switchHxOn(uint8_t x, Channel_t ch)  = 0;
         virtual Error_t      switchHxOff(uint8_t x, Channel_t ch) = 0;
         virtual DiagStatus_t readDiagx(uint8_t x, Channel_t ch) = 0;
-        virtual DiagStatus_t diagnosisOff(float currentOn, float currentOff) = 0;
         virtual float        readIsx(uint8_t x, Channel_t ch)= 0;
 };
 

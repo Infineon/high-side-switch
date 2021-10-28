@@ -21,9 +21,6 @@ class Profet24VBTTShieldIno : public Profet24VBTTShield
                         Profet24VBTTShieldIno();
                         Profet24VBTTShieldIno(Profet24VBTTHwConfig_t config);
                         ~Profet24VBTTShieldIno();
-        Error_t         init();
-        Error_t         deinit();
-
 };
 
 #endif /**HSS_PROFET24VSHIELD_INO_HPP_*/

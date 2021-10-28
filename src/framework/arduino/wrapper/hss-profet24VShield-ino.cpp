@@ -49,37 +49,3 @@ Profet24VBTTShieldIno::~Profet24VBTTShieldIno()
 {
 
 }
-
-/**
- * @brief Initialize all necessary objects of the Profet (24V) BTT6030 Shield
- * 
- * This function initializes all necessary objects of the BTS700x Shield.
- * It retruns an error code to see if everything was initialized correctly.
- * 
- * @return Error_t
- */
-Error_t Profet24VBTTShieldIno::init()
-{
-    Error_t err = OK;
-
-    err = init();
-
-    return err;
-}
-
-/**
- * @brief Deinitialize all necessary objects of the Profet (24V) BTT6030 Shield
- * 
- * This function deinitializes all necessary objects of the Profet (24V) BTT6030 Shield.
- * It retruns an error code to see if everything was deinitialized correctly.
- * 
- * @return Error_t
- */
-Error_t Profet24VBTTShieldIno::deinit()
-{
-    Error_t err = OK;
-
-    err = deinit();
-    
-    return err;
-}

@@ -214,6 +214,17 @@ Error_t Hss::disableDiag()
 }
 
 /**
+ * @brief Get den status
+ * 
+ * This function is returning the status of diagnosis enable of High-Side-Switch.
+ * 
+ * @return Error_t 
+ */
+DiagEnable_t Hss::getEnDiagStatus()
+{
+    return diagEnb;
+}
+/**
  * @brief Enable channel0 for diagnosis
  * 
  * This function is setting channel 0 of the chip

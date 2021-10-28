@@ -1,8 +1,8 @@
-/** 
+/**
  * @file        hss-shield-config.hpp
  * @brief       Configurations for different shields
  * @copyright   Copyright (c) 2021 Infineon Technologies AG
- * 
+ *
  * SPDX-License-Identifier: MIT
  */
 
@@ -19,7 +19,7 @@
 
 /**
  * @brief Struct with all necessary defines of the Profet-Shield
- * 
+ *
  */
 struct Bts700xHwConfig_t
 {
@@ -43,7 +43,7 @@ struct Bts700xHwConfig_t
     uint8_t pushButtonAnalog;
     uint8_t vBat;
     uint8_t is1_is2;
-    uint8_t is3_is4;    
+    uint8_t is3_is4;
 };
 
 struct Profet24VBTTHwConfig_t
@@ -66,12 +66,33 @@ struct Profet24VBTTHwConfig_t
     uint8_t in0_2;
     uint8_t den_2;
     uint8_t is_2;
-    
+
 };
 
 extern Bts700xHwConfig_t BTS700X_HWCONFIG;
 extern Profet24VBTTHwConfig_t PROFET24VBTT_HWCONFIG;
 
+
+/**
+ * @brief Struct with all necessary defines of the Profet-Shield BTS50010/15-1TAD
+ *
+ */
+struct BTS500xxHwConfig_t
+{
+    uint8_t led1;
+    uint8_t led2;
+
+    uint8_t in1;
+
+    uint8_t pushButtonAnalog;
+
+    uint8_t vBat;
+
+    uint8_t is1;
+
+};
+
+extern BTS500xxHwConfig_t BTS500XX_HWCONFIG;
 /** @} */
 
 #endif /** HSS_SHIELD_CONFIG_HPP_ **/

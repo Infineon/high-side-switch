@@ -1,8 +1,7 @@
 /**
  * @file        hss.cpp
  * @brief       Definition of the High-Side-Switch class functions
- * @date        May 2020
- * @copyright   Copyright (c) 2019-2020 Infineon Technologies AG
+ * @copyright   Copyright (c) 2021 Infineon Technologies AG
  *
  * SPDX-License-Identifier: MIT
  */
@@ -10,6 +9,7 @@
 #include <stdint.h>
 #include "hss.hpp"
 
+using namespace hss;
 /**
  * @brief High-Side-Switch default constructor
  *
@@ -19,15 +19,11 @@
 Hss::Hss()
 {
     den = NULL;
-    in = NULL;
-    is = NULL;
-
+    in  = NULL;
+    is  = NULL;
     timer = NULL;
-
     currentFilter = NULL;
-
-    btsVariant = NULL;
-    status = UNINITED;
+    status  = UNINITED;
     diagEnb = DIAG_DIS;
     diagStatus = NOT_ENABLED;
 }
@@ -36,29 +32,55 @@ Hss::Hss()
  * @brief High-Side-Switch constructor
  *
  * This constructor is used to define all necessary pins and the variant
- * of the PROFET.
+ * of the 12V PROFET.
  *
  * @param[in]   den         Pin number of DEN
  * @param[in]   in          Pin number of IN
  * @param[in]   is          Pin number of IS
  * @param[in]   variant     Variant of the BTS700x
  */
-Hss::Hss(GPIO *den, GPIO *in, AnalogDigitalConverter *is, Timer *timer, BtsVariants_t *variant)
+Hss::Hss(GPIO *den, GPIO *in, AnalogDigitalConverter *is)
 {
     this->den = den;
     this->in = in;
     this->is = is;
 
-    this->timer = NULL;
+    timer = NULL;
 
     currentFilter = NULL;
 
-    btsVariant = variant;
     status = UNINITED;
     diagEnb = DIAG_DIS;
     diagStatus = NOT_ENABLED;
 }
 
+/**
+ * @brief High-Side-Switch constructor
+ *
+ * This constructor is used to define all necessary pins
+ * of the 24V PROFET.
+ *
+ * @param[in]   den         Pin number of DEN
+ * @param[in]   in          Pin number of IN
+ * @param[in]   is          Pin number of IS
+ * @param[in]   variant     Variant of the BTS700x
+ */
+Hss::Hss(GPIO *den, GPIO *in, GPIO *dsel, AnalogDigitalConverter *is)
+{
+    this->den = den;
+    this->in = in;
+    this->is = is;
+    this->dsel = dsel;
+
+    this->timer = NULL;
+
+    currentFilter = NULL;
+
+    status = UNINITED;
+    diagEnb = DIAG_DIS;
+    diagStatus = NOT_ENABLED;
+
+}
 /**
  * @brief Destructor of the High-Side-Switch class
  *
@@ -84,9 +106,9 @@ Hss::~Hss()
  * This function initializes all necessary objects of the High-Side-Switch.
  * It retruns an error code to see if everything was initialized correctly.
  *
- * @return Hss::Error_t
+ * @return Error_t
  */
-Hss::Error_t Hss::init()
+Error_t Hss::init()
 {
     Error_t err = OK;
 
@@ -105,9 +127,9 @@ Hss::Error_t Hss::init()
 /**
  * @brief Deinitialize the High-Side-Switch
  *
- * @return Hss::Error_t
+ * @return Error_t
  */
-Hss::Error_t Hss::deinit()
+Error_t Hss::deinit()
 {
     Error_t err = OK;
 
@@ -126,9 +148,9 @@ Hss::Error_t Hss::deinit()
  * This function is turning on the High-Side-Switch.
  * It is also setting the status of the switch to ON.
  *
- * @return Hss::Error_t
+ * @return Error_t
  */
-Hss::Error_t Hss::enable()
+Error_t Hss::enable()
 {
     Error_t err = OK;
 
@@ -144,9 +166,9 @@ Hss::Error_t Hss::enable()
  * This function turns off the High-Side-Switch.
  * It is also setting the status of the switch to OFF.
  *
- * @return Hss::Error_t
+ * @return Error_t
  */
-Hss::Error_t Hss::disable()
+Error_t Hss::disable()
 {
     Error_t err = OK;
 
@@ -161,9 +183,9 @@ Hss::Error_t Hss::disable()
  *
  * This funtion is enabling the diagnosis function of the High-Side-Switch.
  *
- * @return Hss::Error_t
+ * @return Error_t
  */
-Hss::Error_t Hss::enableDiag()
+Error_t Hss::enableDiag()
 {
     Error_t err = OK;
 
@@ -177,9 +199,9 @@ Hss::Error_t Hss::enableDiag()
  *
  * This function is disabling the diagnosis function of the High-Side-Switch.
  *
- * @return Hss::Error_t
+ * @return Error_t
  */
-Hss::Error_t Hss::disableDiag()
+Error_t Hss::disableDiag()
 {
     Error_t err = OK;
 
@@ -190,15 +212,61 @@ Hss::Error_t Hss::disableDiag()
 }
 
 /**
+ * @brief Get den status
+ *
+ * This function is returning the status of diagnosis enable of High-Side-Switch.
+ *
+ * @return Error_t
+ */
+DiagEnable_t Hss::getEnDiagStatus()
+{
+    return diagEnb;
+}
+/**
+ * @brief Enable channel0 for diagnosis
+ *
+ * This function is setting channel 0 of the chip
+ * to perform diagnosis.
+ *
+ * @return Error_t
+ * @note   This function is valid only for chips supporting multiple channels
+ */
+Error_t Hss::diagSelCh0()
+{
+    Error_t err = OK;
+
+    dsel->disable();
+
+    return err;
+}
+
+/**
+ * @brief Enable channel1 for diagnosis
+ *
+ * This function is setting channel 1 of the chip
+ * to perform diagnosis.
+ *
+ * @return Error_t
+ */
+Error_t Hss::diagSelCh1()
+{
+    Error_t err = OK;
+
+    dsel->enable();
+
+    return err;
+}
+
+/**
  * @brief Reset the diagnostic
  *
  * This function resets the diagnostic function of the switch.
  * Any error, for example an overcurrent event, will set the internal
  * latch of the switch to "1". This function is reseting the latch.
  *
- * @return Hss::Error_t
+ * @return Error_t
  */
-Hss::Error_t Hss::diagReset()
+Error_t Hss::diagReset()
 {
     Error_t err = OK;
 
@@ -222,32 +290,47 @@ Hss::Error_t Hss::diagReset()
  * @retval  2   Power on
  * @retval  3   Power off
  */
-Hss::Status_t Hss::getSwitchStatus()
+Status_t Hss::getSwitchStatus()
 {
     return status;
 }
 
 /**
- * @brief Read IS
+ * @brief Read ADC value for IS
  *
  * This functions is reading the IS signal of the switch.
- * It returns the calculated current, which is depending on the IS signal.
+ * It returns the value in ADC, which is depending on the IS signal.
  *
- * @return Value of the current flowing through the switch in [A]
+ * @return Recorded ADC Value
  */
-float Hss::readIs()
+uint16_t Hss::readIs()
 {
     uint16_t AnalogDigitalConverterResult = 0;
-    float amps = 0.0;
-
     if(diagEnb == DIAG_EN){
-        timer->delayMilli(1);                                                       //wait for 1ms to ensure that the Profet will provide a valid sense signal
+        timer->delayMilli(1);          //wait for 1ms to ensure that the Profet will provide a valid sense signal
         AnalogDigitalConverterResult = is->ADCRead();
-        amps = ((float)AnalogDigitalConverterResult/(float)1024) * (float)5;
-        amps = (amps * btsVariant->kilis)/1000;
-        amps = (amps - btsVariant->ampsOffset) * btsVariant->ampsGain;
-        currentFilter->input(amps);
     }
+    return AnalogDigitalConverterResult;
+}
+
+/**
+ * @brief Calibrates sensed current value
+ *
+ * This function is performing calibration on sensed current value based on chip parameters
+ *
+ * @param[in] isVal      Sensed current value to be calibrated
+ * @param[in] kilis      Current sense ration of selected chip variant
+ * @param[in] ampsOffset Current offset value
+ * @param[in] ampsGain   Current gain factor
+ *
+ * @return Calibrated current value for Is
+ */
+float Hss::calibrateIs(float isVal, uint16_t kilis, float ampsOffset, float ampsGain)
+{
+    float calibVal = 0.0;
+    calibVal = (isVal * kilis)/1000;
+    calibVal = (calibVal - ampsOffset) * ampsGain;
+    currentFilter->input(calibVal);
     return currentFilter->output();
 }
 
@@ -257,7 +340,7 @@ float Hss::readIs()
  * This function is using the IS signal to determine the state of the switch.
  * It returns an diagnosis state of the switch.
  *
- * @return Hss::DiagStatus_t
+ * @return DiagStatus_t
  *
  * @retval  -2  Not enabled
  * @retval  0   Switch is working fine
@@ -265,27 +348,23 @@ float Hss::readIs()
  * @retval  5   Open load detected
 
  */
-Hss::DiagStatus_t Hss::diagRead()
+DiagStatus_t Hss::diagRead(float amps, uint16_t kilis)
 {
-    uint16_t AnalogDigitalConverterResult = 0;
-    float amps = 0.0;
-
-    if(diagEnb == DIAG_EN){
-        amps = readIs();
-
-        if(amps > (0.0044*btsVariant->kilis)){
-            return Hss::DiagStatus_t::OVERLOAD;
+    if(diagEnb == DIAG_EN)
+    {
+        if(amps > (0.0044*kilis)){
+            return DiagStatus_t::OVERLOAD;
         }
-        else if(amps < (0.00002*btsVariant->kilis)){
-            return Hss::DiagStatus_t::OPEN_LOAD;
+        else if(amps < (0.00002*kilis)){
+            return DiagStatus_t::OPEN_LOAD;
         }
         else{
-            return Hss::DiagStatus_t::NORMAL;
+            return DiagStatus_t::NORMAL;
         }
     }
-
-    else{
-        return Hss::DiagStatus_t::NOT_ENABLED;
+    else
+    {
+        return DiagStatus_t::NOT_ENABLED;
     }
 
     return diagStatus;

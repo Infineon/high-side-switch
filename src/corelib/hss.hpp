@@ -84,7 +84,7 @@ class Hss
     /** @} */
 
                     Hss();
-                    Hss(GPIO *den, GPIO *in, AnalogDigitalConverter *is, BtsVariants_t *variant);
+                    Hss(GPIO *den, GPIO *in, AnalogDigitalConverter *is, Timer *timer, BtsVariants_t *variant);
                     ~Hss();
     Error_t         init();
     Error_t         deinit();

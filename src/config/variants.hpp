@@ -1,9 +1,9 @@
-/** 
+/**
  * @file        variants.hpp
- * @brief       Defines the characteristic values of the different BTS700x variants  
+ * @brief       Defines the characteristic values of the different BTS700x variants
  * @date        May 2020
  * @copyright   Copyright (c) 2019-2020 Infineon Technologies AG
- * 
+ *
  * SPDX-License-Identifier: MIT
  */
 
@@ -23,10 +23,10 @@
  *          It contains all important parameters for the correct usage of
  *          of the diagnosis functions of the Switch
  */
-typedef struct BtsVariants_t
+struct BtsVariants_t
 {
     const uint16_t kilis;       /**< Current sense ratio */
-    float ampsGain;             /**< Gain factor for the current, may has to be adjusted */  
+    float ampsGain;             /**< Gain factor for the current, may has to be adjusted */
     float ampsOffset;           /**< Current offset, can be used to correct the measured current */
     float vBatGain;             /**< Gain factor for the battery voltage, may has to be adjusted */
     float vBatOffset;           /**< Battery voltage offset, can be used to correct the measured battery voltage */

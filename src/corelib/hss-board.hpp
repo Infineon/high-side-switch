@@ -10,7 +10,6 @@
 #ifndef HSS_BOARD_HPP_
 #define HSS_BOARD_HPP_
 
-#include <Arduino.h>
 #include "hss.hpp"
 #include "filter.hpp"
 
@@ -35,8 +34,8 @@ class HssBoard : Hss
 
     Error_t switchHxOn(uint8_t x);
     Error_t switchHxOff(uint8_t x);
-    Error_t switchesHxOn(bool h1 = NULL, bool h2 = NULL, bool h3 = NULL, bool h4 = NULL);
-    Error_t switchesHxOff(bool h1 = NULL, bool h2 = NULL, bool h3 = NULL, bool h4 = NULL);
+    Error_t switchesHxOn(bool h1 = false, bool h2 = false, bool h3 = false, bool h4 = false);
+    Error_t switchesHxOff(bool h1 = false, bool h2 = false, bool h3 = false, bool h4 = false);
     DiagStatus_t readDiagx(uint8_t x);
     DiagStatus_t diagnosisOff(float currentOn, float currentOff);
 

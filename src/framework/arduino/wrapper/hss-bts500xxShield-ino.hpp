@@ -17,7 +17,7 @@ class Bts500xxShieldIno : Bts500xxShield
                         Bts500xxShieldIno(BtsVariants_t *variantSel);
                         Bts500xxShieldIno(BtsVariants_t *variantSel, BTShardwareconfig_t config);
                         ~Bts500xxShieldIno();
-        Error_t         init_shield();
-        Error_t         deinit_shield();
+        Error_t         init();
+        Error_t         deinit();
 
 };

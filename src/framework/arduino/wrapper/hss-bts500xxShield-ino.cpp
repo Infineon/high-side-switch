@@ -73,7 +73,7 @@ Bts500xxShieldIno::~Bts500xxShieldIno()
  * 
  * @return Bts500xxShieldIno:Error_t
  */
-Error_t Bts500xxShieldIno::init_shield()
+Error_t Bts500xxShieldIno::init()
 {
     Error_t err = OK;
 
@@ -90,7 +90,7 @@ Error_t Bts500xxShieldIno::init_shield()
  * 
  * @return Bts500xxShieldIno::Error_t
  */
-Error_t Bts500xxShieldIno::deinit_shield()
+Error_t Bts500xxShieldIno::deinit()
 {
     Error_t err = OK;
 

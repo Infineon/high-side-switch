@@ -66,7 +66,7 @@ class Hss
     DiagEnable_t            diagEnb;
     DiagStatus_t            diagStatus;
 
-    Error_t     selDiagCh(Channel_t ch=NO_CHANNEL);
+    Error_t         selDiagCh(Channel_t ch=NO_CHANNEL);
 
 
 };

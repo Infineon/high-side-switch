@@ -399,6 +399,8 @@ Status_t Hss::getSwitchStatus()
  * This functions is reading the IS signal of the switch.
  * It returns the value in ADC, which is depending on the IS signal.
  * 
+ * @note Before calling this function, ensure is pin is initialized
+ * 
  * @return Recorded ADC Value  
  */
 uint16_t Hss::readIs()
@@ -422,6 +424,8 @@ uint16_t Hss::readIs()
  * @param[in] ampsGain   Current gain factor     
  * 
  * @return Calibrated current value for Is 
+ * 
+ * @note This function should be called only after readIs()
  */
 float Hss::calibrateIs(float isVal, uint16_t kilis, float ampsOffset, float ampsGain)
 {
@@ -444,7 +448,10 @@ float Hss::calibrateIs(float isVal, uint16_t kilis, float ampsOffset, float amps
  * @retval  0   Switch is working fine
  * @retval  1   Overload detected 
  * @retval  5   Open load detected
- 
+ * 
+ * @note    This function should be called only after you get the Is value. 
+ *          Also note, in case you are using shield with no channel differentiation, 
+ *          then ignore the 'ch' parameter and this will default to NO_CHANNEL. 
  */
 DiagStatus_t Hss::diagRead(float amps, float iisFault, float iisOl, uint16_t kilis, Channel_t ch)
 {

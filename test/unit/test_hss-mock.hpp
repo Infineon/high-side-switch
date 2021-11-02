@@ -1,9 +1,9 @@
 #include <gtest/gtest.h>
 #include <gmock/gmock.h>
 #include "hss.hpp"
-#include "adc.hpp"
-#include "gpio.hpp"
-#include "timer.hpp"
+#include "hss-pal-adc.hpp"
+#include "hss-pal-gpio.hpp"
+#include "hss-pal-timer.hpp"
 
 
 using ::testing::Return;
@@ -21,7 +21,7 @@ using ::testing::SaveArg;
 using ::testing::SafeMatcherCast;
 
 
-class MockADC : public AnalogDigitalConverter
+class MockADC : public ADCPAL
 {
     public:
         MOCK_METHOD(Error_t, init, (), (override));
@@ -34,7 +34,7 @@ class MockADC : public AnalogDigitalConverter
         MOCK_METHOD(Error_t, ADCWrite, (uint8_t value), (override));
 };
 
-class MockTimer: public Timer
+class MockTimer: public TimerPAL
 {
     public:
         MOCK_METHOD(Error_t, init, (), (override));
@@ -46,7 +46,7 @@ class MockTimer: public Timer
         MOCK_METHOD(Error_t, delayMicro, (uint32_t timeout), (override));
 };
 
-class MockGPIO: public GPIO
+class MockGPIO: public GPIOPAL
 {
     public:
         MOCK_METHOD(Error_t, init, (), (override));

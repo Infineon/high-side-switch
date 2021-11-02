@@ -1,8 +1,7 @@
 /**
  * @file        hss-board.hpp
- * @brief       Defenition of the High-Side-Switch-Board class
- * @date        May 2020
- * @copyright   Copyright (c) 2019-2020 Infineon Technologies AG
+ * @brief       Definition of the High-Side-Switch-Board class
+ * @copyright   Copyright (c) 2021 Infineon Technologies AG
  *
  * SPDX-License-Identifier: MIT
  */
@@ -11,13 +10,14 @@
 #define HSS_BOARD_HPP_
 
 #include "hss.hpp"
-#include "filter.hpp"
+#include "hss-filter.hpp"
+
+using namespace hss;
 
 /**
  * @addtogroup hssCorelib
  * @{
  */
-
 
 /**
  * @brief High-Side-Switch-Board Class
@@ -27,50 +27,50 @@ class HssBoard : Hss
 {
     public:
 
-    HssBoard();
-    ~HssBoard();
-    Error_t init();
-    Error_t deinit();
+        HssBoard();
+        ~HssBoard();
+        Error_t init();
+        Error_t deinit();
 
-    Error_t switchHxOn(uint8_t x);
-    Error_t switchHxOff(uint8_t x);
-    Error_t switchesHxOn(bool h1 = false, bool h2 = false, bool h3 = false, bool h4 = false);
-    Error_t switchesHxOff(bool h1 = false, bool h2 = false, bool h3 = false, bool h4 = false);
-    DiagStatus_t readDiagx(uint8_t x);
-    DiagStatus_t diagnosisOff(float currentOn, float currentOff);
+        Error_t switchHxOn(uint8_t x);
+        Error_t switchHxOff(uint8_t x);
+        Error_t switchesHxOn(bool h1 = false, bool h2 = false, bool h3 = false, bool h4 = false);
+        Error_t switchesHxOff(bool h1 = false, bool h2 = false, bool h3 = false, bool h4 = false);
+        DiagStatus_t readDiagx(uint8_t x);
+        DiagStatus_t diagnosisOff(float currentOn, float currentOff);
 
-    float readIsx(uint8_t x);
+        float readIsx(uint8_t x);
 
-    float readVss();
+        float readVss();
 
-    bool digitalReadButton();
-    bool analogReadButton();
+        bool digitalReadButton();
+        bool analogReadButton();
 
     protected:
 
-    ExponentialFilter *filterVbat;
+        ExponentialFilter   *filterVbat;
 
-    GPIO *led1;
-    GPIO *led2;
-    GPIO *led3;
-    GPIO *led4;
+        GPIOPAL             *led1;
+        GPIOPAL             *led2;
+        GPIOPAL             *led3;
+        GPIOPAL             *led4;
 
-    Hss *hss1;
-    Hss *hss2;
-    Hss *hss3;
-    Hss *hss4;
+        Hss                 *hss1;
+        Hss                 *hss2;
+        Hss                 *hss3;
+        Hss                 *hss4;
 
-    Timer *timer;
+        TimerPAL            *timer;
 
-    GPIO *oloff;
-    GPIO *pushButtonDigital;
+        GPIOPAL             *oloff;
+        GPIOPAL             *pushButtonDigital;
 
-    AnalogDigitalConverter *pushButtonAnalog;
-    AnalogDigitalConverter *vBat;
+        ADCPAL              *pushButtonAnalog;
+        ADCPAL              *vBat;
 
-    const float vBatGain = 1.0;
-    const float vBatOffset = 0.0;
-};
+        const float         vBatGain = 1.0;
+        const float         vBatOffset = 0.0;
+    };
 
 /** @} */
 

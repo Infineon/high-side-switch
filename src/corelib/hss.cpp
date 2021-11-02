@@ -10,23 +10,6 @@
 #include "hss.hpp"
 
 using namespace hss;
-/**
- * @brief High-Side-Switch default constructor
- *
- * Initialize all protected class pointers with a null pointer.
- * Also sets the class variables into a default state
- */
-Hss::Hss()
-{
-    den = NULL;
-    in  = NULL;
-    is  = NULL;
-    timer = NULL;
-    currentFilter = NULL;
-    status  = UNINITED;
-    diagEnb = DIAG_DIS;
-    diagStatus = NOT_ENABLED;
-}
 
 /**
  * @brief High-Side-Switch constructor
@@ -39,15 +22,16 @@ Hss::Hss()
  * @param[in]   is          Pin number of IS
  * @param[in]   variant     Variant of the BTS700x
  */
-Hss::Hss(GPIO *den, GPIO *in, AnalogDigitalConverter *is)
+Hss::Hss(GPIOPAL *den, GPIOPAL *in, ADCPAL *is, TimerPAL *timer)
 {
     this->den = den;
     this->in = in;
     this->is = is;
+    this->dsel = NULL;
 
-    timer = NULL;
+    this->timer = timer;
 
-    currentFilter = NULL;
+    currentFilter = new ExponentialFilter(0.0, 0.3);
 
     status = UNINITED;
     diagEnb = DIAG_DIS;
@@ -65,39 +49,29 @@ Hss::Hss(GPIO *den, GPIO *in, AnalogDigitalConverter *is)
  * @param[in]   is          Pin number of IS
  * @param[in]   variant     Variant of the BTS700x
  */
-Hss::Hss(GPIO *den, GPIO *in, GPIO *dsel, AnalogDigitalConverter *is)
+Hss::Hss(GPIOPAL *den, GPIOPAL *in, GPIOPAL *dsel, ADCPAL *is, TimerPAL *timer)
 {
     this->den = den;
     this->in = in;
     this->is = is;
     this->dsel = dsel;
 
-    this->timer = NULL;
+    this->timer = timer;
 
-    currentFilter = NULL;
+     currentFilter = new ExponentialFilter(0.0, 0.3);
 
     status = UNINITED;
     diagEnb = DIAG_DIS;
     diagStatus = NOT_ENABLED;
-
 }
+
 /**
  * @brief Destructor of the High-Side-Switch class
  *
  */
 Hss::~Hss()
 {
-    // den = NULL;
-    // in = NULL;
-    // is = NULL;
 
-    // timer = NULL;
-
-    // currentFilter = NULL;
-
-    // status = UNINITED;
-    // diagEnb = DIAG_DIS;
-    // diagStatus = NOT_ENABLED;
 }
 
 /**
@@ -112,15 +86,53 @@ Error_t Hss::init()
 {
     Error_t err = OK;
 
-    den->init();
-    in->init();
-    is->init();
+    do
+    {
+        if(nullptr != den){
+            err = den->init();
+            if(OK != err)
+            break;
+        }
 
-    timer->init();
+        else{
+            err = NULLPTR_ERROR;
+            break;
+        }
 
-    currentFilter = new ExponentialFilter(0.0, 0.3);
+        if(nullptr != in){
+            err = in->init();
+            if(OK != err)
+            break;
+        }
+        else{
+            err = NULLPTR_ERROR;
+            break;
+        }
 
-    status = INITED;
+        if(nullptr != is){
+            err = is->init();
+            if(OK != err)
+            break;
+        }
+        else{
+            err = NULLPTR_ERROR;
+            break;
+        }
+
+        if(nullptr != timer){
+            err = timer->init();
+            if(OK != err)
+            break;
+        }
+        else{
+            err = NULLPTR_ERROR;
+            break;
+        }
+
+        status = INITED;
+
+    } while (0);
+
     return err;
 }
 
@@ -133,12 +145,52 @@ Error_t Hss::deinit()
 {
     Error_t err = OK;
 
-    den->deinit();
-    in->deinit();
-    is->deinit();
+    do
+    {
+        if(nullptr != den){
+            err = den->deinit();
+            if(OK != err)
+            break;
+        }
+        else{
+            err = NULLPTR_ERROR;
+            break;
+        }
 
-    timer->deinit();
-    status = UNINITED;
+        if(nullptr != in){
+            err = in->deinit();
+            if(OK != err)
+            break;
+        }
+        else{
+            err = NULLPTR_ERROR;
+            break;
+        }
+
+        if(nullptr != is){
+            err = is->deinit();
+            if(OK != err)
+            break;
+        }
+        else{
+            err = NULLPTR_ERROR;
+            break;
+        }
+
+        if(nullptr != timer){
+            err = timer->deinit();
+            if(OK != err)
+            break;
+        }
+        else{
+            err = NULLPTR_ERROR;
+            break;
+        }
+
+        status = UNINITED;
+
+    } while (0);
+
     return err;
 }
 
@@ -154,9 +206,18 @@ Error_t Hss::enable()
 {
     Error_t err = OK;
 
-    in->enable();
+    if(nullptr != in){
+        err = in->enable();
 
-    status = POWER_ON;
+        if(OK != err)
+        return err;
+
+        status = POWER_ON;
+    }
+    else{
+        err = NULLPTR_ERROR;
+    }
+
     return err;
 }
 
@@ -172,9 +233,18 @@ Error_t Hss::disable()
 {
     Error_t err = OK;
 
-    in->disable();
+    if(nullptr != in){
+        err = in->disable();
 
-    status = POWER_OFF;
+        if(OK != err)
+        return err;
+
+        status = POWER_OFF;
+    }
+    else{
+        err = NULLPTR_ERROR;
+    }
+
     return err;
 }
 
@@ -189,8 +259,18 @@ Error_t Hss::enableDiag()
 {
     Error_t err = OK;
 
-    den->enable();
-    diagEnb = DIAG_EN;
+    if(nullptr != den){
+        err = den->enable();
+
+        if(OK != err)
+        return err;
+
+        diagEnb = DIAG_EN;
+    }
+    else{
+        err = NULLPTR_ERROR;
+    }
+
     return err;
 }
 
@@ -205,9 +285,18 @@ Error_t Hss::disableDiag()
 {
     Error_t err = OK;
 
-    den->disable();
+    if(nullptr != den){
+        err = den->disable();
 
-    diagEnb = DIAG_DIS;
+        if(OK != err)
+        return err;
+
+        diagEnb = DIAG_DIS;
+    }
+    else{
+        err = NULLPTR_ERROR;
+    }
+
     return err;
 }
 
@@ -222,6 +311,7 @@ DiagEnable_t Hss::getEnDiagStatus()
 {
     return diagEnb;
 }
+
 /**
  * @brief Enable channel0 for diagnosis
  *
@@ -235,7 +325,15 @@ Error_t Hss::diagSelCh0()
 {
     Error_t err = OK;
 
-    dsel->disable();
+    if(nullptr != dsel){
+        err = dsel->disable();
+
+        if(OK != err)
+        return err;
+    }
+    else{
+        err = NULLPTR_ERROR;
+    }
 
     return err;
 }
@@ -252,7 +350,15 @@ Error_t Hss::diagSelCh1()
 {
     Error_t err = OK;
 
-    dsel->enable();
+    if(nullptr != dsel){
+        err = dsel->enable();
+
+        if(OK != err)
+        return err;
+    }
+    else{
+        err = NULLPTR_ERROR;
+    }
 
     return err;
 }
@@ -270,10 +376,33 @@ Error_t Hss::diagReset()
 {
     Error_t err = OK;
 
-    in->disable();
+    do
+    {
+        if(nullptr != in){
+            err = in->disable();
 
-    timer->delayMilli(100);
-    in->enable();
+            if(OK != err)
+            break;
+        }
+        else{
+            err = NULLPTR_ERROR;
+            break;
+        }
+
+        if(nullptr != timer){
+            err = timer->delayMilli(100);
+
+            if(OK != err)
+            break;
+        }
+        else{
+            err = NULLPTR_ERROR;
+            break;
+        }
+
+        err = in->enable();
+
+    } while (0);
 
     return err;
 }
@@ -305,12 +434,12 @@ Status_t Hss::getSwitchStatus()
  */
 uint16_t Hss::readIs()
 {
-    uint16_t AnalogDigitalConverterResult = 0;
+    uint16_t adcRes = 0;
     if(diagEnb == DIAG_EN){
         timer->delayMilli(1);          //wait for 1ms to ensure that the Profet will provide a valid sense signal
-        AnalogDigitalConverterResult = is->ADCRead();
+        adcRes = is->ADCRead();
     }
-    return AnalogDigitalConverterResult;
+    return adcRes;
 }
 
 /**
@@ -346,7 +475,6 @@ float Hss::calibrateIs(float isVal, uint16_t kilis, float ampsOffset, float amps
  * @retval  0   Switch is working fine
  * @retval  1   Overload detected
  * @retval  5   Open load detected
-
  */
 DiagStatus_t Hss::diagRead(float amps, uint16_t kilis)
 {
@@ -369,5 +497,3 @@ DiagStatus_t Hss::diagRead(float amps, uint16_t kilis)
 
     return diagStatus;
 }
-
-

@@ -1,26 +1,25 @@
 /**
- * @file        timer-arduino.hpp
+ * @file        hss-pal-timer-ino.hpp
  * @brief       Arduino Timer PAL
- * @date        May 2020
- * @copyright   Copyright (c) 2019-2020 Infineon Technologies AG
+ * @copyright   Copyright (c) 2021 Infineon Technologies AG
  *
  * SPDX-License-Identifier: MIT
  */
 
-#ifndef TIMER_ARDUINO_HPP_
-#define TIMER_ARDUINO_HPP_
+#ifndef HSS_PAL_TIMER_INO_HPP_
+#define HSS_PAL_TIMER_INO_HPP_
 
-#include "timer.hpp"
+#include "hss-pal-timer.hpp"
 
 /**
  * @addtogroup arduinoPal
  * @{
  */
 
-
-class TimerIno: virtual public Timer
+class TimerIno: virtual public TimerPAL
 {
     public:
+
         TimerIno();
         ~TimerIno();
         Error_t init();
@@ -32,8 +31,10 @@ class TimerIno: virtual public Timer
         Error_t delayMicro(uint32_t timeout);
 
     private:
+
         uint32_t startTime;
 };
+
 /** @} */
 
-#endif /** TIMER_ARDUINO_HPP_ **/
+#endif /** HSS_PAL_TIMER_INO_HPP_ **/

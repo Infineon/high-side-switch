@@ -1,32 +1,28 @@
-/** 
- * @file        timer.hpp
+/**
+ * @file        hss-pal-timer.hpp
  * @brief       Timer Platform Abstraction Layer
- * @date        May 2020
- * @copyright   Copyright (c) 2019-2020 Infineon Technologies AG
- * 
+ * @copyright   Copyright (c) 2021 Infineon Technologies AG
+ *
  * SPDX-License-Identifier: MIT
  */
 
 #include <stdint.h>
+#include "hss-types.hpp"
 
-#ifndef TIMER_HPP_
-#define TIMER_HPP_
+#ifndef HSS_PAL_TIMER_HPP_
+#define HSS_PAL_TIMER_HPP_
+
+namespace hss
+{
 
 /**
- * @addtogroup hssPal 
+ * @addtogroup hssPal
  * @{
  */
 
-class Timer
+class TimerPAL
 {
     public:
-
-        enum Error_t
-        {
-            OK          =  0,    /**< No error */
-            INTF_ERROR  = -1,    /**< Interface error */
-            CONF_ERROR  = -2,    /**< Configuration error */
-        };
 
         /**
          * @brief   Initialize the timer
@@ -53,14 +49,14 @@ class Timer
         virtual  Error_t         start   () = 0;
 
         /**
-         * @brief       Elapsed time since the timer was started 
-         * @param[out]  elapsed Time in milliseconds 
+         * @brief       Elapsed time since the timer was started
+         * @param[out]  elapsed Time in milliseconds
          * @return      Timer error code
          * @retval      OK if success
-         * @retval      INIT_ERROR if hardware interface error    
+         * @retval      INIT_ERROR if hardware interface error
          */
         virtual  Error_t         elapsed (uint32_t &elapsed) = 0;
-        
+
         /**
          * @brief   Stops the timer
          * @return  Timer error code
@@ -68,26 +64,29 @@ class Timer
          * @retval  INIT_ERROR if hardware interface error
          */
         virtual  Error_t         stop    () = 0;
-        
+
         /**
-         * @brief       Introduces a delay during the specified time    
-         * @param[in]   timeout    Delay time in milliseconds   
+         * @brief       Introduces a delay during the specified time
+         * @param[in]   timeout    Delay time in milliseconds
          * @return      Timer error code
          * @retval      OK if success
          * @retval      INIT_ERROR if hardware interface error
          */
         virtual  Error_t        delayMilli (uint32_t timeout) = 0;
-        
+
         /**
          * @brief       Introduces a delay during the specified time
-         * @param[in]   timeout     Delay time in microseconds 
+         * @param[in]   timeout     Delay time in microseconds
          * @return      Timer error code
          * @retval      OK if success
          * @retval      INIT_ERROR if hardware interface error
          */
         virtual  Error_t        delayMicro  (uint32_t timeout) = 0;
+
 };
 
 /** @} */
 
-#endif /** HALL_PAL_TIMER_HPP_ **/
+}
+
+#endif /** HSS_PAL_TIMER_HPP_ **/

@@ -8,7 +8,7 @@
 
 #include "hss-arduino.hpp"
 #include "hss-bts500xxShield.hpp"
-#include "variants.hpp"
+#include "hss-variants.hpp"
 #include "hss-shield-config.hpp"
 
 class Bts500xxShieldIno : Bts500xxShield

@@ -26,12 +26,7 @@ set(Headers
     src/pal
     )
 
-set(Sources
-    src/config/variants.cpp
-    src/corelib/filter.cpp
-    src/corelib/hss-board.cpp
-    src/corelib/hss.cpp
-    )
+file(GLOB Sources CONFIGURE_DEPENDS "src/corelib/*.cpp")
 
 # Add Library
 add_library(${lib} ${Sources} ${Headers})

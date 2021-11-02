@@ -1,34 +1,28 @@
-/** 
- * @file        gpio.hpp
+/**
+ * @file        hss-pal-gpio.hpp
  * @brief       PAL of the GPIO
- * @date        May 2020
- * @copyright   Copyright (c) 2019-2020 Infineon Technologies AG
- * 
+ * @copyright   Copyright (c) 2021 Infineon Technologies AG
+ *
  * SPDX-License-Identifier: MIT
  */
 
 #include <stdint.h>
+#include "hss-types.hpp"
 
-#ifndef GPIO_HPP_
-#define GPIO_HPP_
+#ifndef HSS_PAL_GPIO_HPP_
+#define HSS_PAL_GPIO_HPP_
+
+namespace hss
+{
 
 /**
- * @addtogroup hssPal 
+ * @addtogroup hssPal
  * @{
  */
 
-class GPIO
+class GPIOPAL
 {
     public:
-    
-        enum Error_t
-        {
-            OK          = 0,     /**< No error */
-            INTF_ERROR  = -1,    /**< Interface error */
-            CONF_ERROR  = -2,    /**< Configuration error */
-            READ_ERROR  = -3,    /**< Read error */
-            WRITE_ERROR = -4,    /**< Write error */
-        };
 
         /**
          * @name   Interrupt event
@@ -40,7 +34,7 @@ class GPIO
             INT_RISING_EDGE    = 1,     /**< Interrupt on rising edge */
         };
         /** @} */
-        
+
         /**
          * @name    Voltage level
          * @{
@@ -49,9 +43,9 @@ class GPIO
         {
             GPIO_LOW   = 0,        /**< Level low */
             GPIO_HIGH  = 1         /**< Level high */
-        };        
-        /** @} */      
-        
+        };
+        /** @} */
+
         /**
          * @name    Voltage logic
          * @{
@@ -70,7 +64,7 @@ class GPIO
          * @retval      INIT_ERROR if initialization error
          */
         virtual Error_t        init        () = 0;
-        
+
         /**
              * @brief       Deinitializes the GPIO
              * @return      GPIO error code
@@ -86,7 +80,7 @@ class GPIO
          * @retval      GPIO_HIGH if voltage high
          */
         virtual VLevel_t       read        () = 0;
-        
+
         /**
          * @brief       Writes the GPIO output voltage level
          * @param[in]   level  Voltage level
@@ -116,13 +110,10 @@ class GPIO
          */
         virtual Error_t        disable     () = 0;
 
-        Error_t checkErrorStatus();
-
-        private:
-        Error_t errorStatus;
-
 };
 
-/** @} */ 
+/** @} */
 
-#endif /** GPIO_HPP_ **/
+}
+
+#endif /** HSS_PAL_GPIO_HPP_ **/

@@ -13,6 +13,7 @@
 #include <stdint.h>
 
 using namespace hss;
+
 /**
  * @addtogroup hssCorelib
  * @{
@@ -26,13 +27,13 @@ using namespace hss;
 class HssShield
 {
     public:
-                   
-        virtual Error_t      init()   = 0;
-        virtual Error_t      deinit() = 0;
-        virtual Error_t      switchHxOn(uint8_t x, Channel_t ch)  = 0;
-        virtual Error_t      switchHxOff(uint8_t x, Channel_t ch) = 0;
-        virtual DiagStatus_t readDiagx(uint8_t x, Channel_t ch) = 0;
-        virtual float        readIsx(uint8_t x, Channel_t ch)= 0;
+
+        virtual Error_t         init()   = 0;
+        virtual Error_t         deinit() = 0;
+        virtual Error_t         switchHxOn(uint8_t x, Channel_t ch)  = 0;
+        virtual Error_t         switchHxOff(uint8_t x, Channel_t ch) = 0;
+        virtual DiagStatus_t    readDiagx(uint8_t x, Channel_t ch) = 0;
+        virtual float           readIsx(uint8_t x, Channel_t ch)= 0;
 };
 
 /** @} */

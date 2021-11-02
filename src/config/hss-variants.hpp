@@ -1,14 +1,13 @@
 /**
- * @file        variants.hpp
+ * @file        hss-variants.hpp
  * @brief       Defines the characteristic values of the different BTS700x variants
- * @date        May 2020
- * @copyright   Copyright (c) 2019-2020 Infineon Technologies AG
+ * @copyright   Copyright (c) 2021 Infineon Technologies AG
  *
  * SPDX-License-Identifier: MIT
  */
 
-#ifndef VARIANTS_HPP_
-#define VARIANTS_HPP_
+#ifndef HSS_VARIANTS_HPP_
+#define HSS_VARIANTS_HPP_
 
 #include <stdint.h>
 
@@ -17,9 +16,8 @@
  * @{
  */
 
-
 /**
- * @brief   Structure for the differen types of the BTS700x
+ * @brief   Structure for the different types of the BTS700x
  *          It contains all important parameters for the correct usage of
  *          of the diagnosis functions of the Switch
  */
@@ -32,7 +30,7 @@ struct BtsVariants_t
     float vBatOffset;           /**< Battery voltage offset, can be used to correct the measured battery voltage */
 };
 
-typedef struct BttVariants_t
+struct BttVariants_t
 {
     const uint16_t kilis;       /**< Current sense ratio */
     float ampsGain;             /**< Gain factor for the current, may has to be adjusted */
@@ -46,10 +44,12 @@ extern BtsVariants_t BTS7004;
 extern BtsVariants_t BTS7006;
 extern BtsVariants_t BTS7008;
 
-extern BttVariants_t BTT6030;
-extern BttVariants_t BTT6020;
 extern BtsVariants_t BTS50015;
 extern BtsVariants_t BTS50010;
+
+extern BttVariants_t BTT6030;
+extern BttVariants_t BTT6020;
+
 /** @} */
 
-#endif /** VARIANTS_HPP_ **/
+#endif /** HSS_VARIANTS_HPP_ **/

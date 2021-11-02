@@ -1,31 +1,30 @@
 /**
- * @file        gpio-arduino.hpp
+ * @file        hss-pal-gpio-pal.hpp
  * @brief       Arduino PAL for the GPIO
- * @date        May 2020
- * @copyright   Copyright (c) 2019-2020 Infineon Technologies AG
+ * @copyright   Copyright (c) 2021 Infineon Technologies AG
  *
  * SPDX-License-Identifier: MIT
  */
 
 
-#ifndef GPIO_ARDUINO_H_
-#define GPIO_ARDUINO_H_
+#ifndef HSS_PAL_GPIO_INO_HPP_
+#define HSS_PAL_GPIO_INO_HPP_
 
-#include "hss.hpp"
+#include "hss-pal-gpio.hpp"
 
 /**
  * @addtogroup arduinoPal
  * @{
  */
 
-
 /**
  * @brief Arduino GPIO class
  *
  */
-class GPIOIno: virtual public GPIO
+class GPIOIno: virtual public GPIOPAL
 {
 private:
+
     uint8_t     pin;
     uint8_t     mode;
     VLogic_t    logic;
@@ -44,6 +43,7 @@ public:
     Error_t     enable();
     Error_t     disable();
 };
+
 /** @} */
 
-#endif /** GPIO_ARDUINO_H_ **/
+#endif /** HSS_PAL_GPIO_INO_HPP_ **/

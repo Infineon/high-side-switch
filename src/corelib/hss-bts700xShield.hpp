@@ -6,10 +6,8 @@
  * SPDX-License-Identifier: MIT
  */
 
-#include "hss-arduino.hpp"
 #include "hss-shield.hpp"
-#include "variants.hpp"
-#include "hss-shield-config.hpp"
+#include "hss-variants.hpp"
 #include "hss.hpp"
 
 using namespace hss;
@@ -17,49 +15,51 @@ using namespace hss;
 class Bts700xShield : public HssShield
 {
     public:
+
                         Bts700xShield();
                         ~Bts700xShield();
 
         Error_t         init();
         Error_t         deinit();
-        Error_t         switchHxOn(uint8_t x, Channel_t ch=NULL_CHANNEL);
-        Error_t         switchHxOff(uint8_t x, Channel_t ch=NULL_CHANNEL);
-        Error_t         switchesHxOn(bool h1 = NULL, bool h2 = NULL, bool h3 = NULL, bool h4 = NULL);
-        Error_t         switchesHxOff(bool h1 = NULL, bool h2 = NULL, bool h3 = NULL, bool h4 = NULL);
-        DiagStatus_t    readDiagx(uint8_t x, Channel_t ch=NULL_CHANNEL);
+        Error_t         switchHxOn(uint8_t x);
+        Error_t         switchHxOff(uint8_t x);
+        Error_t         switchesHxOn(bool h1 = false, bool h2 = false, bool h3 = false, bool h4 = false);
+        Error_t         switchesHxOff(bool h1 = false, bool h2 = false, bool h3 = false, bool h4 = false);
+        DiagStatus_t    readDiagx(uint8_t x);
         DiagStatus_t    diagnosisOff(float currentOn, float currentOff);
-        float           readIsx(uint8_t x, Channel_t ch=NULL_CHANNEL);
+        float           readIsx(uint8_t x);
         float           readVss();
 
         bool            digitalReadButton();
         bool            analogReadButton();
-    
+
     protected:
-        ExponentialFilter *filterVbat;
 
-        GPIO *led1;
-        GPIO *led2;
-        GPIO *led3;
-        GPIO *led4;
-    
-        Hss *hss1;
-        Hss *hss2;
-        Hss *hss3;
-        Hss *hss4;
+        ExponentialFilter   *filterVbat;
 
-        Timer *timer;
-    
-        GPIO *oloff;
-        GPIO *pushButtonDigital;
-    
-        AnalogDigitalConverter *pushButtonAnalog;
-        AnalogDigitalConverter *vBat;
+        GPIOPAL             *led1;
+        GPIOPAL             *led2;
+        GPIOPAL             *led3;
+        GPIOPAL             *led4;
 
-        BtsVariants_t          *btsVariant;
+        Hss                 *hss1;
+        Hss                 *hss2;
+        Hss                 *hss3;
+        Hss                 *hss4;
 
-        const float vBatGain = 1.0;
-        const float vBatOffset = 0.0;
+        TimerPAL            *timer;
 
-        float  getIs(uint8_t x);
-        
+        GPIOPAL             *oloff;
+        GPIOPAL             *pushButtonDigital;
+
+        ADCPAL              *pushButtonAnalog;
+        ADCPAL              *vBat;
+
+        BtsVariants_t       *btsVariant;
+
+        const float         vBatGain = 1.0;
+        const float         vBatOffset = 0.0;
+
+        float               getIs(uint8_t x);
+
 };

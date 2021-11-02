@@ -16,7 +16,6 @@
  * @{
  */
 
-
 /**
  * @brief Struct with all necessary defines of the Profet-Shield
  *

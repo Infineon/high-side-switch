@@ -6,13 +6,13 @@
  * SPDX-License-Identifier: MIT
  */
 
-#ifndef HSS_ARDUINO_H_
-#define HSS_ARDUINO_H_
+#ifndef HSS_ARDUINO_HPP_
+#define HSS_ARDUINO_HPP_
 
 #include "hss.hpp"
-#include "gpio-arduino.hpp"
-#include "adc-arduino.hpp"
-#include "timer-arduino.hpp"
+#include "hss-pal-gpio-ino.hpp"
+#include "hss-pal-adc-ino.hpp"
+#include "hss-pal-timer-ino.hpp"
 
 /**
  * @brief Arduino class of the High-Side-Swich
@@ -21,11 +21,11 @@
 class HssIno : public Hss
 {
     public:
-        
+
         HssIno(uint8_t den, uint8_t in, uint8_t is, BtsVariants_t *variant); // TODO: Remove this constructor
         HssIno(uint8_t den, uint8_t in, uint8_t is);
         HssIno(uint8_t den, uint8_t in, uint8_t dsel, uint8_t is);
         ~HssIno();
 };
 
-#endif /** HSS_ARDUINO_H_ **/
+#endif /** HSS_ARDUINO_HPP_ **/

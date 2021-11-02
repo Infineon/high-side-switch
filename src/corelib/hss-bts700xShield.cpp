@@ -109,7 +109,7 @@ Error_t Bts700xShield::deinit()
  * @param[in]   x   Number of the Switch the should be turned on (1-4)
  * @return          Bts700xShield::Error_t
  */
-Error_t Bts700xShield::switchHxOn(uint8_t x,Channel_t ch)
+Error_t Bts700xShield::switchHxOn(uint8_t x)
 {
     switch(x)
     {
@@ -149,7 +149,7 @@ Error_t Bts700xShield::switchHxOn(uint8_t x,Channel_t ch)
  * @param[in]   x   Number of the Switch the should be turned off (1-4)
  * @return          Bts700xShield::Error_t
  */
-Error_t Bts700xShield::switchHxOff(uint8_t x,Channel_t ch)
+Error_t Bts700xShield::switchHxOff(uint8_t x)
 {
     switch(x)
     {
@@ -191,7 +191,7 @@ Error_t Bts700xShield::switchHxOff(uint8_t x,Channel_t ch)
  * @param[in] h4    Enable the fourth switch if h4 == true
  * @return          Bts700xShield::Error_t
  */
-Error_t Bts700xShield::switchesHxOn(bool h1 = NULL, bool h2 = NULL, bool h3 = NULL, bool h4 = NULL)
+Error_t Bts700xShield::switchesHxOn(bool h1, bool h2, bool h3, bool h4)
 {
     if(h1 == true){
         hss1->enable();
@@ -231,7 +231,7 @@ Error_t Bts700xShield::switchesHxOn(bool h1 = NULL, bool h2 = NULL, bool h3 = NU
  * @param[in] h4    Disable the fourth switch if h4 == true
  * @return          Bts700xShield::Error_t
  */
-Error_t Bts700xShield::switchesHxOff(bool h1 = NULL, bool h2 = NULL, bool h3 = NULL, bool h4 = NULL)
+Error_t Bts700xShield::switchesHxOff(bool h1, bool h2, bool h3, bool h4)
 {
     if(h1 == true){
         hss1->disable();
@@ -270,10 +270,9 @@ Error_t Bts700xShield::switchesHxOff(bool h1 = NULL, bool h2 = NULL, bool h3 = N
  * @param[in]   x   Number of the desired channel (1-4)
  * @return          The value of the current in [A]
  */
-float Bts700xShield::readIsx(uint8_t x, Channel_t ch)
+float Bts700xShield::readIsx(uint8_t x)
 {
-    float isVal;
-    uint16_t adcResult;
+    float isVal = 0.0;
 
     switch (x)
     {
@@ -357,7 +356,7 @@ float Bts700xShield::getIs(uint8_t x)
  * @retval      4   Short to battery
  * @retval      5   Open load
  */
-DiagStatus_t Bts700xShield::readDiagx(uint8_t x,Channel_t ch)
+DiagStatus_t Bts700xShield::readDiagx(uint8_t x)
 {
     DiagStatus_t diagStatus = NORMAL;
 
@@ -509,10 +508,12 @@ float Bts700xShield::readVss()
  */
 bool Bts700xShield::digitalReadButton()
 {
-    if(pushButtonDigital->read() == GPIO::GPIO_LOW)
-    return true;
-    else
-    return false;
+    if(pushButtonDigital->read() == GPIOPAL::GPIO_LOW){
+        return true;
+    }
+    else{
+        return false;
+    }
 }
 
 /**

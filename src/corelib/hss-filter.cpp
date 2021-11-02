@@ -1,13 +1,12 @@
-/** 
- * @file        filter.cpp
+/**
+ * @file        hss-filter.cpp
  * @brief       Definition of the filter class functions
- * @date        May 2020
- * @copyright   Copyright (c) 2019-2020 Infineon Technologies AG
- * 
+ * @copyright   Copyright (c) 2021 Infineon Technologies AG
+ *
  * SPDX-License-Identifier: MIT
  */
 
-#include "filter.hpp"
+#include "hss-filter.hpp"
 
 ExponentialFilter::ExponentialFilter()
 {
@@ -29,7 +28,7 @@ ExponentialFilter::ExponentialFilter(float y, uint16_t t)
     this->y = y;
     this->y_last = y;
     this->x = y;
-    this->tau = pow2(t);  
+    this->tau = pow2(t);
 }
 
 void ExponentialFilter::setFilter(float y, uint16_t t)
@@ -50,7 +49,7 @@ void ExponentialFilter::setToNewValue(float y)
     this->y = y_last = x = y;
 }
 
-float ExponentialFilter::input(float x)
+void ExponentialFilter::input(float x)
 {
     y_last = y;
     this->x = x;

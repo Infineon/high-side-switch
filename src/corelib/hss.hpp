@@ -12,18 +12,18 @@
 #include <stdint.h>
 #include <unistd.h>
 #include "hss-types.hpp"
-#include "timer.hpp"
-#include "gpio.hpp"
-#include "adc.hpp"
-#include "variants.hpp"
-#include "filter.hpp"
+#include "hss-pal-timer.hpp"
+#include "hss-pal-gpio.hpp"
+#include "hss-pal-adc.hpp"
+#include "hss-variants.hpp"
+#include "hss-filter.hpp"
 
 using namespace hss;
+
 /**
  * @addtogroup hssCorelib
  * @{
  */
-
 
 /**
  * @brief High-Side-Switch class
@@ -33,44 +33,45 @@ class Hss
 {
     public:
 
-                    Hss();
-                    Hss(GPIO *den, GPIO *in, AnalogDigitalConverter *is);
-                    Hss(GPIO *den, GPIO *in, GPIO *dsel, AnalogDigitalConverter *is);
-                    ~Hss();
-    Error_t         init();
-    Error_t         deinit();
-    Error_t         enable();
-    Error_t         disable();
-    Error_t         enableDiag();
-    Error_t         disableDiag();
-    Error_t         diagSelCh0();
-    Error_t         diagSelCh1();
-    Error_t         diagReset();
+                            Hss(GPIOPAL *den, GPIOPAL *in, ADCPAL *is, TimerPAL *timer);
+                            Hss(GPIOPAL *den, GPIOPAL *in, GPIOPAL *dsel, ADCPAL *is, TimerPAL *timer);
+                            ~Hss();
+        Error_t             init();
+        Error_t             deinit();
+        Error_t             enable();
+        Error_t             disable();
+        Error_t             enableDiag();
+        Error_t             disableDiag();
+        Error_t             diagSelCh0();
+        Error_t             diagSelCh1();
+        Error_t             diagReset();
 
-    Status_t        getSwitchStatus();
+        Status_t            getSwitchStatus();
 
-    DiagEnable_t    getEnDiagStatus();
-    DiagStatus_t    diagRead(float amps, uint16_t kilis);
+        DiagEnable_t        getEnDiagStatus();
+        DiagStatus_t        diagRead(float amps, uint16_t kilis);
 
-    uint16_t        readIs();
-    float           calibrateIs(float inVal, uint16_t kilis, float ampsOffset, float ampsGain);
+        uint16_t            readIs();
+        float               calibrateIs(float inVal, uint16_t kilis, float ampsOffset, float ampsGain);
 
 
     protected:
-    GPIO                    *den;
-    GPIO                    *in;
-    GPIO                    *dsel;
-    AnalogDigitalConverter  *is;
 
-    Timer                   *timer;
+        GPIOPAL             *den;
+        GPIOPAL             *in;
+        GPIOPAL             *dsel;
+        ADCPAL              *is;
 
-    ExponentialFilter       *currentFilter;
+        TimerPAL            *timer;
 
-    Status_t                status;
-    DiagEnable_t            diagEnb;
-    DiagStatus_t            diagStatus;
+        ExponentialFilter   *currentFilter;
+
+        Status_t            status;
+        DiagEnable_t        diagEnb;
+        DiagStatus_t        diagStatus;
 
 };
+
 /** @} */
 
 #endif /** HSS_H_ **/

@@ -34,21 +34,21 @@ TEST_F(Hss_Test, init_success)
 
     EXPECT_CALL(is, init())
     .Times(1)
-    .WillOnce(Return(AnalogDigitalConverter::Error_t::OK));
+    .WillOnce(Return(OK));
 
     EXPECT_CALL(den, init())
     .Times(1)
-    .WillOnce(Return(GPIO::Error_t::OK));
+    .WillOnce(Return(OK));
 
     EXPECT_CALL(in, init())
     .Times(1)
-    .WillOnce(Return(GPIO::Error_t::OK));
+    .WillOnce(Return(OK));
 
-    // EXPECT_CALL(timer, init())
-    // .Times(1)
-    // .WillOnce(Return(Timer::Error_t::OK));
+    EXPECT_CALL(timer, init())
+    .Times(1)
+    .WillOnce(Return(OK));
 
-    Hss hss(&den, &in, &is, &timer, &BTS7002);
+    Hss hss(&den, &in, &is, &timer);
 
-    ASSERT_EQ(Hss::Error_t::OK, hss.init());
+    ASSERT_EQ(OK, hss.init());
 }

@@ -30,7 +30,7 @@ namespace hss
 		WRITE_ERROR 	     = -4,   /**< Write error */
 		NULLPTR_ERROR        = -5,   /**< Null pointer error */
 		INVALID_CH_ERROR     = -6,   /**< Invalid channel error */
-        UNSUPPORTED_OP_ERROR = -7    /**< Invalid channel error */  
+        UNSUPPORTED_OP_ERROR = -7    /**< Invalid channel error */
 	};
 	/** @} */
 
@@ -74,7 +74,7 @@ namespace hss
      * @{
      */
     enum DiagStatus_t{
-        DIAG_READ_ERROR = -1,        /**< Read Error */
+        DIAG_READ_ERROR = -1,   /**< Read Error */
         NOT_ENABLED = -2,       /**< Diagnosis not enabled */
         NORMAL = 0,             /**< Switch works correctly */
         OVERLOAD = 1,           /**< Overload of the Switch */
@@ -86,7 +86,8 @@ namespace hss
         INVERSE_CURRENT = 7,    /**< Inverse current */
     };
     /** @} */
-	/** @} */
 }
+
+/** @} */
 
 #endif /** HSS_TYPES_HPP_ **/

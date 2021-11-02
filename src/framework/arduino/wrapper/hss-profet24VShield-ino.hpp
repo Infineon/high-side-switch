@@ -10,7 +10,7 @@
 
 #include "hss-arduino.hpp"
 #include "hss-profet24VShield.hpp"
-#include "variants.hpp"
+#include "hss-variants.hpp"
 #include "hss-shield-config.hpp"
 
 using namespace hss;

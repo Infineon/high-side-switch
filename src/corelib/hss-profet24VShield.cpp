@@ -87,7 +87,7 @@ Error_t Profet24VBTTShield::deinit()
  */
 Error_t Profet24VBTTShield::switchHxOn(uint8_t x, Channel_t ch)
 {
-    switch(x)
+    /*switch(x)
     {
         case 0:
             if(CHANNEL0 == ch)
@@ -110,7 +110,7 @@ Error_t Profet24VBTTShield::switchHxOn(uint8_t x, Channel_t ch)
             hss4->enable();
             break;
     }
-    return OK;
+    return OK;*/
 }
 
 /**
@@ -130,7 +130,7 @@ Error_t Profet24VBTTShield::switchHxOn(uint8_t x, Channel_t ch)
  */
 Error_t Profet24VBTTShield::switchHxOff(uint8_t x, Channel_t ch)
 {
-    switch(x)
+    /*switch(x)
     {
         case 1:
             if(CHANNEL0 == ch)
@@ -153,7 +153,7 @@ Error_t Profet24VBTTShield::switchHxOff(uint8_t x, Channel_t ch)
             hss4->disable();
             break;
     }
-    return OK;
+    return OK;*/
 }
 
 /**
@@ -250,7 +250,7 @@ Error_t Profet24VBTTShield::switchesHxOff(bool h0_0 = NULL, bool h1_0 = NULL, bo
  */
 float Profet24VBTTShield::readIsx(uint8_t x, Channel_t ch)
 {
-    float iisCalib;
+    /*float iisCalib;
 
     switch (x)
     {
@@ -296,7 +296,7 @@ float Profet24VBTTShield::readIsx(uint8_t x, Channel_t ch)
             break;
     }
 
-    return iisCalib;
+    return iisCalib;*/
 }
 
 /**
@@ -324,7 +324,7 @@ float  Profet24VBTTShield::getIs(uint8_t x, Channel_t ch)
     uint16_t adcResult;
     float iis_A, vis_V, iisCalib;
 
-    switch(x)
+    /*switch(x)
     {
         case 0:
             if(CHANNEL0 == ch)
@@ -368,7 +368,7 @@ float  Profet24VBTTShield::getIs(uint8_t x, Channel_t ch)
             iis_A = vis_V/ris_Ohm;
             iisCalib = hss4->calibrateIs(iis_A,BTT6020.kilis,BTT6020.ampsOffset, BTT6020.ampsGain);
     }
-    return OK;
+    return OK;*/
 }
 
 /**
@@ -394,7 +394,7 @@ float  Profet24VBTTShield::getIs(uint8_t x, Channel_t ch)
  */
 DiagStatus_t Profet24VBTTShield::readDiagx(uint8_t x,Channel_t ch)
 {
-    DiagStatus_t diagStatus = NORMAL;
+    /*DiagStatus_t diagStatus = NORMAL;
 
     switch(x)
     {
@@ -450,7 +450,7 @@ DiagStatus_t Profet24VBTTShield::readDiagx(uint8_t x,Channel_t ch)
             hss4->disableDiag();
             break;
     }
-    return diagStatus;
+    return diagStatus;*/
 }
 
 /**
@@ -468,7 +468,7 @@ DiagStatus_t Profet24VBTTShield::readDiagx(uint8_t x,Channel_t ch)
  */
 DiagStatus_t Profet24VBTTShield::diagRead(BttTypes_t bttType, float amps, uint16_t kilis)
 {
-    switch (bttType)
+    /*switch (bttType)
     {
         case BTT6030T:
             if(amps > (0.006*kilis)){
@@ -493,6 +493,6 @@ DiagStatus_t Profet24VBTTShield::diagRead(BttTypes_t bttType, float amps, uint16
             }
 
     }
-    return NORMAL;
+    return NORMAL;*/
 }
 

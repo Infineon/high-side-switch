@@ -31,7 +31,7 @@ class Profet24VBTTShield : HssShield
         Error_t         switchHxOff(uint8_t x, Channel_t ch);
         Error_t         switchesHxOn(bool h1_0 = NULL, bool h2_0 = NULL, bool h1_1 = NULL, bool h2_1 = NULL, bool h2 = NULL);
         Error_t         switchesHxOff(bool h1_0 = NULL, bool h2_0 = NULL, bool h1_1 = NULL, bool h2_1 = NULL, bool h2 = NULL);
-        DiagStatus_t    readDiagx(uint8_t x, Channel_t ch=NULL_CHANNEL);
+        DiagStatus_t    readDiagx(uint8_t x, Channel_t ch=NO_CHANNEL);
         float           readIsx(uint8_t x, Channel_t ch);
     
     protected:
@@ -46,7 +46,7 @@ class Profet24VBTTShield : HssShield
 
         uint16_t ris_Ohm = 1200;
 
-        float           getIs(uint8_t x, Channel_t ch=NULL_CHANNEL);
+        float           getIs(uint8_t x, Channel_t ch=NO_CHANNEL);
         DiagStatus_t    diagRead(BttTypes_t bttType, float amps, uint16_t kilis);
         
 };

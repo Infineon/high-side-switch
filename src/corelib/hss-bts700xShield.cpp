@@ -13,7 +13,7 @@ using namespace hss;
  * @brief High-Side-Switch-Board constructor
  * Initialize all protected class pointers with a null pointer.
  */
-Bts700xShield::Bts700xShield()
+Bts700xShield::Bts700xShield(Hss *hsw1, Hss *hsw2, Hss *hsw3, Hss *hsw4)
 {
 
 }
@@ -109,7 +109,7 @@ Error_t Bts700xShield::deinit()
  * @param[in]   x   Number of the Switch the should be turned on (1-4)      
  * @return          Bts700xShield::Error_t 
  */
-Error_t Bts700xShield::switchHxOn(uint8_t x,Channel_t ch)
+Error_t Bts700xShield::switchHxOn(uint8_t x)
 {
     switch(x)
     {
@@ -149,7 +149,7 @@ Error_t Bts700xShield::switchHxOn(uint8_t x,Channel_t ch)
  * @param[in]   x   Number of the Switch the should be turned off (1-4)  
  * @return          Bts700xShield::Error_t 
  */
-Error_t Bts700xShield::switchHxOff(uint8_t x,Channel_t ch)
+Error_t Bts700xShield::switchHxOff(uint8_t x)
 {
     switch(x)
     {
@@ -270,7 +270,7 @@ Error_t Bts700xShield::switchesHxOff(bool h1 = NULL, bool h2 = NULL, bool h3 = N
  * @param[in]   x   Number of the desired channel (1-4)
  * @return          The value of the current in [A]      
  */
-float Bts700xShield::readIsx(uint8_t x, Channel_t ch)
+float Bts700xShield::readIsx(uint8_t x)
 {
     float isVal;
     uint16_t adcResult;
@@ -357,12 +357,14 @@ float Bts700xShield::getIs(uint8_t x)
  * @retval      4   Short to battery
  * @retval      5   Open load     
  */
-DiagStatus_t Bts700xShield::readDiagx(uint8_t x,Channel_t ch)
+DiagStatus_t Bts700xShield::readDiagx(uint8_t x)
 {
     DiagStatus_t diagStatus = NORMAL;
 
     float currentOn = 0.0;
     float currentOff = 0.0;
+    float iisFault = 0.0044;
+    float iisOl =  0.00002;
 
     switch(x)
     {
@@ -370,7 +372,7 @@ DiagStatus_t Bts700xShield::readDiagx(uint8_t x,Channel_t ch)
             hss1->enableDiag();
             if(hss1->getSwitchStatus() == POWER_ON)
             {
-                diagStatus = hss1->diagRead(getIs(1), btsVariant->kilis);
+                diagStatus = hss1->diagRead(getIs(1), iisFault, iisOl, btsVariant->kilis);
             }
             else
             {
@@ -390,7 +392,7 @@ DiagStatus_t Bts700xShield::readDiagx(uint8_t x,Channel_t ch)
             hss2->enableDiag();
             if(hss2->getSwitchStatus() == POWER_ON)
             {
-                diagStatus = hss2->diagRead(getIs(2), btsVariant->kilis);
+                diagStatus = hss2->diagRead(getIs(2), iisFault, iisOl, btsVariant->kilis);
             }
             else
             {
@@ -410,7 +412,7 @@ DiagStatus_t Bts700xShield::readDiagx(uint8_t x,Channel_t ch)
             hss3->enableDiag();
             if(hss3->getSwitchStatus() == POWER_ON)
             {
-                diagStatus = hss3->diagRead(getIs(3), btsVariant->kilis);
+                diagStatus = hss3->diagRead(getIs(3), iisFault, iisOl, btsVariant->kilis);
             }
             else
             {
@@ -430,7 +432,7 @@ DiagStatus_t Bts700xShield::readDiagx(uint8_t x,Channel_t ch)
             hss4->enableDiag();
             if(hss4->getSwitchStatus() == POWER_ON)
             {
-                diagStatus = hss4->diagRead(getIs(4), btsVariant->kilis);
+                diagStatus = hss4->diagRead(getIs(4), iisFault, iisOl, btsVariant->kilis);
             }
             else
             {
@@ -510,9 +512,9 @@ float Bts700xShield::readVss()
 bool Bts700xShield::digitalReadButton()
 {
     if(pushButtonDigital->read() == GPIO::GPIO_LOW)
-    return true;
+        return true;
     else
-    return false;
+        return false;
 }
 
 /**

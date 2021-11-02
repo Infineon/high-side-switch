@@ -17,18 +17,19 @@ using namespace hss;
 class Bts700xShield : public HssShield
 {
     public:
-                        Bts700xShield();
+                        Bts700xShield(Hss *hsw1, Hss *hsw2, Hss *hsw3, Hss *hsw4);
                         ~Bts700xShield();
 
         Error_t         init();
         Error_t         deinit();
-        Error_t         switchHxOn(uint8_t x, Channel_t ch=NULL_CHANNEL);
-        Error_t         switchHxOff(uint8_t x, Channel_t ch=NULL_CHANNEL);
+        Error_t         switchHxOn(uint8_t x);
+        Error_t         switchHxOff(uint8_t x);
         Error_t         switchesHxOn(bool h1 = NULL, bool h2 = NULL, bool h3 = NULL, bool h4 = NULL);
         Error_t         switchesHxOff(bool h1 = NULL, bool h2 = NULL, bool h3 = NULL, bool h4 = NULL);
-        DiagStatus_t    readDiagx(uint8_t x, Channel_t ch=NULL_CHANNEL);
+        DiagStatus_t    readDiagx(uint8_t x);
         DiagStatus_t    diagnosisOff(float currentOn, float currentOff);
-        float           readIsx(uint8_t x, Channel_t ch=NULL_CHANNEL);
+        
+        float           readIsx(uint8_t x);
         float           readVss();
 
         bool            digitalReadButton();

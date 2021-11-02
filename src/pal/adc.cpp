@@ -9,7 +9,7 @@
 
 #include "adc.hpp"
 
-AnalogDigitalConverter::Error_t AnalogDigitalConverter::checkErrorStatus()
+Error_t AnalogDigitalConverter::checkErrorStatus()
 {
     return errorStatus;
 }

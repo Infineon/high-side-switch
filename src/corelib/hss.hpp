@@ -43,14 +43,10 @@ class Hss
     Error_t         disable();
     Error_t         enableDiag();
     Error_t         disableDiag();
-    Error_t         diagSelCh0();
-    Error_t         diagSelCh1();
     Error_t         diagReset();
 
     Status_t        getSwitchStatus();
-
-    DiagEnable_t    getEnDiagStatus();
-    DiagStatus_t    diagRead(float amps, uint16_t kilis);
+    DiagStatus_t    diagRead(float amps, float iisFault, float iisOl, uint16_t kilis, Channel_t ch=NO_CHANNEL);
 
     uint16_t        readIs();
     float           calibrateIs(float inVal, uint16_t kilis, float ampsOffset, float ampsGain);
@@ -69,6 +65,9 @@ class Hss
     Status_t                status;
     DiagEnable_t            diagEnb;
     DiagStatus_t            diagStatus;
+
+    Error_t     selDiagCh(Channel_t ch=NO_CHANNEL);
+
 
 };
 /** @} */

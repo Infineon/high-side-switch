@@ -156,7 +156,6 @@ pipeline {
 					steps {
 						echo "unit test"
 						//sh ("export DOXY_BIN_PATH=/usr/local/bin/;cd ${env.WORKSPACE}/docs;/usr/bin/make html")
-						cmake --version
 					}
 				}
 

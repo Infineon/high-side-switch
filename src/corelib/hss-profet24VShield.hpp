@@ -18,21 +18,18 @@ using namespace hss;
 class Profet24VBTTShield : HssShield
 {
     public:
-        enum BttTypes_t{
-            BTT6030T = 0,
-            BTT6020T = 1
-        };
-                        Profet24VBTTShield();
+
+                        Profet24VBTTShield(Hss *hss0, Hss *hss1, Hss *hss2, Hss *hss3, Hss *hss4);
                         ~Profet24VBTTShield();
 
         Error_t         init();
         Error_t         deinit();
-        Error_t         switchHxOn(uint8_t x, Channel_t ch);
-        Error_t         switchHxOff(uint8_t x, Channel_t ch);
-        Error_t         switchesHxOn(bool h1_0 = NULL, bool h2_0 = NULL, bool h1_1 = NULL, bool h2_1 = NULL, bool h2 = NULL);
+        Error_t         switchHxOn   (uint8_t x);
+        Error_t         switchHxOff  (uint8_t x);
+        Error_t         switchesHxOn (bool h1_0 = NULL, bool h2_0 = NULL, bool h1_1 = NULL, bool h2_1 = NULL, bool h2 = NULL);
         Error_t         switchesHxOff(bool h1_0 = NULL, bool h2_0 = NULL, bool h1_1 = NULL, bool h2_1 = NULL, bool h2 = NULL);
-        DiagStatus_t    readDiagx(uint8_t x, Channel_t ch=NO_CHANNEL);
-        float           readIsx(uint8_t x, Channel_t ch);
+        DiagStatus_t    readDiagx    (uint8_t x);
+        float           readIsx      (uint8_t x);
     
     protected:
 
@@ -46,8 +43,8 @@ class Profet24VBTTShield : HssShield
 
         uint16_t ris_Ohm = 1200;
 
-        float           getIs(uint8_t x, Channel_t ch=NO_CHANNEL);
-        DiagStatus_t    diagRead(BttTypes_t bttType, float amps, uint16_t kilis);
+        float           getIs(uint8_t x);
+
         
 };
 

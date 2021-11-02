@@ -48,7 +48,7 @@ class Hss
     Status_t        getSwitchStatus();
     DiagStatus_t    diagRead(float amps, float iisFault, float iisOl, uint16_t kilis, Channel_t ch=NO_CHANNEL);
 
-    uint16_t        readIs();
+    uint16_t        readIs(Channel_t ch=NO_CHANNEL);
     float           calibrateIs(float inVal, uint16_t kilis, float ampsOffset, float ampsGain);
     
 

@@ -22,14 +22,13 @@ class Bts700xShield : public HssShield
 
         Error_t         init();
         Error_t         deinit();
-        Error_t         switchHxOn(uint8_t x);
-        Error_t         switchHxOff(uint8_t x);
-        Error_t         switchesHxOn(bool h1 = NULL, bool h2 = NULL, bool h3 = NULL, bool h4 = NULL);
+        Error_t         switchHxOn   (uint8_t x);
+        Error_t         switchHxOff  (uint8_t x);
+        Error_t         switchesHxOn (bool h1 = NULL, bool h2 = NULL, bool h3 = NULL, bool h4 = NULL);
         Error_t         switchesHxOff(bool h1 = NULL, bool h2 = NULL, bool h3 = NULL, bool h4 = NULL);
-        DiagStatus_t    readDiagx(uint8_t x);
-        DiagStatus_t    diagnosisOff(float currentOn, float currentOff);
-        
-        float           readIsx(uint8_t x);
+        DiagStatus_t    readDiagx    (uint8_t x);
+        DiagStatus_t    diagnosisOff (float currentOn, float currentOff);
+        float           readIsx      (uint8_t x);
         float           readVss();
 
         bool            digitalReadButton();

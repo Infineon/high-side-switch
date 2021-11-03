@@ -13,7 +13,7 @@ using namespace hss;
  * @brief High-Side-Switch-Board constructor
  * Initialize all protected class pointers with a null pointer.
  */
-Bts700xShield::Bts700xShield(Hss *hsw1, Hss *hsw2, Hss *hsw3, Hss *hsw4)
+Bts700xShield::Bts700xShield(Hss *hss1, Hss *hss2, Hss *hss3, Hss *hss4)
 {
 
 }
@@ -273,7 +273,6 @@ Error_t Bts700xShield::switchesHxOff(bool h1 = NULL, bool h2 = NULL, bool h3 = N
 float Bts700xShield::readIsx(uint8_t x)
 {
     float isVal;
-    uint16_t adcResult;
 
     switch (x)
     {
@@ -324,22 +323,25 @@ float Bts700xShield::getIs(uint8_t x)
             adcResult = hss1->readIs();
             amps = ((float)adcResult/(float)1024) * (float)5;
             ampsCalib = hss1->calibrateIs(amps, btsVariant->kilis, btsVariant->ampsOffset, btsVariant->ampsGain);
+            break;
 
         case 2:
             adcResult = hss2->readIs();
             amps = ((float)adcResult/(float)1024) * (float)5;
             ampsCalib = hss2->calibrateIs(amps, btsVariant->kilis, btsVariant->ampsOffset, btsVariant->ampsGain);
+            break;
 
         case 3:
             adcResult = hss3->readIs();
             amps = ((float)adcResult/(float)1024) * (float)5;
             ampsCalib = hss3->calibrateIs(amps, btsVariant->kilis, btsVariant->ampsOffset, btsVariant->ampsGain);
+            break;
 
         case 4:
             adcResult = hss4->readIs();
             amps = ((float)adcResult/(float)1024) * (float)5;
             ampsCalib = hss4->calibrateIs(amps, btsVariant->kilis, btsVariant->ampsOffset, btsVariant->ampsGain);
-
+            break;
     }
     return ampsCalib;
 }

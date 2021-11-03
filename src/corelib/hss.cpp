@@ -398,14 +398,22 @@ Status_t Hss::getSwitchStatus()
  * 
  * This functions is reading the IS signal of the switch.
  * It returns the value in ADC, which is depending on the IS signal.
+ * @param[in]   ch  Channel number 
  * 
- * @note Before calling this function, ensure is pin is initialized
+ * @note Before calling this function, ensure IS pin is initialized and 
+ *       you do not have to pass channel in case your shield does not support multiple channel
+ *       and this would default to NO_CHANNEL applicable.
  * 
  * @return Recorded ADC Value  
  */
-uint16_t Hss::readIs()
+uint16_t Hss::readIs(Channel_t ch)
 {
     uint16_t AnalogDigitalConverterResult = 0;
+
+    if(NO_CHANNEL != ch){
+        selDiagCh(ch);
+    }
+    
     if(diagEnb == DIAG_EN){
         timer->delayMilli(1);          //wait for 1ms to ensure that the Profet will provide a valid sense signal
         AnalogDigitalConverterResult = is->ADCRead();
@@ -442,6 +450,11 @@ float Hss::calibrateIs(float isVal, uint16_t kilis, float ampsOffset, float amps
  * This function is using the IS signal to determine the state of the switch.
  * It returns an diagnosis state of the switch.
  * 
+ * @param[in]   amps        Sensed current value
+ * @param[in]   iisfault    Sensed current at fault condition
+ * @param[in]   iisOl       Open load detection threshold
+ * @param[in]   kilis       Current sense ratio
+ * @param[in]   ch          Channel no. (*Optional)
  * @return DiagStatus_t
  * 
  * @retval  -2  Not enabled
@@ -455,8 +468,6 @@ float Hss::calibrateIs(float isVal, uint16_t kilis, float ampsOffset, float amps
  */
 DiagStatus_t Hss::diagRead(float amps, float iisFault, float iisOl, uint16_t kilis, Channel_t ch)
 {
-    Error_t err = enableDiag();
-
     if(NO_CHANNEL != ch){
         selDiagCh(ch);
     }

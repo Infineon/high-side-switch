@@ -158,11 +158,6 @@ Error_t Hss::init()
             if(OK!=err)
                 break;
         }
-        else
-        {
-            err = UNSUPPORTED_OP_ERROR;
-            break;
-        }
 
         if(nullptr != timer)
         {
@@ -237,11 +232,6 @@ Error_t Hss::deinit()
             err = dsel->deinit();
             if(OK!=err)
                 break;
-        }
-        else
-        {
-            err = UNSUPPORTED_OP_ERROR;
-            break;
         }
 
         if(nullptr != timer)

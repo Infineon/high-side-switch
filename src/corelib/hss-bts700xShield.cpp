@@ -13,9 +13,12 @@ using namespace hss;
  * @brief High-Side-Switch-Board constructor
  * Initialize all protected class pointers with a null pointer.
  */
-Bts700xShield::Bts700xShield(Hss *hss1, Hss *hss2, Hss *hss3, Hss *hss4)
+Bts700xShield::Bts700xShield(Hss *hsw1, Hss *hsw2, Hss *hsw3, Hss *hsw4)
 {
-
+    this->hss1 = hsw1;
+    this->hss2 = hsw2;
+    this->hss3 = hsw3;
+    this->hss4 = hsw4;
 }
 
 /**
@@ -365,8 +368,6 @@ DiagStatus_t Bts700xShield::readDiagx(uint8_t x)
 
     float currentOn = 0.0;
     float currentOff = 0.0;
-    float iisFault = 0.0044;
-    float iisOl =  0.00002;
 
     switch(x)
     {

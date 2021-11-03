@@ -19,7 +19,7 @@ class Profet24VBTTShield : HssShield
 {
     public:
 
-                        Profet24VBTTShield(Hss *hss0, Hss *hss1, Hss *hss2, Hss *hss3, Hss *hss4);
+                        Profet24VBTTShield(Hss *hsw0, Hss *hsw1, Hss *hsw2, Hss *hsw3, Hss *hsw4);
                         ~Profet24VBTTShield();
 
         Error_t         init();
@@ -40,10 +40,15 @@ class Profet24VBTTShield : HssShield
         Hss *hss4;
 
         Timer *timer;
-
-        uint16_t ris_Ohm = 1200;
-
+        
         float           getIs(uint8_t x);
+
+    private:
+    
+        const uint16_t ris_Ohm = 1200;
+        const float iisFault      = 0.006;
+        const float iisOl_btt6030 =  0.000005;
+        const float iisOl_btt6020 =  0.000004;
 
         
 };

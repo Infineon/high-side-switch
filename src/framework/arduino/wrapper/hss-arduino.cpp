@@ -25,6 +25,8 @@ HssIno::HssIno(uint8_t den, uint8_t in, uint8_t is)
     HssIno::in    = new GPIOIno (in,  OUTPUT, GPIOIno::POSITIVE);
     HssIno::is    = new ADCIno  (is);
     HssIno::timer = new TimerIno();
+
+    HssIno::dsel = nullptr;
 }
 
 /**

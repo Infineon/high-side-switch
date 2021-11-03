@@ -17,10 +17,10 @@ using namespace hss;
  */
 Bts700xShieldIno::Bts700xShieldIno(BtsVariants_t *variantSel):
 Bts700xShield   (
-                    hss1 = new HssIno(BTS700X_HWCONFIG.den1_den3, BTS700X_HWCONFIG.in1, BTS700X_HWCONFIG.is1_is2, variantSel),
-                    hss2 = new HssIno(BTS700X_HWCONFIG.den2_den4, BTS700X_HWCONFIG.in2, BTS700X_HWCONFIG.is1_is2, variantSel),
-                    hss3 = new HssIno(BTS700X_HWCONFIG.den1_den3, BTS700X_HWCONFIG.in3, BTS700X_HWCONFIG.is3_is4, variantSel),
-                    hss4 = new HssIno(BTS700X_HWCONFIG.den2_den4, BTS700X_HWCONFIG.in4, BTS700X_HWCONFIG.is3_is4, variantSel)
+                    hss1 = new HssIno(BTS700X_HWCONFIG.den1_den3, BTS700X_HWCONFIG.in1, BTS700X_HWCONFIG.is1_is2),
+                    hss2 = new HssIno(BTS700X_HWCONFIG.den2_den4, BTS700X_HWCONFIG.in2, BTS700X_HWCONFIG.is1_is2),
+                    hss3 = new HssIno(BTS700X_HWCONFIG.den1_den3, BTS700X_HWCONFIG.in3, BTS700X_HWCONFIG.is3_is4),
+                    hss4 = new HssIno(BTS700X_HWCONFIG.den2_den4, BTS700X_HWCONFIG.in4, BTS700X_HWCONFIG.is3_is4)
                 )
 {
     led1 = ((BTS700X_HWCONFIG.led1 == GPIOIno::unusedPin) ? NULL : new GPIOIno(BTS700X_HWCONFIG.led1, OUTPUT, GPIOIno::POSITIVE));
@@ -47,10 +47,10 @@ Bts700xShield   (
  */
 Bts700xShieldIno::Bts700xShieldIno(BtsVariants_t *variantSel, Bts700xHwConfig_t config):
 Bts700xShield   (
-                    hss1 = new HssIno(config.den1_den3, config.in1, config.is1_is2, variantSel),
-                    hss2 = new HssIno(config.den2_den4, config.in2, config.is1_is2, variantSel),
-                    hss3 = new HssIno(config.den1_den3, config.in3, config.is3_is4, variantSel),
-                    hss4 = new HssIno(config.den2_den4, config.in4, config.is3_is4, variantSel)
+                    hss1 = new HssIno(config.den1_den3, config.in1, config.is1_is2),
+                    hss2 = new HssIno(config.den2_den4, config.in2, config.is1_is2),
+                    hss3 = new HssIno(config.den1_den3, config.in3, config.is3_is4),
+                    hss4 = new HssIno(config.den2_den4, config.in4, config.is3_is4)
                 )
 {
     led1 = ((config.led1 == GPIOIno::unusedPin) ? NULL : new GPIOIno(config.led1, OUTPUT, GPIOIno::POSITIVE));

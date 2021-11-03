@@ -61,5 +61,9 @@ class Bts700xShield : public HssShield
         const float vBatOffset = 0.0;
 
         float  getIs(uint8_t x);
+
+    private:
+        const float iisFault = 0.0044;
+        const float iisOl =  0.00002;
         
 };

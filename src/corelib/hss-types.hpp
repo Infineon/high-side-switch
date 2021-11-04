@@ -40,10 +40,10 @@ namespace hss
 	*/
 	enum Channel_t
 	{
-		CHANNEL1 	 = 1,           /**< Channel 1 : Valid for BTT shields */
-		CHANNEL2 	 = 2,           /**< Channel 2 : Valid for BTT shields */
-		ALL_CHANNELS = 3,           /**< Select all channels : Valid for BTT shields */
-        NULL_CHANNEL = 4            /**< No channel to select */
+		CHANNEL0 	 = 0,           /**< Channel 1 : Valid for BTT shields */
+		CHANNEL1 	 = 1,           /**< Channel 2 : Valid for BTT shields */
+		ALL_CHANNELS = 2,           /**< Select all channels : Valid for BTT shields */
+        NO_CHANNEL = 3            /**< No channel to select */
 	};
 	/** @} */
 
@@ -74,7 +74,7 @@ namespace hss
      * @{
      */
     enum DiagStatus_t{
-        READ_ERROR = -1,        /**< Read Error */
+        DIAG_READ_ERROR = -1,        /**< Read Error */
         NOT_ENABLED = -2,       /**< Diagnosis not enabled */
         NORMAL = 0,             /**< Switch works correctly */
         OVERLOAD = 1,           /**< Overload of the Switch */

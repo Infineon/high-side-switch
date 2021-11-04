@@ -1,8 +1,7 @@
 /**
  * @file        hss.hpp
  * @brief       Definition of the High-Side-Switch class functions
- * @date        May 2020
- * @copyright   Copyright (c) 2019-2020 Infineon Technologies AG
+ * @copyright   Copyright (c) 2021 Infineon Technologies AG
  *
  * SPDX-License-Identifier: MIT
  */
@@ -12,12 +11,14 @@
 #include <stdlib.h>
 #include <stdint.h>
 #include <unistd.h>
+#include "hss-types.hpp"
 #include "timer.hpp"
 #include "gpio.hpp"
 #include "adc.hpp"
 #include "variants.hpp"
 #include "filter.hpp"
 
+using namespace hss;
 /**
  * @addtogroup hssCorelib
  * @{
@@ -33,7 +34,8 @@ class Hss
     public:
 
                     Hss();
-                    Hss(GPIO *den, GPIO *in, AnalogDigitalConverter *is, BtsVariants_t *variant);
+                    Hss(GPIO *den, GPIO *in, AnalogDigitalConverter *is);
+                    Hss(GPIO *den, GPIO *in, GPIO *dsel, AnalogDigitalConverter *is);
                     ~Hss();
     Error_t         init();
     Error_t         deinit();
@@ -44,10 +46,11 @@ class Hss
     Error_t         diagReset();
 
     Status_t        getSwitchStatus();
+    DiagStatus_t    diagRead(float amps, float iisFault, float iisOl, uint16_t kilis, Channel_t ch=NO_CHANNEL);
 
-    DiagStatus_t    diagRead_BTS();
-
-    float           readIs_BTS();
+    uint16_t        readIs(Channel_t ch=NO_CHANNEL);
+    float           calibrateIs(float inVal, uint16_t kilis, float ampsOffset, float ampsGain);
+    
 
     protected:
     GPIO                    *den;
@@ -58,11 +61,13 @@ class Hss
     Timer                   *timer;
 
     ExponentialFilter       *currentFilter;
-    BtsVariants_t           *btsVariant;
 
     Status_t                status;
     DiagEnable_t            diagEnb;
     DiagStatus_t            diagStatus;
+
+    Error_t         selDiagCh(Channel_t ch=NO_CHANNEL);
+
 
 };
 /** @} */

@@ -1,8 +1,7 @@
 /**
  * @file        hss-arduino.hpp
  * @brief       Definition of the High-Side-Switch Class in Arduino
- * @date        May 2020
- * @copyright   Copyright (c) 2019-2020 Infineon Technologies AG
+ * @copyright   Copyright (c) 2021 Infineon Technologies AG
  *
  * SPDX-License-Identifier: MIT
  */
@@ -22,8 +21,10 @@
 class HssIno : public Hss
 {
     public:
-                    HssIno(uint8_t den, uint8_t in, uint8_t is, BtsVariants_t *variant);
-                    ~HssIno();
+        
+        HssIno(uint8_t den, uint8_t in, uint8_t is);
+        HssIno(uint8_t den, uint8_t in, uint8_t dsel, uint8_t is);
+        ~HssIno();
 };
 
 #endif /** HSS_ARDUINO_H_ **/

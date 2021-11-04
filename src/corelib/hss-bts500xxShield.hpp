@@ -17,18 +17,18 @@ using namespace hss;
 class Bts500xxShield : HssShield 
 {
     public:
-                    Bts500xxShield();
+                    Bts500xxShield(Hss *hsw1);
 
                     ~Bts500xxShield();
 
 
         Error_t         init();
         Error_t         deinit();
-        Error_t         switchHxOn(uint8_t x, Channel_t ch=NULL_CHANNEL);
-        Error_t         switchHxOff(uint8_t x, Channel_t ch=NULL_CHANNEL);
-        DiagStatus_t    readDiagx(uint8_t x, Channel_t ch=NULL_CHANNEL);
+        Error_t         switchHxOn(uint8_t x);
+        Error_t         switchHxOff(uint8_t x);
+        DiagStatus_t    readDiagx(uint8_t x=1);
         DiagStatus_t    diagnosisOff(float currentOn, float currentOff);
-        float           readIsx(uint8_t x, Channel_t ch=NULL_CHANNEL);
+        float           readIsx(uint8_t x=1);
         float           readVss();
     
     protected:

@@ -1,6 +1,6 @@
 /** 
  * @file        hss-bts500xxShield.cpp
- * @brief       BTS700x-1EPP (12V) Shield Implementation
+ * @brief       BTS500xx (12V) Shield Implementation
  * @copyright   Copyright (c) 2021 Infineon Technologies AG
  * 
  * SPDX-License-Identifier: MIT
@@ -12,9 +12,9 @@
  * @brief High-Side-Switch-Board constructor
  * Initialize all protected class pointers with a null pointer.
  */
-Bts500xxShield::Bts500xxShield()
+Bts500xxShield::Bts500xxShield(Hss *hsw1)
 {
-
+    this->hss1 = hsw1;
 }
 
 /**
@@ -36,19 +36,67 @@ Bts500xxShield::~Bts500xxShield()
  */
 Error_t Bts500xxShield::init()
 {
-    if (NULL != led1)
-    led1->init();
-    if (NULL != led2)
-    led2->init();
-    hss1->init();
+    Error_t err= OK;
+     do
+    {
+        if(nullptr != led1)
+        {
+            err = led1->init();
+            if(OK!=err)
+                break;
+        }
+        else
+        {
+            err = NULLPTR_ERROR;
+            break;
+        }
 
+          if(nullptr != led2)
+        {
+            err = led2->init();
+            if(OK!=err)
+                break;
+        }
+        else
+        {
+            err = NULLPTR_ERROR;
+            break;
+        }
 
-    timer->init();
+        err= hss1->init();
+            if (OK!=err)
+            {
+                break;
+            }
+
+       
     
-    oloff->init();
+        if(nullptr != pushButtonAnalog)
+        {
+            err = pushButtonAnalog->init();
+            if(OK!=err)
+                break;
+        }
+        else
+        {
+            err = NULLPTR_ERROR;
+            break;
+        }
 
-    pushButtonAnalog->init();
-    vBat->init();
+        if(nullptr != vBat)
+        {
+            err = vBat->init();
+            if(OK!=err)
+                break;
+        }
+        else
+        {
+            err = NULLPTR_ERROR;
+            break;
+        }
+
+    }
+    while(0);
 
     return OK;
 }
@@ -64,20 +112,67 @@ Error_t Bts500xxShield::init()
 Error_t Bts500xxShield::deinit()
 {
 
-    if (NULL != led1)
-        led1->deinit();
-    if (NULL != led2)
-        led2->deinit();
-   
-    hss1->deinit();
-   
+    Error_t err= OK;
+     do
+    {
+        if(nullptr != led1)
+        {
+            err = led1->deinit();
+            if(OK!=err)
+                break;
+        }
+        else
+        {
+            err = NULLPTR_ERROR;
+            break;
+        }
 
-    timer->deinit();
+          if(nullptr != led2)
+        {
+            err = led2->deinit();
+            if(OK!=err)
+                break;
+        }
+        else
+        {
+            err = NULLPTR_ERROR;
+            break;
+        }
 
-    oloff->deinit();
+        err= hss1->deinit();
+            if (OK!=err)
+            {
+                break;
+            }
+
+       
     
-    pushButtonAnalog->deinit();
-    vBat->deinit();
+        if(nullptr != pushButtonAnalog)
+        {
+            err = pushButtonAnalog->deinit();
+            if(OK!=err)
+                break;
+        }
+        else
+        {
+            err = NULLPTR_ERROR;
+            break;
+        }
+
+        if(nullptr != vBat)
+        {
+            err = vBat->deinit();
+            if(OK!=err)
+                break;
+        }
+        else
+        {
+            err = NULLPTR_ERROR;
+            break;
+        }
+
+    }
+    while(0);
 
     return OK;
 }
@@ -93,15 +188,12 @@ Error_t Bts500xxShield::deinit()
  */
 Error_t Bts500xxShield::switchHxOn(uint8_t x)
 {
-            if(x==1)
-            {
-            hss1->enable();
+           Error_t err= OK;
+            err=hss1->enable();
             if (NULL != led1)
                 led1->enable();
-             }
-        
        
-    return OK;
+    return err;
 }
 
 /**
@@ -115,15 +207,13 @@ Error_t Bts500xxShield::switchHxOn(uint8_t x)
  */
 Error_t Bts500xxShield::switchHxoff(uint8_t x)
 {
-            if(x==1)
-            {
-            hss1->disable();
+            Error_t err= OK;
+           err= hss1->disable();
             if (NULL != led1)
                 led1->disable();
-             }
         
        
-    return OK;
+    return err;
 }
 
 
@@ -134,22 +224,16 @@ Error_t Bts500xxShield::switchHxoff(uint8_t x)
  * and calculates the current which is flowing through the switch
  * with the acquired ADC value.
  * 
- * @param[in]   x   Number of the desired channel (1-4)
+ * @param[in]   x   Number of the desired channel (1)
  * @return          The value of the current in [A]      
  */
 float Bts500xxShield::readIsx(uint8_t x)
 {
     float isVal;
-    uint16_t adcResult;
-
-    if(x==1)
-    {
-
-    
+   
             hss1->enableDiag();
-            isVal = getIs(1);
+            isVal = getIs();
             hss1->disableDiag();
-    }  
         
       
     return isVal;
@@ -162,21 +246,17 @@ float Bts500xxShield::readIsx(uint8_t x)
  * and calculates the current which is flowing through the switch
  * with the acquired ADC value.
  * 
- * @param[in]   x   Number of the desired channel (1-4)
  * @return          The value of the current in [A]      
  */
-float Bts500xxShield::getIs(uint8_t x)
+float Bts500xxShield::getIs()
 {
     uint16_t adcResult;
     float amps, ampsCalib;
-     if(x==1)
-    {
         
             adcResult = hss1->readIs();
             amps = ((float)adcResult/(float)1024) * (float)5;
             ampsCalib = hss1->calibrateIs(amps, btsVariant->kilis, btsVariant->ampsOffset, btsVariant->ampsGain);
 
-    }
     return ampsCalib;
 }
 
@@ -187,7 +267,7 @@ float Bts500xxShield::getIs(uint8_t x)
  * This function uses the current signal of the channel to diagnose the channel.
  * It returns the different states depending on the channels condition.
  * 
- * @param[in]   x   Desired channel for the diagnosis (1-4)   
+ * @param[in]   x   Desired channel for the diagnosis (1)   
  * @return      Bts500xxShield::DiagStatus_t
  * 
  * @retval      0   Everything works correctly
@@ -212,11 +292,11 @@ DiagStatus_t Bts500xxShield::readDiagx(uint8_t x)
             }
             else
             {
-                oloff->enable();
+               
                 timer->delayMicro(300);
                 currentOn = getIs(1);
     
-                oloff->disable();
+                
                 timer->delayMicro(400);
                 currentOff = getIs(1);
                 diagStatus = diagnosisOff(currentOn, currentOff);
@@ -227,35 +307,6 @@ DiagStatus_t Bts500xxShield::readDiagx(uint8_t x)
     return diagStatus;
 }
 
-/**
- * @brief Calculates the diagnosis state
- * 
- * This functions determines the diagnosis state of the High-Side-Switch.
- * It uses the measrued currents with en- and disabled Open-Load-Detection.
- * 
- * @param[in]   currentOn   Measrued current with Open-Load-Detection on 
- * @param[in]   currentOff  Measrued current with Open-Load-Detection off 
- * @return Bts500xxShield::DiagStatus_t 
- */
-DiagStatus_t Bts500xxShield::diagnosisOff(float currentOn, float currentOff)
-{
-    if((currentOn > (0.0018 * btsVariant->kilis)) && (currentOn < (0.0044 * btsVariant->kilis))){
-        if((currentOff > (0.0018 * btsVariant->kilis)) && (currentOff < (0.0044 * btsVariant->kilis))){
-            return DiagStatus_t::SHORT_TO_VSS;
-        }
-        else{
-            return DiagStatus_t::OPEN_LOAD;
-        }
-    }
-    else{
-        if((currentOn > (0.0044 * btsVariant->kilis))){
-            return DiagStatus_t::SHORT_TO_GND;
-        }
-        else{
-            return DiagStatus_t::NORMAL;
-        }
-    }
-}
 
 /**
  * @brief Reads the batter voltage

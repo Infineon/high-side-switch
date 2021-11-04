@@ -58,6 +58,30 @@ BtsVariants_t BTS7008 {
 };
 
 /**
+ * @brief BTS50015-1TAD.
+ * Is rated for nominal 33 A
+ */
+BtsVariants_t BTS50015 {
+    .kilis = 51500,
+    .ampsGain = 1.08,
+    .ampsOffset = 0.0,
+    .vBatGain = 1.045,
+    .vBatOffset = 0.0
+};
+
+/**
+ * @brief BTS50010-1TAD.
+ * Is rated for nominal 40 A
+ */
+BtsVariants_t BTS50010 {
+    .kilis = 52100,
+    .ampsGain = 1.08,
+    .ampsOffset = 0.0,
+    .vBatGain = 1.045,
+    .vBatOffset = 0.0
+};
+
+/**
  * @brief BTT6030.
  * Is rated for nominal 5 A per channel
  */

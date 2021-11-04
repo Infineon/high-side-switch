@@ -39,7 +39,6 @@ Hss::Hss()
  * @param[in]   den         Pin number of DEN 
  * @param[in]   in          Pin number of IN
  * @param[in]   is          Pin number of IS
- * @param[in]   variant     Variant of the BTS700x
  */
 Hss::Hss(GPIO *den, GPIO *in, AnalogDigitalConverter *is)
 {
@@ -64,8 +63,8 @@ Hss::Hss(GPIO *den, GPIO *in, AnalogDigitalConverter *is)
  * 
  * @param[in]   den         Pin number of DEN 
  * @param[in]   in          Pin number of IN
+ * @param[in]   dsel        Pin number of dsel
  * @param[in]   is          Pin number of IS
- * @param[in]   variant     Variant of the BTS700x
  */
 Hss::Hss(GPIO *den, GPIO *in, GPIO *dsel, AnalogDigitalConverter *is)
 {
@@ -326,6 +325,9 @@ Error_t Hss::disableDiag()
  * @brief Selects diagnosis channel for diagnosis
  * 
  * This function is selecting the channel to perform diagnosis
+ * 
+ * @param[in] ch    Channel number (in case of Profet 24V shield)
+ * @note   This function is accessed only if the shield is Profet24V
  * 
  * @return Error_t 
  */

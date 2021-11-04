@@ -21,8 +21,9 @@
 class HssIno : public Hss
 {
     public:
-    
-        HssIno(uint8_t den, uint8_t in, uint8_t is, BtsVariants_t *variant);
+        
+        HssIno(uint8_t den, uint8_t in, uint8_t is);
+        HssIno(uint8_t den, uint8_t in, uint8_t dsel, uint8_t is);
         ~HssIno();
 };
 

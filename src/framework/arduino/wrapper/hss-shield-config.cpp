@@ -33,3 +33,25 @@ Bts700xHwConfig_t BTS700X_HWCONFIG
     .is1_is2 =          A2,         //IS 1_2
     .is3_is4 =          A3          //IS 3_4
 };
+
+Profet24VBTTHwConfig_t PROFET24VBTT_HWCONFIG
+{
+    //Profet0 - BTT6030 (2 channel) pin config
+    .in0_0  = A3,
+    .den_0  = A4,
+    .dsel_0 = 2,
+    .in1_0  = 3,
+    .is_0   = A0,
+
+    //Profet1 - BTT6030 (2 channel) pin config
+    .in0_1  = 4,
+    .den_1  = 5,
+    .dsel_1 = 6,
+    .in1_1  = 7,
+    .is_1   = A1,
+
+    //Profet2 - BTT6020 (1 channel) pin config
+    .in0_2  = 8,
+    .den_2  = 9,
+    .is_2   = A2,
+};

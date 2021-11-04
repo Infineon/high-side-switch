@@ -3,6 +3,24 @@ Introduction
 **************
 Welcome to the Infineon Smart High-Side Switch library docs!
 
+.. image:: img/btt6x_shield.jpg
+    :height: 75
+
+.. image:: img/btt6x_chip.jpg
+    :height: 75
+
+.. image:: img/bts5001x_shield.png
+    :height: 75
+
+.. image:: img/bts5001x_chip.jpg
+    :height: 75
+
+.. image:: img/bts700x_shield.jpg
+    :height: 75
+
+.. image:: img/bts700x_chip.png
+    :height: 75
+
 Scope
 =====
 This library covers the following products:
@@ -12,19 +30,7 @@ This library covers the following products:
 PROFET\ |trade|\ + 24V family
 -----------------------------
 
-.. image:: img/btt6x_shield.jpg
-    :width: 150
-
-.. image:: img/btt6x_chip.jpg
-    :width: 150
-
-Shields for Arduino
-"""""""""""""""""""
-
 * `24V Protected Switch Shield with BTT6030-2EKA and BTT6020-1EKA`_
-
-Chip only
-"""""""""
 
 * `BTT6020-1EKA`_
 * `BTT6030-2EKA`_
@@ -32,20 +38,8 @@ Chip only
 12V Protected Switches
 ----------------------
 
-.. image:: img/bts5001x_shield.png
-    :width: 150
-
-.. image:: img/bts5001x_chip.jpg
-    :width: 150
-
-Shields for Arduino
-"""""""""""""""""""
-
 * `12V Protected Switch Shield with BTS50010-1TAD`_
 * `12V Protected Switch Shield with BTS50015-1TAD`_
-
-Chip only
-"""""""""
 
 * `BTS50010-1TAD`_
 * `BTS50015-1TAD`_
@@ -53,22 +47,10 @@ Chip only
 Smart High-Side Power Switches
 ------------------------------
 
-.. image:: img/bts700x_shield.jpg
-    :width: 150
-
-.. image:: img/bts700x_chip.png
-    :width: 100
-
-Shields for Arduino
-"""""""""""""""""""
-
 * `SHIELD_BTS7002-1EPP`_
 * `SHIELD_BTS7004-1EPP`_
 * `SHIELD_BTS7006-1EPP`_
 * `SHIELD_BTS7008-1EPP`_
-
-Chip only
-"""""""""
 
 * `BTS7002-1EPP`_
 * `BTS7004-1EPP`_

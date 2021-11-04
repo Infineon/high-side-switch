@@ -42,9 +42,9 @@ GPIOIno::GPIOIno(uint8_t pin, uint8_t mode, VLogic_t logic)
  * 
  * This function is initializing the chosen pin.
  * 
- * @return      GPIOIno::Error_t 
+ * @return      Error_t 
  */
-GPIOIno::Error_t GPIOIno::init()
+Error_t GPIOIno::init()
 {
     pinMode(this->pin, this->mode);
     return OK;
@@ -55,9 +55,9 @@ GPIOIno::Error_t GPIOIno::init()
  * 
  * This function is deinitializing the chosen pin.
  * 
- * @return      GPIOIno::Error_t 
+ * @return      Error_t 
  */
-GPIOIno::Error_t GPIOIno::deinit()
+Error_t GPIOIno::deinit()
 {
     return OK;
 }
@@ -83,9 +83,9 @@ GPIOIno::VLevel_t GPIOIno::read()
  * This functions sets the logic level of the chosen pin.
  * 
  * @param[in]   level   Desired logic level of the pin
- * @return      GPIOIno::Error_t 
+ * @return      Error_t 
  */ 
-GPIOIno::Error_t GPIOIno::write(VLevel_t level)
+Error_t GPIOIno::write(VLevel_t level)
 {   
     digitalWrite(this->pin, level);    
     return OK;
@@ -97,9 +97,9 @@ GPIOIno::Error_t GPIOIno::write(VLevel_t level)
  * This functions enable the chosen pin. Depending on the chosen logic of the pin
  * it sets the right logic level of the pin.
  * 
- * @return      GPIOIno::Error_t 
+ * @return      Error_t 
  */
-GPIOIno::Error_t GPIOIno::enable()
+Error_t GPIOIno::enable()
 {
     if(this->logic == POSITIVE){
         digitalWrite(this->pin, GPIO_HIGH);
@@ -116,9 +116,9 @@ GPIOIno::Error_t GPIOIno::enable()
  * This functions disables the chosen pin. Depending on the chosen logic of the pin
  * it sets the right logic level of the pin.
  * 
- * @return      GPIOIno::Error_t 
+ * @return      Error_t 
  */
-GPIOIno::Error_t GPIOIno::disable()
+Error_t GPIOIno::disable()
 {
     if(this->logic == POSITIVE){
         digitalWrite(this->pin, GPIO_LOW);

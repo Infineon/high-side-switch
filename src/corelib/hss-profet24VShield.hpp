@@ -18,21 +18,18 @@ using namespace hss;
 class Profet24VBTTShield : HssShield
 {
     public:
-        enum BttTypes_t{
-            BTT6030T = 0,
-            BTT6020T = 1
-        };
-                        Profet24VBTTShield();
+
+                        Profet24VBTTShield(Hss *hsw0, Hss *hsw1, Hss *hsw2, Hss *hsw3, Hss *hsw4);
                         ~Profet24VBTTShield();
 
         Error_t         init();
         Error_t         deinit();
-        Error_t         switchHxOn(uint8_t x, Channel_t ch);
-        Error_t         switchHxOff(uint8_t x, Channel_t ch);
-        Error_t         switchesHxOn(bool h1_0 = NULL, bool h2_0 = NULL, bool h1_1 = NULL, bool h2_1 = NULL, bool h2 = NULL);
+        Error_t         switchHxOn   (uint8_t x);
+        Error_t         switchHxOff  (uint8_t x);
+        Error_t         switchesHxOn (bool h1_0 = NULL, bool h2_0 = NULL, bool h1_1 = NULL, bool h2_1 = NULL, bool h2 = NULL);
         Error_t         switchesHxOff(bool h1_0 = NULL, bool h2_0 = NULL, bool h1_1 = NULL, bool h2_1 = NULL, bool h2 = NULL);
-        DiagStatus_t    readDiagx(uint8_t x, Channel_t ch=NULL_CHANNEL);
-        float           readIsx(uint8_t x, Channel_t ch);
+        DiagStatus_t    readDiagx    (uint8_t x);
+        float           readIsx      (uint8_t x);
     
     protected:
 
@@ -43,11 +40,16 @@ class Profet24VBTTShield : HssShield
         Hss *hss4;
 
         Timer *timer;
+        
+        float           getIs(uint8_t x);
 
-        uint16_t ris_Ohm = 1200;
+    private:
+    
+        const uint16_t ris_Ohm = 1200;
+        const float iisFault      = 0.006;
+        const float iisOl_btt6030 =  0.000005;
+        const float iisOl_btt6020 =  0.000004;
 
-        float           getIs(uint8_t x, Channel_t ch=NULL_CHANNEL);
-        DiagStatus_t    diagRead(BttTypes_t bttType, float amps, uint16_t kilis);
         
 };
 

@@ -34,9 +34,9 @@ TimerIno::~TimerIno()
  * This function is initializing the Timer and sets
  * the elapsed time to zero.
  * 
- * @return      TimerIno::Error_t 
+ * @return      Error_t 
  */
-TimerIno::Error_t TimerIno::init()
+Error_t TimerIno::init()
 {
     startTime = 0;
     return OK;
@@ -48,9 +48,9 @@ TimerIno::Error_t TimerIno::init()
  * This function deinitialize the Timer and also
  * resets the elapsed time variable.
  * 
- * @return      TimerIno::Error_t 
+ * @return      Error_t 
  */
-TimerIno::Error_t TimerIno::deinit()
+Error_t TimerIno::deinit()
 {
     startTime = 0;
     return OK;
@@ -61,9 +61,9 @@ TimerIno::Error_t TimerIno::deinit()
  * 
  * This function is starting the timer.
  * 
- * @return      TimerIno::Error_t 
+ * @return      Error_t 
  */
-TimerIno::Error_t TimerIno::start()
+Error_t TimerIno::start()
 {
     startTime = millis();
     return OK;
@@ -77,9 +77,9 @@ TimerIno::Error_t TimerIno::start()
  * is in milliseconds. 
  * 
  * @param[in]   &elapsed                Address of a value where the elapsed time should be stored
- * @return      TimerIno::Error_t 
+ * @return      Error_t 
  */
-TimerIno::Error_t TimerIno::elapsed(uint32_t &elapsed)
+Error_t TimerIno::elapsed(uint32_t &elapsed)
 {
     elapsed = millis() - startTime;
     return OK;
@@ -91,9 +91,9 @@ TimerIno::Error_t TimerIno::elapsed(uint32_t &elapsed)
  * This function stops the timer and resets the
  * start time variable.
  * 
- * @return      TimerIno::Error_t 
+ * @return      Error_t 
  */
-TimerIno::Error_t TimerIno::stop()
+Error_t TimerIno::stop()
 {
     startTime = 0;
     return OK;
@@ -106,9 +106,9 @@ TimerIno::Error_t TimerIno::stop()
  * The input value is given in milliseconds.
  * 
  * @param[in]   timeout                 Desired timeout in ms 
- * @return      TimerIno::Error_t 
+ * @return      Error_t 
  */
-TimerIno::Error_t TimerIno::delayMilli(uint32_t timeout)
+Error_t TimerIno::delayMilli(uint32_t timeout)
 {
     delay(timeout);
     return OK;
@@ -121,9 +121,9 @@ TimerIno::Error_t TimerIno::delayMilli(uint32_t timeout)
  * The input value is given in microseconds.
  * 
  * @param[in]   timeout                 Desired timeout in us 
- * @return      TimerIno::Error_t 
+ * @return      Error_t 
  */
-TimerIno::Error_t TimerIno::delayMicro(uint32_t timeout)
+Error_t TimerIno::delayMicro(uint32_t timeout)
 {
     delayMicroseconds(timeout);
     return OK;

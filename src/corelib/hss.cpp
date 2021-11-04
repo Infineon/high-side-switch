@@ -114,15 +114,69 @@ Error_t Hss::init()
 {
     Error_t err = OK;
 
-    den->init();
-    in->init();
-    is->init();
+    do
+    {
+        if(nullptr != den)
+        {
+            err = den->init();
+            if(OK!=err)
+                break;
+        }
+        else
+        {
+            err = NULLPTR_ERROR;
+            break;
+        }
 
-    timer->init();
+        if(nullptr != in)
+        {
+            err = in->init();
+            if(OK!=err)
+                break;
+        }
+        else
+        {
+            err = NULLPTR_ERROR;
+            break;
+        }
+
+        if(nullptr != is)
+        {
+            err = in->init();
+            if(OK!=err)
+                break;
+        }
+        else
+        {
+            err = NULLPTR_ERROR;
+            break;
+        }
+
+        if(nullptr != dsel)
+        {
+            err = dsel->init();
+            if(OK!=err)
+                break;
+        }
+
+        if(nullptr != timer)
+        {
+            err = timer->init();
+            if(OK!=err)
+                break;
+        }
+        else
+        {
+            err = NULLPTR_ERROR;
+            break;
+        }
+        
+    } while (0);
 
     currentFilter = new ExponentialFilter(0.0, 0.3);
 
     status = INITED;
+
     return err;
 }
 
@@ -135,12 +189,67 @@ Error_t Hss::deinit()
 {
     Error_t err = OK;
 
-    den->deinit();
-    in->deinit();
-    is->deinit();
-    
-    timer->deinit();
+    do
+    {
+        if(nullptr != den)
+        {
+            err = den->deinit();
+            if(OK!=err)
+                break;
+        }
+        else
+        {
+            err = NULLPTR_ERROR;
+            break;
+        }
+
+        if(nullptr != in)
+        {
+            err = in->deinit();
+            if(OK!=err)
+                break;
+        }
+        else
+        {
+            err = NULLPTR_ERROR;
+            break;
+        }
+
+        if(nullptr != is)
+        {
+            err = in->deinit();
+            if(OK!=err)
+                break;
+        }
+        else
+        {
+            err = NULLPTR_ERROR;
+            break;
+        }
+
+        if(nullptr != dsel)
+        {
+            err = dsel->deinit();
+            if(OK!=err)
+                break;
+        }
+
+        if(nullptr != timer)
+        {
+            err = timer->deinit();
+            if(OK!=err)
+                break;
+        }
+        else
+        {
+            err = NULLPTR_ERROR;
+            break;
+        }
+        
+    } while (0);
+
     status = UNINITED;
+
     return err;
 }
 
@@ -214,48 +323,25 @@ Error_t Hss::disableDiag()
 }
 
 /**
- * @brief Get den status
+ * @brief Selects diagnosis channel for diagnosis
  * 
- * This function is returning the status of diagnosis enable of High-Side-Switch.
+ * This function is selecting the channel to perform diagnosis
  * 
  * @return Error_t 
  */
-DiagEnable_t Hss::getEnDiagStatus()
-{
-    return diagEnb;
-}
-/**
- * @brief Enable channel0 for diagnosis
- * 
- * This function is setting channel 0 of the chip
- * to perform diagnosis.
- * 
- * @return Error_t 
- * @note   This function is valid only for chips supporting multiple channels
- */
-Error_t Hss::diagSelCh0()
+Error_t Hss::selDiagCh(Channel_t ch)
 {
     Error_t err = OK;
 
-    dsel->disable();
-
-    return err;
-}
-
-/**
- * @brief Enable channel1 for diagnosis
- * 
- * This function is setting channel 1 of the chip
- * to perform diagnosis.
- * 
- * @return Error_t 
- */
-Error_t Hss::diagSelCh1()
-{
-    Error_t err = OK;
-
-    dsel->enable();
-
+    if(CHANNEL0 == ch){
+        dsel->disable();
+    }
+    else if(CHANNEL1 == ch){
+        dsel->enable();
+    }
+    else 
+        return INVALID_CH_ERROR;
+    
     return err;
 }
 
@@ -302,12 +388,22 @@ Status_t Hss::getSwitchStatus()
  * 
  * This functions is reading the IS signal of the switch.
  * It returns the value in ADC, which is depending on the IS signal.
+ * @param[in]   ch  Channel number 
+ * 
+ * @note Before calling this function, ensure IS pin is initialized and 
+ *       you do not have to pass channel in case your shield does not support multiple channel
+ *       and this would default to NO_CHANNEL applicable.
  * 
  * @return Recorded ADC Value  
  */
-uint16_t Hss::readIs()
+uint16_t Hss::readIs(Channel_t ch)
 {
     uint16_t AnalogDigitalConverterResult = 0;
+
+    if(NO_CHANNEL != ch){
+        selDiagCh(ch);
+    }
+    
     if(diagEnb == DIAG_EN){
         timer->delayMilli(1);          //wait for 1ms to ensure that the Profet will provide a valid sense signal
         AnalogDigitalConverterResult = is->ADCRead();
@@ -326,6 +422,8 @@ uint16_t Hss::readIs()
  * @param[in] ampsGain   Current gain factor     
  * 
  * @return Calibrated current value for Is 
+ * 
+ * @note This function should be called only after readIs()
  */
 float Hss::calibrateIs(float isVal, uint16_t kilis, float ampsOffset, float ampsGain)
 {
@@ -342,22 +440,34 @@ float Hss::calibrateIs(float isVal, uint16_t kilis, float ampsOffset, float amps
  * This function is using the IS signal to determine the state of the switch.
  * It returns an diagnosis state of the switch.
  * 
+ * @param[in]   amps        Sensed current value
+ * @param[in]   iisfault    Sensed current at fault condition
+ * @param[in]   iisOl       Open load detection threshold
+ * @param[in]   kilis       Current sense ratio
+ * @param[in]   ch          Channel no. (*Optional)
  * @return DiagStatus_t
  * 
  * @retval  -2  Not enabled
  * @retval  0   Switch is working fine
  * @retval  1   Overload detected 
  * @retval  5   Open load detected
- 
+ * 
+ * @note    This function should be called only after you get the Is value. 
+ *          Also note, in case you are using shield with no channel differentiation, 
+ *          then ignore the 'ch' parameter and this will default to NO_CHANNEL. 
  */
-DiagStatus_t Hss::diagRead(float amps, uint16_t kilis)
+DiagStatus_t Hss::diagRead(float amps, float iisFault, float iisOl, uint16_t kilis, Channel_t ch)
 {
+    if(NO_CHANNEL != ch){
+        selDiagCh(ch);
+    }
+    
     if(diagEnb == DIAG_EN)
     {
-        if(amps > (0.0044*kilis)){
+        if(amps > (iisFault*kilis)){
             return DiagStatus_t::OVERLOAD;
         }
-        else if(amps < (0.00002*kilis)){
+        else if(amps < (iisOl*kilis)){
             return DiagStatus_t::OPEN_LOAD;
         }
         else{

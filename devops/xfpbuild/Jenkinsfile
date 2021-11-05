@@ -54,7 +54,7 @@ pipeline {
 		TIER             = "${params.TIER}"
 		WEB_ROOT         = "/home/razweb/htdocs-${params.SERVER}"
 		REPO_NAME        = "${JOB_NAME.replaceFirst(/^.*\/XFP (.*)\/.*$/, '$1')}"
-		DOCS_TARGET      = "${env.WEB_ROOT}/itec/xfp/${env.REPO_NAME}/${env.BRANCH_NAME}"
+		DOCS_TARGET      = "${env.WEB_ROOT}/itec/xfp/high-side-switch-test/${env.BRANCH_NAME}"
 		DOCS_SOURCE      = "${env.WORKSPACE}/docs/doxygen/build"
 		ROOT_URL         = "https://${params.SERVER}.vih.infineon.com"
 		SONARINSTANCE    = "${params.SONARINSTANCE}"

@@ -93,9 +93,8 @@ Please find the license file for this library `here <https://github.com/Infineon
    :caption: Library Details
    :hidden:
 
-   BGT60 API <lib-details/bgt60-api.rst>
+   API <lib-details/api.rst>
    PAL Interface <lib-details/pal-interface.rst>
-   Preprocessor Configuration <lib-details/preprocessor-config.rst>
    Doxygen Docs <lib-details/doxygen.rst>
 
 .. toctree::
@@ -109,12 +108,3 @@ Please find the license file for this library `here <https://github.com/Infineon
    :hidden:
 
    sw-frmwk/arduino/index
-   sw-frmwk/raspberrypi/index
-   sw-frmwk/raspberrypi-py/index
-
-.. toctree::
-   :maxdepth: 3
-   :caption: Examples
-   :hidden:
-
-   Arduino Examples <examples/example.rst>

@@ -1,13 +1,17 @@
 # Smart High-Side Switch
-C++ library for Infineon's Arduino shield SHIELD_BTS700x-1EPP with the **Smart High-Side Power Switch BTS700x-1EPP**
+C++ library for Infineon's Arduino shields for **Smart High-Side Power Switches** Automotive/Industrial grade
 
 ## Supported Products
 <table>
     <tr>
         <td><img src="docs/img/Profet+2.png" width="300"></td>
+        <td><img src="docs/img/BTS50015-1TAD.jpg" width="300"></td>
+        <td><img src="docs/img/BTT6020-1EKA.jpg" width="300"></td>
     </tr>
     <tr>
         <td style="test-align : center"><a href="https://github.com/Infineon/high-side-switch/wiki">BTS700x-1EPP Arduino Shield</a></td>
+        <td style="test-align : center"><a href="https://github.com/Infineon/high-side-switch/wiki">BTS500xx-1TAD Arduino Shield</a></td>
+        <td style="test-align : center"><a href="https://github.com/Infineon/high-side-switch/wiki">BTT6030 Arduino Shield</a></td>
     </tr>
 </table>
 

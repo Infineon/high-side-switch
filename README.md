@@ -1,5 +1,5 @@
 # Smart High-Side Switch
-C++ library for Infineon's Arduino shields for **Smart High-Side Power Switches** Automotive/Industrial grade
+C++ library for Infineon's Arduino shields for **Smart High-Side Power Switches** Automotive grade
 
 ## Supported Products
 <table>
@@ -19,13 +19,15 @@ C++ library for Infineon's Arduino shields for **Smart High-Side Power Switches*
 <table>
     <tr>
         <td><img src="img/../docs/img/arduino-logo.png" width="200"></td>
+        <td><img src="img/../docs/img/cross-platform.png" width="200"></td>
     </tr>
     <tr>
         <td style="text-align: center"><a href="https://github.com/Infineon/high-side-switch/wiki/Library-Details#api">Arduino API</a></td>
-        <td></td>
+         <td style="text-align: center"><a href="https://github.com/Infineon/high-side-switch/wiki/Library-Details#api">BTS700x API</a><br><a href="https://github.com/Infineon/high-side-switch/wiki/Library-Details#api">BTS500xx API</a><br><a href="https://github.com/Infineon/high-side-switch/wiki/Library-Details#api">BTT6030 API</a></td>
     </tr>
     <tr>
         <td style="text-align: center"><a href="https://github.com/Infineon/high-side-switch/wiki/Getting-Started">Getting Started</a></td>
+        <td style="text-align: center"><a href="https://github.com/Infineon/high-side-switch/wiki/Getting-Started">Porting Guide</a></td>
     </tr>
 </table>
 

@@ -119,6 +119,12 @@ Error_t Hss::init()
             break;
         }
 
+        if(nullptr != dsel){
+            err = dsel->init();
+            if(OK != err)
+            break;
+        }
+
         if(nullptr != timer){
             err = timer->init();
             if(OK != err)
@@ -167,6 +173,12 @@ Error_t Hss::deinit()
             break;
         }
 
+        if(nullptr != dsel){
+            err = dsel->deinit();
+            if(OK != err)
+            break;
+        }
+
         if(nullptr != is){
             err = is->deinit();
             if(OK != err)
@@ -206,16 +218,21 @@ Error_t Hss::enable()
 {
     Error_t err = OK;
 
-    if(nullptr != in){
-        err = in->enable();
+    if(UNINITED != status){
+        if(nullptr != in){
+            err = in->enable();
 
-        if(OK != err)
-        return err;
+            if(OK != err)
+            return err;
 
-        status = POWER_ON;
+            status = POWER_ON;
+        }
+        else{
+            err = NULLPTR_ERROR;
+        }
     }
     else{
-        err = NULLPTR_ERROR;
+        err = INIT_ERROR;
     }
 
     return err;
@@ -233,16 +250,21 @@ Error_t Hss::disable()
 {
     Error_t err = OK;
 
-    if(nullptr != in){
-        err = in->disable();
+    if(UNINITED != status){
+        if(nullptr != in){
+            err = in->disable();
 
-        if(OK != err)
-        return err;
+            if(OK != err)
+            return err;
 
-        status = POWER_OFF;
+            status = POWER_OFF;
+        }
+        else{
+            err = NULLPTR_ERROR;
+        }
     }
     else{
-        err = NULLPTR_ERROR;
+        err = INIT_ERROR;
     }
 
     return err;
@@ -259,16 +281,21 @@ Error_t Hss::enableDiag()
 {
     Error_t err = OK;
 
-    if(nullptr != den){
-        err = den->enable();
+    if(UNINITED != status){
+        if(nullptr != den){
+            err = den->enable();
 
-        if(OK != err)
-        return err;
+            if(OK != err)
+            return err;
 
-        diagEnb = DIAG_EN;
+            diagEnb = DIAG_EN;
+        }
+        else{
+            err = NULLPTR_ERROR;
+        }
     }
     else{
-        err = NULLPTR_ERROR;
+        err = INIT_ERROR;
     }
 
     return err;
@@ -285,16 +312,21 @@ Error_t Hss::disableDiag()
 {
     Error_t err = OK;
 
-    if(nullptr != den){
-        err = den->disable();
+    if(UNINITED != status){
+        if(nullptr != den){
+            err = den->disable();
 
-        if(OK != err)
-        return err;
+            if(OK != err)
+            return err;
 
-        diagEnb = DIAG_DIS;
+            diagEnb = DIAG_DIS;
+        }
+        else{
+            err = NULLPTR_ERROR;
+        }
     }
     else{
-        err = NULLPTR_ERROR;
+        err = INIT_ERROR;
     }
 
     return err;
@@ -325,14 +357,19 @@ Error_t Hss::diagSelCh0()
 {
     Error_t err = OK;
 
-    if(nullptr != dsel){
-        err = dsel->disable();
+    if(UNINITED != status){
+        if(nullptr != dsel){
+            err = dsel->disable();
 
-        if(OK != err)
-        return err;
+            if(OK != err)
+            return err;
+        }
+        else{
+            err = NULLPTR_ERROR;
+        }
     }
     else{
-        err = NULLPTR_ERROR;
+        err = INIT_ERROR;
     }
 
     return err;
@@ -350,16 +387,20 @@ Error_t Hss::diagSelCh1()
 {
     Error_t err = OK;
 
-    if(nullptr != dsel){
-        err = dsel->enable();
+    if(UNINITED != status){
+        if(nullptr != dsel){
+            err = dsel->enable();
 
-        if(OK != err)
-        return err;
+            if(OK != err)
+            return err;
+        }
+        else{
+            err = NULLPTR_ERROR;
+        }
     }
     else{
-        err = NULLPTR_ERROR;
+        err = INIT_ERROR;
     }
-
     return err;
 }
 
@@ -376,33 +417,38 @@ Error_t Hss::diagReset()
 {
     Error_t err = OK;
 
-    do
-    {
-        if(nullptr != in){
-            err = in->disable();
+    if(UNINITED != status){
+        do
+        {
+            if(nullptr != in){
+                err = in->disable();
 
-            if(OK != err)
-            break;
-        }
-        else{
-            err = NULLPTR_ERROR;
-            break;
-        }
+                if(OK != err)
+                break;
+            }
+            else{
+                err = NULLPTR_ERROR;
+                break;
+            }
 
-        if(nullptr != timer){
-            err = timer->delayMilli(100);
+            if(nullptr != timer){
+                err = timer->delayMilli(100);
 
-            if(OK != err)
-            break;
-        }
-        else{
-            err = NULLPTR_ERROR;
-            break;
-        }
+                if(OK != err)
+                break;
+            }
+            else{
+                err = NULLPTR_ERROR;
+                break;
+            }
 
-        err = in->enable();
+            err = in->enable();
 
-    } while (0);
+        } while (0);
+    }
+    else{
+        err = INIT_ERROR;
+    }
 
     return err;
 }
@@ -435,10 +481,14 @@ Status_t Hss::getSwitchStatus()
 uint16_t Hss::readIs()
 {
     uint16_t adcRes = 0;
-    if(diagEnb == DIAG_EN){
-        timer->delayMilli(1);          //wait for 1ms to ensure that the Profet will provide a valid sense signal
-        adcRes = is->ADCRead();
+
+    if(UNINITED != status){
+        if(diagEnb == DIAG_EN){
+            timer->delayMilli(1);          //wait for 1ms to ensure that the Profet will provide a valid sense signal
+            adcRes = is->ADCRead();
+        }
     }
+
     return adcRes;
 }
 

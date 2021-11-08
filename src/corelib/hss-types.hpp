@@ -30,7 +30,8 @@ namespace hss
 		WRITE_ERROR 	     = -4,   /**< Write error */
 		NULLPTR_ERROR        = -5,   /**< Null pointer error */
 		INVALID_CH_ERROR     = -6,   /**< Invalid channel error */
-        UNSUPPORTED_OP_ERROR = -7    /**< Invalid channel error */
+        UNSUPPORTED_OP_ERROR = -7,   /**< Invalid channel error */
+        INIT_ERROR           = -8    /**< Not initialized */
 	};
 	/** @} */
 

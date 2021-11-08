@@ -19,6 +19,7 @@ using ::testing::AnyNumber;
 using ::testing::Assign;
 using ::testing::SaveArg;
 using ::testing::SafeMatcherCast;
+using ::testing::NotNull;
 
 
 class MockADC : public ADCPAL

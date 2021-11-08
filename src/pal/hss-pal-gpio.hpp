@@ -15,6 +15,7 @@
 namespace hss
 {
 
+using namespace hss;
 /**
  * @addtogroup hssPal
  * @{

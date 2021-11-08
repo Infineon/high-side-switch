@@ -13,9 +13,13 @@ using namespace hss;
 /**
  * @brief   Profet 24V BTT6030 Shield constructor
  */
-Profet24VBTTShield::Profet24VBTTShield()
+Profet24VBTTShield::Profet24VBTTShield(Hss *hsw0, Hss *hsw1, Hss *hsw2, Hss *hsw3, Hss *hsw4)
 {
-
+    this->hss0 = hsw0;
+    this->hss1 = hsw1;
+    this->hss2 = hsw2;
+    this->hss3 = hsw3;
+    this->hss4 = hsw4;
 }
 
 /**
@@ -37,15 +41,33 @@ Profet24VBTTShield::~Profet24VBTTShield()
  */
 Error_t Profet24VBTTShield::init()
 {
-    hss0->init();
-    hss1->init();
-    hss2->init();
-    hss3->init();
-    hss4->init();
+    Error_t err = OK;
 
-    timer->init();
+    do
+    {
+        err = hss0->init();
+        if(OK != err)
+            break;
 
-    return OK;
+        err = hss1->init();
+        if(OK != err)
+            break;
+
+        err = hss2->init();
+        if(OK != err)
+            break;
+
+        err = hss3->init();
+        if(OK != err)
+            break;
+
+        err = hss4->init();
+        if(OK != err)
+            break;
+
+    } while (0);
+
+    return err;
 }
 
 /**
@@ -59,15 +81,33 @@ Error_t Profet24VBTTShield::init()
 Error_t Profet24VBTTShield::deinit()
 {
 
-    hss0->deinit();
-    hss1->deinit();
-    hss2->deinit();
-    hss3->deinit();
-    hss4->deinit();
+    Error_t err = OK;
 
-    timer->deinit();
+    do
+    {
+        err = hss0->deinit();
+        if(OK != err)
+            break;
 
-    return OK;
+        err = hss1->deinit();
+        if(OK != err)
+            break;
+
+        err = hss2->deinit();
+        if(OK != err)
+            break;
+
+        err = hss3->deinit();
+        if(OK != err)
+            break;
+
+        err = hss4->deinit();
+        if(OK != err)
+            break;
+
+    } while (0);
+
+    return err;
 }
 
 /**
@@ -75,42 +115,42 @@ Error_t Profet24VBTTShield::deinit()
  *
  * This function turns on the desired High-Side-Switch.
  *
- * @param[in]   x   Number of the Switch the should be turned on (0-2). Possible values:
- *                  Switch 0    -   Profet 0 (BTT6030 - 2 channel)
- *                  Switch 1    -   Profet 1 (BTT6030 - 2 channel)
- *                  Switch 2    -   Profet 2 (Single channel)
- * @param[in]   ch  Channel no. in the switch. Possible values:
- *                  CHANNEL0    -   Channel 0
- *                  CHANNEL1    -   Channel 1
+ * @param[in]   x    Number of the Switch the should be turned on (0-4). Possible values:
+ *                    Switch 0    -   Profet 0 (BTT6030 - channel 0)
+ *                    Switch 1    -   Profet 0 (BTT6030 - channel 1)
+ *                    Switch 2    -   Profet 1 (BTT6030 - channel 0)
+ *                    Switch 3    -   Profet 1 (BTT6030 - channel 1)
+ *                    Switch 4    -   Profet 2 (Single channel)
  *
  * @return          Error_t
  */
-Error_t Profet24VBTTShield::switchHxOn(uint8_t x, Channel_t ch)
+Error_t Profet24VBTTShield::switchHxOn(uint8_t x)
 {
+    Error_t err = OK;
+
     switch(x)
     {
         case 0:
-            if(CHANNEL0 == ch)
-                hss0->enable();
-            if(CHANNEL1 == ch)
-                hss1->enable();
+            err = hss0->enable();
             break;
 
         case 1:
-            if(CHANNEL0 == ch)
-                hss2->enable();
-            if(CHANNEL1 == ch)
-                hss3->enable();
+            err = hss1->enable();
             break;
 
         case 2:
-            if(NULL_CHANNEL != ch)
-                return INVALID_CH_ERROR;
+            err = hss2->enable();
+            break;
 
-            hss4->enable();
+        case 3:
+            err = hss3->enable();
+            break;
+
+        case 4:
+            err = hss4->enable();
             break;
     }
-    return OK;
+    return err;
 }
 
 /**
@@ -118,39 +158,39 @@ Error_t Profet24VBTTShield::switchHxOn(uint8_t x, Channel_t ch)
  *
  * This function turns off the desired High-Side-Switch.
  *
- * @param[in]   x   Number of the Switch the should be turned on (0-2). Possible values:
- *                  Switch 0    -   Profet 0 (BTT6030 - 2 channel)
- *                  Switch 1    -   Profet 1 (BTT6030 - 2 channel)
- *                  Switch 2    -   Profet 2 (Single channel)
- * @param[in]   ch  Channel no. in the switch. Possible values:
- *                  CHANNEL0    -   Channel 0
- *                  CHANNEL1    -   Channel 1
+ * @param[in]   x    Number of the Switch the should be turned on (0-4). Possible values:
+ *                    Switch 0    -   Profet 0 (BTT6030 - channel 0)
+ *                    Switch 1    -   Profet 0 (BTT6030 - channel 1)
+ *                    Switch 2    -   Profet 1 (BTT6030 - channel 0)
+ *                    Switch 3    -   Profet 1 (BTT6030 - channel 1)
+ *                    Switch 4    -   Profet 2 (Single channel)
  *
  * @return          Error_t
  */
-Error_t Profet24VBTTShield::switchHxOff(uint8_t x, Channel_t ch)
+Error_t Profet24VBTTShield::switchHxOff(uint8_t x)
 {
+    Error_t err = OK;
+
     switch(x)
     {
+        case 0:
+            err = hss0->disable();
+            break;
+
         case 1:
-            if(CHANNEL0 == ch)
-                hss0->disable();
-            if(CHANNEL1 == ch)
-                hss1->disable();
+            err = hss1->disable();
             break;
 
         case 2:
-            if(CHANNEL0 == ch)
-                hss2->disable();
-            if(CHANNEL1 == ch)
-                hss3->disable();
+            err = hss2->disable();
             break;
 
         case 3:
-            if(NULL_CHANNEL!=ch)
-                return INVALID_CH_ERROR;
+            err = hss3->disable();
+            break;
 
-            hss4->disable();
+        case 4:
+            err = hss4->disable();
             break;
     }
     return OK;
@@ -171,26 +211,28 @@ Error_t Profet24VBTTShield::switchHxOff(uint8_t x, Channel_t ch)
  */
 Error_t Profet24VBTTShield::switchesHxOn(bool h0_0, bool h1_0, bool h0_1, bool h1_1, bool h2)
 {
+    Error_t err = OK;
+
     if(h0_0 == true){
-        hss0->enable();
+        err = hss0->enable();
     }
 
     if(h1_0 == true){
-        hss1->enable();
+        err = hss1->enable();
     }
 
     if(h0_1 == true){
-        hss2->enable();
+        err = hss2->enable();
     }
 
     if(h1_1 == true){
-        hss3->enable();
+        err = hss3->enable();
     }
 
     if(h2 == true){
-        hss4->enable();
+        err = hss4->enable();
     }
-    return OK;
+    return err;
 }
 
 /**
@@ -208,24 +250,26 @@ Error_t Profet24VBTTShield::switchesHxOn(bool h0_0, bool h1_0, bool h0_1, bool h
  */
 Error_t Profet24VBTTShield::switchesHxOff(bool h0_0, bool h1_0, bool h0_1, bool h1_1, bool h2)
 {
+    Error_t err = OK;
+
     if(h0_0 == true){
-        hss0->disable();
+        err = hss0->disable();
     }
 
     if(h1_0 == true){
-        hss1->disable();
+        err = hss1->disable();
     }
 
     if(h0_1 == true){
-        hss2->disable();
+        err = hss2->disable();
     }
 
     if(h1_1 == true){
-        hss3->disable();
+        err = hss3->disable();
     }
 
     if(h2 == true){
-        hss4->disable();
+        err = hss4->disable();
     }
     return OK;
 }
@@ -239,59 +283,47 @@ Error_t Profet24VBTTShield::switchesHxOff(bool h0_0, bool h1_0, bool h0_1, bool 
  *      - Calls function to get the calibrated sensed current value on chosen channel
  *      - Disables diagnosis pin post operation completion
  *
- * @param[in]   x   Number of the Switch the should be turned on (0-2). Possible values:
- *                  Switch 0    -   Profet 0 (BTT6030 - 2 channel)
- *                  Switch 1    -   Profet 1 (BTT6030 - 2 channel)
- *                  Switch 2    -   Profet 2 (Single channel)
- * @param[in]   ch  Channel no. in the switch. Possible values:
- *                  CHANNEL0    -   Channel 0
- *                  CHANNEL1    -   Channel 1
+ * @param[in]   x    Number of the Switch the should be turned on (0-4). Possible values:
+ *                    Switch 0    -   Profet 0 (BTT6030 - channel 0)
+ *                    Switch 1    -   Profet 0 (BTT6030 - channel 1)
+ *                    Switch 2    -   Profet 1 (BTT6030 - channel 0)
+ *                    Switch 3    -   Profet 1 (BTT6030 - channel 1)
+ *                    Switch 4    -   Profet 2 (Single channel)
  * @return          The calibrated value of the current in [A]
  */
-float Profet24VBTTShield::readIsx(uint8_t x, Channel_t ch)
+float Profet24VBTTShield::readIsx(uint8_t x)
 {
     float iisCalib;
 
     switch (x)
     {
         case 0:
-            if(CHANNEL0 == ch)
-            {
-                hss0->enableDiag();
-                hss0->diagSelCh0();
-                iisCalib = getIs(x,ch);
-                hss0->disableDiag();
-            }
-            if(CHANNEL1 == ch)
-            {
-                hss1->enableDiag();
-                hss1->diagSelCh1();
-                iisCalib = getIs(x,ch);
-                hss1->disableDiag();
-            }
+            hss0->enableDiag();
+            iisCalib = getIs(x);
+            hss0->disableDiag();
             break;
 
         case 1:
-            if(CHANNEL0 == ch)
-            {
-                hss2->enableDiag();
-                hss2->diagSelCh0();
-                iisCalib = getIs(x,ch);
-                hss2->disableDiag();
-            }
-            if(CHANNEL1 == ch)
-            {
-                hss3->enableDiag();
-                hss3->diagSelCh1();
-                iisCalib = getIs(x,ch);
-                hss3->disableDiag();
-            }
+            hss1->enableDiag();
+            iisCalib = getIs(x);
+            hss1->disableDiag();
             break;
 
         case 2:
+            hss2->enableDiag();
+            iisCalib = getIs(x);
+            hss2->disableDiag();
+            break;
 
+        case 3:
+            hss3->enableDiag();
+            iisCalib = getIs(x);
+            hss3->disableDiag();
+            break;
+
+        case 4:
             hss4->enableDiag();
-            iisCalib = getIs(x,ch);
+            iisCalib = getIs(x);
             hss4->disableDiag();
             break;
     }
@@ -307,19 +339,18 @@ float Profet24VBTTShield::readIsx(uint8_t x, Channel_t ch)
  *  - Converts raw ADC value to voltage and in-turn to sensed current
  *  - Performs current calibration
  *
- * @param[in]   x           Number of the Switch the should be turned on (0-2). Possible values:
- *                          Switch 0    -   Profet 0 (BTT6030 - 2 channel)
- *                          Switch 1    -   Profet 1 (BTT6030 - 2 channel)
- *                          Switch 2    -   Profet 2 (Single channel)
- * @param[in]   ch          Channel no. in the switch. Possible values:
- *                          CHANNEL0    -   Channel 0
- *                          CHANNEL1    -   Channel 1
+ * @param[in]   x    Number of the Switch the should be turned on (0-4). Possible values:
+ *                    Switch 0    -   Profet 0 (BTT6030 - channel 0)
+ *                    Switch 1    -   Profet 0 (BTT6030 - channel 1)
+ *                    Switch 2    -   Profet 1 (BTT6030 - channel 0)
+ *                    Switch 3    -   Profet 1 (BTT6030 - channel 1)
+ *                    Switch 4    -   Profet 2 (Single channel)
  *
  * @param[out]  iisCalib    Calibrated sensed current value
  *
  * @return          Error_t
  */
-float  Profet24VBTTShield::getIs(uint8_t x, Channel_t ch)
+float  Profet24VBTTShield::getIs(uint8_t x)
 {
     uint16_t adcResult;
     float iis_A, vis_V, iisCalib;
@@ -327,48 +358,41 @@ float  Profet24VBTTShield::getIs(uint8_t x, Channel_t ch)
     switch(x)
     {
         case 0:
-            if(CHANNEL0 == ch)
-            {
-                adcResult = hss0->readIs();
-                vis_V = ((float)adcResult/(float)1024) * (float)5;
-                iis_A = vis_V/ris_Ohm;
-                iisCalib = hss0->calibrateIs(iis_A,BTT6030.kilis,BTT6030.ampsOffset, BTT6030.ampsGain);
-            }
-            else if(CHANNEL1 == ch)
-            {
-                adcResult = hss1->readIs();
-                vis_V = ((float)adcResult/(float)1024) * (float)5;
-                iis_A = vis_V/ris_Ohm;
-                iisCalib = hss1->calibrateIs(iis_A,BTT6030.kilis,BTT6030.ampsOffset, BTT6030.ampsGain);
-            }
-            else
-                return INVALID_CH_ERROR;
+            adcResult = hss0->readIs(CHANNEL0);
+            vis_V = ((float)adcResult/(float)1024) * (float)5;
+            iis_A = vis_V/ris_Ohm;
+            iisCalib = hss0->calibrateIs(iis_A,BTT6030.kilis,BTT6030.ampsOffset, BTT6030.ampsGain);
+            break;
 
         case 1:
-            if(CHANNEL0 == ch)
-            {
-                adcResult = hss2->readIs();
-                vis_V = ((float)adcResult/(float)1024) * (float)5;
-                iis_A = vis_V/ris_Ohm;
-                iisCalib = hss2->calibrateIs(iis_A,BTT6030.kilis,BTT6030.ampsOffset, BTT6030.ampsGain);
-            }
-            else if(CHANNEL1 == ch)
-            {
-                adcResult = hss3->readIs();
-                vis_V = ((float)adcResult/(float)1024) * (float)5;
-                iis_A = vis_V/ris_Ohm;
-                iisCalib = hss3->calibrateIs(iis_A,BTT6030.kilis,BTT6030.ampsOffset, BTT6030.ampsGain);
-            }
-            else
-                return INVALID_CH_ERROR;
+            adcResult = hss1->readIs(CHANNEL1);
+            vis_V = ((float)adcResult/(float)1024) * (float)5;
+            iis_A = vis_V/ris_Ohm;
+            iisCalib = hss1->calibrateIs(iis_A,BTT6030.kilis,BTT6030.ampsOffset, BTT6030.ampsGain);
+            break;
 
         case 2:
+            adcResult = hss2->readIs(CHANNEL0);
+            vis_V = ((float)adcResult/(float)1024) * (float)5;
+            iis_A = vis_V/ris_Ohm;
+            iisCalib = hss2->calibrateIs(iis_A,BTT6030.kilis,BTT6030.ampsOffset, BTT6030.ampsGain);
+            break;
+
+        case 3:
+            adcResult = hss3->readIs(CHANNEL1);
+            vis_V = ((float)adcResult/(float)1024) * (float)5;
+            iis_A = vis_V/ris_Ohm;
+            iisCalib = hss3->calibrateIs(iis_A,BTT6030.kilis,BTT6030.ampsOffset, BTT6030.ampsGain);
+            break;
+
+        case 4:
             adcResult = hss2->readIs();
             vis_V = ((float)adcResult/(float)1024) * (float)5;
             iis_A = vis_V/ris_Ohm;
             iisCalib = hss4->calibrateIs(iis_A,BTT6020.kilis,BTT6020.ampsOffset, BTT6020.ampsGain);
+            break;
     }
-    return OK;
+    return iisCalib;
 }
 
 /**
@@ -377,13 +401,12 @@ float  Profet24VBTTShield::getIs(uint8_t x, Channel_t ch)
  * This function uses the current signal of the channel to diagnose perform diagnosis.
  * It returns the different states depending on the channels condition.
  *
- * @param[in]   x           Number of the Switch the should be turned on (0-2). Possible values:
- *                          Switch 0    -   Profet 0 (BTT6030 - 2 channel)
- *                          Switch 1    -   Profet 1 (BTT6030 - 2 channel)
- *                          Switch 2    -   Profet 2 (Single channel)
- * @param[in]   ch          Channel no. in the switch. Possible values:
- *                          CHANNEL0    -   Channel 0
- *                          CHANNEL1    -   Channel 1
+ * @param[in]   x           Number of the Switch the should be turned on (0-4). Possible values:
+ *                          Switch 0    -   Profet 0 (BTT6030 - channel 0)
+ *                          Switch 1    -   Profet 0 (BTT6030 - channel 1)
+ *                          Switch 2    -   Profet 1 (BTT6030 - channel 0)
+ *                          Switch 3    -   Profet 1 (BTT6030 - channel 1)
+ *                          Switch 4    -   Profet 2 (Single channel)
  *
  * @return      DiagStatus_t
  *
@@ -392,107 +415,51 @@ float  Profet24VBTTShield::getIs(uint8_t x, Channel_t ch)
  * @retval      4   Short to battery
  * @retval      5   Open load
  */
-DiagStatus_t Profet24VBTTShield::readDiagx(uint8_t x,Channel_t ch)
+DiagStatus_t Profet24VBTTShield::readDiagx(uint8_t x)
 {
     DiagStatus_t diagStatus = NORMAL;
 
     switch(x)
     {
         case 0:
-            if(CHANNEL0 == ch)
-            {
-                hss0->enableDiag();
-                hss0->diagSelCh0();
-                if(hss0->getSwitchStatus() == POWER_ON){
-                    diagStatus = diagRead(BTT6030T, getIs(0,ch), BTT6030.kilis);
-                }
-                hss0->disableDiag();
+            hss0->enableDiag();
+            if(hss0->getSwitchStatus() == POWER_ON){
+                diagStatus = hss0->diagRead(getIs(0), iisFault, iisOl_btt6030, BTT6030.kilis, CHANNEL0);
             }
-
-            if(CHANNEL1 == ch)
-            {
-                hss1->enableDiag();
-                hss1->diagSelCh1();
-                if(hss1->getSwitchStatus() == POWER_ON){
-                    diagStatus = diagRead(BTT6030T, getIs(0,ch), BTT6030.kilis);
-                }
-                hss1->disableDiag();
-            }
+            hss0->disableDiag();
             break;
 
         case 1:
-            if(CHANNEL0 == ch)
-            {
-                hss2->enableDiag();
-                hss2->diagSelCh0();
-                if(hss2->getSwitchStatus() == POWER_ON){
-                    diagStatus = diagRead(BTT6030T, getIs(1,ch), BTT6030.kilis);
-                }
-                hss2->disableDiag();
+            hss1->enableDiag();
+            if(hss1->getSwitchStatus() == POWER_ON){
+                diagStatus = hss1->diagRead(getIs(1), iisFault, iisOl_btt6030, BTT6030.kilis, CHANNEL1);
             }
-
-            if(CHANNEL1== ch)
-            {
-                hss3->enableDiag();
-                hss3->diagSelCh1();
-                if(hss3->getSwitchStatus() == POWER_ON){
-                    diagStatus = diagRead(BTT6030T, getIs(1,ch), BTT6030.kilis);
-                }
-                hss2->disableDiag();
-            }
+            hss1->disableDiag();
             break;
 
         case 2:
+            hss2->enableDiag();
+            if(hss2->getSwitchStatus() == POWER_ON){
+                diagStatus = hss2->diagRead(getIs(2), iisFault, iisOl_btt6030, BTT6030.kilis, CHANNEL0);
+            }
+            hss2->disableDiag();
+            break;
+
+        case 3:
+            hss3->enableDiag();
+            if(hss3->getSwitchStatus() == POWER_ON){
+                diagStatus = hss3->diagRead(getIs(3), iisFault, iisOl_btt6030, BTT6030.kilis, CHANNEL1);
+            }
+            hss3->disableDiag();
+            break;
+
+        case 4:
             hss4->enableDiag();
             if(hss4->getSwitchStatus() == POWER_ON){
-                diagStatus = diagRead(BTT6020T, getIs(2), BTT6020.kilis);
+                diagStatus = hss4->diagRead(getIs(4), iisFault, iisOl_btt6020, BTT6020.kilis);
             }
             hss4->disableDiag();
             break;
     }
     return diagStatus;
 }
-
-/**
- * @brief Diagnosis of the Sensor
- *
- * This function is using the IS signal to determine the state of the switch.
- * It returns an diagnosis state of the switch.
- *
- * @return DiagStatus_t
- *
- * @retval  0   Switch is working fine
- * @retval  1   Overload detected
- * @retval  5   Open load detected
-
- */
-DiagStatus_t Profet24VBTTShield::diagRead(BttTypes_t bttType, float amps, uint16_t kilis)
-{
-    switch (bttType)
-    {
-        case BTT6030T:
-            if(amps > (0.006*kilis)){
-                return DiagStatus_t::OVERLOAD;
-            }
-            else if(amps < (0.000005*kilis)){
-                return DiagStatus_t::OPEN_LOAD;
-            }
-            else{
-                return DiagStatus_t::NORMAL;
-            }
-
-        case BTT6020T:
-            if(amps > (0.006*kilis)){
-                return DiagStatus_t::OVERLOAD;
-            }
-            else if(amps < (0.000004*kilis)){
-                return DiagStatus_t::OPEN_LOAD;
-            }
-            else{
-                return DiagStatus_t::NORMAL;
-            }
-
-    }
-    return NORMAL;
-}
-

@@ -13,9 +13,12 @@ using namespace hss;
  * @brief High-Side-Switch-Board constructor
  * Initialize all protected class pointers with a null pointer.
  */
-Bts700xShield::Bts700xShield()
+Bts700xShield::Bts700xShield(Hss *hsw1, Hss *hsw2, Hss *hsw3, Hss *hsw4)
 {
-
+    this->hss1 = hsw1;
+    this->hss2 = hsw2;
+    this->hss3 = hsw3;
+    this->hss4 = hsw4;
 }
 
 /**
@@ -323,22 +326,25 @@ float Bts700xShield::getIs(uint8_t x)
             adcResult = hss1->readIs();
             amps = ((float)adcResult/(float)1024) * (float)5;
             ampsCalib = hss1->calibrateIs(amps, btsVariant->kilis, btsVariant->ampsOffset, btsVariant->ampsGain);
+            break;
 
         case 2:
             adcResult = hss2->readIs();
             amps = ((float)adcResult/(float)1024) * (float)5;
             ampsCalib = hss2->calibrateIs(amps, btsVariant->kilis, btsVariant->ampsOffset, btsVariant->ampsGain);
+            break;
 
         case 3:
             adcResult = hss3->readIs();
             amps = ((float)adcResult/(float)1024) * (float)5;
             ampsCalib = hss3->calibrateIs(amps, btsVariant->kilis, btsVariant->ampsOffset, btsVariant->ampsGain);
+            break;
 
         case 4:
             adcResult = hss4->readIs();
             amps = ((float)adcResult/(float)1024) * (float)5;
             ampsCalib = hss4->calibrateIs(amps, btsVariant->kilis, btsVariant->ampsOffset, btsVariant->ampsGain);
-
+            break;
     }
     return ampsCalib;
 }
@@ -369,7 +375,7 @@ DiagStatus_t Bts700xShield::readDiagx(uint8_t x)
             hss1->enableDiag();
             if(hss1->getSwitchStatus() == POWER_ON)
             {
-                diagStatus = hss1->diagRead(getIs(1), btsVariant->kilis);
+                diagStatus = hss1->diagRead(getIs(1), iisFault, iisOl, btsVariant->kilis);
             }
             else
             {
@@ -389,7 +395,7 @@ DiagStatus_t Bts700xShield::readDiagx(uint8_t x)
             hss2->enableDiag();
             if(hss2->getSwitchStatus() == POWER_ON)
             {
-                diagStatus = hss2->diagRead(getIs(2), btsVariant->kilis);
+                diagStatus = hss2->diagRead(getIs(2), iisFault, iisOl, btsVariant->kilis);
             }
             else
             {
@@ -409,7 +415,7 @@ DiagStatus_t Bts700xShield::readDiagx(uint8_t x)
             hss3->enableDiag();
             if(hss3->getSwitchStatus() == POWER_ON)
             {
-                diagStatus = hss3->diagRead(getIs(3), btsVariant->kilis);
+                diagStatus = hss3->diagRead(getIs(3), iisFault, iisOl, btsVariant->kilis);
             }
             else
             {
@@ -429,7 +435,7 @@ DiagStatus_t Bts700xShield::readDiagx(uint8_t x)
             hss4->enableDiag();
             if(hss4->getSwitchStatus() == POWER_ON)
             {
-                diagStatus = hss4->diagRead(getIs(4), btsVariant->kilis);
+                diagStatus = hss4->diagRead(getIs(4), iisFault, iisOl, btsVariant->kilis);
             }
             else
             {

@@ -43,7 +43,7 @@ GPIOIno::GPIOIno(uint8_t pin, uint8_t mode, VLogic_t logic)
  *
  * @return      GPIOIno::Error_t
  */
-GPIOIno::Error_t GPIOIno::init()
+Error_t GPIOIno::init()
 {
     pinMode(this->pin, this->mode);
     return OK;
@@ -56,7 +56,7 @@ GPIOIno::Error_t GPIOIno::init()
  *
  * @return      GPIOIno::Error_t
  */
-GPIOIno::Error_t GPIOIno::deinit()
+Error_t GPIOIno::deinit()
 {
     return OK;
 }
@@ -98,7 +98,7 @@ GPIOIno::Error_t GPIOIno::write(VLevel_t level)
  *
  * @return      GPIOIno::Error_t
  */
-GPIOIno::Error_t GPIOIno::enable()
+Error_t GPIOIno::enable()
 {
     if(this->logic == POSITIVE){
         digitalWrite(this->pin, GPIO_HIGH);
@@ -117,7 +117,7 @@ GPIOIno::Error_t GPIOIno::enable()
  *
  * @return      GPIOIno::Error_t
  */
-GPIOIno::Error_t GPIOIno::disable()
+Error_t GPIOIno::disable()
 {
     if(this->logic == POSITIVE){
         digitalWrite(this->pin, GPIO_LOW);

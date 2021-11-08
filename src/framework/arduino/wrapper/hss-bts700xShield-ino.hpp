@@ -18,13 +18,9 @@ using namespace hss;
 class Bts700xShieldIno : public Bts700xShield
 {
     public:
-                        Bts700xShieldIno();
                         Bts700xShieldIno(BtsVariants_t *variantSel);
                         Bts700xShieldIno(BtsVariants_t *variantSel, Bts700xHwConfig_t config);
                         ~Bts700xShieldIno();
-        Error_t         init();
-        Error_t         deinit();
-
 };
 
 #endif /**HSS_BTS700xSHIELD_INO_HPP_*/

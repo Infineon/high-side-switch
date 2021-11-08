@@ -44,7 +44,7 @@ ADCIno::~ADCIno()
  *
  * @return ADCIno::Error_t
  */
-ADCIno::Error_t ADCIno::init()
+Error_t ADCIno::init()
 {
     return OK;
 }
@@ -54,7 +54,7 @@ ADCIno::Error_t ADCIno::init()
  *
  * @return ADCIno::Error_t
  */
-ADCIno::Error_t ADCIno::deinit()
+Error_t ADCIno::deinit()
 {
     return OK;
 }
@@ -64,7 +64,7 @@ ADCIno::Error_t ADCIno::deinit()
  *
  * @return ADCIno::Error_t
  */
-ADCIno::Error_t ADCIno::enable()
+Error_t ADCIno::enable()
 {
     return OK;
 }
@@ -75,7 +75,7 @@ ADCIno::Error_t ADCIno::enable()
  *
  * @return ADCIno::Error_t
  */
-ADCIno::Error_t ADCIno::disable()
+Error_t ADCIno::disable()
 {
     return OK;
 }
@@ -91,7 +91,7 @@ ADCIno::Error_t ADCIno::disable()
  * @param[in]   resolution  Value of the read resolution, default = 10 Bit
  * @return ADCIno::Error_t
  */
-ADCIno::Error_t ADCIno::setReadResolution(uint8_t resolution)
+Error_t ADCIno::setReadResolution(uint8_t resolution)
 {
     // analogReadResolution(resolution);
 
@@ -106,7 +106,7 @@ ADCIno::Error_t ADCIno::setReadResolution(uint8_t resolution)
  * @param[in]   resolution  Value of the write resolution of the ADC
  * @return ADCIno::Error_t
  */
-ADCIno::Error_t ADCIno::setWriteResolution(uint8_t resolution)
+Error_t ADCIno::setWriteResolution(uint8_t resolution)
 {
     // analogWriteResolution(resolution);
 
@@ -135,7 +135,7 @@ uint16_t ADCIno::ADCRead()
  * @param[in] value Value to write
  * @return ADCIno::Error_t
  */
-ADCIno::Error_t ADCIno::ADCWrite(uint8_t value)
+Error_t ADCIno::ADCWrite(uint8_t value)
 {
     analogWrite(pin, value);
 

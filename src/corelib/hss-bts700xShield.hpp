@@ -15,8 +15,7 @@ using namespace hss;
 class Bts700xShield : public HssShield
 {
     public:
-
-                        Bts700xShield();
+                        Bts700xShield(Hss *hsw1, Hss *hsw2, Hss *hsw3, Hss *hsw4);
                         ~Bts700xShield();
 
         Error_t         init();

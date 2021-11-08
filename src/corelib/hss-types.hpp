@@ -44,7 +44,7 @@ namespace hss
 		CHANNEL0 	 = 0,           /**< Channel 1 : Valid for BTT shields */
 		CHANNEL1 	 = 1,           /**< Channel 2 : Valid for BTT shields */
 		ALL_CHANNELS = 2,           /**< Select all channels : Valid for BTT shields */
-        NULL_CHANNEL = 3            /**< No channel to select */
+        NO_CHANNEL = 3            /**< No channel to select */
 	};
 	/** @} */
 

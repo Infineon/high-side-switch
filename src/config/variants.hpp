@@ -32,10 +32,22 @@ typedef struct BtsVariants_t
     float vBatOffset;           /**< Battery voltage offset, can be used to correct the measured battery voltage */
 };
 
+typedef struct BttVariants_t
+{
+    const uint16_t kilis;       /**< Current sense ratio */
+    float ampsGain;             /**< Gain factor for the current, may has to be adjusted */  
+    float ampsOffset;           /**< Current offset, can be used to correct the measured current */
+    float vBatGain;             /**< Gain factor for the battery voltage, may has to be adjusted */
+    float vBatOffset;           /**< Battery voltage offset, can be used to correct the measured battery voltage */
+};
+
 extern BtsVariants_t BTS7002;
 extern BtsVariants_t BTS7004;
 extern BtsVariants_t BTS7006;
 extern BtsVariants_t BTS7008;
+
+extern BttVariants_t BTT6030;
+extern BttVariants_t BTT6020;
 /** @} */
 
 #endif /** VARIANTS_HPP_ **/

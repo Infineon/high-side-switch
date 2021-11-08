@@ -57,4 +57,28 @@ BtsVariants_t BTS7008 {
     .vBatOffset = 0.0
 };
 
+/**
+ * @brief BTT6030.
+ * Is rated for nominal 5 A per channel
+ */
+BttVariants_t BTT6030 {
+    .kilis = 2240,
+    .ampsGain = 1.08,
+    .ampsOffset = 0.0,
+    .vBatGain = 1.045,
+    .vBatOffset = 0.0
+};
+
+/**
+ * @brief BTT6020.
+ * Is rated for nominal 7 A
+ */
+BttVariants_t BTT6020 {
+    .kilis = 2950,
+    .ampsGain = 1.08,
+    .ampsOffset = 0.0,
+    .vBatGain = 1.045,
+    .vBatOffset = 0.0
+};
+
 

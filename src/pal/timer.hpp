@@ -8,10 +8,12 @@
  */
 
 #include <stdint.h>
+#include "hss-types.hpp"
 
 #ifndef TIMER_HPP_
 #define TIMER_HPP_
 
+using namespace hss;
 /**
  * @addtogroup hssPal 
  * @{
@@ -20,13 +22,6 @@
 class Timer
 {
     public:
-
-        enum Error_t
-        {
-            OK          =  0,    /**< No error */
-            INTF_ERROR  = -1,    /**< Interface error */
-            CONF_ERROR  = -2,    /**< Configuration error */
-        };
 
         /**
          * @brief   Initialize the timer

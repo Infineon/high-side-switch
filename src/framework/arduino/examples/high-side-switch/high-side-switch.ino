@@ -9,7 +9,8 @@
  * @copyright   Copyright (c) 2020 Infineon Technologies AG   
  */
 #include <Arduino.h>
-#include <hss-board-arduino.hpp>
+#include <hss-bts700xShield-ino.hpp>
+#include <hss-profet24VShield-ino.hpp>
 
 /**
  * Here we create an object of the High-Side-Switch-Board class with the Name HSS.
@@ -23,43 +24,45 @@
  * 
  * Make sure you chose the right one. Otherwise the diagnosis functions can may work incorrectly.
  */
-HssBoardIno HSS = HssBoardIno(&BTS7002);
+//HssBoardIno HSS = HssBoardIno(&BTS7002);
+
+Bts700xShieldIno shield = Bts700xShieldIno(&BTS7002);
 
 void setup()
 {
     /** Serial initialization */
     Serial.begin(115200);
-    delay(2000);
-    Serial.println("Serial initialized");
+    /*delay(2000);
+    Serial.println("Serial initialized");*/
 
     /** Initialization of the High-Side-Switch-Board */
-    HSS.init();
+    /*HSS.init();
     delay(1000);
-    Serial.println("High-Side-Switch is initialized");
+    Serial.println("High-Side-Switch is initialized");*/
 }
 
 void loop()
 {   
-    int incomingSerial = 0;
+    /*int incomingSerial = 0;
     static int counter = 0;
     static int oldCounter = 0;
 
     float readAmps = 0.0;
     float batteryVoltage = 0.0;
 
-    int switchStatus = 0;
+    int switchStatus = 0;*/
 
     /**
      * This small if-case is checking for an user input.
      * To use this press the "+" symbol on your keyboard, this is equal to "43" in ASCII.
      */
-    if(Serial.available() > 0){
+    /*if(Serial.available() > 0){
         incomingSerial = Serial.read();
 
         if(incomingSerial == 43){
             counter++;
         }
-    }
+    }*/
 
     /**
      * This if-case are used to show all functions of the board.
@@ -91,7 +94,7 @@ void loop()
      * the status will be SHORT_TO_GND, because this state is not clear because of the provided IS signal
      * of the board. Read more about this in the data sheet of the PROFET on page 40.
      */
-    if(counter > 0 && counter < 5 && oldCounter != counter){
+    /*if(counter > 0 && counter < 5 && oldCounter != counter){
         HSS.switchHxOn(counter);
         Serial.print("Switched half bridge ");
         Serial.print(counter);
@@ -145,5 +148,5 @@ void loop()
             oldCounter = counter;
             counter = 0;
         }
-    }
+    }*/
 }

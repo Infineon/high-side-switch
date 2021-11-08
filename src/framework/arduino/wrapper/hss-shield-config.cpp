@@ -1,16 +1,15 @@
 /** 
- * @file        config.cpp
- * @brief       Configurations for the different Platfroms
- * @date        May 2020
- * @copyright   Copyright (c) 2019-2020 Infineon Technologies AG
+ * @file        hss-shield-config.cpp
+ * @brief       Configurations for supported Shields
+ * @copyright   Copyright (c) 2021 Infineon Technologies AG
  * 
  * SPDX-License-Identifier: MIT
  */
 
-#include "config.hpp"
+#include "hss-shield-config.hpp"
 #include <Arduino.h>
 
-hardwareconfig_t ARDUINO_UNO
+Bts700xHwConfig_t BTS700X_HWCONFIG
 {
     .led1 = 4,                      //LED 1
     .led2 = 5,                      //LED 2
@@ -33,4 +32,26 @@ hardwareconfig_t ARDUINO_UNO
     .vBat =             A1,         //VBAT
     .is1_is2 =          A2,         //IS 1_2
     .is3_is4 =          A3          //IS 3_4
+};
+
+Profet24VBTTHwConfig_t PROFET24VBTT_HWCONFIG
+{
+    //Profet0 - BTT6030 (2 channel) pin config
+    .in0_0  = A3,
+    .den_0  = A4,
+    .dsel_0 = 2,
+    .in1_0  = 3,
+    .is_0   = A0,
+
+    //Profet1 - BTT6030 (2 channel) pin config
+    .in0_1  = 4,
+    .den_1  = 5,
+    .dsel_1 = 6,
+    .in1_1  = 7,
+    .is_1   = A1,
+
+    //Profet2 - BTT6020 (1 channel) pin config
+    .in0_2  = 8,
+    .den_2  = 9,
+    .is_2   = A2,
 };

@@ -2,68 +2,86 @@
 Hardware Platforms
 ==================
 
-This library is designed for multiple platforms with Arduino Uno compatible headers and different SDKs. The following hardware platforms are compatible and tested:
+.. |trade|    unicode:: U+2122 .. TRADEMARK SIGN
 
-.. list-table::
-   :header-rows: 1
+PROFET\ |trade|\ + 24V family
+-----------------------------
 
-   * - Hardware Platform
-     - Type
-     - SDK
-     - File Marker
-     - Checked
-   * - Arduino
-     - Uno
-     - Arduino IDE or PlatformIO
-     - \*.ino
-     - yes
-   * - Arduino
-     - MKR1000
-     - Arduino IDE or PlatformIO
-     - \*.ino
-     - yes
-   * - Infineon XMC
-     - XMC1100 Boot Kit
-     - Arduino IDE or PlatformIO
-     - \*.ino
-     - yes
-   * - Infineon XMC
-     - XMC4700 Relax Kit
-     - Arduino IDE or PlatformIO
-     - \*.ino
-     - yes
+.. image:: img/btt6x_shield.jpg
+    :width: 150
 
-Radar BGT60LTR11AIP 60 GHz Radar shield
----------------------------------------
+.. image:: img/btt6x_chip.jpg
+    :width: 150
 
-Pinout
-""""""
-.. image:: img/bgt60_shield_pinout.png
-    :width: 600
-
-Any MCU platform which has an Arduino port like the `XMC for Arduino`_ should work (this is not tested) with this shield by using the default Arduino platform.
-
-.. _`XMC for Arduino`: https://github.com/Infineon/XMC-for-Arduino
-
-Supported MCU Platforms
------------------------
-
-Verified MCU Platforms
-""""""""""""""""""""""
-
-The library examples have been built and successfully executed on the following platforms:
-
-* `XMC1100 Boot Kit`_
-* `XMC4700 Relax Kit`_
-* `Arduino Uno Rev3`_
-* `Arduino MKR1000`_
-
-.. _`XMC1100 Boot Kit`: https://www.infineon.com/cms/en/product/evaluation-boards/kit_xmc11_boot_001/#ispnTab1
-.. _`XMC4700 Relax Kit`: https://www.infineon.com/cms/en/product/evaluation-boards/kit_xmc47_relax_5v_ad_v1/
-.. _`Arduino Uno Rev3`: https://store.arduino.cc/arduino-uno-rev3
-.. _`Arduino MKR1000`: https://store.arduino.cc/arduino-mkr1000-wifi-with-headers-mounted
-
-Other MCU platforms
+Shields for Arduino
 """""""""""""""""""
 
-The library is developed for easy portability to any general purpose microcontroller platform. If your desired platform is not supported yet you are able to port it yourself.
+* `24V Protected Switch Shield with BTT6030-2EKA and BTT6020-1EKA`_
+
+Chip only
+"""""""""
+
+* `BTT6020-1EKA`_
+* `BTT6030-2EKA`_
+
+12V Protected Switches
+----------------------
+
+.. image:: img/bts5001x_shield.png
+    :width: 150
+
+.. image:: img/bts5001x_chip.jpg
+    :width: 150
+
+Shields for Arduino
+"""""""""""""""""""
+
+* `12V Protected Switch Shield with BTS50010-1TAD`_
+* `12V Protected Switch Shield with BTS50015-1TAD`_
+
+Chip only
+"""""""""
+
+* `BTS50010-1TAD`_
+* `BTS50015-1TAD`_
+
+Smart High-Side Power Switches
+------------------------------
+
+.. image:: img/bts700x_shield.jpg
+    :width: 150
+
+.. image:: img/bts700x_chip.png
+    :width: 100
+
+Shields for Arduino
+"""""""""""""""""""
+
+* `SHIELD_BTS7002-1EPP`_
+* `SHIELD_BTS7004-1EPP`_
+* `SHIELD_BTS7006-1EPP`_
+* `SHIELD_BTS7008-1EPP`_
+
+Chip only
+"""""""""
+
+* `BTS7002-1EPP`_
+* `BTS7004-1EPP`_
+* `BTS7006-1EPP`_
+* `BTS7008-1EPP`_
+
+.. _`BTT6020-1EKA`: https://www.infineon.com/cms/en/product/power/smart-low-side-high-side-switches/high-side-switches/profet-plus-24v-automotive-smart-high-side-switch/btt6020-1era/
+.. _`BTT6030-2EKA`: https://www.infineon.com/cms/en/product/power/smart-low-side-high-side-switches/high-side-switches/profet-plus-24v-automotive-smart-high-side-switch/btt6030-2era/
+.. _`BTS50010-1TAD`: https://www.infineon.com/cms/en/product/power/smart-low-side-high-side-switches/high-side-switches/power-profet-automotive-smart-high-side-switch/bts50010-1tad/
+.. _`BTS50015-1TAD`: https://www.infineon.com/cms/en/product/power/smart-low-side-high-side-switches/high-side-switches/power-profet-automotive-smart-high-side-switch/bts50015-1tad/
+.. _`BTS7002-1EPP`: https://www.infineon.com/cms/en/product/power/smart-low-side-high-side-switches/high-side-switches/profet-plus-2-12v-automotive-smart-high-side-switch/bts7002-1epp/?redirId=103258
+.. _`BTS7004-1EPP`: https://www.infineon.com/cms/en/product/power/smart-low-side-high-side-switches/high-side-switches/profet-plus-2-12v-automotive-smart-high-side-switch/bts7004-1epp/
+.. _`BTS7006-1EPP`: https://www.infineon.com/cms/en/product/power/smart-low-side-high-side-switches/high-side-switches/profet-plus-2-12v-automotive-smart-high-side-switch/bts7006-1epp/
+.. _`BTS7008-1EPP`: https://www.infineon.com/cms/en/product/power/smart-low-side-high-side-switches/high-side-switches/profet-plus-2-12v-automotive-smart-high-side-switch/bts7008-1epp/
+.. _`24V Protected Switch Shield with BTT6030-2EKA and BTT6020-1EKA`: https://www.infineon.com/cms/en/product/evaluation-boards/24v_shield_btt6030/
+.. _`12V Protected Switch Shield with BTS50010-1TAD`: https://www.infineon.com/cms/en/product/evaluation-boards/shield_bts50010-1tad/
+.. _`12V Protected Switch Shield with BTS50015-1TAD`: https://www.infineon.com/cms/en/product/evaluation-boards/shield_bts50015-1tad/
+.. _`SHIELD_BTS7002-1EPP`: https://www.infineon.com/cms/en/product/evaluation-boards/shield_bts7002-1epp/
+.. _`SHIELD_BTS7004-1EPP`: https://www.infineon.com/cms/en/product/evaluation-boards/shield_bts7004-1epp/
+.. _`SHIELD_BTS7006-1EPP`: https://www.infineon.com/cms/en/product/evaluation-boards/shield_bts7006-1epp/
+.. _`SHIELD_BTS7008-1EPP`: https://www.infineon.com/cms/en/product/evaluation-boards/shield_bts7008-1epp/

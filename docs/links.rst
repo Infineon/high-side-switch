@@ -10,7 +10,6 @@ Related Products
 * `Arduino MKR1000 <https://store.arduino.cc/arduino-mkr1000-wifi-with-headers-mounted>`__
 * `Arduino IDE <https://www.arduino.cc/en/software>`__
 * `PlatformIO <https://platformio.org/>`__
-* `BGT60LTR11AiP Radar <https://www.infineon.com/cms/media/pss-3dmodels/60ghz-radar-board/>`__
 
 Related Repositories
 --------------------

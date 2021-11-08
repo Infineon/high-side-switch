@@ -6,54 +6,32 @@ Arduino Getting Started
 Overview
 --------
 
-In this quick tutorial we will go through the installation of the Radar BGT60 library for the Arduino IDE step by step and show you how to run our examples on an Arduino compatible board.
+This getting started guide helps you to properly connect a `Smart High-Side Power Switch shield`_ with the right platform and teaches you how to install the required software to use the Infineon High-Side Switches.
 
-Required Experience
--------------------
-
-* Experience level: beginner
-* Basic computer user level
-* Basic programming skills (C/C++)
-* Basic soldering skills (recommended)
+.. _`Smart High-Side Power Switch shield`: https://www.infineon.com/cms/en/product/evaluation-boards/shield_bts7002-1epp/
 
 Required Hardware
 -----------------
 
 Microcontroller
 """""""""""""""
-Arduino MKR1000 or other MKR-boards from Arduino:
-
-.. image:: ../../img/MKR1000.jpg
-    :width: 300
-
-or
-XMC1100 Boot Kit or other Arduino compatible XMC boards from Infineon:
+Any Arduino compatible board with Arduino Uno form-factor, like XMC1100 Boot Kit or other Arduino compatible XMC boards from Infineon:
 
 .. image:: ../../img/XMC1100.jpg
-    :width: 300
+    :height: 200
 
-Radar Shield
-""""""""""""
+Smart High-Side Power Switch Shield
+"""""""""""""""""""""""""""""""""""
 
-60 GHz Radar Shield
-
-.. image:: ../../img/bgt60-without-background.png
-    :width: 300
-
-Accessories
-"""""""""""
-
-* Pin headers
-* Micro-USB to USB A cable
-* For boards which do not have Arduino MKR form-factor: male-female jumper wires
+.. image:: ../../img/bts700x_shield.jpg
+    :height: 200
 
 Required Software
 -----------------
 
-* `Segger J-Link`_ either for Windows or Linux
-* `Arduino IDE`_ either for Windows or Linux
-* Installed XMC-for-Arduino for your Arduino IDE (in case you want to use a XMC-Board), for instructions see `here <https://github.com/Infineon/XMC-for-Arduino#installation-instructions>`__
+* `Arduino IDE`_
 * This library installed in the Arduino IDE, the instructions can be found `here <https://www.arduino.cc/en/guide/libraries>`__
+* When using an Arduino compatible XMC board, please find installation instructions `here <https://github.com/Infineon/XMC-for-Arduino#installation-instructions>`_.
 
 Tutorial
 --------
@@ -61,57 +39,42 @@ Tutorial
 Software Installation
 """""""""""""""""""""
 
-0. **Install the Arduino IDE**. If you are new to Arduino, please `download <https://www.arduino.cc/en/Main/Software>`__ the program and install it first.
+1. **Install the Arduino IDE**. If you are new to Arduino, please `download <https://www.arduino.cc/en/Main/Software>`__ the program and install it first.
 
-1. **Include the XMC boards in the IDE (if a XMC is used)**. The official Arduino boards are already available in the Arduino software, but other third party boards as the Infineon XMC MCU based, need to be explicitly included. Follow the instructions in the `link <https://github.com/Infineon/XMC-for-Arduino#installation-instructions>`__ to add the XMC board family to the Arduino IDE.
+2. **Include the XMC boards in the IDE (if a XMC is used)**. The official Arduino boards are already available in the Arduino IDE, but other third party boards as the Infineon XMC MCU based ones need to be explicitly included. Follow the instructions in the `link <https://github.com/Infineon/XMC-for-Arduino#installation-instructions>`__ to add the XMC board family to the Arduino IDE.
 
-2. **Install the library**. In the Arduino IDE, go to the menu *Sketch > Include library > Library Manager*. Type **radar-bgt60** and install the library.
-
-3. **Additional**. Install additionally the Segger J-Link if you use an Infineon XMC1100 BootKit, XMC4700 RelaxKit or any other Arduino compatible XMC-Board.
+3. **Install the library**. In the Arduino IDE, go to the menu *Sketch > Include library > Library Manager*. Type **high-side-switch** and install the library.
 
 Hardware Setup
 """"""""""""""
 
-The *BGT60* shield needs to be plugged into the right pin-headers in case you're using a MKR-Board from Arduino. In case you want to use the shield with another MCU, like the XMC1100 BootKit, use jumper cables to connect the shield to board.
+The shield can be used with all platforms that support the Arduino form factor. But please be aware that all these platforms have to have the same pin functionalities as the Arduino. Otherwise the full functionality of the shield can not be assured.
 
-.. image:: ../../img/Stack_without_background.png
-    :width: 400
+To connect the shield you just have to assure that the notch of the Arduino Uno and the shield are above each other. Then you can plug the shield on top of the Arduino.
 
-As soon as you connected the radar to the controller board you can plug in the microUSB-cable into the controller and connect everything to your computer.
+.. image:: ../../img/arduino-marked.png
+    :height: 200
+
+.. image:: ../../img/hss-marked.png
+    :height: 200
+
+The pin headers can also be used to figure out the right orientation. There is only one way to properly connect them.
+
+As soon as the shield is connected to the Arduino you can connect a USB cable to the Arduino to power up the microcontroller. Make sure that no code or the example code of this repository is flashed to the microcontroller. Otherwise it can happen that the board is already activating one of the switches.
+
+.. image:: ../../img/arduino-hss-stack.png
+    :height: 200
+
+Now you can attach the power supply to the battery pad on the board. There are two, one for a large wire gauge and the other is next to the switches pads and is meant for smaller cables. Don't forget to connect the ground wire!
+
+.. image:: ../../img/hss-powercon.png
+    :height: 200
+
+Now you only have to attach your load to the desired switch. For getting familiar with the board it is recommended to use a resistive load to check the functionality of the board and the shield.
 
 Ready To Go!
 """"""""""""
 
-With everything ready, we are now going to upload and run one of the library examples.
+- TODO: How to run example needs to be added -
 
-1. **Example detectMotion**
-
-Take the *detectMotion* example from the *File -> Example -> radar-bgt60 -> detectMotion* menu and compile the example.
-
-Before you can upload the sketch to your desired MCU board you have to chose the right platform. This can be done under *Tools -> Board -> desiredPlatform -> desiredBoard*.
-
-In order to upload the sketch now, you also have chose the right COM-Port. There is really easy way to do this. Unplug your connected MCU and then check the available COM-Ports under *Tool -> Port*. Now connect your MCU again and check the ports again. Now you should see a new one that was not there before. This is the right one.
-
-If everything is set correctly you should be able to upload the code to the board. This can be done in the taskbar via *Sketch -> Upload* or with the arrow symbol in the upper left corner. These both options should upload the sketch to the board.
-
-Now you can open the terminal from the IDE in the upper right corner (symbol of a magnifier). The serial monitor should tell you that the radar shield is initialized after a short time. Now you can move a object in front of the sensor and the monitor should tell you : "Target in motion detected".
-
-2. **Developing you own Sketch**
-
-In case you want to write your own sketch, you can include the library of the 60 GHz radar quite easily. The first option would be to take the one of the already existing examples and change the code as desired. Or you create a completely new sketch.
-
-If you choose the second option you have to include the library first. This can be done via *Sketch -> Include Library -> radar-bgt60*. Now you should see :code:`#include <bgt60-ino.hpp>` in your file. This means the header-file of the library is included and you can use it from now on. You can also just write the same line of code yourself. It is not mandatory to use the taskbar for this.
-
-Now you can create an object of the class with the following line of code:
-
-.. code-block:: cpp
-
-    Bgt60Ino radar(TD, PD);
-
-The first argument is the tDet pin, and the second the pDet pin. If you are using one of the default platform configurations, these will be already set in the :code:`btg60-platf-ino.hpp` file. You just need include it in your sketch.
-
-With this class you now have access to all the public functions of Arduino API. For more information take a look into the :ref:`Arduino API <arduino-api>` section.
-
-
-.. _`Segger J-Link`: https://www.segger.com/downloads/jlink
-.. _`Arduino IDE`: https://www.arduino.cc/en/main/software
+For a specific description and overview of all examples please refer to :ref:`Arduino examples <arduino-examples>`.

@@ -1,5 +1,5 @@
 /**
- * @file        button-test.ino
+ * @file        BTS-button-test.ino
  * @brief       Button Test Example for Profet 12V BTS700x and BTS500xx Arduino form factored Shields
  *
  *              SHIELD_BTS700x-1EPP and SHIELD_BTS5001x-1TAD Shields have optional user button to 

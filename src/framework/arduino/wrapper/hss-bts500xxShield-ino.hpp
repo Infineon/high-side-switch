@@ -13,11 +13,13 @@
 #include "variants.hpp"
 #include "hss-shield-config.hpp"
 
-class Bts500xxShieldIno : Bts500xxShield
+using namespace hss;
+
+class Bts500xxShieldIno : public Bts500xxShield
 {
     public:
                         Bts500xxShieldIno(BtsVariants_t *variantSel);
-                        Bts500xxShieldIno(BtsVariants_t *variantSel, BTShardwareconfig_t config);
+                        Bts500xxShieldIno(BtsVariants_t *variantSel, BTS500xxHwConfig_t config);
                         ~Bts500xxShieldIno();
 
 };

@@ -8,6 +8,8 @@
 
 #include "hss-bts500xxShield.hpp"
 
+using namespace hss;
+
 /**
  * @brief High-Side-Switch-Board constructor
  * Initialize all protected class pointers with a null pointer.
@@ -205,14 +207,12 @@ Error_t Bts500xxShield::switchHxOn(uint8_t x)
  * @param[in]   x   Number of the Switch the should be turned off (1-4)  
  * @return          Bts500xxShield::Error_t 
  */
-Error_t Bts500xxShield::switchHxoff(uint8_t x)
+Error_t Bts500xxShield::switchHxOff(uint8_t x)
 {
-            Error_t err= OK;
-           err= hss1->disable();
-            if (NULL != led1)
-                led1->disable();
-        
-       
+    Error_t err= OK;
+    err= hss1->disable();
+    if (NULL != led1)
+        led1->disable();    
     return err;
 }
 
@@ -248,7 +248,7 @@ float Bts500xxShield::readIsx(uint8_t x)
  * 
  * @return          The value of the current in [A]      
  */
-float Bts500xxShield::getIs()
+float Bts500xxShield::getIs(uint8_t x)
 {
     uint16_t adcResult;
     float amps, ampsCalib;
@@ -279,14 +279,14 @@ DiagStatus_t Bts500xxShield::readDiagx(uint8_t x)
 {
     DiagStatus_t diagStatus = NORMAL;
 
-    float currentOn = 0.0;
+    /*float currentOn = 0.0;
     float currentOff = 0.0;
 
     if(x==1)
     {
       
             hss1->enableDiag();
-            if(hss1->getSwitchStatus() == Hss::Status_t::POWER_ON){
+            if(hss1->getSwitchStatus() == POWER_ON){
              diagStatus = hss1->diagRead(getIs(1), btsVariant->kilis);
           
             }
@@ -304,7 +304,7 @@ DiagStatus_t Bts500xxShield::readDiagx(uint8_t x)
             hss1->disableDiag();
     }
 
-    return diagStatus;
+    return diagStatus;*/
 }
 
 

@@ -83,13 +83,13 @@ struct BTS500xxHwConfig_t
     uint8_t led1;
     uint8_t led2;
 
-    uint8_t in1;
+    uint8_t in;
 
     uint8_t pushButtonAnalog;
 
     uint8_t vBat;
    
-    uint8_t is1;
+    uint8_t is;
     
 };
 

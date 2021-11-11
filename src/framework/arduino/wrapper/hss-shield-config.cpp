@@ -61,10 +61,10 @@ BTS500xxHwConfig_t BTS500XX_HWCONFIG
     .led1 = 4,                      //LED 1
     .led2 = 9,                      //LED 2
 
-    .in1 = 6,                       //IN 1
+    .in = 6,                       //IN 1
 
     .pushButtonAnalog = A0,         //PUSHBUTTONANALOG
     .vBat =             A1,         //VBAT
-    .is1 =         A2,             //IS 1
+    .is =         A2,             //IS 1
     
 };

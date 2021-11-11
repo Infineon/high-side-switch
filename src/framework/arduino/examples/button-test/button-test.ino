@@ -9,7 +9,8 @@
  * @copyright   Copyright (c) 2021 Infineon Technologies AG
  */
 #include <Arduino.h>
-#include <hss-board-arduino.hpp>
+#include <hss-bts500xxShield-ino.hpp>
+//#include <hss-board-arduino.hpp>
 
 /**
  * Here we create an object of the High-Side-Switch-Board class with the Name HSS.
@@ -23,7 +24,7 @@
  *
  * Make sure you chose the right one. Otherwise the diagnosis functions can may work incorrectly.
  */
-HssBoardIno HSS = HssBoardIno(&BTS7002);
+Bts500xxShieldIno HSS = Bts500xxShieldIno(&BTS50015);
 
 void setup()
 {
@@ -47,7 +48,7 @@ void setup()
  */
 void loop()
 {
-    float voltage = 0.0;
+    /*float voltage = 0.0;
     static bool button_pressed = false;                         // The flag is used to avoid printing constantly
 
     if(HSS.digitalReadButton() && button_pressed == false){
@@ -59,5 +60,5 @@ void loop()
 
     if(!HSS.digitalReadButton()){
         button_pressed = false;
-    }
+    }*/
 }

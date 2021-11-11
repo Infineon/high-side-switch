@@ -9,8 +9,7 @@
  * @copyright   Copyright (c) 2021 Infineon Technologies AG
  */
 #include <Arduino.h>
-#include <hss-bts700xShield-ino.hpp>
-#include <hss-profet24VShield-ino.hpp>
+#include <hss-bts500xxShield-ino.hpp>
 
 /**
  * Here we create an object of the High-Side-Switch-Board class with the Name HSS.
@@ -24,9 +23,7 @@
  *
  * Make sure you chose the right one. Otherwise the diagnosis functions can may work incorrectly.
  */
-//HssBoardIno HSS = HssBoardIno(&BTS7002);
-
-Profet24VBTTShieldIno shield = Profet24VBTTShieldIno();
+Bts500xxShieldIno HSS = Bts500xxShieldIno(&BTS50015);
 
 void setup()
 {

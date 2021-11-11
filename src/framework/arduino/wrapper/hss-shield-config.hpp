@@ -74,4 +74,25 @@ extern Profet24VBTTHwConfig_t PROFET24VBTT_HWCONFIG;
 
 /** @} */
 
+/**
+ * @brief Struct with all necessary defines of the Profet-Shield BTS50010/15-1TAD
+ * 
+ */
+struct BTS500xxHwConfig_t
+{
+    uint8_t led1;
+    uint8_t led2;
+
+    uint8_t in;
+
+    uint8_t pushButtonAnalog;
+
+    uint8_t vBat;
+   
+    uint8_t is;
+    
+};
+
+extern BTS500xxHwConfig_t BTS500XX_HWCONFIG;
+/** @} */
 #endif /** HSS_SHIELD_CONFIG_HPP_ **/

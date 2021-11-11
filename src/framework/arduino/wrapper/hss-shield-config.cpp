@@ -55,3 +55,16 @@ Profet24VBTTHwConfig_t PROFET24VBTT_HWCONFIG
     .den_2  = 9,
     .is_2   = A2,
 };
+
+BTS500xxHwConfig_t BTS500XX_HWCONFIG
+{
+    .led1 = 4,                      //LED 1
+    .led2 = 9,                      //LED 2
+
+    .in = 6,                       //IN 1
+
+    .pushButtonAnalog = A0,         //PUSHBUTTONANALOG
+    .vBat =             A1,         //VBAT
+    .is =         A2,             //IS 1
+    
+};

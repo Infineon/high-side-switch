@@ -48,6 +48,9 @@ extern BtsVariants_t BTS7008;
 
 extern BttVariants_t BTT6030;
 extern BttVariants_t BTT6020;
+
+extern BtsVariants_t BTS50015;
+extern BtsVariants_t BTS50010;
 /** @} */
 
 #endif /** VARIANTS_HPP_ **/

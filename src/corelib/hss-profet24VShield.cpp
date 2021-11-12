@@ -193,7 +193,7 @@ Error_t Profet24VBTTShield::switchHxOff(uint8_t x)
             err = hss4->disable();
             break;
     }
-    return OK;
+    return err;
 }
 
 /**
@@ -271,7 +271,7 @@ Error_t Profet24VBTTShield::switchesHxOff(bool h0_0, bool h1_0, bool h0_1, bool 
     if(h2 == true){
         err = hss4->disable();
     }
-    return OK;
+    return err;
 }
 
 /**

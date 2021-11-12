@@ -15,6 +15,7 @@ using namespace hss;
 class Bts700xShield : public HssShield
 {
     public:
+
                         Bts700xShield(Hss *hsw1, Hss *hsw2, Hss *hsw3, Hss *hsw4);
                         ~Bts700xShield();
 
@@ -24,8 +25,10 @@ class Bts700xShield : public HssShield
         Error_t         switchHxOff(uint8_t x);
         Error_t         switchesHxOn(bool h1 = false, bool h2 = false, bool h3 = false, bool h4 = false);
         Error_t         switchesHxOff(bool h1 = false, bool h2 = false, bool h3 = false, bool h4 = false);
+
         DiagStatus_t    readDiagx(uint8_t x);
         DiagStatus_t    diagnosisOff(float currentOn, float currentOff);
+
         float           readIsx(uint8_t x);
         float           readVss();
 
@@ -61,4 +64,8 @@ class Bts700xShield : public HssShield
 
         float               getIs(uint8_t x);
 
+    private:
+
+        const float iisFault = 0.0044;
+        const float iisOl =  0.00002;
 };

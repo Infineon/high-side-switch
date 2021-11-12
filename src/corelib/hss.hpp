@@ -42,16 +42,14 @@ class Hss
         Error_t             disable();
         Error_t             enableDiag();
         Error_t             disableDiag();
-        Error_t             diagSelCh0();
-        Error_t             diagSelCh1();
         Error_t             diagReset();
 
         Status_t            getSwitchStatus();
+        // TODO: Rework the diagRead function, also for the shield(s)
+        DiagStatus_t        diagRead(float amps, float iisFault, float iisOl, uint16_t kilis, Channel_t ch=NO_CHANNEL);
 
-        DiagEnable_t        getEnDiagStatus();
-        DiagStatus_t        diagRead(float amps, uint16_t kilis);
-
-        uint16_t            readIs();
+        uint16_t            readIs(Channel_t ch=NO_CHANNEL);
+        // TODO: Check if this function is really needed, or if this can be included into the diagRead function
         float               calibrateIs(float inVal, uint16_t kilis, float ampsOffset, float ampsGain);
 
 
@@ -70,7 +68,7 @@ class Hss
         DiagEnable_t        diagEnb;
         DiagStatus_t        diagStatus;
 
-    Error_t         selDiagCh(Channel_t ch=NO_CHANNEL);
+        Error_t             selDiagCh(Channel_t ch=NO_CHANNEL);
 
 
 };

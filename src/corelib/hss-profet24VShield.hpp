@@ -40,12 +40,14 @@ class Profet24VBTTShield : HssShield
 
         TimerPAL *timer;
 
+        float getIs(uint8_t x);
+
     private:
 
-        const uint16_t ris_Ohm = 1200;
-        const float iisFault      = 0.006;
-        const float iisOl_btt6030 =  0.000005;
-        const float iisOl_btt6020 =  0.000004;
+        const uint16_t ris_Ohm         = 1200;
+        const float    iisFault        = 0.006;
+        const float    iisOl_btt6030   = 0.000005;
+        const float    iisOl_btt6020   = 0.000004;
 
 
 };

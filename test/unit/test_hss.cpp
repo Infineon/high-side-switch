@@ -592,134 +592,6 @@ TEST_F(Hss_Test, disableDiagnosis_not_initialized)
     ASSERT_EQ(INIT_ERROR, hss.disableDiag());
 }
 
-TEST_F(Hss_Test, getEnDiagStatus_enabled)
-{
-    NiceMock<MockADC> is;
-    NiceMock<MockGPIO> den;
-    NiceMock<MockGPIO> in;
-    NiceMock<MockGPIO> dsel;
-    NiceMock<MockTimer> timer;
-
-    Hss hss(&den, &in, &dsel, &is, &timer);
-    hss.init();
-    hss.enableDiag();
-
-    ASSERT_EQ(DIAG_EN, hss.getEnDiagStatus());
-}
-
-TEST_F(Hss_Test, getEnDiagStatus_disabled)
-{
-    NiceMock<MockADC> is;
-    NiceMock<MockGPIO> den;
-    NiceMock<MockGPIO> in;
-    NiceMock<MockGPIO> dsel;
-    NiceMock<MockTimer> timer;
-
-    Hss hss(&den, &in, &dsel, &is, &timer);
-    hss.init();
-    hss.disableDiag();
-
-    ASSERT_EQ(DIAG_DIS, hss.getEnDiagStatus());
-}
-
-TEST_F(Hss_Test, diagSelectChannelZero_success)
-{
-    NiceMock<MockADC> is;
-    NiceMock<MockGPIO> den;
-    NiceMock<MockGPIO> in;
-    NiceMock<MockGPIO> dsel;
-    NiceMock<MockTimer> timer;
-
-    EXPECT_CALL(dsel, disable())
-    .Times(1)
-    .WillOnce(Return(OK));
-
-    Hss hss(&den, &in, &dsel, &is, &timer);
-    hss.init();
-
-    ASSERT_EQ(OK, hss.diagSelCh0());
-}
-
-TEST_F(Hss_Test, diagSelectChannelZero_fail)
-{
-    NiceMock<MockADC> is;
-    NiceMock<MockGPIO> den;
-    NiceMock<MockGPIO> in;
-    NiceMock<MockGPIO> dsel;
-    NiceMock<MockTimer> timer;
-
-    EXPECT_CALL(dsel, disable())
-    .Times(1)
-    .WillOnce(Return(INTF_ERROR));
-
-    Hss hss(&den, &in, &dsel, &is, &timer);
-    hss.init();
-
-    ASSERT_EQ(INTF_ERROR, hss.diagSelCh0());
-}
-
-TEST_F(Hss_Test, diagSelectChannelZero_not_init)
-{
-    NiceMock<MockADC> is;
-    NiceMock<MockGPIO> den;
-    NiceMock<MockGPIO> in;
-    NiceMock<MockGPIO> dsel;
-    NiceMock<MockTimer> timer;
-
-    Hss hss(&den, &in, &dsel, &is, &timer);
-
-    ASSERT_EQ(INIT_ERROR, hss.diagSelCh0());
-}
-
-TEST_F(Hss_Test, diagSelectChannelOne_success)
-{
-    NiceMock<MockADC> is;
-    NiceMock<MockGPIO> den;
-    NiceMock<MockGPIO> in;
-    NiceMock<MockGPIO> dsel;
-    NiceMock<MockTimer> timer;
-
-    EXPECT_CALL(dsel, enable())
-    .Times(1)
-    .WillOnce(Return(OK));
-
-    Hss hss(&den, &in, &dsel, &is, &timer);
-    hss.init();
-
-    ASSERT_EQ(OK, hss.diagSelCh1());
-}
-
-TEST_F(Hss_Test, diagSelectChannelOne_fail)
-{
-    NiceMock<MockADC> is;
-    NiceMock<MockGPIO> den;
-    NiceMock<MockGPIO> in;
-    NiceMock<MockGPIO> dsel;
-    NiceMock<MockTimer> timer;
-
-    EXPECT_CALL(dsel, enable())
-    .Times(1)
-    .WillOnce(Return(INTF_ERROR));
-
-    Hss hss(&den, &in, &dsel, &is, &timer);
-    hss.init();
-
-    ASSERT_EQ(INTF_ERROR, hss.diagSelCh1());
-}
-
-TEST_F(Hss_Test, diagSelectChannelOne_not_init)
-{
-    NiceMock<MockADC> is;
-    NiceMock<MockGPIO> den;
-    NiceMock<MockGPIO> in;
-    NiceMock<MockGPIO> dsel;
-    NiceMock<MockTimer> timer;
-
-    Hss hss(&den, &in, &dsel, &is, &timer);
-
-    ASSERT_EQ(INIT_ERROR, hss.diagSelCh1());
-}
-
 TEST_F(Hss_Test, diagReset_success)
 {
     NiceMock<MockADC> is;
@@ -861,6 +733,29 @@ TEST_F(Hss_Test, readIs_value)
     ASSERT_EQ(2000, hss.readIs());
 }
 
+TEST_F(Hss_Test, readIs_value_channel1)
+{
+    NiceMock<MockADC> is;
+    NiceMock<MockGPIO> den;
+    NiceMock<MockGPIO> in;
+    NiceMock<MockGPIO> dsel;
+    NiceMock<MockTimer> timer;
+
+    EXPECT_CALL(timer, delayMilli(1))
+    .Times(1);
+
+    EXPECT_CALL(is, ADCRead())
+    .Times(1)
+    .WillOnce(Return(2000));
+
+    Hss hss(&den, &in, &dsel, &is, &timer);
+    hss.init();
+    hss.enable();
+    hss.enableDiag();
+
+    ASSERT_EQ(2000, hss.readIs(CHANNEL1));
+}
+
 TEST_F(Hss_Test, readIs_not_init)
 {
     NiceMock<MockADC> is;
@@ -888,61 +783,61 @@ TEST_F(Hss_Test, calibrateIs_success)
     ASSERT_FLOAT_EQ(2.4, hss.calibrateIs(20, 100, 0, 1.2));
 }
 
-TEST_F(Hss_Test, diagRead_not_enabled)
-{
-    NiceMock<MockADC> is;
-    NiceMock<MockGPIO> den;
-    NiceMock<MockGPIO> in;
-    NiceMock<MockGPIO> dsel;
-    NiceMock<MockTimer> timer;
+// TEST_F(Hss_Test, diagRead_not_enabled)
+// {
+//     NiceMock<MockADC> is;
+//     NiceMock<MockGPIO> den;
+//     NiceMock<MockGPIO> in;
+//     NiceMock<MockGPIO> dsel;
+//     NiceMock<MockTimer> timer;
 
-    Hss hss(&den, &in, &dsel, &is, &timer);
-    hss.init();
+//     Hss hss(&den, &in, &dsel, &is, &timer);
+//     hss.init();
 
-    ASSERT_EQ(NOT_ENABLED, hss.diagRead(2.0, 5));
-}
+//     ASSERT_EQ(NOT_ENABLED, hss.diagRead(2.0, 5));
+// }
 
-TEST_F(Hss_Test, diagRead_overload)
-{
-    NiceMock<MockADC> is;
-    NiceMock<MockGPIO> den;
-    NiceMock<MockGPIO> in;
-    NiceMock<MockGPIO> dsel;
-    NiceMock<MockTimer> timer;
+// TEST_F(Hss_Test, diagRead_overload)
+// {
+//     NiceMock<MockADC> is;
+//     NiceMock<MockGPIO> den;
+//     NiceMock<MockGPIO> in;
+//     NiceMock<MockGPIO> dsel;
+//     NiceMock<MockTimer> timer;
 
-    Hss hss(&den, &in, &dsel, &is, &timer);
-    hss.init();
-    hss.enableDiag();
+//     Hss hss(&den, &in, &dsel, &is, &timer);
+//     hss.init();
+//     hss.enableDiag();
 
-    ASSERT_EQ(OVERLOAD, hss.diagRead(2.0, 5));
-}
+//     ASSERT_EQ(OVERLOAD, hss.diagRead(2.0, iisFault, iisOl, 5.0));
+// }
 
-TEST_F(Hss_Test, diagRead_open_load)
-{
-    NiceMock<MockADC> is;
-    NiceMock<MockGPIO> den;
-    NiceMock<MockGPIO> in;
-    NiceMock<MockGPIO> dsel;
-    NiceMock<MockTimer> timer;
+// TEST_F(Hss_Test, diagRead_open_load)
+// {
+//     NiceMock<MockADC> is;
+//     NiceMock<MockGPIO> den;
+//     NiceMock<MockGPIO> in;
+//     NiceMock<MockGPIO> dsel;
+//     NiceMock<MockTimer> timer;
 
-    Hss hss(&den, &in, &dsel, &is, &timer);
-    hss.init();
-    hss.enableDiag();
+//     Hss hss(&den, &in, &dsel, &is, &timer);
+//     hss.init();
+//     hss.enableDiag();
 
-    ASSERT_EQ(OPEN_LOAD, hss.diagRead(0.5, 40000));
-}
+//     ASSERT_EQ(OPEN_LOAD, hss.diagRead(0.5, 40000));
+// }
 
-TEST_F(Hss_Test, diagRead_normal)
-{
-    NiceMock<MockADC> is;
-    NiceMock<MockGPIO> den;
-    NiceMock<MockGPIO> in;
-    NiceMock<MockGPIO> dsel;
-    NiceMock<MockTimer> timer;
+// TEST_F(Hss_Test, diagRead_normal)
+// {
+//     NiceMock<MockADC> is;
+//     NiceMock<MockGPIO> den;
+//     NiceMock<MockGPIO> in;
+//     NiceMock<MockGPIO> dsel;
+//     NiceMock<MockTimer> timer;
 
-    Hss hss(&den, &in, &dsel, &is, &timer);
-    hss.init();
-    hss.enableDiag();
+//     Hss hss(&den, &in, &dsel, &is, &timer);
+//     hss.init();
+//     hss.enableDiag();
 
-    ASSERT_EQ(NORMAL, hss.diagRead(0.78, 200));
-}
+//     ASSERT_EQ(NORMAL, hss.diagRead(0.78, 200));
+// }

@@ -346,13 +346,14 @@ Error_t Hss::selDiagCh(Channel_t ch)
     Error_t err = OK;
 
     if(CHANNEL0 == ch){
-        dsel->disable();
+        err = dsel->disable();
     }
     else if(CHANNEL1 == ch){
-        dsel->enable();
+        err = dsel->enable();
     }
-    else
+    else{
         return INVALID_CH_ERROR;
+    }
 
     return err;
 }
@@ -439,18 +440,20 @@ Status_t Hss::getSwitchStatus()
  */
 uint16_t Hss::readIs(Channel_t ch)
 {
-    uint16_t AnalogDigitalConverterResult = 0;
+    uint16_t adcResult = 0;
 
-    if(NO_CHANNEL != ch){
-        selDiagCh(ch);
+    if(UNINITED != status){
+        if(NO_CHANNEL != ch){
+            selDiagCh(ch);
+        }
+
+        if(diagEnb == DIAG_EN){
+            timer->delayMilli(1);          //wait for 1ms to ensure that the Profet will provide a valid sense signal
+            adcResult = is->ADCRead();
+        }
     }
 
-    if(diagEnb == DIAG_EN){
-        timer->delayMilli(1);          //wait for 1ms to ensure that the Profet will provide a valid sense signal
-        AnalogDigitalConverterResult = is->ADCRead();
-    }
-
-    return adcRes;
+    return adcResult;
 }
 
 /**
@@ -507,18 +510,18 @@ DiagStatus_t Hss::diagRead(float amps, float iisFault, float iisOl, uint16_t kil
     if(diagEnb == DIAG_EN)
     {
         if(amps > (iisFault*kilis)){
-            return DiagStatus_t::OVERLOAD;
+            return OVERLOAD;
         }
         else if(amps < (iisOl*kilis)){
-            return DiagStatus_t::OPEN_LOAD;
+            return OPEN_LOAD;
         }
         else{
-            return DiagStatus_t::NORMAL;
+            return NORMAL;
         }
     }
     else
     {
-        return DiagStatus_t::NOT_ENABLED;
+        return NOT_ENABLED;
     }
 
     return diagStatus;

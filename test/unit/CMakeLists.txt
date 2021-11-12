@@ -6,7 +6,8 @@ set(prjtest hss-test)
 
 # Test Sources
 set(Sources
-    test_library.cpp
+    test_hss-bts700xShield.cpp
+    # test_hss.cpp
 )
 
 # GCOV Coverage Targets

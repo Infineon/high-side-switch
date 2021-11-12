@@ -40,31 +40,157 @@ Bts700xShield::~Bts700xShield()
  */
 Error_t Bts700xShield::init()
 {
-    filterVbat = new ExponentialFilter(0.0, 0.3);
+    Error_t err = OK;
 
-    if (NULL != led1)
-        led1->init();
-    if (NULL != led2)
-        led2->init();
-    if (NULL != led3)
-        led3->init();
-    if (NULL != led4)
-        led4->init();
+    do{
+        if(NULL != led1){
+            err = led1->init();
+            if(OK != err){
+                break;
+            }
+        }
+        else{
+            err = NULLPTR_ERROR;
+            break;
+        }
 
-    hss1->init();
-    hss2->init();
-    hss3->init();
-    hss4->init();
+        if(NULL != led2){
+            err = led2->init();
+            if(OK != err){
+                break;
+            }
+        }
+        else{
+            err = NULLPTR_ERROR;
+            break;
+        }
 
-    timer->init();
+        if(NULL != led3){
+            err = led3->init();
+            if(OK != err){
+                break;
+            }
+        }
+        else{
+            err = NULLPTR_ERROR;
+            break;
+        }
 
-    oloff->init();
-    pushButtonDigital->init();
+        if(NULL != led4){
+            err = led4->init();
+            if(OK != err){
+                break;
+            }
+        }
+        else{
+            err = NULLPTR_ERROR;
+            break;
+        }
 
-    pushButtonAnalog->init();
-    vBat->init();
+        if(NULL != hss1){
+            err = hss1->init();
+            if(OK != err){
+                break;
+            }
+        }
+        else{
+            err = CONF_ERROR;
+            break;
+        }
 
-    return OK;
+        if(NULL != hss2){
+            err = hss2->init();
+            if(OK != err){
+                break;
+            }
+        }
+        else{
+            err = NULLPTR_ERROR;
+            break;
+        }
+
+        if(NULL != hss3){
+            err = hss3->init();
+            if(OK != err){
+                break;
+            }
+        }
+        else{
+            err = NULLPTR_ERROR;
+            break;
+        }
+
+        if(NULL != hss4){
+            err = hss4->init();
+            if(OK != err){
+                break;
+            }
+        }
+        else{
+            err = NULLPTR_ERROR;
+            break;
+        }
+
+        if(NULL != timer){
+            err = timer->init();
+            if(OK != err){
+                break;
+            }
+        }
+        else{
+            err = NULLPTR_ERROR;
+            break;
+        }
+
+        if(NULL != oloff){
+            err = oloff->init();
+            if(OK != err){
+                break;
+            }
+        }
+        else{
+            err = NULLPTR_ERROR;
+            break;
+        }
+
+        if(NULL != pushButtonDigital){
+            err = pushButtonDigital->init();
+            if(OK != err){
+                break;
+            }
+        }
+        else{
+            err = NULLPTR_ERROR;
+            break;
+        }
+
+        if(NULL != pushButtonAnalog){
+            err = pushButtonAnalog->init();
+            if(OK != err){
+                break;
+            }
+        }
+        else{
+            err = NULLPTR_ERROR;
+            break;
+        }
+
+        if(NULL != vBat){
+            err = vBat->init();
+            if(OK != err){
+                break;
+            }
+        }
+        else{
+            err = NULLPTR_ERROR;
+            break;
+        }
+
+        filterVbat = new ExponentialFilter(0.0, 0.3);
+
+    } while (0);
+
+    return err;
 }
 
 /**
@@ -77,30 +203,157 @@ Error_t Bts700xShield::init()
  */
 Error_t Bts700xShield::deinit()
 {
+    Error_t err = OK;
 
-    if (NULL != led1)
-        led1->deinit();
-    if (NULL != led2)
-        led2->deinit();
-    if (NULL != led3)
-        led3->deinit();
-    if (NULL != led4)
-        led4->deinit();
+     do{
+        if(NULL != led1){
+            err = led1->deinit();
+            if(OK != err){
+                break;
+            }
+        }
+        else{
+            err = NULLPTR_ERROR;
+            break;
+        }
 
-    hss1->deinit();
-    hss2->deinit();
-    hss3->deinit();
-    hss4->deinit();
+        if(NULL != led2){
+            err = led2->deinit();
+            if(OK != err){
+                break;
+            }
+        }
+        else{
+            err = NULLPTR_ERROR;
+            break;
+        }
 
-    timer->deinit();
+        if(NULL != led3){
+            err = led3->deinit();
+            if(OK != err){
+                break;
+            }
+        }
+        else{
+            err = NULLPTR_ERROR;
+            break;
+        }
 
-    oloff->deinit();
-    pushButtonDigital->deinit();
+        if(NULL != led4){
+            err = led4->deinit();
+            if(OK != err){
+                break;
+            }
+        }
+        else{
+            err = NULLPTR_ERROR;
+            break;
+        }
 
-    pushButtonAnalog->deinit();
-    vBat->deinit();
+        if(NULL != hss1){
+            err = hss1->deinit();
+            if(OK != err){
+                break;
+            }
+        }
+        else{
+            err = CONF_ERROR;
+            break;
+        }
 
-    return OK;
+        if(NULL != hss2){
+            err = hss2->deinit();
+            if(OK != err){
+                break;
+            }
+        }
+        else{
+            err = NULLPTR_ERROR;
+            break;
+        }
+
+        if(NULL != hss3){
+            err = hss3->deinit();
+            if(OK != err){
+                break;
+            }
+        }
+        else{
+            err = NULLPTR_ERROR;
+            break;
+        }
+
+        if(NULL != hss4){
+            err = hss4->deinit();
+            if(OK != err){
+                break;
+            }
+        }
+        else{
+            err = NULLPTR_ERROR;
+            break;
+        }
+
+        if(NULL != timer){
+            err = timer->deinit();
+            if(OK != err){
+                break;
+            }
+        }
+        else{
+            err = NULLPTR_ERROR;
+            break;
+        }
+
+        if(NULL != oloff){
+            err = oloff->deinit();
+            if(OK != err){
+                break;
+            }
+        }
+        else{
+            err = NULLPTR_ERROR;
+            break;
+        }
+
+        if(NULL != pushButtonDigital){
+            err = pushButtonDigital->deinit();
+            if(OK != err){
+                break;
+            }
+        }
+        else{
+            err = NULLPTR_ERROR;
+            break;
+        }
+
+        if(NULL != pushButtonAnalog){
+            err = pushButtonAnalog->deinit();
+            if(OK != err){
+                break;
+            }
+        }
+        else{
+            err = NULLPTR_ERROR;
+            break;
+        }
+
+        if(NULL != vBat){
+            err = vBat->deinit();
+            if(OK != err){
+                break;
+            }
+        }
+        else{
+            err = NULLPTR_ERROR;
+            break;
+        }
+
+        filterVbat = new ExponentialFilter(0.0, 0.3);
+
+    } while (0);
+
+    return err;
 }
 
 /**
@@ -114,33 +367,36 @@ Error_t Bts700xShield::deinit()
  */
 Error_t Bts700xShield::switchHxOn(uint8_t x)
 {
+    Error_t err = OK;
+
     switch(x)
     {
         case 1:
-            hss1->enable();
+            err = hss1->enable();
             if (NULL != led1)
-                led1->enable();
+                err = led1->enable();
             break;
 
         case 2:
-            hss2->enable();
+            err = hss2->enable();
             if (NULL != led2)
-                led2->enable();
+                err = led2->enable();
             break;
 
         case 3:
-            hss3->enable();
+            err = hss3->enable();
             if (NULL != led3)
-                led3->enable();
+                err = led3->enable();
             break;
 
         case 4:
-            hss4->enable();
+            err = hss4->enable();
             if (NULL != led4)
-                led4->enable();
+                err = led4->enable();
             break;
     }
-    return OK;
+
+    return err;
 }
 
 /**
@@ -154,33 +410,36 @@ Error_t Bts700xShield::switchHxOn(uint8_t x)
  */
 Error_t Bts700xShield::switchHxOff(uint8_t x)
 {
+    Error_t err = OK;
+
     switch(x)
     {
         case 1:
-            hss1->disable();
+            err = hss1->disable();
             if (NULL != led1)
-                led1->disable();
+                err = led1->disable();
             break;
 
         case 2:
-            hss2->disable();
+            err = hss2->disable();
             if (NULL != led2)
-                led2->disable();
+                err = led2->disable();
             break;
 
         case 3:
-            hss3->disable();
+            err = hss3->disable();
             if (NULL != led3)
-                led3->disable();
+                err = led3->disable();
             break;
 
         case 4:
-            hss4->disable();
+            err = hss4->disable();
             if (NULL != led4)
-                led4->disable();
+                err = led4->disable();
             break;
     }
-    return OK;
+
+    return err;
 }
 
 /**
@@ -196,31 +455,33 @@ Error_t Bts700xShield::switchHxOff(uint8_t x)
  */
 Error_t Bts700xShield::switchesHxOn(bool h1, bool h2, bool h3, bool h4)
 {
+    Error_t err = OK;
+
     if(h1 == true){
-        hss1->enable();
+        err = hss1->enable();
         if (NULL != led1)
-            led1->enable();
+            err = led1->enable();
     }
 
     if(h2 == true){
-        hss2->enable();
+        err = hss2->enable();
         if (NULL != led2)
-            led2->enable();
+            err = led2->enable();
     }
 
     if(h3 == true){
-        hss3->enable();
+        err = hss3->enable();
         if (NULL != led3)
-            led3->enable();
+            err = led3->enable();
     }
 
     if(h4 == true){
-        hss4->enable();
+        err = hss4->enable();
         if (NULL != led4)
-            led4->enable();
+            err = led4->enable();
     }
 
-    return OK;
+    return err;
 }
 
 /**
@@ -236,31 +497,33 @@ Error_t Bts700xShield::switchesHxOn(bool h1, bool h2, bool h3, bool h4)
  */
 Error_t Bts700xShield::switchesHxOff(bool h1, bool h2, bool h3, bool h4)
 {
+    Error_t err = OK;
+
     if(h1 == true){
-        hss1->disable();
+        err = hss1->disable();
         if (NULL != led1)
-            led1->disable();
+            err = led1->disable();
     }
 
     if(h2 == true){
-        hss2->disable();
+        err = hss2->disable();
         if (NULL != led2)
-            led2->disable();
+            err = led2->disable();
     }
 
     if(h3 == true){
-        hss3->disable();
+        err = hss3->disable();
         if (NULL != led3)
-            led3->disable();
+            err = led3->disable();
     }
 
     if(h4 == true){
-        hss4->disable();
+        err = hss4->disable();
         if (NULL != led4)
-            led4->disable();
+            err = led4->disable();
     }
 
-    return OK;
+    return err;
 }
 
 /**
@@ -303,6 +566,7 @@ float Bts700xShield::readIsx(uint8_t x)
             hss4->disableDiag();
             break;
     }
+
     return isVal;
 }
 
@@ -318,8 +582,9 @@ float Bts700xShield::readIsx(uint8_t x)
  */
 float Bts700xShield::getIs(uint8_t x)
 {
-    uint16_t adcResult;
-    float amps, ampsCalib;
+    uint16_t adcResult = 0;
+    float amps = 0.0, ampsCalib = 0.0;
+
     switch(x)
     {
         case 1:
@@ -346,6 +611,7 @@ float Bts700xShield::getIs(uint8_t x)
             ampsCalib = hss4->calibrateIs(amps, btsVariant->kilis, btsVariant->ampsOffset, btsVariant->ampsGain);
             break;
     }
+
     return ampsCalib;
 }
 /**
@@ -451,6 +717,7 @@ DiagStatus_t Bts700xShield::readDiagx(uint8_t x)
             hss4->disableDiag();
             break;
     }
+
     return diagStatus;
 }
 

@@ -112,6 +112,7 @@ pipeline {
 							echo "SONARINSTANCE        :" ${SONARINSTANCE}
 							echo "SERVER               :" ${SERVER}
 							echo "REPO_NAME            :" ${REPO_NAME}
+							echo "JOB_URL              :" ${JOB_URL}
 							echo "DOCS_SOURCE          :" ${DOCS_SOURCE}
 							echo "DOCS_TARGET          :" ${DOCS_TARGET}
 							echo "BOOLEAN ARDUINO      :" ${ARDUINO}

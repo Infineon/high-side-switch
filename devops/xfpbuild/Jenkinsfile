@@ -59,7 +59,7 @@ pipeline {
 	 */
 	environment {
 		WEB_ROOT         = "/home/razweb/htdocs-${params.SERVER}"
-		REPO_NAME        = "${JOB_NAME.replaceFirst(/^.*\/XFP (.*)\/.*$/, '$1')}"
+		REPO_NAME        = "${JOB_NAME.replaceFirst(/^.*build\/job\/[XFP ]?(.*)\/.*$/, '$1')}"
 		DOCS_TARGET      = "${env.WEB_ROOT}/itec/xfp/${env.REPO_NAME}/${env.BRANCH_NAME}"
 		DOCS_SOURCE      = "${env.WORKSPACE}/docs/doxygen/build"
 		ROOT_URL         = "https://${params.SERVER}.vih.infineon.com"
@@ -629,3 +629,8 @@ pipeline {
 	}
 
 }
+
+
+https://xfp-jenkins.icp.infineon.com/job/XFP%20DevOPs%20build/job/XFP%20multi-half-bridge/job/DESMAKERS-2014/
+https://xfp-jenkins.icp.infineon.com/job/XFP%20DevOPs%20build/job/XFP%20multi-half-bridge/job/DESMAKERS-2014/
+https://xfp-jenkins.icp.infineon.com/job/XFP%20DevOPs%20build/job/high-side-switch/job/DESMAKERS-2022/

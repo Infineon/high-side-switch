@@ -59,7 +59,7 @@ pipeline {
 	 */
 	environment {
 		WEB_ROOT         = "/home/razweb/htdocs-${params.SERVER}"
-		REPO_NAME        = "${JOB_NAME.replaceFirst(/^.*build\/job\/XFP\s?(.*)\/.*$/, '$1')}"
+		REPO_NAME        = "${JOB_NAME.replaceFirst(/^.*build\/job\/[XFP\s]?(.*)\/.*$/, '$1')}"
 		DOCS_TARGET      = "${env.WEB_ROOT}/itec/xfp/${env.REPO_NAME}/${env.BRANCH_NAME}"
 		DOCS_SOURCE      = "${env.WORKSPACE}/docs/doxygen/build"
 		ROOT_URL         = "https://${params.SERVER}.vih.infineon.com"

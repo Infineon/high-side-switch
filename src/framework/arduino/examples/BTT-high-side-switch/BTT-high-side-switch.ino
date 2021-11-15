@@ -1,12 +1,12 @@
 /**
- * @file        BTS-high-side-switch.ino
- * @brief       High-Side-Switch Example for the Arduino form factored shields
+ * @file        BTT-high-side-switch.ino
+ * @brief       High-Side-Switch Example for the Arduino form factored Profet24V shield
  *
  * @details     This example shows the usage of the offered functionalities of the shield. It includes:
  *              - Switching the channels on/off one after the other
  *              - Switching multiple channels on/off at once
  *              - Read the current flowing through the channel
- *              - Perform diagnosis for individual channel
+ *              - Perform diagnosis for individual channel while switch is ON
  *              
  *              Find below the Profet 24V shield part details and its offered channels: 
  *              ---------------------------------------------------------------------------------

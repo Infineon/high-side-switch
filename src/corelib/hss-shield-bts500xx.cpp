@@ -10,19 +10,19 @@
 
 using namespace hss;
 
+using namespace hss;
+
 /**
  * @brief High-Side-Switch-Board constructor
  * Initialize all protected class pointers with a null pointer.
  */
-Bts500xxShield::Bts500xxShield(Hss * hsw1, GPIOPAL * led1, GPIOPAL * led2, TimerPAL * timer, ADCPAL * pushButton, ADCPAL * vBat, BtsVariants_t * btsVariant)
+Bts500xxShield::Bts500xxShield(Hss * hsw1, GPIOPAL * led1, GPIOPAL * led2, ADCPAL * pushButton, ADCPAL * vBat)
 : 
 hss1(hsw1),
 led1(led1),
 led2(led2),
-timer(timer),
-pushButtonAnalog(pushButton),
-vBat(vBat),
-btsVariant(btsVariant)
+pushButton(pushButton),
+vBat(vBat)
 {
 
 }
@@ -78,12 +78,10 @@ Error_t Bts500xxShield::init()
             {
                 break;
             }
-
-       
     
-        if(nullptr != pushButtonAnalog)
+        if(nullptr != pushButton)
         {
-            err = pushButtonAnalog->init();
+            err = pushButton->init();
             if(OK!=err)
                 break;
         }
@@ -157,9 +155,9 @@ Error_t Bts500xxShield::deinit()
 
        
     
-        if(nullptr != pushButtonAnalog)
+        if(nullptr != pushButton)
         {
-            err = pushButtonAnalog->deinit();
+            err = pushButton->deinit();
             if(OK!=err)
                 break;
         }
@@ -342,7 +340,7 @@ bool Bts500xxShield::analogReadButton()
 {
     uint16_t result = 0;
 
-    result = pushButtonAnalog->ADCRead();
+    result = pushButton->ADCRead();
     if(result < 20){
         return true;
     }

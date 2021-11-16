@@ -9,7 +9,7 @@ class Bts500xxShield_Test : public ::testing::Test
 
     public:
 
-        NiceMock<MockGPIO> den, in, dsel, led1, led2;
+        NiceMock<MockGPIO> den, in, led1, led2;
         NiceMock<MockADC> is, pushButton, vBat;
         NiceMock<MockTimer> timer;
 
@@ -21,16 +21,13 @@ class Bts500xxShield_Test : public ::testing::Test
          */
         void SetUp()
         {
-            hsw    = new Hss(&den, &in, &dsel, &is, &timer);
-            shield = new Bts500xxShield(hsw, &led1, &led2);
+            hsw    = new Hss(&den, &in, &is, &timer);
+            shield = new Bts500xxShield(hsw, &led1, &led2, &pushButton, &vBat);
 
             ON_CALL(den,init())
             .WillByDefault(Return(OK));
 
             ON_CALL(in,init())
-            .WillByDefault(Return(OK));
-
-            ON_CALL(dsel,init())
             .WillByDefault(Return(OK));
 
             ON_CALL(is,init())
@@ -43,9 +40,6 @@ class Bts500xxShield_Test : public ::testing::Test
             .WillByDefault(Return(OK));
 
             ON_CALL(in,deinit())
-            .WillByDefault(Return(OK));
-
-            ON_CALL(dsel,deinit())
             .WillByDefault(Return(OK));
 
             ON_CALL(is,deinit())

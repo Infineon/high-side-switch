@@ -19,7 +19,7 @@ class Bts500xxShield : public HssShield
 {
     public:
 
-                        Bts500xxShield(Hss * hsw1, GPIOPAL * led1, GPIOPAL * led2, TimerPAL * timer, ADCPAL * pushButton, ADCPAL * vBat, BtsVariants_t * btsVariant);
+                        Bts500xxShield(Hss * hsw1, GPIOPAL * led1, GPIOPAL * led2, ADCPAL * pushButton, ADCPAL * vBat);
                         ~Bts500xxShield();
 
         Error_t         init();
@@ -39,10 +39,10 @@ class Bts500xxShield : public HssShield
         GPIOPAL  * led1;
         GPIOPAL  * led2;
         // TimerPAL * timer;
-        GPIOPAL  * pushButton;
+        ADCPAL   * pushButton;
         ADCPAL   * vBat;   
 
-        BtsVariants_t          *btsVariant;
+        BtsVariants_t * btsVariant;
         const float vBatGain = 1.0;
         const float vBatOffset = 0.0;
 

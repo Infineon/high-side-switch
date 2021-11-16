@@ -57,21 +57,3 @@ class MockGPIO: public GPIOPAL
         MOCK_METHOD(Error_t, enable, (), (override));
         MOCK_METHOD(Error_t, disable, (), (override));
 };
-
-// class MockHss : public Hss
-// {
-//     public:
-//     MockHss(GPIOPAL *den, GPIOPAL *in, GPIOPAL *dsel, ADCPAL *is, TimerPAL *timer) : Hss(den, in, dsel, is, timer){};
-
-//     MOCK_METHOD(Error_t, init, ());
-//     MOCK_METHOD(Error_t, deinit, ());
-//     MOCK_METHOD(Error_t, enable, ());
-//     MOCK_METHOD(Error_t, disable, ());
-//     MOCK_METHOD(Error_t, enableDiag, ());
-//     MOCK_METHOD(Error_t, disableDiag, ());
-//     MOCK_METHOD(Error_t, diagReset, ());
-//     MOCK_METHOD(Status_t, getSwitchStatus, ());
-//     MOCK_METHOD(DiagStatus_t, diagRead, (float amps, float iisFault, float iisOl, uint16_t kilis, Channel_t ch));
-//     MOCK_METHOD(uint16_t, readIs, (Channel_t ch));
-//     MOCK_METHOD(float, calibrateIs, (float inVal, uint16_t kilis, float ampsOffset, float ampsGain));
-// };

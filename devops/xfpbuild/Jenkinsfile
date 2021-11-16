@@ -597,7 +597,7 @@ pipeline {
 				''')
 		}
 		success {
-			send_email('[XFPBUILD] build on branch "' + env.BRANCH_NAME + '" OK', '$DEFAULT_RECIPIENTS' ,
+			send_email('[XFPBUILD] build on branch "' + env.BRANCH_NAME + '" OK', '' ,
 				'''
 					${SCRIPT}
 					<BODY>

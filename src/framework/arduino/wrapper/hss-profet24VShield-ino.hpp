@@ -9,7 +9,7 @@
 #define HSS_PROFET24VSHIELD_INO_HPP_
 
 #include "hss-arduino.hpp"
-#include "hss-profet24VShield.hpp"
+#include "hss-shield-profet24v.hpp"
 #include "hss-variants.hpp"
 #include "hss-shield-config.hpp"
 

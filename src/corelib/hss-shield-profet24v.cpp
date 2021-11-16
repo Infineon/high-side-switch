@@ -1,12 +1,12 @@
 /**
- * @file        hss-profet24VShield.cpp
+ * @file        hss-shield-profet24V.cpp
  * @brief       Profet (24V) Shield with BTT6030-2EKA and BTT6020-1EKA Implementation
  * @copyright   Copyright (c) 2021 Infineon Technologies AG
  *
  * SPDX-License-Identifier: MIT
  */
 
-#include "hss-profet24VShield.hpp"
+#include "hss-shield-profet24v.hpp"
 
 using namespace hss;
 
@@ -43,29 +43,20 @@ Error_t Profet24VBTTShield::init()
 {
     Error_t err = OK;
 
-    do
-    {
-        err = hss0->init();
-        if(OK != err)
-            break;
+    err = hss0->init();
+    HSS_ASSERT_RET(err);
 
-        err = hss1->init();
-        if(OK != err)
-            break;
+    err = hss1->init();
+    HSS_ASSERT_RET(err);
 
-        err = hss2->init();
-        if(OK != err)
-            break;
+    err = hss2->init();
+    HSS_ASSERT_RET(err);
 
-        err = hss3->init();
-        if(OK != err)
-            break;
+    err = hss3->init();
+    HSS_ASSERT_RET(err);
 
-        err = hss4->init();
-        if(OK != err)
-            break;
-
-    } while (0);
+    err = hss4->init();
+    HSS_ASSERT_RET(err);
 
     return err;
 }
@@ -80,32 +71,22 @@ Error_t Profet24VBTTShield::init()
  */
 Error_t Profet24VBTTShield::deinit()
 {
-
     Error_t err = OK;
 
-    do
-    {
-        err = hss0->deinit();
-        if(OK != err)
-            break;
+    err = hss0->deinit();
+    HSS_ASSERT_RET(err);
 
-        err = hss1->deinit();
-        if(OK != err)
-            break;
+    err = hss1->deinit();
+    HSS_ASSERT_RET(err);
 
-        err = hss2->deinit();
-        if(OK != err)
-            break;
+    err = hss2->deinit();
+    HSS_ASSERT_RET(err);
 
-        err = hss3->deinit();
-        if(OK != err)
-            break;
+    err = hss3->deinit();
+    HSS_ASSERT_RET(err);
 
-        err = hss4->deinit();
-        if(OK != err)
-            break;
-
-    } while (0);
+    err = hss4->deinit();
+    HSS_ASSERT_RET(err);
 
     return err;
 }
@@ -215,22 +196,27 @@ Error_t Profet24VBTTShield::switchesHxOn(bool h0_0, bool h1_0, bool h0_1, bool h
 
     if(h0_0 == true){
         err = hss0->enable();
+        HSS_ASSERT_RET(err);
     }
 
     if(h1_0 == true){
         err = hss1->enable();
+        HSS_ASSERT_RET(err);
     }
 
     if(h0_1 == true){
         err = hss2->enable();
+        HSS_ASSERT_RET(err);
     }
 
     if(h1_1 == true){
         err = hss3->enable();
+        HSS_ASSERT_RET(err);
     }
 
     if(h2 == true){
         err = hss4->enable();
+        HSS_ASSERT_RET(err);
     }
     return err;
 }
@@ -254,22 +240,27 @@ Error_t Profet24VBTTShield::switchesHxOff(bool h0_0, bool h1_0, bool h0_1, bool 
 
     if(h0_0 == true){
         err = hss0->disable();
+        HSS_ASSERT_RET(err);
     }
 
     if(h1_0 == true){
         err = hss1->disable();
+        HSS_ASSERT_RET(err);
     }
 
     if(h0_1 == true){
         err = hss2->disable();
+        HSS_ASSERT_RET(err);
     }
 
     if(h1_1 == true){
         err = hss3->disable();
+        HSS_ASSERT_RET(err);
     }
 
     if(h2 == true){
         err = hss4->disable();
+        HSS_ASSERT_RET(err);
     }
     return err;
 }

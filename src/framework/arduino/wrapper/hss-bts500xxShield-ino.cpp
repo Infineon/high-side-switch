@@ -1,12 +1,12 @@
 /** 
- * @file        hss-bts500xxShield.cpp
+ * @file        hss-bts500xxShield-ino.cpp
  * @brief       BTS700x-1EPP (12V) Shield Implementation
  * @copyright   Copyright (c) 2021 Infineon Technologies AG
  * 
  * SPDX-License-Identifier: MIT
  */
 
-#include "hss-bts500xxShield.hpp"
+#include "hss-shield-bts500xx.hpp"
 
 /**
  * @brief High-Side-Switch-Board constructor

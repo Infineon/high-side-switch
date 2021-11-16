@@ -7,7 +7,8 @@ set(prjtest hss-test)
 # Test Sources
 set(Sources
     # test_hss-bts700xShield.cpp
-    test_hss-shield-profet24v.cpp
+    # test_hss-shield-profet24v.cpp
+    test_hss-shield-bts500xx.cpp
     # test_hss.cpp
 )
 

@@ -16,7 +16,7 @@ class Bts700xShield : public HssShield
 {
     public:
 
-                        Bts700xShield(Hss *hsw1, Hss *hsw2, Hss *hsw3, Hss *hsw4);
+                        Bts700xShield(GPIOPAL *led1, GPIOPAL *led2, GPIOPAL *led3, GPIOPAL *led4, Hss *hsw1, Hss *hsw2, Hss *hsw3, Hss *hsw4, TimerPAL *timer, GPIOPAL *oloff, GPIOPAL *pushButtonDigital, ADCPAL *pushButtonAnalog, ADCPAL *vBat);
                         ~Bts700xShield();
 
         Error_t         init();

@@ -13,12 +13,25 @@ using namespace hss;
  * @brief High-Side-Switch-Board constructor
  * Initialize all protected class pointers with a null pointer.
  */
-Bts700xShield::Bts700xShield(Hss *hsw1, Hss *hsw2, Hss *hsw3, Hss *hsw4)
+Bts700xShield::Bts700xShield(GPIOPAL *led1, GPIOPAL *led2, GPIOPAL *led3, GPIOPAL *led4, Hss *hsw1, Hss *hsw2, Hss *hsw3, Hss *hsw4, TimerPAL *timer, GPIOPAL *oloff, GPIOPAL *pushButtonDigital, ADCPAL *pushButtonAnalog, ADCPAL *vBat)
 {
+    this->led1 = led1;
+    this->led2 = led2;
+    this->led3 = led3;
+    this->led4 = led4;
+
     this->hss1 = hsw1;
     this->hss2 = hsw2;
     this->hss3 = hsw3;
     this->hss4 = hsw4;
+
+    this->timer = timer;
+
+    this->oloff = oloff;
+    this->pushButtonDigital = pushButtonDigital;
+
+    this->pushButtonAnalog = pushButtonAnalog;
+    this->vBat = vBat;
 }
 
 /**
@@ -94,7 +107,7 @@ Error_t Bts700xShield::init()
             }
         }
         else{
-            err = CONF_ERROR;
+            err = NULLPTR_ERROR;
             break;
         }
 
@@ -257,7 +270,7 @@ Error_t Bts700xShield::deinit()
             }
         }
         else{
-            err = CONF_ERROR;
+            err = NULLPTR_ERROR;
             break;
         }
 
@@ -349,8 +362,6 @@ Error_t Bts700xShield::deinit()
             break;
         }
 
-        filterVbat = new ExponentialFilter(0.0, 0.3);
-
     } while (0);
 
     return err;
@@ -373,25 +384,25 @@ Error_t Bts700xShield::switchHxOn(uint8_t x)
     {
         case 1:
             err = hss1->enable();
-            if (NULL != led1)
+            if (NULL != led1 && OK == err)
                 err = led1->enable();
             break;
 
         case 2:
             err = hss2->enable();
-            if (NULL != led2)
+            if (NULL != led2 && OK == err)
                 err = led2->enable();
             break;
 
         case 3:
             err = hss3->enable();
-            if (NULL != led3)
+            if (NULL != led3 && OK == err)
                 err = led3->enable();
             break;
 
         case 4:
             err = hss4->enable();
-            if (NULL != led4)
+            if (NULL != led4 && OK == err)
                 err = led4->enable();
             break;
     }
@@ -416,25 +427,25 @@ Error_t Bts700xShield::switchHxOff(uint8_t x)
     {
         case 1:
             err = hss1->disable();
-            if (NULL != led1)
+            if (NULL != led1 && OK == err)
                 err = led1->disable();
             break;
 
         case 2:
             err = hss2->disable();
-            if (NULL != led2)
+            if (NULL != led2 && OK == err)
                 err = led2->disable();
             break;
 
         case 3:
             err = hss3->disable();
-            if (NULL != led3)
+            if (NULL != led3 && OK == err)
                 err = led3->disable();
             break;
 
         case 4:
             err = hss4->disable();
-            if (NULL != led4)
+            if (NULL != led4 && OK == err)
                 err = led4->disable();
             break;
     }
@@ -457,29 +468,39 @@ Error_t Bts700xShield::switchesHxOn(bool h1, bool h2, bool h3, bool h4)
 {
     Error_t err = OK;
 
-    if(h1 == true){
-        err = hss1->enable();
-        if (NULL != led1)
-            err = led1->enable();
-    }
+    do{
+        if(h1 == true){
+            err = hss1->enable();
+            if (NULL != led1 && OK == err)
+                err = led1->enable();
+            else
+                break;
+        }
 
-    if(h2 == true){
-        err = hss2->enable();
-        if (NULL != led2)
-            err = led2->enable();
-    }
+        if(h2 == true){
+            err = hss2->enable();
+            if (NULL != led2 && OK == err)
+                err = led2->enable();
+            else
+                break;
+        }
 
-    if(h3 == true){
-        err = hss3->enable();
-        if (NULL != led3)
-            err = led3->enable();
-    }
+        if(h3 == true){
+            err = hss3->enable();
+            if (NULL != led3 && OK == err)
+                err = led3->enable();
+            else
+                break;
+        }
 
-    if(h4 == true){
-        err = hss4->enable();
-        if (NULL != led4)
-            err = led4->enable();
-    }
+        if(h4 == true){
+            err = hss4->enable();
+            if (NULL != led4 && OK == err)
+                err = led4->enable();
+            else
+                break;
+        }
+    } while (0);
 
     return err;
 }
@@ -499,29 +520,39 @@ Error_t Bts700xShield::switchesHxOff(bool h1, bool h2, bool h3, bool h4)
 {
     Error_t err = OK;
 
-    if(h1 == true){
-        err = hss1->disable();
-        if (NULL != led1)
-            err = led1->disable();
-    }
+    do{
+        if(h1 == true){
+            err = hss1->disable();
+            if (NULL != led1 && OK == err)
+                err = led1->disable();
+            else
+                break;
+        }
 
-    if(h2 == true){
-        err = hss2->disable();
-        if (NULL != led2)
-            err = led2->disable();
-    }
+        if(h2 == true){
+            err = hss2->disable();
+            if (NULL != led2 && OK == err)
+                err = led2->disable();
+            else
+                break;
+        }
 
-    if(h3 == true){
-        err = hss3->disable();
-        if (NULL != led3)
-            err = led3->disable();
-    }
+        if(h3 == true){
+            err = hss3->disable();
+            if (NULL != led3 && OK == err)
+                err = led3->disable();
+            else
+                break;
+        }
 
-    if(h4 == true){
-        err = hss4->disable();
-        if (NULL != led4)
-            err = led4->disable();
-    }
+        if(h4 == true){
+            err = hss4->disable();
+            if (NULL != led4 && OK == err)
+                err = led4->disable();
+            else
+                break;
+        }
+    } while (0);
 
     return err;
 }

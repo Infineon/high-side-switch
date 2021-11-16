@@ -6,7 +6,7 @@
  * SPDX-License-Identifier: MIT
  */
 
-#include "hss-shield-profet24V.hpp"
+#include "hss-shield-profet24v.hpp"
 
 using namespace hss;
 

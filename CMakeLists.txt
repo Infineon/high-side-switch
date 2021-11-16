@@ -1,9 +1,9 @@
 cmake_minimum_required(VERSION 3.12.4)
 
 # Arduino Library Template
-set(lib high-side-switch)
+set(corelib high-side-switch)
 
-project(${lib} CXX C)
+project(${corelib} CXX C)
 
 set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_POSITION_INDEPENDENT_CODE ON)
@@ -26,10 +26,10 @@ set(Headers
     src/pal
     )
 
-file(GLOB Sources CONFIGURE_DEPENDS "src/corelib/*.cpp")
+file(GLOB Sources CONFIGURE_DEPENDS src/corelib/*.cpp src/config/*.cpp)
 
 # Add Library
-add_library(${lib} ${Sources} ${Headers})
+add_library(${corelib} ${Sources} ${Headers})
 
 # Enable Testing with CTest
 enable_testing()

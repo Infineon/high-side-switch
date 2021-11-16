@@ -89,6 +89,9 @@ namespace hss
     /** @} */
 }
 
+#define HSS_ASSERT_RET(x)       if( x != OK ) { return x; }
+#define HSS_ASSERT_NULLPTR(x)   if( x == nullptr ) { return NULLPTR_ERROR; }
+
 /** @} */
 
 #endif /** HSS_TYPES_HPP_ **/

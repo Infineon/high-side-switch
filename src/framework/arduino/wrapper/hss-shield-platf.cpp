@@ -1,12 +1,12 @@
 /**
- * @file        hss-shield-config.cpp
- * @brief       Configurations for supported Shields
+ * @file        hss-shield-platf.cpp
+ * @brief       Platform configurations for supported shields
  * @copyright   Copyright (c) 2021 Infineon Technologies AG
  *
  * SPDX-License-Identifier: MIT
  */
 
-#include "hss-shield-config.hpp"
+#include "hss-shield-platf.hpp"
 #include <Arduino.h>
 
 Bts700xHwConfig_t BTS700X_HWCONFIG

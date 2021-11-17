@@ -5,13 +5,13 @@
  *
  * SPDX-License-Identifier: MIT
  */
-#ifndef HSS_PROFET24VSHIELD_INO_HPP_
-#define HSS_PROFET24VSHIELD_INO_HPP_
+#ifndef HSS_SHIELD_PROFET24V_INO_HPP_
+#define HSS_SHIELD_PROFET24V_INO_HPP_
 
 #include "hss-arduino.hpp"
 #include "hss-shield-profet24v.hpp"
 #include "hss-variants.hpp"
-#include "hss-shield-config.hpp"
+#include "hss-shield-platf.hpp"
 
 using namespace hss;
 
@@ -23,4 +23,4 @@ class Profet24VBTTShieldIno : public Profet24VBTTShield
                         ~Profet24VBTTShieldIno();
 };
 
-#endif /**HSS_PROFET24VSHIELD_INO_HPP_*/
+#endif /** HSS_SHIELD_PROFET24V_INO_HPP_ **/

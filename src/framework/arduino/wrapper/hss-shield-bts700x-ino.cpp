@@ -6,7 +6,7 @@
  * SPDX-License-Identifier: MIT
  */
 
-#include "hss-bts700xShield-ino.hpp"
+#include "hss-shield-bts700x-ino.hpp"
 #include <Arduino.h>
 
 using namespace hss;

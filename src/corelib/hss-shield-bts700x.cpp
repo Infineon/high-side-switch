@@ -1,12 +1,12 @@
 /**
- * @file        hss-bts700xShield.cpp
+ * @file        hss-shield-bts700x.cpp
  * @brief       BTS700x-1EPP (12V) Shield Implementation
  * @copyright   Copyright (c) 2021 Infineon Technologies AG
  *
  * SPDX-License-Identifier: MIT
  */
 
-#include "hss-bts700xShield.hpp"
+#include "hss-shield-bts700x.hpp"
 
 using namespace hss;
 /**

@@ -6,7 +6,7 @@
  * SPDX-License-Identifier: MIT
  */
 
-#include "hss-profet24VShield-ino.hpp"
+#include "hss-shield-profet24v-ino.hpp"
 #include <Arduino.h>
 
 using namespace hss;

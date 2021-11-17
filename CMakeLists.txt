@@ -26,7 +26,7 @@ set(Headers
     src/pal
     )
 
-file(GLOB Sources CONFIGURE_DEPENDS src/corelib/*.cpp src/config/*.cpp)
+file(GLOB Sources CONFIGURE_DEPENDS src/corelib/*.cpp)
 
 # Add Library
 add_library(${corelib} ${Sources} ${Headers})

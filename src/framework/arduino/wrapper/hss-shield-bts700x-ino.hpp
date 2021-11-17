@@ -5,13 +5,13 @@
  *
  * SPDX-License-Identifier: MIT
  */
-#ifndef HSS_BTS700xSHIELD_INO_HPP_
-#define HSS_BTS700xSHIELD_INO_HPP_
+#ifndef HSS_SHIELD_BTS700X_INO_HPP_
+#define HSS_SHIELD_BTS700X_INO_HPP_
 
 #include "hss-arduino.hpp"
-#include "hss-bts700xShield.hpp"
+#include "hss-shield-bts700x.hpp"
 #include "hss-variants.hpp"
-#include "hss-shield-config.hpp"
+#include "hss-shield-platf.hpp"
 
 using namespace hss;
 
@@ -23,4 +23,4 @@ class Bts700xShieldIno : public Bts700xShield
                         ~Bts700xShieldIno();
 };
 
-#endif /**HSS_BTS700xSHIELD_INO_HPP_*/
+#endif /** HSS_SHIELD_BTS700X_INO_HPP_ **/

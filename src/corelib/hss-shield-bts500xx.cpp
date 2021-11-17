@@ -47,64 +47,34 @@ Bts500xxShield::~Bts500xxShield()
 Error_t Bts500xxShield::init()
 {
     Error_t err= OK;
-     do
+
+    HSS_ASSERT_NULLPTR(hss1);
+    err= hss1->init();
+    HSS_ASSERT_RET(err);
+
+    if(nullptr != led1)
     {
-        if(nullptr != led1)
-        {
-            err = led1->init();
-            if(OK!=err)
-                break;
-        }
-        else
-        {
-            err = NULLPTR_ERROR;
-            break;
-        }
-
-          if(nullptr != led2)
-        {
-            err = led2->init();
-            if(OK!=err)
-                break;
-        }
-        else
-        {
-            err = NULLPTR_ERROR;
-            break;
-        }
-
-        err= hss1->init();
-            if (OK!=err)
-            {
-                break;
-            }
-    
-        if(nullptr != pushButton)
-        {
-            err = pushButton->init();
-            if(OK!=err)
-                break;
-        }
-        else
-        {
-            err = NULLPTR_ERROR;
-            break;
-        }
-
-        if(nullptr != vBat)
-        {
-            err = vBat->init();
-            if(OK!=err)
-                break;
-        }
-        else
-        {
-            err = NULLPTR_ERROR;
-            break;
-        }
-
+        err = led1->init();
+        HSS_ASSERT_RET(err);
     }
-    while(0);
+
+    if(nullptr != led2)
+    {
+        err = led2->init();
+        HSS_ASSERT_RET(err);
+    }
+
+    if(nullptr != pushButton)
+    {
+        err = pushButton->init();
+        HSS_ASSERT_RET(err);
+    }
+
+    if(nullptr != vBat)
+    {
+        err = vBat->init();
+        HSS_ASSERT_RET(err);
+    }
 
     return OK;
 }

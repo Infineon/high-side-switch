@@ -5,13 +5,13 @@
  *
  * SPDX-License-Identifier: MIT
  */
-#ifndef HSS_BTS500xxSHIELD_INO_HPP_
-#define HSS_BTS500xxxSHIELD_INO_HPP_
+#ifndef HSS_SHIELD_BTS500XX_INO_HPP_
+#define HSS_SHIELD_BTS500XX_INO_HPP_
 
 #include "hss-arduino.hpp"
 #include "hss-shield-bts500xx.hpp"
 #include "hss-variants.hpp"
-#include "hss-shield-config.hpp"
+#include "hss-shield-platf.hpp"
 
 using namespace hss;
 
@@ -24,4 +24,4 @@ class Bts500xxShieldIno : public Bts500xxShield
 
 };
 
-#endif /**HSS_BTS500xxSHIELD_INO_HPP_*/
+#endif /** HSS_SHIELD_BTS500XX_INO_HPP_ **/

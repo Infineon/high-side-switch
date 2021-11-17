@@ -1,6 +1,6 @@
 /**
  * @file        hss-variants.hpp
- * @brief       Defines the characteristic values of the different BTS700x variants
+ * @brief       Defines the characteristic values of the different high side switches variants
  * @copyright   Copyright (c) 2021 Infineon Technologies AG
  *
  * SPDX-License-Identifier: MIT

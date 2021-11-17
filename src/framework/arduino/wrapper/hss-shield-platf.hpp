@@ -1,13 +1,13 @@
 /**
- * @file        hss-shield-config.hpp
- * @brief       Configurations for different shields
+ * @file        hss-shield-platf.hpp
+ * @brief       Platform configurations for different shields
  * @copyright   Copyright (c) 2021 Infineon Technologies AG
  *
  * SPDX-License-Identifier: MIT
  */
 
-#ifndef HSS_SHIELD_CONFIG_HPP_
-#define HSS_SHIELD_CONFIG_HPP_
+#ifndef HSS_SHIELD_PLATF_HPP_
+#define HSS_SHIELD_PLATF_HPP_
 
 #include <stdint.h>
 
@@ -91,4 +91,4 @@ struct BTS500xxHwConfig_t
 
 extern BTS500xxHwConfig_t BTS500XX_HWCONFIG;
 /** @} */
-#endif /** HSS_SHIELD_CONFIG_HPP_ **/
+#endif /** HSS_SHIELD_PLATF_HPP_ **/

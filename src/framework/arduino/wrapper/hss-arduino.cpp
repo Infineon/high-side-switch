@@ -21,9 +21,9 @@
  */
 HssIno::HssIno(uint8_t in, uint8_t is)
 : Hss(nullptr,
-      new GPIOIno (in,  OUTPUT, GPIOIno::POSITIVE),
+      new GPIOIno(in,  OUTPUT, GPIOIno::POSITIVE),
       nullptr,
-      new ADCIno  (is),
+      new ADCIno(is),
       new TimerIno())
 { 
 
@@ -40,10 +40,10 @@ HssIno::HssIno(uint8_t in, uint8_t is)
  * @param[in]   is          Pin number of the sense current output  
  */
 HssIno::HssIno(uint8_t den, uint8_t in, uint8_t is)
-: Hss(new GPIOIno (den, OUTPUT, GPIOIno::POSITIVE);
-      new GPIOIno (in,  OUTPUT, GPIOIno::POSITIVE),
+: Hss(new GPIOIno(den, OUTPUT, GPIOIno::POSITIVE),
+      new GPIOIno(in,  OUTPUT, GPIOIno::POSITIVE),
       nullptr,
-      new ADCIno  (is),
+      new ADCIno(is),
       new TimerIno())
 {
 
@@ -61,17 +61,13 @@ HssIno::HssIno(uint8_t den, uint8_t in, uint8_t is)
  * @param[in]   dsel        Pin number of diagnosis channel select
  */
 HssIno::HssIno(uint8_t den, uint8_t in, uint8_t dsel, uint8_t is)
-: Hss(new GPIOIno (den, OUTPUT, GPIOIno::POSITIVE);
-      new GPIOIno (in,  OUTPUT, GPIOIno::POSITIVE),
-      new GPIOIno (dsel,  OUTPUT, GPIOIno::POSITIVE),
-      new ADCIno  (is),
+: Hss(new GPIOIno(den, OUTPUT, GPIOIno::POSITIVE),
+      new GPIOIno(in,  OUTPUT, GPIOIno::POSITIVE),
+      new GPIOIno(dsel,  OUTPUT, GPIOIno::POSITIVE),
+      new ADCIno(is),
       new TimerIno())
 {
-    // HssIno::den   = new GPIOIno (den, OUTPUT, GPIOIno::POSITIVE);
-    // HssIno::in    = new GPIOIno (in,  OUTPUT, GPIOIno::POSITIVE);
-    // HssIno::dsel  = new GPIOIno (dsel,  OUTPUT, GPIOIno::POSITIVE);
-    // HssIno::is    = new ADCIno  (is);
-    // HssIno::timer = new TimerIno();
+    
 }
 
 /**

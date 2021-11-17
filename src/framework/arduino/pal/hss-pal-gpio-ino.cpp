@@ -84,7 +84,7 @@ GPIOIno::VLevel_t GPIOIno::read()
  * @param[in]   level   Desired logic level of the pin
  * @return      GPIOIno::Error_t
  */
-GPIOIno::Error_t GPIOIno::write(VLevel_t level)
+Error_t GPIOIno::write(VLevel_t level)
 {
     digitalWrite(this->pin, level);
     return OK;

@@ -55,7 +55,6 @@ BtsVariants_t BTS7008 {
     .vBatGain = 1.045,
     .vBatOffset = 0.0
 };
-
 /**
  * @brief BTS50015-1TAD.
  * Is rated for nominal 33 A

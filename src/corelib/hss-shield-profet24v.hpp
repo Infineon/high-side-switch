@@ -23,7 +23,7 @@ class Profet24VBTTShield : HssShield
 
         Error_t         init();
         Error_t         deinit();
-        Error_t         switchHxOn   (uint8_t x);
+        Error_t         switchHxOn   (uint8_t x); //Hss_Output_t OUTPUT1, OUTPUTALL
         Error_t         switchHxOff  (uint8_t x);
         Error_t         switchesHxOn (bool h1_0 = false, bool h2_0 = false, bool h1_1 = false, bool h2_1 = false, bool h2 = false);
         Error_t         switchesHxOff(bool h1_0 = false, bool h2_0 = false, bool h1_1 = false, bool h2_1 = false, bool h2 = false);

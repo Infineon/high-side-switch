@@ -12,6 +12,8 @@
 
 #include "hss-pal-gpio.hpp"
 
+using namespace hss;
+
 /**
  * @addtogroup arduinoPal
  * @{

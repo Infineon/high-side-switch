@@ -11,6 +11,8 @@
 
 #include "hss-pal-adc.hpp"
 
+using namespace hss;
+
 /**
  * @addtogroup arduinoPal
  * @{

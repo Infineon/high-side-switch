@@ -11,6 +11,8 @@
 
 #include "hss-pal-timer.hpp"
 
+using namespace hss;
+
 /**
  * @addtogroup arduinoPal
  * @{

@@ -1,5 +1,5 @@
 {  
-    "name": "High-Side-Switch",
+    "name": "high-side-switch",
     "keywords": "high side switch, profet, smart switch",
     "description": "This library provides an interface to interact with the PROFET-Family of IFX",
     "repository":{  

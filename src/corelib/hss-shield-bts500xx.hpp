@@ -24,9 +24,9 @@ class Bts500xxShield : public HssShield
 
         Error_t         init();
         Error_t         deinit();
-        Error_t         switchHxOn(uint8_t x);
-        Error_t         switchHxOff(uint8_t x);
-        DiagStatus_t    readDiagx(uint8_t x=1);   // TODO: To be implemented in next ticket
+        Error_t         switchHxOn(uint8_t x = 0);
+        Error_t         switchHxOff(uint8_t x = 0);
+        DiagStatus_t    readDiagx(uint8_t x = 0);  
         DiagStatus_t    diagnosisOff(float currentOn, float currentOff);
         float           readIsx(uint8_t x=1);
         float           readVss();

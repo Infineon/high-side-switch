@@ -89,68 +89,35 @@ Error_t Bts500xxShield::init()
  */
 Error_t Bts500xxShield::deinit()
 {
-
     Error_t err= OK;
-     do
-    {
-        if(nullptr != led1)
-        {
-            err = led1->deinit();
-            if(OK!=err)
-                break;
-        }
-        else
-        {
-            err = NULLPTR_ERROR;
-            break;
-        }
-
-          if(nullptr != led2)
-        {
-            err = led2->deinit();
-            if(OK!=err)
-                break;
-        }
-        else
-        {
-            err = NULLPTR_ERROR;
-            break;
-        }
-
-        err= hss1->deinit();
-            if (OK!=err)
-            {
-                break;
-            }
-
-       
     
-        if(nullptr != pushButton)
-        {
-            err = pushButton->deinit();
-            if(OK!=err)
-                break;
-        }
-        else
-        {
-            err = NULLPTR_ERROR;
-            break;
-        }
+    HSS_ASSERT_NULLPTR(hss1);
+    err= hss1->deinit();
+    HSS_ASSERT_RET(err);
 
-        if(nullptr != vBat)
-        {
-            err = vBat->deinit();
-            if(OK!=err)
-                break;
-        }
-        else
-        {
-            err = NULLPTR_ERROR;
-            break;
-        }
-
+    if(nullptr != led1)
+    {
+        err = led1->deinit();
+        HSS_ASSERT_RET(err);
     }
-    while(0);
+
+    if(nullptr != led2)
+    {
+        err = led2->deinit();
+        HSS_ASSERT_RET(err);
+    }
+    
+    if(nullptr != pushButton)
+    {
+        err = pushButton->deinit();
+        HSS_ASSERT_RET(err);
+    }
+
+    if(nullptr != vBat)
+    {
+        err = vBat->deinit();
+        HSS_ASSERT_RET(err);
+    }
 
     return OK;
 }
@@ -166,11 +133,19 @@ Error_t Bts500xxShield::deinit()
  */
 Error_t Bts500xxShield::switchHxOn(uint8_t x)
 {
-           Error_t err= OK;
-            err=hss1->enable();
-            if (NULL != led1)
-                led1->enable();
-       
+    (void)x;  /** Unused argument */
+
+    Error_t err= OK;
+
+    err = hss1->enable();
+    HSS_ASSERT_RET(err);
+
+    if (nullptr != led1)
+    {
+        err = led1->enable();
+        HSS_ASSERT_RET(err);
+    }
+
     return err;
 }
 
@@ -185,10 +160,19 @@ Error_t Bts500xxShield::switchHxOn(uint8_t x)
  */
 Error_t Bts500xxShield::switchHxOff(uint8_t x)
 {
+    (void)x;  /** Unused argument */
+
     Error_t err= OK;
+
     err= hss1->disable();
-    if (NULL != led1)
-        led1->disable();    
+    HSS_ASSERT_RET(err);
+
+    if (nullptr != led1)
+    {
+        err = led1->disable();    
+        HSS_ASSERT_RET(err);
+    }
+
     return err;
 }
 
@@ -205,13 +189,14 @@ Error_t Bts500xxShield::switchHxOff(uint8_t x)
  */
 float Bts500xxShield::readIsx(uint8_t x)
 {
+    (void)x;  /** Unused argument */
+
     float isVal;
    
-            hss1->enableDiag();
-            isVal = getIs();
-            hss1->disableDiag();
-        
-      
+    hss1->enableDiag();
+    isVal = getIs();
+    hss1->disableDiag();
+
     return isVal;
 }
 
@@ -226,12 +211,14 @@ float Bts500xxShield::readIsx(uint8_t x)
  */
 float Bts500xxShield::getIs(uint8_t x)
 {
+    (void)x;  /** Unused argument */
+
     uint16_t adcResult;
     float amps, ampsCalib;
         
-            adcResult = hss1->readIs();
-            amps = ((float)adcResult/(float)1024) * (float)5;
-            ampsCalib = hss1->calibrateIs(amps, btsVariant->kilis, btsVariant->ampsOffset, btsVariant->ampsGain);
+    adcResult = 0;//hss1->readIs();
+    amps = ((float)adcResult/(float)1024) * (float)5;
+    ampsCalib = hss1->calibrateIs(amps, btsVariant->kilis, btsVariant->ampsOffset, btsVariant->ampsGain);
 
     return ampsCalib;
 }
@@ -253,6 +240,8 @@ float Bts500xxShield::getIs(uint8_t x)
  */
 DiagStatus_t Bts500xxShield::readDiagx(uint8_t x)
 {
+    (void)x;  /** Unused argument */
+
     DiagStatus_t diagStatus = NORMAL;
 
     /*float currentOn = 0.0;
@@ -279,8 +268,8 @@ DiagStatus_t Bts500xxShield::readDiagx(uint8_t x)
                }
             hss1->disableDiag();
     }
-
-    return diagStatus;*/
+*/
+    return diagStatus;
 }
 
 

@@ -6,10 +6,10 @@ set(prjtest hss-test)
 
 # Test Sources
 set(Sources
-    test_hss-shield-bts700x.cpp
-    test_hss-shield-profet24v.cpp
+    # test_hss-shield-bts700x.cpp
+    # test_hss-shield-profet24v.cpp
     test_hss-shield-bts500xx.cpp
-    test_hss.cpp
+    # test_hss.cpp
 )
 
 # GCOV Coverage Targets

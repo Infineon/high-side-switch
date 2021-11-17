@@ -66,8 +66,109 @@ class Bts500xxShield_Test : public ::testing::Test
 
 TEST_F(Bts500xxShield_Test, init_Error)
 {
-    // EXPECT_CALL(den, init())
-    // .WillOnce(Return(INTF_ERROR));
+    EXPECT_CALL(den, init())
+    .WillOnce(Return(INTF_ERROR));
 
+    ASSERT_EQ(INTF_ERROR, shield->init());
+}
+
+TEST_F(Bts500xxShield_Test, init_Nullptr_Error)
+{
+    Bts500xxShield shield2(nullptr, &led1, &led2, &pushButton, &vBat);
+
+    ASSERT_EQ(NULLPTR_ERROR, shield2.init());
+}
+
+TEST_F(Bts500xxShield_Test, init_Success)
+{
     ASSERT_EQ(OK, shield->init());
 }
+
+/**
+ * deinit()
+ */
+
+TEST_F(Bts500xxShield_Test, deinit_Error)
+{
+    EXPECT_CALL(den, deinit())
+    .WillOnce(Return(INTF_ERROR));
+
+    ASSERT_EQ(INTF_ERROR, shield->deinit());
+}
+
+TEST_F(Bts500xxShield_Test, deinit_Nullptr_Error)
+{
+    Bts500xxShield shield2(nullptr, &led1, &led2, &pushButton, &vBat);
+
+    ASSERT_EQ(NULLPTR_ERROR, shield2.deinit());
+}
+
+TEST_F(Bts500xxShield_Test, deinit_Success)
+{
+    ASSERT_EQ(OK, shield->deinit());
+}
+
+/**
+ * switchHxOn()
+ */
+
+TEST_F(Bts500xxShield_Test, switchHxOn_Error)
+{
+    EXPECT_CALL(in, enable())
+    .WillOnce(Return(INTF_ERROR));
+
+    shield->init();
+
+    ASSERT_EQ(INTF_ERROR, shield->switchHxOn());
+}
+
+TEST_F(Bts500xxShield_Test, switchHxOn_Success)
+{
+    shield->init();
+
+    ASSERT_EQ(OK, shield->switchHxOn());
+}
+
+/**
+ * switchHxOn()
+ */
+
+TEST_F(Bts500xxShield_Test, switchHxOff_Error)
+{
+    EXPECT_CALL(in, disable())
+    .WillOnce(Return(INTF_ERROR));
+
+    shield->init();
+
+    ASSERT_EQ(INTF_ERROR, shield->switchHxOff());
+}
+
+TEST_F(Bts500xxShield_Test, switchHxOff_Success)
+{
+    shield->init();
+
+    ASSERT_EQ(OK, shield->switchHxOff());
+}
+
+/**
+ * readDiagx()
+ */
+
+TEST_F(Bts500xxShield_Test, readDiagx_Error)
+{
+    shield->init();
+
+    ASSERT_EQ(NORMAL, shield->readDiagx());
+}
+
+/**
+ * readIsx()
+ */
+
+// TEST_F(Bts500xxShield_Test, readIsx_Error)
+// {
+//     shield->init();
+
+//     ASSERT_EQ(0, shield->readIsx());
+// }
+

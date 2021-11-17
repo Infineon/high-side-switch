@@ -44,12 +44,11 @@ extern BtsVariants_t BTS7004;
 extern BtsVariants_t BTS7006;
 extern BtsVariants_t BTS7008;
 
-extern BtsVariants_t BTS50015;
-extern BtsVariants_t BTS50010;
-
 extern BttVariants_t BTT6030;
 extern BttVariants_t BTT6020;
 
+extern BtsVariants_t BTS50015;
+extern BtsVariants_t BTS50010;
 /** @} */
 
 #endif /** HSS_VARIANTS_HPP_ **/

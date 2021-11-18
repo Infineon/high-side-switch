@@ -284,14 +284,11 @@ DiagStatus_t Bts500xxShield::readDiagx(uint8_t x)
 
             if(hss1->getSwitchStatus() == POWER_ON){
                 float vs=readVss();
-                float vis=getIS();
-                if((vs-vis)>5 || (vs-vis)=5)
+                float vis=getIs();
+                float v=vs-vis;
+                if(v>5 || v=5)
                 {
-
-                
-             diagStatus = diagRead(vis);
-          
-            
+                    diagStatus = diagRead(vis);
                 }
     }
 
@@ -362,6 +359,7 @@ DiagStatus_t Bts500xxShield::diagRead(float volt)
             return DiagStatus_t::SHORT_TO_GND;
         }
         else if(volt<(Il/btsVariant->kilis))
+        {
             return DiagStatus_t::SHORT_TO_VSS;
         }
         else if(volt==Iiso)

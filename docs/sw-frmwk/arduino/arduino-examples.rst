@@ -35,7 +35,7 @@ Compatibility
       - 2
     * - 
       - Profet 2 (BTT6020-1ERA)
-      - 2
+      - 1
 
 Description
 ^^^^^^^^^^^
@@ -58,31 +58,6 @@ Compatibility
 
 .. image:: ../../img/bts700x_shield.jpg
     :width: 150
-
-.. list-table::
-    :header-rows: 1
-
-    * - Type
-      - Variant
-      - Covered by
-    * - Shield
-      - BTS7002
-      - :code:`hss-bts700xShield-ino.hpp`
-    * - Shield
-      - BTS7004
-      - :code:`hss-bts700xShield-ino.hpp`
-    * - Shield
-      - BTS7006
-      - :code:`hss-bts700xShield-ino.hpp`
-    * - Shield
-      - BTS7008
-      - :code:`hss-bts700xShield-ino.hpp`
-    * - Shield
-      - BTS50010
-      - :code:`hss-bts500xxShield-ino.hpp`
-    * - Shield
-      - BTS50015
-      - :code:`hss-bts500xxShield-ino.hpp`
 
 Description
 ^^^^^^^^^^^
@@ -120,22 +95,22 @@ Compatibility
       - Covered by
     * - Shield
       - BTS7002
-      - SHIELD_BTS700x-1EPP
+      - :code:`hss-bts700xShield-ino.hpp`
     * - Shield
       - BTS7004
-      - SHIELD_BTS700x-1EPP
+      - :code:`hss-bts700xShield-ino.hpp`
     * - Shield
       - BTS7006
-      - SHIELD_BTS700x-1EPP
+      - :code:`hss-bts700xShield-ino.hpp`
     * - Shield
       - BTS7008
-      - SHIELD_BTS700x-1EPP
+      - :code:`hss-bts700xShield-ino.hpp`
     * - Shield
       - BTS50010
-      - SHIELD_BTS5001x-1TAD
+      - :code:`hss-bts500xxShield-ino.hpp`
     * - Shield
       - BTS50015
-      - SHIELD_BTS5001x-1TAD
+      - :code:`hss-bts500xxShield-ino.hpp`
 
 Description
 ^^^^^^^^^^^

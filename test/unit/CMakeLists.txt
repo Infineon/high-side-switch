@@ -2,15 +2,15 @@ cmake_minimum_required(VERSION 3.12.4)
 
 set(prjtest hss-test)
 
-# file(GLOB TestSrc CONFIGURE_DEPENDS "*.cpp")
+file(GLOB Sources CONFIGURE_DEPENDS "*.cpp")
 
 # Test Sources
-set(Sources
+# set(Sources
     # test_hss-shield-bts700x.cpp
     # test_hss-shield-profet24v.cpp
-    test_hss-shield-bts500xx.cpp
+    # test_hss-shield-bts500xx.cpp
     # test_hss.cpp
-)
+# )
 
 # GCOV Coverage Targets
 set(CMAKE_CXX_OUTPUT_EXTENSION_REPLACE ON)

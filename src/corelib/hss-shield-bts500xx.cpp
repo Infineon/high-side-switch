@@ -76,6 +76,8 @@ Error_t Bts500xxShield::init()
         HSS_ASSERT_RET(err);
     }
 
+    filterVbat = new ExponentialFilter(0.0, 0.3);
+
     return OK;
 }
 
@@ -216,9 +218,9 @@ float Bts500xxShield::getIs(uint8_t x)
     uint16_t adcResult;
     float amps, ampsCalib;
         
-    adcResult = 0;//hss1->readIs();
+    adcResult = hss1->readIs();
     amps = ((float)adcResult/(float)1024) * (float)5;
-    ampsCalib = hss1->calibrateIs(amps, btsVariant->kilis, btsVariant->ampsOffset, btsVariant->ampsGain);
+    ampsCalib = 0; // TODO: add bstvariant in constructor. hss1->calibrateIs(amps, btsVariant->kilis, btsVariant->ampsOffset, btsVariant->ampsGain);
 
     return ampsCalib;
 }
@@ -233,10 +235,11 @@ float Bts500xxShield::getIs(uint8_t x)
  * @param[in]   x   Desired channel for the diagnosis (1)   
  * @return      Bts500xxShield::DiagStatus_t
  * 
- * @retval      0   Everything works correctly
- * @retval      2   Short to ground
- * @retval      4   Short to battery
- * @retval      5   Open load     
+ * @retval  -2  Not enabled
+ * @retval  0   Switch is working fine
+ * @retval  2   Short circuit to ground 
+ * @retval  4   Short circuit to Vs
+ * @retval  5   Open load detected  
  */
 DiagStatus_t Bts500xxShield::readDiagx(uint8_t x)
 {
@@ -244,31 +247,18 @@ DiagStatus_t Bts500xxShield::readDiagx(uint8_t x)
 
     DiagStatus_t diagStatus = NORMAL;
 
-    /*float currentOn = 0.0;
-    float currentOff = 0.0;
+    // float currentOn = 0.0;
 
-    if(x==1)
+    if(hss1->getSwitchStatus() == POWER_ON)
     {
-      
-            hss1->enableDiag();
-            if(hss1->getSwitchStatus() == POWER_ON){
-             diagStatus = hss1->diagRead(getIs(1), btsVariant->kilis);
-          
-            }
-            else
-            {
-               
-                timer->delayMicro(300);
-                currentOn = getIs(1);
-    
-                
-                timer->delayMicro(400);
-                currentOff = getIs(1);
-                diagStatus = diagnosisOff(currentOn, currentOff);
-               }
-            hss1->disableDiag();
+        float vs=readVss();
+        float vis=getIs();
+        float v=vs-vis;
+        if(v>5 || v==5)
+        {
+            diagStatus = diagRead(vis);
+        }
     }
-*/
     return diagStatus;
 }
 
@@ -306,4 +296,42 @@ bool Bts500xxShield::analogReadButton()
     else{
         return false;
     }
+}
+
+/**
+ * @brief Diagnosis of the Sensor
+ * 
+ * This function is using the IS signal to determine the state of the switch.
+ * It returns an diagnosis state of the switch.
+ * 
+ * @param[in]   volt       Sensed voltage value from Iis pin
+
+ * @return DiagStatus_t
+ * 
+ * @retval  -2  Not enabled
+ * @retval  0   Switch is working fine
+ * @retval  2   Short circuit to ground 
+ * @retval  4   Short circuit to Vs
+ * @retval  5   Open load detected
+ * 
+ * @note    This function should be called only after you get the Is value. 
+ *          Also note, in case you are using shield with no channel differentiation, 
+ *          then ignore the 'ch' parameter and this will default to NO_CHANNEL. 
+ */
+DiagStatus_t Bts500xxShield::diagRead(float volt)
+{
+        if(volt>IisFault){
+            return DiagStatus_t::SHORT_TO_GND;
+        }
+        else if(volt<(Il/btsVariant->kilis))
+        {
+            return DiagStatus_t::SHORT_TO_VSS;
+        }
+        else if(volt==Iiso)
+        {
+            return DiagStatus_t::OPEN_LOAD;
+        }
+        else{
+            return DiagStatus_t::NORMAL;
+        }
 }

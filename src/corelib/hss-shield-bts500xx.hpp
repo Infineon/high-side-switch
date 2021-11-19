@@ -27,12 +27,18 @@ class Bts500xxShield : public HssShield
         Error_t         switchHxOn(uint8_t x = 0);
         Error_t         switchHxOff(uint8_t x = 0);
         DiagStatus_t    readDiagx(uint8_t x = 0);  
-        DiagStatus_t    diagnosisOff(float currentOn, float currentOff);
+        // DiagStatus_t    diagnosisOff(float currentOn, float currentOff);
+        // Error_t         switchHxOn(uint8_t x);
+        // Error_t         switchHxOff(uint8_t x);
+        // DiagStatus_t    readDiagx(uint8_t x=1);  
+
         float           readIsx(uint8_t x=1);
         float           readVss();
         bool            analogReadButton();
     
     protected:
+        DiagStatus_t    diagRead(float amps);
+
         ExponentialFilter *filterVbat;
 
         Hss      * hss1;
@@ -45,6 +51,9 @@ class Bts500xxShield : public HssShield
         BtsVariants_t * btsVariant;
         const float vBatGain = 1.0;
         const float vBatOffset = 0.0;
+        const float IisFault=0.0035;
+        const float Il=48;
+        const float Iiso=0.000008;
 
         float  getIs(uint8_t x=1);
 

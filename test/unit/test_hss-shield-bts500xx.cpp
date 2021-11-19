@@ -165,10 +165,42 @@ TEST_F(Bts500xxShield_Test, readDiagx_Error)
  * readIsx()
  */
 
-// TEST_F(Bts500xxShield_Test, readIsx_Error)
-// {
-//     shield->init();
+TEST_F(Bts500xxShield_Test, readIsx_Success)
+{
+    shield->init();
 
-//     ASSERT_EQ(0, shield->readIsx());
-// }
+    ASSERT_EQ(0, shield->readIsx());
+}
 
+/**
+ * readDiagx()
+ */
+
+TEST_F(Bts500xxShield_Test, readDiagx_Success)
+{
+    shield->init();
+    shield->switchHxOn();
+
+    ASSERT_EQ(NORMAL, shield->readDiagx());
+}
+
+/**
+ * analogReadButton()
+ */
+
+TEST_F(Bts500xxShield_Test, analogReadButton_true_Success)
+{
+    shield->init();
+
+    ASSERT_EQ(true, shield->analogReadButton());
+}
+
+TEST_F(Bts500xxShield_Test, analogReadButton_false_Success)
+{
+    EXPECT_CALL(pushButton, ADCRead())
+    .WillOnce(Return(30));
+    
+    shield->init();
+
+    ASSERT_EQ(false, shield->analogReadButton());
+}

@@ -21,16 +21,7 @@ Bts500xxShield(hss1 = new HssIno(BTS500XX_HWCONFIG.in, BTS500XX_HWCONFIG.is),
                pushButton = new ADCIno(BTS500XX_HWCONFIG.pushButtonAnalog),
                vBat = new ADCIno(BTS500XX_HWCONFIG.vBat))
 {
-    // led1 = ((BTS500XX_HWCONFIG.led1 == GPIOIno::unusedPin) ? NULL : new GPIOIno(BTS500XX_HWCONFIG.led1, OUTPUT, GPIOIno::POSITIVE));
-    // led2 = ((BTS500XX_HWCONFIG.led2 == GPIOIno::unusedPin) ? NULL : new GPIOIno(BTS500XX_HWCONFIG.led2, OUTPUT, GPIOIno::POSITIVE));
-   
-    // timer = new TimerIno();
-   
-    // pushButtonAnalog = new ADCIno(BTS500XX_HWCONFIG.pushButtonAnalog);
-    // vBat = new ADCIno(BTS500XX_HWCONFIG.vBat);
-
-    // btsVariant = variantSel;
-
+    btsVariant = variantSel;
 }
 
 Bts500xxShieldIno::Bts500xxShieldIno(BtsVariants_t *variantSel, BTS500xxHwConfig_t config):
@@ -40,13 +31,7 @@ Bts500xxShield(hss1 = new HssIno(config.in, config.is),
                pushButton = new ADCIno(config.pushButtonAnalog),
                vBat = new ADCIno(config.vBat))
 {
-    // led1 = ((config.led1 == GPIOIno::unusedPin) ? NULL : new GPIOIno(config.led1, OUTPUT, GPIOIno::POSITIVE));
-    // led2 = ((config.led2 == GPIOIno::unusedPin) ? NULL : new GPIOIno(config.led2, OUTPUT, GPIOIno::POSITIVE));
-
-    // timer = new TimerIno();
-
-    // pushButtonAnalog = new ADCIno(config.pushButtonAnalog);
-    // vBat =  new ADCIno(config.vBat);
+    btsVariant = variantSel;
 }
 
 

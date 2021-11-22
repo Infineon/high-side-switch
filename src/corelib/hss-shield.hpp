@@ -13,6 +13,7 @@
 #include <stdint.h>
 
 using namespace hss;
+
 /**
  * @addtogroup hssCorelib
  * @{
@@ -26,7 +27,8 @@ using namespace hss;
 class HssShield
 {
     public:
-                   
+        
+        virtual             ~HssShield(){};
         virtual Error_t      init()   = 0;
         virtual Error_t      deinit() = 0;
         virtual Error_t      switchHxOn (uint8_t x) = 0;

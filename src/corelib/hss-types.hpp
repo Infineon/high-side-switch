@@ -30,7 +30,8 @@ namespace hss
 		WRITE_ERROR 	     = -4,   /**< Write error */
 		NULLPTR_ERROR        = -5,   /**< Null pointer error */
 		INVALID_CH_ERROR     = -6,   /**< Invalid channel error */
-        UNSUPPORTED_OP_ERROR = -7    /**< Invalid channel error */  
+        UNSUPPORTED_OP_ERROR = -7,   /**< Invalid channel error */
+        INIT_ERROR           = -8    /**< Not initialized */
 	};
 	/** @} */
 
@@ -43,7 +44,7 @@ namespace hss
 		CHANNEL0 	 = 0,           /**< Channel 1 : Valid for BTT shields */
 		CHANNEL1 	 = 1,           /**< Channel 2 : Valid for BTT shields */
 		ALL_CHANNELS = 2,           /**< Select all channels : Valid for BTT shields */
-        NO_CHANNEL = 3            /**< No channel to select */
+        NO_CHANNEL   = 3            /**< No channel to select */
 	};
 	/** @} */
 
@@ -74,7 +75,7 @@ namespace hss
      * @{
      */
     enum DiagStatus_t{
-        DIAG_READ_ERROR = -1,        /**< Read Error */
+        DIAG_READ_ERROR = -1,   /**< Read Error */
         NOT_ENABLED = -2,       /**< Diagnosis not enabled */
         NORMAL = 0,             /**< Switch works correctly */
         OVERLOAD = 1,           /**< Overload of the Switch */
@@ -86,7 +87,11 @@ namespace hss
         INVERSE_CURRENT = 7,    /**< Inverse current */
     };
     /** @} */
-	/** @} */
 }
+
+#define HSS_ASSERT_RET(x)       if( x != OK ) { return x; }
+#define HSS_ASSERT_NULLPTR(x)   if( x == nullptr ) { return NULLPTR_ERROR; }
+
+/** @} */
 
 #endif /** HSS_TYPES_HPP_ **/

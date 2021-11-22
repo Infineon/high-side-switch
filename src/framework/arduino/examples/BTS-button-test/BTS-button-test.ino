@@ -36,10 +36,10 @@
 */
 
 #if SHIELD == BTS700x_1EPP
-    #include <hss-bts700xShield-ino.hpp>
+    #include <hss-shield-bts700x-ino.hpp>
     Bts700xShieldIno HSS = Bts700xShieldIno(&BTS7002);
 #else
-    #include <hss-bts500xxShield-ino.hpp>
+    #include <hss-shield-bts500xx-ino.hpp>
     Bts500xxShieldIno HSS = Bts500xxShieldIno(&BTS50015);
 #endif
 

@@ -1,5 +1,5 @@
 /**
- * @file        BTT-high-side-switch.ino
+ * @file        btt-high-side-switch.ino
  * @brief       High-Side-Switch Example for the Arduino form factored Profet24V shield
  *
  * @details     This example shows the usage of the offered functionalities of the shield. It includes:
@@ -22,7 +22,7 @@
  * @copyright   Copyright (c) 2021 Infineon Technologies AG
  */
 
-#include <hss-profet24VShield-ino.hpp>
+#include <hss-shield-profet24v-ino.hpp>
 
 /* Create an object of the shield with High-side-switch by passing the correct variant name.
    With this constructor invoking, all the mandatory configurations for the shield are done

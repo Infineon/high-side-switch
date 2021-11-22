@@ -12,18 +12,18 @@
 #include <stdint.h>
 #include <unistd.h>
 #include "hss-types.hpp"
-#include "timer.hpp"
-#include "gpio.hpp"
-#include "adc.hpp"
-#include "variants.hpp"
-#include "filter.hpp"
+#include "hss-pal-timer.hpp"
+#include "hss-pal-gpio.hpp"
+#include "hss-pal-adc.hpp"
+#include "hss-variants.hpp"
+#include "hss-filter.hpp"
 
 using namespace hss;
+
 /**
  * @addtogroup hssCorelib
  * @{
  */
-
 
 /**
  * @brief High-Side-Switch class
@@ -33,43 +33,46 @@ class Hss
 {
     public:
 
-                    Hss();
-                    Hss(GPIO *den, GPIO *in, AnalogDigitalConverter *is);
-                    Hss(GPIO *den, GPIO *in, GPIO *dsel, AnalogDigitalConverter *is);
-                    ~Hss();
-    Error_t         init();
-    Error_t         deinit();
-    Error_t         enable();
-    Error_t         disable();
-    Error_t         enableDiag();
-    Error_t         disableDiag();
-    Error_t         diagReset();
+                            Hss(GPIOPAL *den, GPIOPAL *in, ADCPAL *is, TimerPAL *timer);
+                            Hss(GPIOPAL *den, GPIOPAL *in, GPIOPAL *dsel, ADCPAL *is, TimerPAL *timer);
+                            ~Hss();
+        Error_t             init();
+        Error_t             deinit();
+        Error_t             enable();
+        Error_t             disable();
+        Error_t             enableDiag();
+        Error_t             disableDiag();
+        Error_t             diagReset();
 
-    Status_t        getSwitchStatus();
-    DiagStatus_t    diagRead(float amps, float iisFault, float iisOl, uint16_t kilis, Channel_t ch=NO_CHANNEL);
+        Status_t            getSwitchStatus();
+        // TODO: Rework the diagRead function, also for the shield(s)
+        DiagStatus_t        diagRead(float amps, float iisFault, float iisOl, uint16_t kilis, Channel_t ch=NO_CHANNEL);
 
-    uint16_t        readIs(Channel_t ch=NO_CHANNEL);
-    float           calibrateIs(float inVal, uint16_t kilis, float ampsOffset, float ampsGain);
-    
+        uint16_t            readIs(Channel_t ch=NO_CHANNEL);
+        // TODO: Check if this function is really needed, or if this can be included into the diagRead function
+        float               calibrateIs(float inVal, uint16_t kilis, float ampsOffset, float ampsGain);
+
 
     protected:
-    GPIO                    *den;
-    GPIO                    *in;
-    GPIO                    *dsel;
-    AnalogDigitalConverter  *is;
 
-    Timer                   *timer;
+        GPIOPAL             *den;
+        GPIOPAL             *in;
+        GPIOPAL             *dsel;
+        ADCPAL              *is;
 
-    ExponentialFilter       *currentFilter;
+        TimerPAL            *timer;
 
-    Status_t                status;
-    DiagEnable_t            diagEnb;
-    DiagStatus_t            diagStatus;
+        ExponentialFilter   *currentFilter;
 
-    Error_t         selDiagCh(Channel_t ch=NO_CHANNEL);
+        Status_t            status;
+        DiagEnable_t        diagEnb;
+        DiagStatus_t        diagStatus;
+
+        Error_t             selDiagCh(Channel_t ch=NO_CHANNEL);
 
 
 };
+
 /** @} */
 
 #endif /** HSS_H_ **/

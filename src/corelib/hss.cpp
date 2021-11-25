@@ -21,7 +21,7 @@ using namespace hss;
  * @param[in]   in          Pin number of IN
  * @param[in]   is          Pin number of IS
  */
-Hss::Hss(GPIOPAL *den, GPIOPAL *in, ADCPAL *is, TimerPAL *timer)
+Hss::Hss(GPIOPAL *den, GPIOPAL *in, ADCPAL *is, TimerPAL *timer, BtxVariants_t *btxVariant)
 {
     this->den = den;
     this->in = in;
@@ -29,6 +29,8 @@ Hss::Hss(GPIOPAL *den, GPIOPAL *in, ADCPAL *is, TimerPAL *timer)
     this->dsel = NULL;
 
     this->timer = timer;
+
+    this->btxVariant = btxVariant;
 
     currentFilter = new ExponentialFilter(0.0, 0.3);
 
@@ -48,7 +50,7 @@ Hss::Hss(GPIOPAL *den, GPIOPAL *in, ADCPAL *is, TimerPAL *timer)
  * @param[in]   dsel        Pin number of dsel
  * @param[in]   is          Pin number of IS
  */
-Hss::Hss(GPIOPAL *den, GPIOPAL *in, GPIOPAL *dsel, ADCPAL *is, TimerPAL *timer)
+Hss::Hss(GPIOPAL *den, GPIOPAL *in, GPIOPAL *dsel, ADCPAL *is, TimerPAL *timer, BtxVariants_t *btxVariant)
 {
     this->den = den;
     this->in = in;
@@ -56,6 +58,8 @@ Hss::Hss(GPIOPAL *den, GPIOPAL *in, GPIOPAL *dsel, ADCPAL *is, TimerPAL *timer)
     this->dsel = dsel;
 
     this->timer = timer;
+
+    this->btxVariant = btxVariant;
 
      currentFilter = new ExponentialFilter(0.0, 0.3);
 
@@ -107,6 +111,8 @@ Error_t Hss::init()
     err = timer->init();
     HSS_ASSERT_RET(err);
 
+    HSS_ASSERT_NULLPTR(btxVariant);
+
     status = INITED;
 
     return err;
@@ -142,6 +148,8 @@ Error_t Hss::deinit()
     HSS_ASSERT_NULLPTR(timer);
     err = timer->deinit();
     HSS_ASSERT_RET(err);
+
+    HSS_ASSERT_NULLPTR(btxVariant);
 
     status = UNINITED;
 
@@ -340,7 +348,7 @@ Status_t Hss::getSwitchStatus()
  * @brief Read ADC value for IS
  *
  * This functions is reading the IS signal of the switch.
- * It returns the value in ADC, which is depending on the IS signal.
+ * It returns the calculated current, which is depending on the IS signal.
  *
  * @param[in]   ch  Channel number
  *
@@ -348,9 +356,9 @@ Status_t Hss::getSwitchStatus()
  *       you do not have to pass channel in case your shield does not support multiple channel
  *       and this would default to NO_CHANNEL applicable.
  *
- * @return Recorded ADC Value
+ * @return Value of the current flowing through the switch in [A]
  */
-uint16_t Hss::readIs(Channel_t ch)
+float Hss::readIs(Channel_t ch)
 {
     uint16_t adcResult = 0;
 

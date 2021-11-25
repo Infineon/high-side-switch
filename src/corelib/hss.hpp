@@ -33,8 +33,8 @@ class Hss
 {
     public:
 
-                            Hss(GPIOPAL *den, GPIOPAL *in, ADCPAL *is, TimerPAL *timer);
-                            Hss(GPIOPAL *den, GPIOPAL *in, GPIOPAL *dsel, ADCPAL *is, TimerPAL *timer);
+                            Hss(GPIOPAL *den, GPIOPAL *in, ADCPAL *is, TimerPAL *timer, BtxVariants_t *btxVariant);
+                            Hss(GPIOPAL *den, GPIOPAL *in, GPIOPAL *dsel, ADCPAL *is, TimerPAL *timer, BtxVariants_t *btxVariant);
                             ~Hss();
         Error_t             init();
         Error_t             deinit();
@@ -48,7 +48,7 @@ class Hss
         // TODO: Rework the diagRead function, also for the shield(s)
         DiagStatus_t        diagRead(float amps, float iisFault, float iisOl, uint16_t kilis, Channel_t ch=NO_CHANNEL);
 
-        uint16_t            readIs(Channel_t ch=NO_CHANNEL);
+        float               readIs(Channel_t ch=NO_CHANNEL);
         // TODO: Check if this function is really needed, or if this can be included into the diagRead function
         float               calibrateIs(float inVal, uint16_t kilis, float ampsOffset, float ampsGain);
 
@@ -64,6 +64,7 @@ class Hss
 
         ExponentialFilter   *currentFilter;
 
+        BtxVariants_t       *btxVariant;
         Status_t            status;
         DiagEnable_t        diagEnb;
         DiagStatus_t        diagStatus;

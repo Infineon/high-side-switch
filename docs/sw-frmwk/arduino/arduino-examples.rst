@@ -89,7 +89,7 @@ This example shows the usage of the offered functionalities of the shield. It in
       - Profet 1 (BTT6030-2ERA part 1 : channel 1)
       - OUT 1.1
     * - :code:`channel = 4`
-      - Profet 0 (BTT6020-1ERA : channel 0)
+      - Profet 2 (BTT6020-1ERA : channel 0)
       - OUT 2
 
 * In order to configure multiple channels, you can set the desired channels to true in the :code:`ch[5]` array. See below the mapping :
@@ -113,7 +113,7 @@ This example shows the usage of the offered functionalities of the shield. It in
       - Profet 1 (BTT6030-2ERA part 1 : channel 1)
       - OUT 1.1
     * - :code:`ch[4]`
-      - Profet 0 (BTT6020-1ERA : channel 0)
+      - Profet 2 (BTT6020-1ERA : channel 0)
       - OUT 2
 
 BTT-hss-multiple-ch
@@ -169,7 +169,7 @@ to true in the :code:`ch[5]` where index-0 maps to channel 0. See below channel 
       - Profet 1 (BTT6030-2ERA part 1 : channel 1)
       - OUT 1.1
     * - :code:`ch[4]`
-      - Profet 0 (BTT6020-1ERA : channel 0)
+      - Profet 2 (BTT6020-1ERA : channel 0)
       - OUT 2
 
 BTT-hss-single-ch
@@ -225,7 +225,7 @@ correct number in :code:`channel`. See below channel to port mapping:
       - Profet 1 (BTT6030-2ERA part 1 : channel 1)
       - OUT 1.1
     * - :code:`channel = 4`
-      - Profet 0 (BTT6020-1ERA : channel 0)
+      - Profet 2 (BTT6020-1ERA : channel 0)
       - OUT 2
 
 BTS-hss-advanced
@@ -331,11 +331,11 @@ channels to true in the :code:`ch[4]` array. See below the mapping :
     - BTS700x U4
     - OUT4
 
-BTT-hss-multiple-ch
+BTS-hss-multiple-ch
 """"""""""""""""""""
 Summary 
 ^^^^^^^
-High-side-switch example to operate multiple channels. Compatible with BTT60xx variants.
+High-side-switch example to operate multiple channels. Compatible with BTS700x variants.
 
 Compatibility
 ^^^^^^^^^^^^^
@@ -369,26 +369,23 @@ you can control these 4 channels at the same time by setting the required channe
 to true in the :code:`ch[4]` where index-0 maps to channel 1. See below channel to port mapping:
 
 .. list-table::
-    :header-rows: 1
-
-    * - Channel (in example code)
-      - Controls
-      - Mapped output port
-    * - :code:`ch[0]`
-      - Profet 0 (BTT6030-2ERA part 0 : channel 0)
-      - OUT 0.0
-    * - :code:`ch[1]`
-      - Profet 0 (BTT6030-2ERA part 0 : channel 1)
-      - OUT 0.1
-    * - :code:`ch[2]`
-      - Profet 1 (BTT6030-2ERA part 1 : channel 0)
-      - OUT 1.0
-    * - :code:`ch[3]`
-      - Profet 1 (BTT6030-2ERA part 1 : channel 1)
-      - OUT 1.1
-    * - :code:`ch[4]`
-      - Profet 0 (BTT6020-1ERA : channel 0)
-      - OUT 2
+  :header-rows: 1
+    
+  * - Channel (in example code)
+    - Controls
+    - Mapped output port
+  * - :code:`ch[0]`
+    - BTS700x U1
+    - OUT1
+  * - :code:`ch[1]`
+    - BTS700x U2
+    - OUT2
+  * - :code:`ch[2]`
+    - BTS700x U3
+    - OUT3
+  * - :code:`ch[3]`
+    - BTS700x U4
+    - OUT4
 
 BTT-hss-single-ch
 """"""""""""""""""
@@ -438,25 +435,22 @@ you can select which channel to operate by setting correct number in :code:`chan
 
 .. list-table::
     :header-rows: 1
-
+    
     * - Channel (in example code)
       - Controls
       - Mapped output port
-    * - :code:`channel = 0`
-      - Profet 0 (BTT6030-2ERA part 0 : channel 0)
-      - OUT 0.0
     * - :code:`channel = 1`
-      - Profet 0 (BTT6030-2ERA part 0 : channel 1)
-      - OUT 0.1
+      - BTS700x U1
+      - OUT1
     * - :code:`channel = 2`
-      - Profet 1 (BTT6030-2ERA part 1 : channel 0)
-      - OUT 1.0
+      - BTS700x U2
+      - OUT2
     * - :code:`channel = 3`
-      - Profet 1 (BTT6030-2ERA part 1 : channel 1)
-      - OUT 1.1
+      - BTS700x U3
+      - OUT3
     * - :code:`channel = 4`
-      - Profet 0 (BTT6020-1ERA : channel 0)
-      - OUT 2
+      - BTS700x U4
+      - OUT4
 
 .. note::
     In case of BTS5001x-1TAD shields, :code:`channel` would always remain :code:`1` since this shield variant supports single channel.

@@ -4,8 +4,16 @@ Arduino Examples
 ================
 To run these examples use either the Arduino IDE or something similar like the PlatformIO extension for Visual Code or Atom.
 
-* :code:`examples/BTT-hss-advanced`    - Default high-side-switch advanced test. Compatible with BTT60xx variants.
-* :code:`examples/BTT-hss-multiple-ch` - High-side-switch example to operate multiple channels. Compatible with BTT60xx variants.
+* :code:`examples/BTT-hss-advanced`    
+..tab::
+
+Default high-side-switch advanced test. Compatible with BTT60xx variants.
+
+* :code:`examples/BTT-hss-multiple-ch` 
+..tab::
+
+High-side-switch example to operate multiple channels. Compatible with BTT60xx variants.
+
 * :code:`examples/BTT-hss-single-ch`   - Basic High-side-switch example to operate single channel. Compatible with BTT60xx variants.
 * :code:`examples/BTS-hss-advanced`    - Default high-side-switch advanced test. Compatible with BTS5001x and BTS700x variants.
 * :code:`examples/BTS-hss-multiple-ch` - High-side-switch example to operate multiple channels. Compatible with BTS700x variants.

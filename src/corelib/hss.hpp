@@ -45,13 +45,10 @@ class Hss
         Error_t             diagReset();
 
         Status_t            getSwitchStatus();
-        // TODO: Rework the diagRead function, also for the shield(s)
-        DiagStatus_t        diagRead(float amps, float iisFault, float iisOl, uint16_t kilis, Channel_t ch=NO_CHANNEL);
+        DiagStatus_t        diagRead(float senseCurrent, Channel_t ch=NO_CHANNEL);
+        float               readIs(uint16_t rSense, Channel_t ch=NO_CHANNEL);
 
-        float               readIs(Channel_t ch=NO_CHANNEL);
-        // TODO: Check if this function is really needed, or if this can be included into the diagRead function
-        float               calibrateIs(float inVal, uint16_t kilis, float ampsOffset, float ampsGain);
-
+        void                setCurrentOffset(float offset);
 
     protected:
 
@@ -71,6 +68,9 @@ class Hss
 
         Error_t             selDiagCh(Channel_t ch=NO_CHANNEL);
 
+    private:
+
+        float               currentOffset = 0.0;
 
 };
 

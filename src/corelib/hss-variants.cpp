@@ -14,8 +14,8 @@
  */
 BtxVariants_t BTS7002 {
     .kilis = 22700,
-    .ampsOffset = 0.0,
-    .vBatOffset = 0.0
+    .issFault = 0.0044,
+    .issOl = 0.0018
 };
 
 /**
@@ -24,8 +24,8 @@ BtxVariants_t BTS7002 {
  */
 BtxVariants_t BTS7004 {
     .kilis = 20000,
-    .ampsOffset = 0.0,
-    .vBatOffset = 0.0
+    .issFault = 0.0044,
+    .issOl = 0.0018
 };
 
 /**
@@ -34,8 +34,8 @@ BtxVariants_t BTS7004 {
  */
 BtxVariants_t BTS7006 {
     .kilis = 17700,
-    .ampsOffset = 0.0,
-    .vBatOffset = 0.0
+    .issFault = 0.0044,
+    .issOl = 0.0018
 };
 
 /**
@@ -44,8 +44,8 @@ BtxVariants_t BTS7006 {
  */
 BtxVariants_t BTS7008 {
     .kilis = 14500,
-    .ampsOffset = 0.0,
-    .vBatOffset = 0.0
+    .issFault = 0.0044,
+    .issOl = 0.0018
 };
 /**
  * @brief BTS50015-1TAD.

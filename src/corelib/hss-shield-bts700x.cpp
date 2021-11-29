@@ -13,7 +13,8 @@ using namespace hss;
  * @brief High-Side-Switch-Board constructor
  * Initialize all protected class pointers with a null pointer.
  */
-Bts700xShield::Bts700xShield(GPIOPAL *led1, GPIOPAL *led2, GPIOPAL *led3, GPIOPAL *led4, Hss *hsw1, Hss *hsw2, Hss *hsw3, Hss *hsw4, TimerPAL *timer, GPIOPAL *oloff, GPIOPAL *pushButtonDigital, ADCPAL *pushButtonAnalog, ADCPAL *vBat)
+Bts700xShield::Bts700xShield(GPIOPAL *led1, GPIOPAL *led2, GPIOPAL *led3, GPIOPAL *led4, Hss *hsw1, Hss *hsw2, Hss *hsw3, Hss *hsw4, TimerPAL *timer,
+                             GPIOPAL *oloff, GPIOPAL *pushButtonDigital, ADCPAL *pushButtonAnalog, ADCPAL *vBat, BtxVariants_t* btxVariant)
 {
     this->led1 = led1;
     this->led2 = led2;
@@ -32,6 +33,8 @@ Bts700xShield::Bts700xShield(GPIOPAL *led1, GPIOPAL *led2, GPIOPAL *led3, GPIOPA
 
     this->pushButtonAnalog = pushButtonAnalog;
     this->vBat = vBat;
+
+    this->btxVariant = btxVariant;
 }
 
 /**
@@ -201,6 +204,10 @@ Error_t Bts700xShield::init()
 
         filterVbat = new ExponentialFilter(0.0, 0.3);
 
+        if(NULL == btxVariant){
+            return NULLPTR_ERROR;
+        }
+
     } while (0);
 
     return err;
@@ -360,6 +367,10 @@ Error_t Bts700xShield::deinit()
         else{
             err = NULLPTR_ERROR;
             break;
+        }
+
+        if(NULL == btxVariant){
+            return NULLPTR_ERROR;
         }
 
     } while (0);
@@ -575,25 +586,25 @@ float Bts700xShield::readIsx(uint8_t x)
     {
         case 1:
             hss1->enableDiag();
-            isVal = getIs(1);
+            isVal = hss1->readIs(rSense);
             hss1->disableDiag();
             break;
 
         case 2:
             hss2->enableDiag();
-            isVal = getIs(2);
+            isVal = hss2->readIs(rSense);
             hss2->disableDiag();
             break;
 
         case 3:
             hss3->enableDiag();
-            isVal = getIs(3);
+            isVal = hss3->readIs(rSense);
             hss3->disableDiag();
             break;
 
         case 4:
             hss4->enableDiag();
-            isVal = getIs(4);
+            isVal = hss4->readIs(rSense);
             hss4->disableDiag();
             break;
     }
@@ -601,50 +612,51 @@ float Bts700xShield::readIsx(uint8_t x)
     return isVal;
 }
 
-/**
- * @brief Read the desired current value of the chosen channel
- *
- * This function reads the IS pin of the chosen High-Side-Switch
- * and calculates the current which is flowing through the switch
- * with the acquired ADC value.
- *
- * @param[in]   x   Number of the desired channel (1-4)
- * @return          The value of the current in [A]
- */
-float Bts700xShield::getIs(uint8_t x)
-{
-    uint16_t adcResult = 0;
-    float amps = 0.0, ampsCalib = 0.0;
+// /**
+//  * @brief Read the desired current value of the chosen channel
+//  *
+//  * This function reads the IS pin of the chosen High-Side-Switch
+//  * and calculates the current which is flowing through the switch
+//  * with the acquired ADC value.
+//  *
+//  * @param[in]   x   Number of the desired channel (1-4)
+//  * @return          The value of the current in [A]
+//  */
+// float Bts700xShield::getIs(uint8_t x)
+// {
+//     uint16_t adcResult = 0;
+//     float amps = 0.0, ampsCalib = 0.0;
 
-    switch(x)
-    {
-        case 1:
-            adcResult = hss1->readIs();
-            amps = ((float)adcResult/(float)1024) * (float)5;
-            ampsCalib = hss1->calibrateIs(amps, btsVariant->kilis, btsVariant->ampsOffset, btsVariant->ampsGain);
-            break;
+//     switch(x)
+//     {
+//         case 1:
+//             adcResult = hss1->readIs();
+//             amps = ((float)adcResult/(float)1024) * (float)5;
+//             ampsCalib = hss1->calibrateIs(amps, btsVariant->kilis, btsVariant->ampsOffset, btsVariant->ampsGain);
+//             break;
 
-        case 2:
-            adcResult = hss2->readIs();
-            amps = ((float)adcResult/(float)1024) * (float)5;
-            ampsCalib = hss2->calibrateIs(amps, btsVariant->kilis, btsVariant->ampsOffset, btsVariant->ampsGain);
-            break;
+//         case 2:
+//             adcResult = hss2->readIs();
+//             amps = ((float)adcResult/(float)1024) * (float)5;
+//             ampsCalib = hss2->calibrateIs(amps, btsVariant->kilis, btsVariant->ampsOffset, btsVariant->ampsGain);
+//             break;
 
-        case 3:
-            adcResult = hss3->readIs();
-            amps = ((float)adcResult/(float)1024) * (float)5;
-            ampsCalib = hss3->calibrateIs(amps, btsVariant->kilis, btsVariant->ampsOffset, btsVariant->ampsGain);
-            break;
+//         case 3:
+//             adcResult = hss3->readIs();
+//             amps = ((float)adcResult/(float)1024) * (float)5;
+//             ampsCalib = hss3->calibrateIs(amps, btsVariant->kilis, btsVariant->ampsOffset, btsVariant->ampsGain);
+//             break;
 
-        case 4:
-            adcResult = hss4->readIs();
-            amps = ((float)adcResult/(float)1024) * (float)5;
-            ampsCalib = hss4->calibrateIs(amps, btsVariant->kilis, btsVariant->ampsOffset, btsVariant->ampsGain);
-            break;
-    }
+//         case 4:
+//             adcResult = hss4->readIs();
+//             amps = ((float)adcResult/(float)1024) * (float)5;
+//             ampsCalib = hss4->calibrateIs(amps, btsVariant->kilis, btsVariant->ampsOffset, btsVariant->ampsGain);
+//             break;
+//     }
 
-    return ampsCalib;
-}
+//     return ampsCalib;
+// }
+
 /**
  * @brief Read the diagnosis of the chosen channel
  *
@@ -764,8 +776,8 @@ DiagStatus_t Bts700xShield::readDiagx(uint8_t x)
  */
 DiagStatus_t Bts700xShield::diagnosisOff(float currentOn, float currentOff)
 {
-    if((currentOn > (0.0018 * btsVariant->kilis)) && (currentOn < (0.0044 * btsVariant->kilis))){
-        if((currentOff > (0.0018 * btsVariant->kilis)) && (currentOff < (0.0044 * btsVariant->kilis))){
+    if((currentOn > (btxVariant->issOl * btxVariant->kilis)) && (currentOn < (btxVariant->issFault * btxVariant->kilis))){
+        if((currentOff > (btxVariant->issOl * btxVariant->kilis)) && (currentOff < (btxVariant->issFault * btxVariant->kilis))){
             return DiagStatus_t::SHORT_TO_VSS;
         }
         else{
@@ -773,7 +785,7 @@ DiagStatus_t Bts700xShield::diagnosisOff(float currentOn, float currentOff)
         }
     }
     else{
-        if((currentOn > (0.0044 * btsVariant->kilis))){
+        if((currentOn > (btxVariant->issFault * btxVariant->kilis))){
             return DiagStatus_t::SHORT_TO_GND;
         }
         else{
@@ -795,9 +807,9 @@ float Bts700xShield::readVss()
     float voltage = 0.0;
 
     adcResult = vBat->ADCRead();
-    voltage = adcResult * ((float)5/(float)1024);  // Vmax/1024 LSB = Resolution of the ADC, 57/10 = Reverse Voltage devider to get the Supplyvoltage
-    voltage = (voltage - vBatOffset) * vBatGain;
-    voltage = voltage * ((float)57/(float)10);
+    voltage = adcResult * ((float)5/(float)1024);   // Vmax/1024 LSB = Resolution of the ADC
+    voltage = (voltage - vBatOffset);
+    voltage = voltage * ((float)57/(float)10);      // 57/10 = Reverse Voltage devider to get the Supplyvoltage
 
     filterVbat->input(voltage);
 
@@ -837,4 +849,17 @@ bool Bts700xShield::analogReadButton()
     else{
         return false;
     }
+}
+
+/**
+ * @brief Set battery voltage offset
+ *
+ * This function can be used to change the value of the internal variable
+ * of the battery voltage offset
+ *
+ * @param[in]   offset  Desired value of the offset in [A]
+ */
+void Bts700xShield::setVoltageOffset(float offset)
+{
+    vBatOffset = offset;
 }

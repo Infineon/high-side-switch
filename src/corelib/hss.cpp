@@ -350,7 +350,8 @@ Status_t Hss::getSwitchStatus()
  * This functions is reading the IS signal of the switch.
  * It returns the calculated current, which is depending on the IS signal.
  *
- * @param[in]   ch  Channel number
+ * @param[in]   rSense  Resistor value of the current sense resistor in [Ohm]
+ * @param[in]   ch      Channel number
  *
  * @note Before calling this function, ensure IS pin is initialized and
  *       you do not have to pass channel in case your shield does not support multiple channel
@@ -358,9 +359,10 @@ Status_t Hss::getSwitchStatus()
  *
  * @return Value of the current flowing through the switch in [A]
  */
-float Hss::readIs(Channel_t ch)
+float Hss::readIs(uint16_t rSense, Channel_t ch)
 {
-    uint16_t adcResult = 0;
+    uint16_t isVoltage = 0;
+    float isCurrent = 0;
 
     if(UNINITED != status)
     {
@@ -371,34 +373,14 @@ float Hss::readIs(Channel_t ch)
 
         if(diagEnb == DIAG_EN)
         {
-            timer->delayMilli(1);          //wait for 1ms to ensure that the Profet will provide a valid sense signal
-            adcResult = is->ADCRead();
+            timer->delayMilli(1);
+            isVoltage = is->ADCRead();
+            isVoltage = (float)(isVoltage/1024)*5.0;
+            isCurrent = ((isVoltage*btxVariant->kilis)/rSense) - currentOffset;
+            currentFilter->input(isCurrent);
         }
     }
 
-    return adcResult;
-}
-
-/**
- * @brief Calibrates sensed current value
- *
- * This function is performing calibration on sensed current value based on chip parameters
- *
- * @param[in] isVal      Sensed current value to be calibrated
- * @param[in] kilis      Current sense ration of selected chip variant
- * @param[in] ampsOffset Current offset value
- * @param[in] ampsGain   Current gain factor
- *
- * @return Calibrated current value for Is
- *
- * @note This function should be called only after readIs()
- */
-float Hss::calibrateIs(float isVal, uint16_t kilis, float ampsOffset, float ampsGain)
-{
-    float calibVal = 0.0;
-    calibVal = (isVal * kilis)/1000;
-    calibVal = (calibVal - ampsOffset) * ampsGain;
-    currentFilter->input(calibVal);
     return currentFilter->output();
 }
 
@@ -408,47 +390,52 @@ float Hss::calibrateIs(float isVal, uint16_t kilis, float ampsOffset, float amps
  * This function is using the IS signal to determine the state of the switch.
  * It returns an diagnosis state of the switch.
  *
- * @param[in]   amps        Sensed current value
- * @param[in]   iisfault    Sensed current at fault condition
- * @param[in]   iisOl       Open load detection threshold
- * @param[in]   kilis       Current sense ratio
- * @param[in]   ch          Channel no. (*Optional)
- * @return DiagStatus_t
+ * @param[in]   senseCurrent    Sensed current value
+ * @param[in]   ch              Channel no. (*Optional)
+ *
+ * @return  DiagStatus_t
  *
  * @retval  -2  Not enabled
- * @retval  0   Switch is working fine
- * @retval  1   Overload detected
- * @retval  5   Open load detected
+ * @retval   0  Switch is working fine
+ * @retval   1  Fault condition detected
  *
  * @note    This function should be called only after you get the Is value.
  *          Also note, in case you are using shield with no channel differentiation,
  *          then ignore the 'ch' parameter and this will default to NO_CHANNEL.
  */
-DiagStatus_t Hss::diagRead(float amps, float iisFault, float iisOl, uint16_t kilis, Channel_t ch)
+DiagStatus_t Hss::diagRead(float senseCurrent, Channel_t ch)
 {
+
     if(NO_CHANNEL != ch){
         selDiagCh(ch);
     }
 
-    if(diagEnb == DIAG_EN)
+    if(DIAG_EN == diagEnb)
     {
-        if(amps > (iisFault*kilis))
-        {
-            return OVERLOAD;
+        if(senseCurrent >= (btxVariant->issFault * btxVariant->kilis)){
+            diagStatus = FAULT;
         }
-        else if(amps < (iisOl*kilis))
-        {
-            return OPEN_LOAD;
-        }
-        else
-        {
-            return NORMAL;
+        else{
+            diagStatus = NORMAL;
         }
     }
     else
     {
-        return NOT_ENABLED;
+        diagStatus = NOT_ENABLED;
     }
 
     return diagStatus;
+}
+
+/**
+ * @brief Set current offset
+ *
+ * This function can be used to change the value of the internal variable
+ * of the current offset
+ *
+ * @param[in]   offset  Desired value of the current offset in [A]
+ */
+void Hss::setCurrentOffset(float offset)
+{
+    currentOffset = offset;
 }

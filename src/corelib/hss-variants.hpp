@@ -23,9 +23,9 @@
  */
 struct BtxVariants_t
 {
-    const uint16_t  kilis;                  /**< Current sense ratio */
-    float           ampsOffset;             /**< Current offset, can be used to correct the measured current */
-    float           vBatOffset;             /**< Battery voltage offset, can be used to correct the measured battery voltage */
+    const uint16_t  kilis;          /**< Current sense ratio */
+    float           issFault;       /**< Current in case of fault event */
+    float           issOl;          /**< Current in case of an open load */
 };
 
 // struct BttVariants_t

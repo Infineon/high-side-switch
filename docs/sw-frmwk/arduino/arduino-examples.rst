@@ -387,7 +387,7 @@ to true in the :code:`ch[4]` where index-0 maps to channel 1. See below channel 
     - BTS700x U4
     - OUT4
 
-BTT-hss-single-ch
+BTS-hss-single-ch
 """"""""""""""""""
 Summary 
 ^^^^^^^

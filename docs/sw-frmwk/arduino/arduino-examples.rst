@@ -303,7 +303,7 @@ This example can be used for both, BTS700x and BTS5001x shields.
       - OUT4
 
 .. note::
-    In case of BTS5001x-1TAD shields, :code:`channel` would always remain `1` since this shield variant supports single channel.
+    In case of BTS5001x-1TAD shields, :code:`channel` would always remain :code:`1` since this shield variant supports single channel.
     
 * In order to configure multiple channels (valid only for BTS700x shield), you can set the desired channels to true in the `ch[4]` array. See below the mapping :
     

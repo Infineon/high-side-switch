@@ -1,6 +1,6 @@
 /**
- * @file        btt-high-side-switch.ino
- * @brief       High-Side-Switch Example for the Arduino form factored Profet24V shield
+ * @file        BTT-hss-advanced.ino
+ * @brief       High-Side-Switch Advanced Example for the Arduino form factored Profet24V shield
  *
  * @details     This example shows the usage of the offered functionalities of the shield. It includes:
  *              - Switching the channels on/off one after the other
@@ -9,13 +9,13 @@
  *              - Perform diagnosis for individual channel while switch is ON
  *              
  *              Find below the Profet 24V shield part details and its offered channels: 
- *              ---------------------------------------------------------------------------------
+ *              _________________________________________________________________________________
  *                  Shield Name            Included parts          Supported number of channels
- *              ---------------------------------------------------------------------------------
+ *              _________________________________________________________________________________
  *               24V_SHIELD_BTT6030    Profet 0 (BTT6030-2ERA)                2         
  *                                     Profet 1 (BTT6030-2ERA)                2                                 
  *                                     Profet 2 (BTT6020-1ERA)                1                          
- *              ---------------------------------------------------------------------------------
+ *              _________________________________________________________________________________
  * 
  *              It can be deployed to the Arduino Uno or the XMC's with corresponding form factor.
  *

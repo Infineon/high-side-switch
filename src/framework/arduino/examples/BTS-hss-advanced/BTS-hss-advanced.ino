@@ -1,8 +1,7 @@
 /**
- * @file        BTS-high-side-switch.ino
- * @brief       High-Side-Switch Example for the Arduino form factored shields
- *
- * @details     This example shows the usage of the offered functionalities of the shield. It includes:
+ * @file        BTS-hss-advanced.ino
+ * @brief       High-Side-Switch Advanced Example for the Arduino form factored shields
+ * @details     This example shows the usage of all the offered functionalities of the shield. It includes:
  *              - Switching the channels on/off one after the other(in case if multiple channels supported)
  *              - Switching multiple channels on/off at once (supported only in SHIELD_BTS700x-1EPP)
  *              - Read the current flowing through the channel

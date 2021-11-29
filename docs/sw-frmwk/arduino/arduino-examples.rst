@@ -4,13 +4,15 @@ Arduino Examples
 ================
 To run these examples use either the Arduino IDE or something similar like the PlatformIO extension for Visual Code or Atom.
 
-* :code:`examples/BTT-hss-advanced`     - Default high-side-switch advanced test. Compatible with BTT60xx variants.
-* :code:`examples/BTT-hss-multiple-ch`    - High-side-switch example to operate multiple channels. Compatible with BTT60xx variants.
-* :code:`examples/BTT-hss-single-ch`      - Basic High-side-switch example to operate single channel. Compatible with BTT60xx variants.
-* :code:`examples/BTS-hss-advanced`       - Default high-side-switch advanced test. Compatible with BTS5001x and BTS700x variants.
-* :code:`examples/BTS-hss-multiple-ch` - High-side-switch example to operate multiple channels. Compatible with BTS700x variants.
-* :code:`examples/BTS-hss-single-ch`   - Basic High-side-switch example to operate single channel. Compatible with BTS5001x and BTS700x variants.
-* :code:`examples/BTS-button-test`     - Switch dependent on optional user button. Compatible with BTS5001x and BTS700x variants.
+* :code:`examples/BTT-hss-advanced`   - :tabs:Default high-side-switch advanced test. Compatible with 
+  BTT60xx variants.
+* :code:`examples/BTT-hss-multiple-ch`- :tabs:High-side-switch example to operate multiple channels. Compatible with BTT60xx variants.
+* :code:`examples/BTT-hss-single-ch`  - Basic High-side-switch example to operate single channel. Compatible with BTT60xx variants.
+* :code:`examples/BTS-hss-advanced`   - Default high-side-switch advanced test. Compatible with 
+  BTS5001x and BTS700x variants.
+* :code:`examples/BTS-hss-multiple-ch`- High-side-switch example to operate multiple channels. Compatible with BTS700x variants.
+* :code:`examples/BTS-hss-single-ch`  - Basic High-side-switch example to operate single channel. Compatible with BTS5001x and BTS700x variants.
+* :code:`examples/BTS-button-test`    - Switch dependent on optional user button. Compatible with BTS5001x and BTS700x variants.
 
 All Arduino sketches are also available for the other included platforms. See below :code:`src/framework/PLATFORM` directory.
 
@@ -49,7 +51,7 @@ This example shows the usage of the offered functionalities of the shield. It in
  * Read the current flowing through the channel
  * Perform diagnosis for individual channel while switch is ON
 
-* Set the channel value for single channel operation in `channel` variable. See below the mapping :
+* Set the channel value for single channel operation in :code:`channel` variable. See below the mapping :
 
 .. list-table::
     :header-rows: 1
@@ -57,23 +59,23 @@ This example shows the usage of the offered functionalities of the shield. It in
     * - Channel (in example code)
       - Controls
       - Mapped output port
-    * - `channel = 0`
+    * - :code:`channel = 0`
       - Profet 0 (BTT6030-2ERA part 0 : channel 0)
       - OUT 0.0
-    * - `channel = 1`
+    * - :code:`channel = 1`
       - Profet 0 (BTT6030-2ERA part 0 : channel 1)
       - OUT 0.1
-    * - `channel = 2`
+    * - :code:`channel = 2`
       - Profet 1 (BTT6030-2ERA part 1 : channel 0)
       - OUT 1.0
-    * - `channel = 3`
+    * - :code:`channel = 3`
       - Profet 1 (BTT6030-2ERA part 1 : channel 1)
       - OUT 1.1
-    * - `channel = 4`
+    * - :code:`channel = 4`
       - Profet 0 (BTT6020-1ERA : channel 0)
       - OUT 2
 
-* In order to configure multiple channels, you can set the desired channels to true in the `ch[5]` array. See below the mapping :
+* In order to configure multiple channels, you can set the desired channels to true in the :code:`ch[5]` array. See below the mapping :
 
 .. list-table::
     :header-rows: 1
@@ -81,19 +83,19 @@ This example shows the usage of the offered functionalities of the shield. It in
     * - Channel (in example code)
       - Controls
       - Mapped output port
-    * - `ch[0]`
+    * - :code:`ch[0]`
       - Profet 0 (BTT6030-2ERA part 0 : channel 0)
       - OUT 0.0
-    * - `ch[1]`
+    * - :code:`ch[1]`
       - Profet 0 (BTT6030-2ERA part 0 : channel 1)
       - OUT 0.1
-    * - `ch[2]`
+    * - :code:`ch[2]`
       - Profet 1 (BTT6030-2ERA part 1 : channel 0)
       - OUT 1.0
-    * - `ch[3]`
+    * - :code:`ch[3]`
       - Profet 1 (BTT6030-2ERA part 1 : channel 1)
       - OUT 1.1
-    * - `ch[4]`
+    * - :code:`ch[4]`
       - Profet 0 (BTT6020-1ERA : channel 0)
       - OUT 2
 
@@ -129,7 +131,7 @@ Description
 This example demonstrates how to switch on/off multiple channels at once.
 In total, there are 5 channels provided in this board. Through this example,
 you can control these 5 channels at the same time by setting the required channels 
-to true in the `ch[5]` where index-0 maps to channel 0. See below channel to port mapping:
+to true in the :code:`ch[5]` where index-0 maps to channel 0. See below channel to port mapping:
 
 .. list-table::
     :header-rows: 1
@@ -137,19 +139,19 @@ to true in the `ch[5]` where index-0 maps to channel 0. See below channel to por
     * - Channel (in example code)
       - Controls
       - Mapped output port
-    * - `ch[0]`
+    * - :code:`ch[0]`
       - Profet 0 (BTT6030-2ERA part 0 : channel 0)
       - OUT 0.0
-    * - `ch[1]`
+    * - :code:`ch[1]`
       - Profet 0 (BTT6030-2ERA part 0 : channel 1)
       - OUT 0.1
-    * - `ch[2]`
+    * - :code:`ch[2]`
       - Profet 1 (BTT6030-2ERA part 1 : channel 0)
       - OUT 1.0
-    * - `ch[3]`
+    * - :code:`ch[3]`
       - Profet 1 (BTT6030-2ERA part 1 : channel 1)
       - OUT 1.1
-    * - `ch[4]`
+    * - :code:`ch[4]`
       - Profet 0 (BTT6020-1ERA : channel 0)
       - OUT 2
 
@@ -185,7 +187,7 @@ Description
 This is a basic high-side-switch example that demonstrates how to switch on/off a specific channel.
 Along with channel operation, you could also determine the sensed current of the channel.
 In total, there are 5 channels provided in this board and you can select which channel to function by setting 
-correct number in `channel`. See below channel to port mapping:
+correct number in :code:`channel`. See below channel to port mapping:
 
 .. list-table::
     :header-rows: 1
@@ -193,19 +195,19 @@ correct number in `channel`. See below channel to port mapping:
     * - Channel (in example code)
       - Controls
       - Mapped output port
-    * - `channel = 0`
+    * - :code:`channel = 0`
       - Profet 0 (BTT6030-2ERA part 0 : channel 0)
       - OUT 0.0
-    * - `channel = 1`
+    * - :code:`channel = 1`
       - Profet 0 (BTT6030-2ERA part 0 : channel 1)
       - OUT 0.1
-    * - `channel = 2`
+    * - :code:`channel = 2`
       - Profet 1 (BTT6030-2ERA part 1 : channel 0)
       - OUT 1.0
-    * - `channel = 3`
+    * - :code:`channel = 3`
       - Profet 1 (BTT6030-2ERA part 1 : channel 1)
       - OUT 1.1
-    * - `channel = 4`
+    * - :code:`channel = 4`
       - Profet 0 (BTT6020-1ERA : channel 0)
       - OUT 2
 
@@ -262,7 +264,7 @@ This example can be used for both, BTS700x and BTS5001x shields.
 .. warning::
     Some functions like turning on/off multiple switches at once is not supported for the BTS5001x-1TAD shields and hence would not serve as a valid function call. Please read the inline code comments for better understanding.
 
-* Set the channel value for single channel operation in `channel` variable (only if selected shield is BTS700x). See below the mapping :
+* Set the channel value for single channel operation in :code:`channel` variable (only if selected shield is BTS700x). See below the mapping :
 
 .. list-table::
     :header-rows: 1
@@ -270,21 +272,21 @@ This example can be used for both, BTS700x and BTS5001x shields.
     * - Channel (in example code)
       - Controls
       - Mapped output port
-    * - `channel = 1`
+    * - :code:`channel = 1`
       - BTS700x U1
       - OUT1
-    * - `channel = 2`
+    * - :code:`channel = 2`
       - BTS700x U2
       - OUT2
-    * - `channel = 3`
+    * - :code:`channel = 3`
       - BTS700x U3
       - OUT3
-    * - `channel = 4`
+    * - :code:`channel = 4`
       - BTS700x U4
       - OUT4
 
 .. note::
-    In case of BTS5001x-1TAD shields, `channel` would always remain `1` since this shield variant supports single channel.
+    In case of BTS5001x-1TAD shields, :code:`channel` would always remain `1` since this shield variant supports single channel.
     
 * In order to configure multiple channels (valid only for BTS700x shield), you can set the desired channels to true in the `ch[4]` array. See below the mapping :
     
@@ -342,7 +344,7 @@ Description
 This example demonstrates how to switch on/off multiple channels at once.
 In total, there are 4 channels provided in this board. Through this example,
 you can control these 4 channels at the same time by setting the required channels 
-to true in the `ch[4]` where index-0 maps to channel 1. See below channel to port mapping:
+to true in the :code:`ch[4]` where index-0 maps to channel 1. See below channel to port mapping:
 
 .. list-table::
     :header-rows: 1
@@ -350,19 +352,19 @@ to true in the `ch[4]` where index-0 maps to channel 1. See below channel to por
     * - Channel (in example code)
       - Controls
       - Mapped output port
-    * - `ch[0]`
+    * - :code:`ch[0]`
       - Profet 0 (BTT6030-2ERA part 0 : channel 0)
       - OUT 0.0
-    * - `ch[1]`
+    * - :code:`ch[1]`
       - Profet 0 (BTT6030-2ERA part 0 : channel 1)
       - OUT 0.1
-    * - `ch[2]`
+    * - :code:`ch[2]`
       - Profet 1 (BTT6030-2ERA part 1 : channel 0)
       - OUT 1.0
-    * - `ch[3]`
+    * - :code:`ch[3]`
       - Profet 1 (BTT6030-2ERA part 1 : channel 1)
       - OUT 1.1
-    * - `ch[4]`
+    * - :code:`ch[4]`
       - Profet 0 (BTT6020-1ERA : channel 0)
       - OUT 2
 
@@ -410,7 +412,7 @@ Description
 This is a basic high-side-switch example that demonstrates how to switch on/off a specific channel.
 Along with channel operation, you could also determine the sensed current of the channel.
 In total, there are 4 channels and 1 channel provided in the BTS700x and BTS5001x board respectively and 
-you can select which channel to operate by setting correct number in `channel`. See below channel to port mapping:
+you can select which channel to operate by setting correct number in :code:`channel`. See below channel to port mapping:
 
 .. list-table::
     :header-rows: 1
@@ -418,24 +420,24 @@ you can select which channel to operate by setting correct number in `channel`. 
     * - Channel (in example code)
       - Controls
       - Mapped output port
-    * - `channel = 0`
+    * - :code:`channel = 0`
       - Profet 0 (BTT6030-2ERA part 0 : channel 0)
       - OUT 0.0
-    * - `channel = 1`
+    * - :code:`channel = 1`
       - Profet 0 (BTT6030-2ERA part 0 : channel 1)
       - OUT 0.1
-    * - `channel = 2`
+    * - :code:`channel = 2`
       - Profet 1 (BTT6030-2ERA part 1 : channel 0)
       - OUT 1.0
-    * - `channel = 3`
+    * - :code:`channel = 3`
       - Profet 1 (BTT6030-2ERA part 1 : channel 1)
       - OUT 1.1
-    * - `channel = 4`
+    * - :code:`channel = 4`
       - Profet 0 (BTT6020-1ERA : channel 0)
       - OUT 2
 
 .. note::
-    In case of BTS5001x-1TAD shields, `channel` would always remain `1` since this shield variant supports single channel.
+    In case of BTS5001x-1TAD shields, :code:`channel` would always remain :code:`1` since this shield variant supports single channel.
       
 BTS-button-test
 """"""""""""""""

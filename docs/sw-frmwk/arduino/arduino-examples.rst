@@ -279,9 +279,12 @@ This example shows the usage of the offered functionalities of the shield. It in
 This example can be used for both, BTS700x and BTS5001x shields.
 
 .. warning::
-    Some functions like turning on/off multiple switches at once is not supported for the BTS5001x-1TAD shields and hence would not serve as a valid function call. Please read the inline code comments for better understanding.
+    Some functions like turning on/off multiple switches at once is not supported for the BTS5001x-1TAD
+    shields and hence would not serve as a valid function call. Please read the inline code comments 
+    for better understanding.
 
-* Set the channel value for single channel operation in :code:`channel` variable (only if selected shield is BTS700x). See below the mapping :
+* Set the channel value for single channel operation in :code:`channel` variable (only if selected
+ shield is BTS700x). See below the mapping :
 
 .. list-table::
     :header-rows: 1
@@ -303,9 +306,11 @@ This example can be used for both, BTS700x and BTS5001x shields.
       - OUT4
 
 .. note::
-    In case of BTS5001x-1TAD shields, :code:`channel` would always remain :code:`1` since this shield variant supports single channel.
+    In case of BTS5001x-1TAD shields, :code:`channel` would always remain :code:`1` since this shield 
+    variant supports single channel.
     
-* In order to configure multiple channels (valid only for BTS700x shield), you can set the desired channels to true in the `ch[4]` array. See below the mapping :
+* In order to configure multiple channels (valid only for BTS700x shield), you can set the desired 
+channels to true in the :code:`ch[4]` array. See below the mapping :
     
 .. list-table::
   :header-rows: 1
@@ -313,16 +318,16 @@ This example can be used for both, BTS700x and BTS5001x shields.
   * - Channel (in example code)
     - Controls
     - Mapped output port
-  * - `ch[0]`
+  * - :code:`ch[0]`
     - BTS700x U1
     - OUT1
-  * - `ch[1]`
+  * - :code:`ch[1]`
     - BTS700x U2
     - OUT2
-  * - `ch[2]`
+  * - :code:`ch[2]`
     - BTS700x U3
     - OUT3
-  * - `ch[3]`
+  * - :code:`ch[3]`
     - BTS700x U4
     - OUT4
 

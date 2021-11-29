@@ -10,19 +10,26 @@ To run these examples use either the Arduino IDE or something similar like the P
     * - Example 
       - Summary 
     * - :code:`examples/BTT-hss-advanced`   
-      - Default high-side-switch advanced test. Compatible with BTT60xx variants.
+      - Default high-side-switch advanced test. 
+        Compatible with BTT60xx variants.
     * - :code:`examples/BTT-hss-multiple-ch`
-      - High-side-switch example to operate multiple channels. Compatible with BTT60xx variants.
+      - High-side-switch example to operate multiple channels. 
+        Compatible with BTT60xx variants.
     * - :code:`examples/BTT-hss-single-ch`  
-      - Basic High-side-switch example to operate single channel. Compatible with BTT60xx variants.
+      - Basic High-side-switch example to operate single channel. 
+        Compatible with BTT60xx variants.
     * - :code:`examples/BTS-hss-advanced`   
-      - Default high-side-switch advanced test. Compatible with BTS5001x and BTS700x variants.
+      - Default high-side-switch advanced test. 
+        Compatible with BTS5001x and BTS700x variants.
     * - :code:`examples/BTS-hss-multiple-ch`
-      - High-side-switch example to operate multiple channels. Compatible with BTS700x variants.
+      - High-side-switch example to operate multiple channels. 
+        Compatible with BTS700x variants.
     * - :code:`examples/BTS-hss-single-ch`  
-      - Basic High-side-switch example to operate single channel. Compatible with BTS5001x and BTS700x variants.
+      - Basic High-side-switch example to operate single channel. 
+        Compatible with BTS5001x and BTS700x variants.
     * - :code:`examples/BTS-button-test`    
-      - Switch dependent on optional user button. Compatible with BTS5001x and BTS700x variants.
+      - Switch dependent on optional user button. 
+        Compatible with BTS5001x and BTS700x variants.
 
 All Arduino sketches are also available for the other included platforms. See below :code:`src/framework/PLATFORM` directory.
 

@@ -677,7 +677,7 @@ DiagStatus_t Bts700xShield::readDiagx(uint8_t x)
 
     float currentOn = 0.0;
     float currentOff = 0.0;
-
+/**
     switch(x)
     {
         case 1:
@@ -760,7 +760,7 @@ DiagStatus_t Bts700xShield::readDiagx(uint8_t x)
             hss4->disableDiag();
             break;
     }
-
+*/
     return diagStatus;
 }
 

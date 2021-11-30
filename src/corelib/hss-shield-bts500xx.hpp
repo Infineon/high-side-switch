@@ -48,7 +48,7 @@ class Bts500xxShield : public HssShield
         ADCPAL   * pushButton;
         ADCPAL   * vBat;   
 
-        BtsVariants_t * btsVariant;
+        BtxVariants_t * btsVariant;
         const float vBatGain = 1.0;
         const float vBatOffset = 0.0;
         const float IisFault=0.0035;

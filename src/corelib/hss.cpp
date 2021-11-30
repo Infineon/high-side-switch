@@ -24,9 +24,10 @@ using namespace hss;
 Hss::Hss(GPIOPAL *den, GPIOPAL *in, ADCPAL *is, TimerPAL *timer, BtxVariants_t *btxVariant)
 {
     this->den = den;
-    this->in = in;
-    this->is = is;
-    this->dsel = NULL;
+    this->in0 = in;
+    this->in1 = nullptr;
+    this->is  = is;
+    this->dsel = nullptr;
 
     this->timer = timer;
 
@@ -46,14 +47,16 @@ Hss::Hss(GPIOPAL *den, GPIOPAL *in, ADCPAL *is, TimerPAL *timer, BtxVariants_t *
  * of the 24V PROFET.
  *
  * @param[in]   den         Pin number of DEN
- * @param[in]   in          Pin number of IN
+ * @param[in]   in0         Pin number of IN0
+ * @param[in]   in1         Pin number of IN1
  * @param[in]   dsel        Pin number of dsel
  * @param[in]   is          Pin number of IS
  */
-Hss::Hss(GPIOPAL *den, GPIOPAL *in, GPIOPAL *dsel, ADCPAL *is, TimerPAL *timer, BtxVariants_t *btxVariant)
+Hss::Hss(GPIOPAL *den, GPIOPAL *in0, GPIOPAL *in1,  GPIOPAL *dsel, ADCPAL *is, TimerPAL *timer, BtxVariants_t *btxVariant)
 {
     this->den = den;
-    this->in = in;
+    this->in0 = in0;
+    this->in1 = in1;
     this->is = is;
     this->dsel = dsel;
 
@@ -93,9 +96,15 @@ Error_t Hss::init()
     err = den->init();
     HSS_ASSERT_RET(err);
 
-    HSS_ASSERT_NULLPTR(in);
-    err = in->init();
+    HSS_ASSERT_NULLPTR(in0);
+    err = in0->init();
     HSS_ASSERT_RET(err);
+
+    if(nullptr != in1)
+    {
+        err = in1->init();
+        HSS_ASSERT_RET(err);
+    }
 
     HSS_ASSERT_NULLPTR(is);
     err = is->init();
@@ -131,9 +140,15 @@ Error_t Hss::deinit()
     err = den->deinit();
     HSS_ASSERT_RET(err);
 
-    HSS_ASSERT_NULLPTR(in);
-    err = in->deinit();
+    HSS_ASSERT_NULLPTR(in0);
+    err = in0->deinit();
     HSS_ASSERT_RET(err);
+
+    if(nullptr != in1)
+    {
+        err = in1->deinit();
+        HSS_ASSERT_RET(err);
+    }
 
     if(nullptr != dsel)
     {
@@ -161,18 +176,30 @@ Error_t Hss::deinit()
  *
  * This function is turning on the High-Side-Switch.
  * It is also setting the status of the switch to ON.
- *
+ * 
+ * @param[in]   ch      Channel number. Default 0.
  * @return Error_t
  */
-Error_t Hss::enable()
+Error_t Hss::enable(Channel_t ch)
 {
     Error_t err = OK;
 
     if(UNINITED != status)
     {
-        HSS_ASSERT_NULLPTR(in);
-        err = in->enable();
-        HSS_ASSERT_RET(err);
+        if(CHANNEL0 == ch || ALL_CHANNELS == ch)
+        {
+            HSS_ASSERT_NULLPTR(in0);
+            err = in0->enable();
+            HSS_ASSERT_RET(err);
+            statusCh0 = POWER_ON;
+        }
+        if(CHANNEL1 == ch || ALL_CHANNELS == ch)
+        {
+            HSS_ASSERT_NULLPTR(in1);
+            err = in1->enable();
+            HSS_ASSERT_RET(err);
+            statusCh1 = POWER_ON;
+        }
 
         status = POWER_ON;
     }
@@ -189,19 +216,36 @@ Error_t Hss::enable()
  *
  * This function turns off the High-Side-Switch.
  * It is also setting the status of the switch to OFF.
- *
+ * 
+ * @param[in]   ch      Channel number. Default 0.
  * @return Error_t
  */
-Error_t Hss::disable()
+Error_t Hss::disable(Channel_t ch)
 {
     Error_t err = OK;
 
     if(UNINITED != status)
     {
-        HSS_ASSERT_NULLPTR(in);
-        err = in->disable();
-        HSS_ASSERT_RET(err);
-        status = POWER_OFF;
+    
+        if(CHANNEL0 == ch || ALL_CHANNELS == ch)
+        {
+            HSS_ASSERT_NULLPTR(in0);
+            err = in0->disable();
+            HSS_ASSERT_RET(err);
+            statusCh0 = POWER_OFF;
+        }
+        if(CHANNEL1 == ch || ALL_CHANNELS == ch)
+        {
+            HSS_ASSERT_NULLPTR(in1);
+            err = in1->disable();
+            HSS_ASSERT_RET(err);
+            statusCh1 = POWER_OFF;
+        }
+
+        if((POWER_OFF == statusCh0) && (POWER_OFF == statusCh1))
+        {
+            status = POWER_OFF;
+        }
     }
     else
     {
@@ -279,49 +323,19 @@ Error_t Hss::selDiagCh(Channel_t ch)
 {
     Error_t err = OK;
 
-    if(CHANNEL0 == ch)
+    if(nullptr != dsel)
     {
-        err = dsel->disable();
-    }
-    else if(CHANNEL1 == ch){
-        err = dsel->enable();
-    }
-    else
-    {
-        return INVALID_CH_ERROR;
-    }
-
-    return err;
-}
-
-/**
- * @brief Reset the diagnostic
- *
- * This function resets the diagnostic function of the switch.
- * Any error, for example an overcurrent event, will set the internal
- * latch of the switch to "1". This function is reseting the latch.
- *
- * @return Error_t
- */
-Error_t Hss::diagReset()
-{
-    Error_t err = OK;
-
-    if(UNINITED != status)
-    {
-        HSS_ASSERT_NULLPTR(in);
-        err = in->disable();
-        HSS_ASSERT_RET(err);
-
-        HSS_ASSERT_NULLPTR(timer);
-        err = timer->delayMilli(100);
-        HSS_ASSERT_RET(err);
-
-        err = in->enable();
-    }
-    else
-    {
-        err = INIT_ERROR;
+        if(CHANNEL0 == ch)
+        {
+            err = dsel->disable();
+        }
+        else if(CHANNEL1 == ch){
+            err = dsel->enable();
+        }
+        else
+        {
+            return INVALID_CH_ERROR;
+        }
     }
 
     return err;
@@ -355,7 +369,7 @@ Status_t Hss::getSwitchStatus()
  *
  * @note Before calling this function, ensure IS pin is initialized and
  *       you do not have to pass channel in case your shield does not support multiple channel
- *       and this would default to NO_CHANNEL applicable.
+ *       and this would default to CHANNEL0 applicable.
  *
  * @return Value of the current flowing through the switch in [A]
  */
@@ -366,10 +380,7 @@ float Hss::readIs(uint16_t rSense, Channel_t ch)
 
     if(UNINITED != status)
     {
-        if(NO_CHANNEL != ch)
-        {
-            selDiagCh(ch);
-        }
+        selDiagCh(ch);
 
         if(diagEnb == DIAG_EN)
         {
@@ -391,7 +402,7 @@ float Hss::readIs(uint16_t rSense, Channel_t ch)
  * It returns an diagnosis state of the switch.
  *
  * @param[in]   senseCurrent    Sensed current value
- * @param[in]   ch              Channel no. (*Optional)
+ * @param[in]   ch              Channel no. Unused.
  *
  * @return  DiagStatus_t
  *
@@ -401,14 +412,11 @@ float Hss::readIs(uint16_t rSense, Channel_t ch)
  *
  * @note    This function should be called only after you get the Is value.
  *          Also note, in case you are using shield with no channel differentiation,
- *          then ignore the 'ch' parameter and this will default to NO_CHANNEL.
+ *          then ignore the 'ch' parameter and this will default to CHANNEL0.
  */
-DiagStatus_t Hss::diagRead(float senseCurrent, Channel_t ch)
+DiagStatus_t Hss::diagRead(float senseCurrent, Channel_t ch) 
 {
-
-    if(NO_CHANNEL != ch){
-        selDiagCh(ch);
-    }
+    (void)ch;
 
     if(DIAG_EN == diagEnb)
     {

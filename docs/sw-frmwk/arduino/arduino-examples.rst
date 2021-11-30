@@ -31,7 +31,7 @@ To run these examples use either the Arduino IDE or something similar like the P
       - * Switch dependent on optional user button. 
         * Compatible with BTS5001x and BTS700x variants.
 
-All Arduino sketches are also available for the other included platforms. See below :code:`src/framework/PLATFORM` directory.
+All Arduino sketches are also available for the other included frameworks. See below :code:`src/framework/FRAMEWORK` directory.
 
 BTT-hss-advanced
 """"""""""""""""

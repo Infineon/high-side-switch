@@ -9,32 +9,41 @@ To run these examples use either the Arduino IDE or something similar like the P
 
     * - Example 
       - Summary 
-    * - :code:`examples/BTT-hss-advanced`   
+    * - :code:`examples/BTT600x-hss-advanced`
       - * Default high-side-switch advanced test. 
         * Compatible with BTT60xx variants.
-    * - :code:`examples/BTT-hss-multiple-ch`
+    * - :code:`examples/BTT600x-hss-multiple-ch`
       - * High-side-switch example to operate multiple channels. 
         * Compatible with BTT60xx variants.
-    * - :code:`examples/BTT-hss-single-ch`  
+    * - :code:`examples/BTT600x-hss-single-ch`  
       - * Basic High-side-switch example to operate single channel. 
         * Compatible with BTT60xx variants.
-    * - :code:`examples/BTS-hss-advanced`   
+    * - :code:`examples/BTS700x-hss-advanced`   
       - * Default high-side-switch advanced test. 
-        * Compatible with BTS5001x and BTS700x variants.
-    * - :code:`examples/BTS-hss-multiple-ch`
+        * Compatible with BTS7002, BTS7004, BTS7006, BTS7008 variant.
+    * - :code:`examples/BTS700x-hss-multiple-ch`
       - * High-side-switch example to operate multiple channels. 
-        * Compatible with BTS700x variants.
-    * - :code:`examples/BTS-hss-single-ch`  
+        * Compatible with BTS7002, BTS7004, BTS7006, BTS7008 variant.
+    * - :code:`examples/BTS700x-hss-single-ch`  
       - * Basic High-side-switch example to operate single channel. 
-        * Compatible with BTS5001x and BTS700x variants.
-    * - :code:`examples/BTS-button-test`    
+        * Compatible with BTS7002, BTS7004, BTS7006, BTS7008 variant.
+    * - :code:`examples/BTS700x-button-test`    
       - * Switch dependent on optional user button. 
-        * Compatible with BTS5001x and BTS700x variants.
+        * Compatible with BTS7002, BTS7004, BTS7006, BTS7008 variant.
+    * - :code:`examples/BTS5001x-hss-advanced`   
+      - * Default high-side-switch advanced test. 
+        * Compatible with BTS50010 and BTS50015 variant.
+    * - :code:`examples/BTS5001x-hss-single-ch`  
+      - * Basic High-side-switch example to operate single channel. 
+        * Compatible with BTS50010 and BTS50015 variant.
+    * - :code:`examples/BTS5001x-button-test`    
+      - * Switch dependent on optional user button. 
+        * Compatible with BTS50010 and BTS50015 variant.
 
 All Arduino sketches are also available for the other included frameworks. See below :code:`src/framework/FRAMEWORK` directory.
 
-BTT-hss-advanced
-""""""""""""""""
+BTT600x-hss-advanced
+""""""""""""""""""""
 Summary
 ^^^^^^^
 Default high-side-switch advanced test. Compatible with BTT60xx variants.
@@ -62,62 +71,20 @@ Compatibility
 
 Description
 ^^^^^^^^^^^
-This example shows the usage of the offered functionalities of the shield. It includes:
- * Switching the channels on/off one after the other
- * Switching multiple channels on/off at once
- * Read the current flowing through the channel
- * Perform diagnosis for individual channel while switch is ON
+This example shows the usage of the offered functionalities of the shield. 
+It has 2 parts:
 
-* Set the channel value for single channel operation in :code:`channel` variable. See below the mapping :
+1. PART A:
+  * Switches a channel ON
+  * Reads current through the switch, battery voltage and performs diagnosis in 'ON' state
+  * Switches the channel OFF
 
-.. list-table::
-    :header-rows: 1
-
-    * - Channel (in example code)
-      - Controls
-      - Mapped output port
-    * - :code:`channel = 0`
-      - Profet 0 (BTT6030-2ERA part 0 : channel 0)
-      - OUT 0.0
-    * - :code:`channel = 1`
-      - Profet 0 (BTT6030-2ERA part 0 : channel 1)
-      - OUT 0.1
-    * - :code:`channel = 2`
-      - Profet 1 (BTT6030-2ERA part 1 : channel 0)
-      - OUT 1.0
-    * - :code:`channel = 3`
-      - Profet 1 (BTT6030-2ERA part 1 : channel 1)
-      - OUT 1.1
-    * - :code:`channel = 4`
-      - Profet 2 (BTT6020-1ERA : channel 0)
-      - OUT 2
-
-* In order to configure multiple channels, you can set the desired channels to true in the :code:`ch[5]` array. See below the mapping :
-
-.. list-table::
-    :header-rows: 1
-
-    * - Channel (in example code)
-      - Controls
-      - Mapped output port
-    * - :code:`ch[0]`
-      - Profet 0 (BTT6030-2ERA part 0 : channel 0)
-      - OUT 0.0
-    * - :code:`ch[1]`
-      - Profet 0 (BTT6030-2ERA part 0 : channel 1)
-      - OUT 0.1
-    * - :code:`ch[2]`
-      - Profet 1 (BTT6030-2ERA part 1 : channel 0)
-      - OUT 1.0
-    * - :code:`ch[3]`
-      - Profet 1 (BTT6030-2ERA part 1 : channel 1)
-      - OUT 1.1
-    * - :code:`ch[4]`
-      - Profet 2 (BTT6020-1ERA : channel 0)
-      - OUT 2
-
-BTT-hss-multiple-ch
-""""""""""""""""""""
+2. PART B:
+  * Switch multiple channels 'ON' at once
+  * Switch multiple channels 'OFF' at once
+ 
+BTT600x-hss-multiple-ch
+""""""""""""""""""""""""
 Summary 
 ^^^^^^^
 High-side-switch example to operate multiple channels. Compatible with BTT60xx variants.
@@ -148,7 +115,7 @@ Description
 This example demonstrates how to switch on/off multiple channels at once.
 In total, there are 5 channels provided in this board. Through this example,
 you can control these 5 channels at the same time by setting the required channels 
-to true in the :code:`ch[5]` where index-0 maps to channel 0. See below channel to port mapping:
+to true in the :code:`switch_no[5]` where index-0 maps to channel 0. See below channel to port mapping:
 
 .. list-table::
     :header-rows: 1
@@ -156,24 +123,24 @@ to true in the :code:`ch[5]` where index-0 maps to channel 0. See below channel 
     * - Channel (in example code)
       - Controls
       - Mapped output port
-    * - :code:`ch[0]`
+    * - :code:`switch_no[0] = true`
       - Profet 0 (BTT6030-2ERA part 0 : channel 0)
       - OUT 0.0
-    * - :code:`ch[1]`
+    * - :code:`switch_no[1] = true`
       - Profet 0 (BTT6030-2ERA part 0 : channel 1)
       - OUT 0.1
-    * - :code:`ch[2]`
+    * - :code:`switch_no[2] = true`
       - Profet 1 (BTT6030-2ERA part 1 : channel 0)
       - OUT 1.0
-    * - :code:`ch[3]`
+    * - :code:`switch_no[3] = true`
       - Profet 1 (BTT6030-2ERA part 1 : channel 1)
       - OUT 1.1
-    * - :code:`ch[4]`
+    * - :code:`switch_no[4] = true`
       - Profet 2 (BTT6020-1ERA : channel 0)
       - OUT 2
 
-BTT-hss-single-ch
-""""""""""""""""""
+BTT600x-hss-single-ch
+""""""""""""""""""""""
 Summary 
 ^^^^^^^
 Basic High-side-switch example to operate single channel. Compatible with BTT60xx variants.
@@ -204,7 +171,7 @@ Description
 This is a basic high-side-switch example that demonstrates how to switch on/off a specific channel.
 Along with channel operation, you could also determine the sensed current of the channel.
 In total, there are 5 channels provided in this board and you can select which channel to function by setting 
-correct number in :code:`channel`. See below channel to port mapping:
+correct number in :code:`switch_no`. See below switch to port mapping:
 
 .. list-table::
     :header-rows: 1
@@ -212,33 +179,30 @@ correct number in :code:`channel`. See below channel to port mapping:
     * - Channel (in example code)
       - Controls
       - Mapped output port
-    * - :code:`channel = 0`
+    * - :code:`switch_no = 0`
       - Profet 0 (BTT6030-2ERA part 0 : channel 0)
       - OUT 0.0
-    * - :code:`channel = 1`
+    * - :code:`switch_no = 1`
       - Profet 0 (BTT6030-2ERA part 0 : channel 1)
       - OUT 0.1
-    * - :code:`channel = 2`
+    * - :code:`switch_no = 2`
       - Profet 1 (BTT6030-2ERA part 1 : channel 0)
       - OUT 1.0
-    * - :code:`channel = 3`
+    * - :code:`switch_no = 3`
       - Profet 1 (BTT6030-2ERA part 1 : channel 1)
       - OUT 1.1
-    * - :code:`channel = 4`
+    * - :code:`switch_no = 4`
       - Profet 2 (BTT6020-1ERA : channel 0)
       - OUT 2
 
-BTS-hss-advanced
+BTS700x-hss-advanced
 """"""""""""""""""""
 Summary
 ^^^^^^^
-Default high-side-switch advanced test. Compatible with BTS5001x and BTS700x variants.
+Default high-side-switch advanced test. Compatible with BTS7002, BTS7004, BTS7006 and BTS7008 variant.
 
 Compatibility
 ^^^^^^^^^^^^^
-.. image:: ../../img/bts5001x_shield.png
-    :width: 150
-
 .. image:: ../../img/bts700x_shield.jpg
     :width: 150
 
@@ -260,82 +224,27 @@ Compatibility
     * - Shield
       - BTS7008
       - :code:`hss-bts700xShield-ino.hpp`
-    * - Shield
-      - BTS50010
-      - :code:`hss-bts500xxShield-ino.hpp`
-    * - Shield
-      - BTS50015
-      - :code:`hss-bts500xxShield-ino.hpp`
 
 Description
 ^^^^^^^^^^^
-This example shows the usage of the offered functionalities of the shield. It includes:
- * Switching the channels on/off one after the other (in case if multiple channels supported)
- * Switching multiple channels on/off at once (supported only in BTS700x variants)
- * Read the current flowing through the channel
- * Perform diagnosis for individual channel
- * Read battery voltage at any instant of time
+This example shows the usage of all the offered functionalities of the shield. 
+It has 2 parts:
 
-This example can be used for both, BTS700x and BTS5001x shields.
+1. PART A
+  * Switches a channel ON
+  * Reads current through the switch, battery voltage and performs diagnosis in 'ON' state
+  * Switches the channel OFF
+  * Reads current through the switch, battery voltage and performs diagnosis in 'OFF' state
 
-.. warning::
-    Some functions like turning on/off multiple switches at once is not supported for the BTS5001x-1TAD
-    shields and hence would not serve as a valid function call. Please read the inline code comments 
-    for better understanding.
+2. PART B
+  * Switch multiple channels 'ON' at once
+  * Switch multiple channels 'OFF' at once
 
-* Set the channel value for single channel operation in :code:`channel` variable (only if selected
- shield is BTS700x). See below the mapping :
-
-.. list-table::
-    :header-rows: 1
-    
-    * - Channel (in example code)
-      - Controls
-      - Mapped output port
-    * - :code:`channel = 1`
-      - BTS700x U1
-      - OUT1
-    * - :code:`channel = 2`
-      - BTS700x U2
-      - OUT2
-    * - :code:`channel = 3`
-      - BTS700x U3
-      - OUT3
-    * - :code:`channel = 4`
-      - BTS700x U4
-      - OUT4
-
-.. note::
-    In case of BTS5001x-1TAD shields, :code:`channel` would always remain :code:`1` since this shield 
-    variant supports single channel.
-    
-* In order to configure multiple channels (valid only for BTS700x shield), you can set the desired 
-channels to true in the :code:`ch[4]` array. See below the mapping :
-    
-.. list-table::
-  :header-rows: 1
-    
-  * - Channel (in example code)
-    - Controls
-    - Mapped output port
-  * - :code:`ch[0]`
-    - BTS700x U1
-    - OUT1
-  * - :code:`ch[1]`
-    - BTS700x U2
-    - OUT2
-  * - :code:`ch[2]`
-    - BTS700x U3
-    - OUT3
-  * - :code:`ch[3]`
-    - BTS700x U4
-    - OUT4
-
-BTS-hss-multiple-ch
-""""""""""""""""""""
+BTS700x-hss-multiple-ch
+""""""""""""""""""""""""
 Summary 
 ^^^^^^^
-High-side-switch example to operate multiple channels. Compatible with BTS700x variants.
+High-side-switch example to operate multiple channels. Compatible with BTS7002, BTS7004, BTS7006, BTS7008 variants.
 
 Compatibility
 ^^^^^^^^^^^^^
@@ -366,7 +275,7 @@ Description
 This example demonstrates how to switch on/off multiple channels at once.
 In total, there are 4 channels provided in this board. Through this example,
 you can control these 4 channels at the same time by setting the required channels 
-to true in the :code:`ch[4]` where index-0 maps to channel 1. See below channel to port mapping:
+to true in the :code:`switch_no[4]` where index-0 maps to channel 1. See below channel to port mapping:
 
 .. list-table::
   :header-rows: 1
@@ -374,30 +283,27 @@ to true in the :code:`ch[4]` where index-0 maps to channel 1. See below channel 
   * - Channel (in example code)
     - Controls
     - Mapped output port
-  * - :code:`ch[0]`
+  * - :code:`switch_no[0]`
     - BTS700x U1
     - OUT1
-  * - :code:`ch[1]`
+  * - :code:`switch_no[1]`
     - BTS700x U2
     - OUT2
-  * - :code:`ch[2]`
+  * - :code:`switch_no[2]`
     - BTS700x U3
     - OUT3
-  * - :code:`ch[3]`
+  * - :code:`switch_no[3]`
     - BTS700x U4
     - OUT4
 
-BTS-hss-single-ch
-""""""""""""""""""
+BTS700x-hss-single-ch
+""""""""""""""""""""""
 Summary 
 ^^^^^^^
-Basic High-side-switch example to operate single channel. Compatible with BTT60xx variants.
+Basic High-side-switch example to operate single channel. Compatible with BTT7002, BTS7004, BTS7006 and BTS7008 variants.
 
 Compatibility
 ^^^^^^^^^^^^^
-.. image:: ../../img/bts5001x_shield.png
-    :width: 150
-
 .. image:: ../../img/bts700x_shield.jpg
     :width: 150
 
@@ -419,6 +325,133 @@ Compatibility
     * - Shield
       - BTS7008
       - :code:`hss-bts700xShield-ino.hpp`
+
+Description
+^^^^^^^^^^^
+This is a basic high-side-switch example that demonstrates how to switch on/off a specific channel.
+Along with channel operation, you could also determine the sensed current of the channel.
+In total, there are 4 channels provided in the board and 
+you can select which channel to operate by setting correct number in :code:`switch_no`. See below channel to port mapping:
+
+.. list-table::
+    :header-rows: 1
+    
+    * - Channel (in example code)
+      - Controls
+      - Mapped output port
+    * - :code:`switch_no = 1`
+      - BTS700x U1
+      - OUT1
+    * - :code:`switch_no = 2`
+      - BTS700x U2
+      - OUT2
+    * - :code:`switch_no = 3`
+      - BTS700x U3
+      - OUT3
+    * - :code:`switch_no = 4`
+      - BTS700x U4
+      - OUT4
+
+BTS700x-button-test
+""""""""""""""""""""
+Summary
+^^^^^^^
+Switch dependent on optional user button. Compatible with BTS7002, BTS7004, BTS7006, BTS7008 variants.
+
+Compatibility
+^^^^^^^^^^^^^
+.. image:: ../../img/bts700x_shield.jpg
+    :width: 150
+
+.. list-table::
+    :header-rows: 1
+
+    * - Type
+      - Variant
+      - Covered by
+    * - Shield
+      - BTS7002
+      - :code:`hss-bts700xShield-ino.hpp`
+    * - Shield
+      - BTS7004
+      - :code:`hss-bts700xShield-ino.hpp`
+    * - Shield
+      - BTS7006
+      - :code:`hss-bts700xShield-ino.hpp`
+    * - Shield
+      - BTS7008
+      - :code:`hss-bts700xShield-ino.hpp`
+
+Description
+^^^^^^^^^^^
+BTS700x-1EPP Shield has an optional user button to perform switching.
+This example demonstrates the use of optional user button. This shield supports both 
+digital and analog read button functionality which is configurable through jumpers (Refer manual for details).
+
+.. list-table::
+    :header-rows: 1
+
+    * - Jumper used
+      - Read button Function
+    * - J2
+      - analogReadButton()
+    * - J3
+      - digitalReadButton()
+
+In this example we use the digitalReadButton() functionality of the library
+to read out the VSS of the attached power supply. In case you wish to use analogReadButton()
+functionality, replace digitalReadButton() by analogReadButton().  
+
+BTS5001x-hss-advanced
+""""""""""""""""""""""
+Summary
+^^^^^^^
+Default high-side-switch advanced test. Compatible with BTS50010 and BTS50015 variants.
+
+Compatibility
+^^^^^^^^^^^^^
+.. image:: ../../img/bts5001x_shield.png
+    :width: 150
+
+.. list-table::
+    :header-rows: 1
+
+    * - Type
+      - Variant
+      - Covered by
+    * - Shield
+      - BTS50010
+      - :code:`hss-bts500xxShield-ino.hpp`
+    * - Shield
+      - BTS50015
+      - :code:`hss-bts500xxShield-ino.hpp`
+
+Description
+^^^^^^^^^^^
+This example shows the usage of the offered functionalities of the shield. It does the following:
+ * Switches a channel ON
+ * Reads current through the switch, battery voltage and performs diagnosis in 'ON' state
+ * Switches the channel OFF
+
+This is a single channel supporting shield and hence the default configurations for channels are set in the library.
+
+BTS5001x-hss-single-ch
+""""""""""""""""""""""
+Summary 
+^^^^^^^
+Basic High-side-switch example to operate single channel. Compatible with BTS50010 and BTS50015 variants.
+
+Compatibility
+^^^^^^^^^^^^^
+.. image:: ../../img/bts5001x_shield.png
+    :width: 150
+
+.. list-table::
+    :header-rows: 1
+
+    * - Type
+      - Variant
+      - Covered by
     * - Shield
       - BTS50010
       - :code:`hss-bts500xxShield-ino.hpp`
@@ -430,43 +463,16 @@ Description
 ^^^^^^^^^^^
 This is a basic high-side-switch example that demonstrates how to switch on/off a specific channel.
 Along with channel operation, you could also determine the sensed current of the channel.
-In total, there are 4 channels and 1 channel provided in the BTS700x and BTS5001x board respectively and 
-you can select which channel to operate by setting correct number in :code:`channel`. See below channel to port mapping:
 
-.. list-table::
-    :header-rows: 1
-    
-    * - Channel (in example code)
-      - Controls
-      - Mapped output port
-    * - :code:`channel = 1`
-      - BTS700x U1
-      - OUT1
-    * - :code:`channel = 2`
-      - BTS700x U2
-      - OUT2
-    * - :code:`channel = 3`
-      - BTS700x U3
-      - OUT3
-    * - :code:`channel = 4`
-      - BTS700x U4
-      - OUT4
-
-.. note::
-    In case of BTS5001x-1TAD shields, :code:`channel` would always remain :code:`1` since this shield variant supports single channel.
-      
-BTS-button-test
-""""""""""""""""
+BTS5001x-button-test
+""""""""""""""""""""
 Summary
 ^^^^^^^
-Switch dependent on optional user button. Compatible with BTS5001x and BTS700x variants.
+Switch dependent on optional user button. Compatible with BTS50010 and BTS50015 variants.
 
 Compatibility
 ^^^^^^^^^^^^^
 .. image:: ../../img/bts5001x_shield.png
-    :width: 150
-
-.. image:: ../../img/bts700x_shield.jpg
     :width: 150
 
 .. list-table::
@@ -476,18 +482,6 @@ Compatibility
       - Variant
       - Covered by
     * - Shield
-      - BTS7002
-      - :code:`hss-bts700xShield-ino.hpp`
-    * - Shield
-      - BTS7004
-      - :code:`hss-bts700xShield-ino.hpp`
-    * - Shield
-      - BTS7006
-      - :code:`hss-bts700xShield-ino.hpp`
-    * - Shield
-      - BTS7008
-      - :code:`hss-bts700xShield-ino.hpp`
-    * - Shield
       - BTS50010
       - :code:`hss-bts500xxShield-ino.hpp`
     * - Shield
@@ -496,5 +490,5 @@ Compatibility
 
 Description
 ^^^^^^^^^^^
-BTS700x-1EPP and BTS5001x-1TAD Shields have optional user button to perform switching.
-This example demonstrates the use of optional user button. This functionality is not included in the main example, because the button is not populated on the board by default.
+BTS5001x-1TAD Shields have optional user button to perform switching.
+This example demonstrates the use of optional user button.

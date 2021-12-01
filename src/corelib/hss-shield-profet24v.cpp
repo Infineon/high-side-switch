@@ -13,13 +13,11 @@ using namespace hss;
 /**
  * @brief   Profet 24V BTT6030 Shield constructor
  */
-Profet24VBTTShield::Profet24VBTTShield(Hss *hsw0, Hss *hsw1, Hss *hsw2, Hss *hsw3, Hss *hsw4)
+Profet24VBTTShield::Profet24VBTTShield(Hss *hsw0, Hss *hsw1, Hss *hsw2)
 {
-    this->hss0 = hsw0;
-    this->hss1 = hsw1;
-    this->hss2 = hsw2;
-    this->hss3 = hsw3;
-    this->hss4 = hsw4;
+    switches[0] = hsw0;
+    switches[0] = hsw1;
+    switches[0] = hsw2;
 }
 
 /**
@@ -43,20 +41,12 @@ Error_t Profet24VBTTShield::init()
 {
     Error_t err = OK;
 
-    err = hss0->init();
-    HSS_ASSERT_RET(err);
-
-    err = hss1->init();
-    HSS_ASSERT_RET(err);
-
-    err = hss2->init();
-    HSS_ASSERT_RET(err);
-
-    err = hss3->init();
-    HSS_ASSERT_RET(err);
-
-    err = hss4->init();
-    HSS_ASSERT_RET(err);
+    for(uint8_t i = 0; i < hssNum; i++)
+    {
+        HSS_ASSERT_NULLPTR(switches[i]);
+        err = switches[i]->init();
+        HSS_ASSERT_RET(err);
+    }
 
     return err;
 }
@@ -73,20 +63,12 @@ Error_t Profet24VBTTShield::deinit()
 {
     Error_t err = OK;
 
-    err = hss0->deinit();
-    HSS_ASSERT_RET(err);
-
-    err = hss1->deinit();
-    HSS_ASSERT_RET(err);
-
-    err = hss2->deinit();
-    HSS_ASSERT_RET(err);
-
-    err = hss3->deinit();
-    HSS_ASSERT_RET(err);
-
-    err = hss4->deinit();
-    HSS_ASSERT_RET(err);
+    for(uint8_t i = 0; i < hssNum; i++)
+    {
+        HSS_ASSERT_NULLPTR(switches[i]);
+        err = switches[i]->deinit();
+        HSS_ASSERT_RET(err);
+    }
 
     return err;
 }
@@ -109,28 +91,11 @@ Error_t Profet24VBTTShield::switchHxOn(uint8_t x)
 {
     Error_t err = OK;
 
-    switch(x)
-    {
-        case 0:
-            err = hss0->enable();
-            break;
+    Channel_t ch = (Channel_t)(x % 2);
+    uint8_t hss  = x/2;
+    HSS_ASSERT_NULLPTR(switches[hss]);
+    err = switches[hss]->enable(ch);
 
-        case 1:
-            err = hss1->enable();
-            break;
-
-        case 2:
-            err = hss2->enable();
-            break;
-
-        case 3:
-            err = hss3->enable();
-            break;
-
-        case 4:
-            err = hss4->enable();
-            break;
-    }
     return err;
 }
 
@@ -152,28 +117,11 @@ Error_t Profet24VBTTShield::switchHxOff(uint8_t x)
 {
     Error_t err = OK;
 
-    switch(x)
-    {
-        case 0:
-            err = hss0->disable();
-            break;
+    Channel_t ch = (Channel_t)(x % 2);
+    uint8_t hss  = x/2;
+    HSS_ASSERT_NULLPTR(switches[x]);
+    err = switches[hss]->disable(ch);
 
-        case 1:
-            err = hss1->disable();
-            break;
-
-        case 2:
-            err = hss2->disable();
-            break;
-
-        case 3:
-            err = hss3->disable();
-            break;
-
-        case 4:
-            err = hss4->disable();
-            break;
-    }
     return err;
 }
 
@@ -195,27 +143,32 @@ Error_t Profet24VBTTShield::switchesHxOn(bool h0_0, bool h1_0, bool h0_1, bool h
     Error_t err = OK;
 
     if(h0_0 == true){
-        err = hss0->enable();
+        HSS_ASSERT_NULLPTR(switches[0]);
+        err = switches[0]->enable();
         HSS_ASSERT_RET(err);
     }
 
     if(h1_0 == true){
-        err = hss1->enable();
+        HSS_ASSERT_NULLPTR(switches[0]);
+        err = switches[0]->enable(CHANNEL1);
         HSS_ASSERT_RET(err);
     }
 
     if(h0_1 == true){
-        err = hss2->enable();
+        HSS_ASSERT_NULLPTR(switches[1]);
+        err = switches[1]->enable();
         HSS_ASSERT_RET(err);
     }
 
     if(h1_1 == true){
-        err = hss3->enable();
+        HSS_ASSERT_NULLPTR(switches[1]);
+        err = switches[1]->enable(CHANNEL1);
         HSS_ASSERT_RET(err);
     }
 
     if(h2 == true){
-        err = hss4->enable();
+        HSS_ASSERT_NULLPTR(switches[2]);
+        err = switches[2]->enable();
         HSS_ASSERT_RET(err);
     }
     return err;
@@ -239,27 +192,32 @@ Error_t Profet24VBTTShield::switchesHxOff(bool h0_0, bool h1_0, bool h0_1, bool 
     Error_t err = OK;
 
     if(h0_0 == true){
-        err = hss0->disable();
+        HSS_ASSERT_NULLPTR(switches[0]);
+        err = switches[0]->disable();
         HSS_ASSERT_RET(err);
     }
 
     if(h1_0 == true){
-        err = hss1->disable();
+        HSS_ASSERT_NULLPTR(switches[0]);
+        err = switches[0]->disable(CHANNEL1);
         HSS_ASSERT_RET(err);
     }
 
     if(h0_1 == true){
-        err = hss2->disable();
+        HSS_ASSERT_NULLPTR(switches[1]);
+        err = switches[1]->disable();
         HSS_ASSERT_RET(err);
     }
 
     if(h1_1 == true){
-        err = hss3->disable();
+        HSS_ASSERT_NULLPTR(switches[1]);
+        err = switches[1]->disable(CHANNEL1);
         HSS_ASSERT_RET(err);
     }
 
     if(h2 == true){
-        err = hss4->disable();
+        HSS_ASSERT_NULLPTR(switches[2]);
+        err = switches[2]->disable();
         HSS_ASSERT_RET(err);
     }
     return err;
@@ -285,39 +243,12 @@ Error_t Profet24VBTTShield::switchesHxOff(bool h0_0, bool h1_0, bool h0_1, bool 
 float Profet24VBTTShield::readIsx(uint8_t x)
 {
     float iisCalib;
+    uint8_t hss = x/2;
 
-    switch (x)
-    {
-        case 0:
-            hss0->enableDiag();
-            iisCalib = getIs(x);
-            hss0->disableDiag();
-            break;
-
-        case 1:
-            hss1->enableDiag();
-            iisCalib = getIs(x);
-            hss1->disableDiag();
-            break;
-
-        case 2:
-            hss2->enableDiag();
-            iisCalib = getIs(x);
-            hss2->disableDiag();
-            break;
-
-        case 3:
-            hss3->enableDiag();
-            iisCalib = getIs(x);
-            hss3->disableDiag();
-            break;
-
-        case 4:
-            hss4->enableDiag();
-            iisCalib = getIs(x);
-            hss4->disableDiag();
-            break;
-    }
+    HSS_ASSERT_NULLPTR(switches[hss]);
+    switches[hss]->enableDiag();
+    iisCalib = getIs(x);
+    switches[hss]->disableDiag();
 
     return iisCalib;
 }
@@ -345,44 +276,25 @@ float  Profet24VBTTShield::getIs(uint8_t x)
 {
     uint16_t adcResult;
     float iis_A, vis_V, iisCalib;
+    BtxVariants_t * v;
 
-    switch(x)
+    Channel_t ch = (Channel_t)(x % 2);
+    uint8_t hss  = x/2;
+
+    if(4 == x)
     {
-        case 0:
-            adcResult = hss0->readIs(CHANNEL0);
-            vis_V = ((float)adcResult/(float)1024) * (float)5;
-            iis_A = vis_V/ris_Ohm;
-            iisCalib = hss0->calibrateIs(iis_A,BTT6030.kilis,BTT6030.ampsOffset, BTT6030.ampsGain);
-            break;
-
-        case 1:
-            adcResult = hss1->readIs(CHANNEL1);
-            vis_V = ((float)adcResult/(float)1024) * (float)5;
-            iis_A = vis_V/ris_Ohm;
-            iisCalib = hss1->calibrateIs(iis_A,BTT6030.kilis,BTT6030.ampsOffset, BTT6030.ampsGain);
-            break;
-
-        case 2:
-            adcResult = hss2->readIs(CHANNEL0);
-            vis_V = ((float)adcResult/(float)1024) * (float)5;
-            iis_A = vis_V/ris_Ohm;
-            iisCalib = hss2->calibrateIs(iis_A,BTT6030.kilis,BTT6030.ampsOffset, BTT6030.ampsGain);
-            break;
-
-        case 3:
-            adcResult = hss3->readIs(CHANNEL1);
-            vis_V = ((float)adcResult/(float)1024) * (float)5;
-            iis_A = vis_V/ris_Ohm;
-            iisCalib = hss3->calibrateIs(iis_A,BTT6030.kilis,BTT6030.ampsOffset, BTT6030.ampsGain);
-            break;
-
-        case 4:
-            adcResult = hss2->readIs();
-            vis_V = ((float)adcResult/(float)1024) * (float)5;
-            iis_A = vis_V/ris_Ohm;
-            iisCalib = hss4->calibrateIs(iis_A,BTT6020.kilis,BTT6020.ampsOffset, BTT6020.ampsGain);
-            break;
+        v  = &BTT6020;
     }
+    else
+    {
+        v  = &BTT6030;
+    }
+
+    // adcResult = switches[hss]->readIs(ch);
+    vis_V = ((float)adcResult/(float)1024) * (float)5;
+    iis_A = vis_V/ris_Ohm;
+    iisCalib = 0; //switches[hss]->calibrateIs(iis_A,v.kilis,v.ampsOffset, v.ampsGain);
+
     return iisCalib;
 }
 
@@ -409,48 +321,26 @@ float  Profet24VBTTShield::getIs(uint8_t x)
 DiagStatus_t Profet24VBTTShield::readDiagx(uint8_t x)
 {
     DiagStatus_t diagStatus = NORMAL;
+    BtxVariants_t * v;
+    float iisOl;
 
-    switch(x)
+    uint8_t hss  = x/2;
+
+    if(4 == x)
     {
-        case 0:
-            hss0->enableDiag();
-            if(hss0->getSwitchStatus() == POWER_ON){
-                diagStatus = hss0->diagRead(getIs(0), iisFault, iisOl_btt6030, BTT6030.kilis, CHANNEL0);
-            }
-            hss0->disableDiag();
-            break;
-
-        case 1:
-            hss1->enableDiag();
-            if(hss1->getSwitchStatus() == POWER_ON){
-                diagStatus = hss1->diagRead(getIs(1), iisFault, iisOl_btt6030, BTT6030.kilis, CHANNEL1);
-            }
-            hss1->disableDiag();
-            break;
-
-        case 2:
-            hss2->enableDiag();
-            if(hss2->getSwitchStatus() == POWER_ON){
-                diagStatus = hss2->diagRead(getIs(2), iisFault, iisOl_btt6030, BTT6030.kilis, CHANNEL0);
-            }
-            hss2->disableDiag();
-            break;
-
-        case 3:
-            hss3->enableDiag();
-            if(hss3->getSwitchStatus() == POWER_ON){
-                diagStatus = hss3->diagRead(getIs(3), iisFault, iisOl_btt6030, BTT6030.kilis, CHANNEL1);
-            }
-            hss3->disableDiag();
-            break;
-
-        case 4:
-            hss4->enableDiag();
-            if(hss4->getSwitchStatus() == POWER_ON){
-                diagStatus = hss4->diagRead(getIs(4), iisFault, iisOl_btt6020, BTT6020.kilis);
-            }
-            hss4->disableDiag();
-            break;
+        iisOl = iisOl_btt6020;
+        v  = &BTT6020;
     }
+    else
+    {
+        iisOl = iisOl_btt6030;
+        v  = &BTT6030;
+    }
+    switches[hss]->enableDiag();
+    if(switches[hss]->getSwitchStatus() == POWER_ON){
+        diagStatus = NORMAL; //switches[hss]->diagRead(getIs(ch), iisFault, iisOl, BTT6030.kilis, CHANNEL0);
+    }
+    switches[hss]->disableDiag();
+
     return diagStatus;
 }

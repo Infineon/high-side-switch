@@ -78,14 +78,11 @@ namespace hss
         DIAG_READ_ERROR     = -1,   /**< Read Error */
         NOT_ENABLED         = -2,   /**< Diagnosis not enabled */
         NORMAL              = 0,    /**< Switch works correctly */
-        FAULT               = 1,    /**< Switch is in fault condition >**/
-        OVERLOAD            = 2,    /**< Overload of the Switch */
-        SHORT_TO_GND        = 3,    /**< Short to the ground */
-        OVERTEMPERATURE     = 4,    /**< Overtemperature */
+        FAULT               = 1,    /**< Switch is in fault condition (Is_fault at IS pin), which can mean "Short to GND", "Overtemperature" or "Overload" */
+        FAULT_OL_IC         = 2,    /**< Switch is is either in Open Load (whit enable channel) or inverse current is flowing */
+        SHORT_TO_GND_OR_OT  = 3,    /**< Short to the ground or Overtemperature detected*/
         SHORT_TO_VSS        = 5,    /**< Short to the supply voltage */
         OPEN_LOAD           = 6,    /**< Open load detected */
-        UNDER_LOAD          = 7,    /**< Under load condition */
-        INVERSE_CURRENT     = 8,    /**< Inverse current */
     };
     /** @} */
 }

@@ -26,16 +26,16 @@ class Bts500xxShield : public HssShield
         Error_t         deinit();
         Error_t         switchHxOn(uint8_t x = 0);
         Error_t         switchHxOff(uint8_t x = 0);
-        DiagStatus_t    readDiagx(uint8_t x = 0);  
+        DiagStatus_t    readDiagx(uint8_t x = 0);
         // DiagStatus_t    diagnosisOff(float currentOn, float currentOff);
         // Error_t         switchHxOn(uint8_t x);
         // Error_t         switchHxOff(uint8_t x);
-        // DiagStatus_t    readDiagx(uint8_t x=1);  
+        // DiagStatus_t    readDiagx(uint8_t x=1);
 
         float           readIsx(uint8_t x=1);
         float           readVss();
         bool            analogReadButton();
-    
+
     protected:
         DiagStatus_t    diagRead(float amps);
 
@@ -46,9 +46,9 @@ class Bts500xxShield : public HssShield
         GPIOPAL  * led2;
         // TimerPAL * timer;
         ADCPAL   * pushButton;
-        ADCPAL   * vBat;   
+        ADCPAL   * vBat;
 
-        BtsVariants_t * btsVariant;
+        BtxVariants_t * btxVariant;
         const float vBatGain = 1.0;
         const float vBatOffset = 0.0;
         const float IisFault=0.0035;

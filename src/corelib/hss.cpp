@@ -415,6 +415,9 @@ DiagStatus_t Hss::diagRead(float senseCurrent, Channel_t ch)
         if(senseCurrent >= (btxVariant->issFault * btxVariant->kilis)){
             diagStatus = FAULT;
         }
+        else if(senseCurrent < (btxVariant->issEn * btxVariant->kilis)){
+            diagStatus = FAULT_OL_IC;
+        }
         else{
             diagStatus = NORMAL;
         }

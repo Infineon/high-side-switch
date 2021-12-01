@@ -569,6 +569,117 @@ Error_t Bts700xShield::switchesHxOff(bool h1, bool h2, bool h3, bool h4)
 }
 
 /**
+ * @brief Read the diagnosis of the chosen channel
+ *
+ * This function uses the current signal of the channel to diagnose the channel.
+ * It returns the different states depending on the channels condition.
+ *
+ * @param[in]   x   Desired channel for the diagnosis (1-4)
+ * @return      Bts700xShield::DiagStatus_t
+ *
+ * @retval      0   Everything works correctly
+ * @retval      2   Short to ground
+ * @retval      4   Short to battery
+ * @retval      5   Open load
+ */
+DiagStatus_t Bts700xShield::readDiagx(uint8_t x)
+{
+    DiagStatus_t diagStatus = NORMAL;
+
+    float currentOn = 0.0;
+    float currentOff = 0.0;
+
+    switch(x)
+    {
+        case 1:
+            hss1->enableDiag();
+            if(hss1->getSwitchStatus() == POWER_ON)
+            {
+                currentOn = readIsx(1);
+                diagStatus = hss1->diagRead(currentOn);
+            }
+            else
+            {
+                oloff->enable();
+                timer->delayMicro(300);
+                currentOn = readIsx(1);
+
+                oloff->disable();
+                timer->delayMicro(400);
+                currentOff = readIsx(1);
+                diagStatus = diagnosisOff(currentOn, currentOff);
+            }
+            hss1->disableDiag();
+            break;
+
+        case 2:
+            hss2->enableDiag();
+            if(hss2->getSwitchStatus() == POWER_ON)
+            {
+                currentOn = readIsx(2);
+                diagStatus = hss2->diagRead(currentOn);
+            }
+            else
+            {
+                oloff->enable();
+                timer->delayMicro(300);
+                currentOn = readIsx(2);
+
+                oloff->disable();
+                timer->delayMicro(400);
+                currentOff = readIsx(2);
+                diagStatus = diagnosisOff(currentOn, currentOff);
+            }
+            hss2->disableDiag();
+            break;
+
+        case 3:
+            hss3->enableDiag();
+            if(hss3->getSwitchStatus() == POWER_ON)
+            {
+                currentOn = readIsx(3);
+                diagStatus = hss3->diagRead(currentOn);
+            }
+            else
+            {
+                oloff->enable();
+                timer->delayMicro(300);
+                currentOn = readIsx(3);
+
+                oloff->disable();
+                timer->delayMicro(400);
+                currentOff = readIsx(3);
+                diagStatus = diagnosisOff(currentOn, currentOff);
+            }
+            hss3->disableDiag();
+            break;
+
+        case 4:
+            hss4->enableDiag();
+            if(hss4->getSwitchStatus() == POWER_ON)
+            {
+                currentOn = readIsx(4);
+                diagStatus = hss4->diagRead(currentOn);
+            }
+            else
+            {
+                oloff->enable();
+                timer->delayMicro(300);
+                currentOn = readIsx(4);
+
+                oloff->disable();
+                timer->delayMicro(400);
+                currentOff = readIsx(4);
+                diagStatus = diagnosisOff(currentOn, currentOff);
+            }
+            hss4->disableDiag();
+            break;
+    }
+
+    return diagStatus;
+}
+
+/**
  * @brief Read the desired current value of the chosen channel
  *
  * This function reads the IS pin of the chosen High-Side-Switch
@@ -610,188 +721,6 @@ float Bts700xShield::readIsx(uint8_t x)
     }
 
     return isVal;
-}
-
-// /**
-//  * @brief Read the desired current value of the chosen channel
-//  *
-//  * This function reads the IS pin of the chosen High-Side-Switch
-//  * and calculates the current which is flowing through the switch
-//  * with the acquired ADC value.
-//  *
-//  * @param[in]   x   Number of the desired channel (1-4)
-//  * @return          The value of the current in [A]
-//  */
-// float Bts700xShield::getIs(uint8_t x)
-// {
-//     uint16_t adcResult = 0;
-//     float amps = 0.0, ampsCalib = 0.0;
-
-//     switch(x)
-//     {
-//         case 1:
-//             adcResult = hss1->readIs();
-//             amps = ((float)adcResult/(float)1024) * (float)5;
-//             ampsCalib = hss1->calibrateIs(amps, btsVariant->kilis, btsVariant->ampsOffset, btsVariant->ampsGain);
-//             break;
-
-//         case 2:
-//             adcResult = hss2->readIs();
-//             amps = ((float)adcResult/(float)1024) * (float)5;
-//             ampsCalib = hss2->calibrateIs(amps, btsVariant->kilis, btsVariant->ampsOffset, btsVariant->ampsGain);
-//             break;
-
-//         case 3:
-//             adcResult = hss3->readIs();
-//             amps = ((float)adcResult/(float)1024) * (float)5;
-//             ampsCalib = hss3->calibrateIs(amps, btsVariant->kilis, btsVariant->ampsOffset, btsVariant->ampsGain);
-//             break;
-
-//         case 4:
-//             adcResult = hss4->readIs();
-//             amps = ((float)adcResult/(float)1024) * (float)5;
-//             ampsCalib = hss4->calibrateIs(amps, btsVariant->kilis, btsVariant->ampsOffset, btsVariant->ampsGain);
-//             break;
-//     }
-
-//     return ampsCalib;
-// }
-
-/**
- * @brief Read the diagnosis of the chosen channel
- *
- * This function uses the current signal of the channel to diagnose the channel.
- * It returns the different states depending on the channels condition.
- *
- * @param[in]   x   Desired channel for the diagnosis (1-4)
- * @return      Bts700xShield::DiagStatus_t
- *
- * @retval      0   Everything works correctly
- * @retval      2   Short to ground
- * @retval      4   Short to battery
- * @retval      5   Open load
- */
-DiagStatus_t Bts700xShield::readDiagx(uint8_t x)
-{
-    DiagStatus_t diagStatus = NORMAL;
-
-    float currentOn = 0.0;
-    float currentOff = 0.0;
-
-    switch(x)
-    {
-        case 1:
-            hss1->enableDiag();
-            if(hss1->getSwitchStatus() == POWER_ON)
-            {
-                diagStatus = hss1->diagRead(getIs(1), iisFault, iisOl, btsVariant->kilis);
-            }
-            else
-            {
-                oloff->enable();
-                timer->delayMicro(300);
-                currentOn = getIs(1);
-
-                oloff->disable();
-                timer->delayMicro(400);
-                currentOff = getIs(1);
-                diagStatus = diagnosisOff(currentOn, currentOff);
-            }
-            hss1->disableDiag();
-            break;
-
-        case 2:
-            hss2->enableDiag();
-            if(hss2->getSwitchStatus() == POWER_ON)
-            {
-                diagStatus = hss2->diagRead(getIs(2), iisFault, iisOl, btsVariant->kilis);
-            }
-            else
-            {
-                oloff->enable();
-                timer->delayMicro(300);
-                currentOn = getIs(2);
-
-                oloff->disable();
-                timer->delayMicro(400);
-                currentOff = getIs(2);
-                diagStatus = diagnosisOff(currentOn, currentOff);
-            }
-            hss2->disableDiag();
-            break;
-
-        case 3:
-            hss3->enableDiag();
-            if(hss3->getSwitchStatus() == POWER_ON)
-            {
-                diagStatus = hss3->diagRead(getIs(3), iisFault, iisOl, btsVariant->kilis);
-            }
-            else
-            {
-                oloff->enable();
-                timer->delayMicro(300);
-                currentOn = getIs(3);
-
-                oloff->disable();
-                timer->delayMicro(400);
-                currentOff = getIs(3);
-                diagStatus = diagnosisOff(currentOn, currentOff);
-            }
-            hss3->disableDiag();
-            break;
-
-        case 4:
-            hss4->enableDiag();
-            if(hss4->getSwitchStatus() == POWER_ON)
-            {
-                diagStatus = hss4->diagRead(getIs(4), iisFault, iisOl, btsVariant->kilis);
-            }
-            else
-            {
-                oloff->enable();
-                timer->delayMicro(300);
-                currentOn = getIs(4);
-
-                oloff->disable();
-                timer->delayMicro(400);
-                currentOff = getIs(4);
-                diagStatus = diagnosisOff(currentOn, currentOff);
-            }
-            hss4->disableDiag();
-            break;
-    }
-
-    return diagStatus;
-}
-
-/**
- * @brief Calculates the diagnosis state
- *
- * This functions determines the diagnosis state of the High-Side-Switch.
- * It uses the measrued currents with en- and disabled Open-Load-Detection.
- *
- * @param[in]   currentOn   Measrued current with Open-Load-Detection on
- * @param[in]   currentOff  Measrued current with Open-Load-Detection off
- * @return Bts700xShield::DiagStatus_t
- */
-DiagStatus_t Bts700xShield::diagnosisOff(float currentOn, float currentOff)
-{
-    if((currentOn > (btxVariant->issOl * btxVariant->kilis)) && (currentOn < (btxVariant->issFault * btxVariant->kilis))){
-        if((currentOff > (btxVariant->issOl * btxVariant->kilis)) && (currentOff < (btxVariant->issFault * btxVariant->kilis))){
-            return DiagStatus_t::SHORT_TO_VSS;
-        }
-        else{
-            return DiagStatus_t::OPEN_LOAD;
-        }
-    }
-    else{
-        if((currentOn > (btxVariant->issFault * btxVariant->kilis))){
-            return DiagStatus_t::SHORT_TO_GND;
-        }
-        else{
-            return DiagStatus_t::NORMAL;
-        }
-    }
 }
 
 /**
@@ -862,4 +791,35 @@ bool Bts700xShield::analogReadButton()
 void Bts700xShield::setVoltageOffset(float offset)
 {
     vBatOffset = offset;
+}
+
+/**
+ * @brief Calculates the diagnosis state
+ *
+ * This functions determines the diagnosis state of the High-Side-Switch.
+ * It uses the measrued currents with en- and disabled Open-Load-Detection.
+ *
+ * @param[in]   currentOn   Measrued current with Open-Load-Detection on
+ * @param[in]   currentOff  Measrued current with Open-Load-Detection off
+ *
+ * @return Bts700xShield::DiagStatus_t
+ */
+DiagStatus_t Bts700xShield::diagnosisOff(float currentOn, float currentOff)
+{
+    if((currentOn > (btxVariant->issOl * btxVariant->kilis)) && (currentOn < (btxVariant->issFault * btxVariant->kilis))){
+        if((currentOff > (btxVariant->issOl * btxVariant->kilis)) && (currentOff < (btxVariant->issFault * btxVariant->kilis))){
+            return SHORT_TO_VSS;
+        }
+        else{
+            return OPEN_LOAD;
+        }
+    }
+    else{
+        if((currentOn > (btxVariant->issFault * btxVariant->kilis))){
+            return SHORT_TO_GND_OR_OT;
+        }
+        else{
+            return NORMAL;
+        }
+    }
 }

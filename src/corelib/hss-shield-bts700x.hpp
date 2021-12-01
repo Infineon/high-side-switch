@@ -31,7 +31,6 @@ class Bts700xShield : public HssShield
         Error_t         switchesHxOff(bool h1 = false, bool h2 = false, bool h3 = false, bool h4 = false);
 
         DiagStatus_t    readDiagx(uint8_t x);
-        DiagStatus_t    diagnosisOff(float currentOn, float currentOff);
 
         float           readIsx(uint8_t x);
         float           readVss();
@@ -65,9 +64,9 @@ class Bts700xShield : public HssShield
 
         BtxVariants_t       *btxVariant;
 
-        // float               getIs(uint8_t x);
-
     private:
+
+        DiagStatus_t        diagnosisOff(float currentOn, float currentOff);
 
         float               vBatOffset = 0.0;
         const uint16_t      rSense = 1000;

@@ -15,7 +15,31 @@ using namespace hss;
  * @brief High-Side-Switch constructor
  *
  * This constructor is used to define all necessary pins and the variant
- * of the 12V PROFET.
+ * of the BTS5001x - 12V PROFET.
+ *
+ * @param[in]   den         Pin number of DEN
+ * @param[in]   in          Pin number of IN
+ * @param[in]   is          Pin number of IS
+ */
+Hss::Hss(GPIOPAL *in, ADCPAL *is, TimerPAL *timer)
+{
+    this->in = in;
+    this->is = is;
+    this->timer = timer;
+    this->den = NULL;
+    this->dsel = NULL;
+
+    currentFilter = new ExponentialFilter(0.0, 0.3);
+
+    status = UNINITED;
+    diagStatus = NOT_ENABLED;
+}
+
+/**
+ * @brief High-Side-Switch constructor
+ *
+ * This constructor is used to define all necessary pins and the variant
+ * of the BTS700x - 12V PROFET.
  *
  * @param[in]   den         Pin number of DEN
  * @param[in]   in          Pin number of IN
@@ -57,7 +81,7 @@ Hss::Hss(GPIOPAL *den, GPIOPAL *in, GPIOPAL *dsel, ADCPAL *is, TimerPAL *timer)
 
     this->timer = timer;
 
-     currentFilter = new ExponentialFilter(0.0, 0.3);
+    currentFilter = new ExponentialFilter(0.0, 0.3);
 
     status = UNINITED;
     diagEnb = DIAG_DIS;
@@ -85,10 +109,12 @@ Error_t Hss::init()
 {
     Error_t err = OK;
 
-    HSS_ASSERT_NULLPTR(den);
-    err = den->init();
-    HSS_ASSERT_RET(err);
-
+    if(nullptr != den)
+    {
+        err = den->init();
+        HSS_ASSERT_RET(err);
+    }
+    
     HSS_ASSERT_NULLPTR(in);
     err = in->init();
     HSS_ASSERT_RET(err);

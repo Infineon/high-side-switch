@@ -1,6 +1,6 @@
 /**
- * @file        BTT-hss-multiple-ch.ino
- * @brief       High-Side-Switch Multiple Channel Operation Example for the Arduino form factored shields
+ * @file        BTT600x-hss-multiple-ch.ino
+ * @brief       High-Side-Switch Multiple Channel Operation Example for the BTT600x Arduino form factored shields
  * @details     This example demonstrates how to switch on/off multiple channels at once.
  *              
  *              Find below the Profet 24V shield part details and its offered channels: 
@@ -18,17 +18,19 @@
 
 #include <hss-shield-profet24v-ino.hpp>
 
-/* Create an object of the shield with High-side-switch by passing the correct variant name.
-   With this constructor invoking, all the mandatory configurations for the shield are done
-   and hence it is important you pass the correct variant name.
-*/
 Profet24VBTTShieldIno HSS = Profet24VBTTShieldIno();
 
-/** Select channels to be used parallelly (index 0 being channel 1) */
-bool ch[5] = {true,true,true,true, true};
-
 Error_t err = OK;
-int incomingSerial = 0;
+
+/** Select channels to be used parallelly (index 0 being channel 1) 
+ *   switch_no              Controls
+ *  switch_no[0] = true      OUT0.0
+ *  switch_no[1] = true      OUT0.1
+ *  switch_no[2] = true      OUT1.0
+ *  switch_no[3] = true      OUT1.1
+ *  switch_no[4] = true      OUT2
+*/
+bool switch_no[5] = {true,true,true,true,true};
 
 void setup()
 {
@@ -46,26 +48,21 @@ void setup()
         Serial.println("Initialization successful!");
     
     delay(1000);
-
-    /** Turn on the selected channels */
-    Serial.println("\nTurning on all switches at once!");
-    HSS.switchesHxOn(ch[0], ch[1], ch[2], ch[3], ch[4]);
 }
 
 void loop()
 {
-    /** Press 'enter' to switch off all channels */
-    if(Serial.available() > 0)
-    {
-        incomingSerial = Serial.read();
-        if(incomingSerial == 13)
-        {
-            Serial.println("\nTurning off all switches at once!");
-            HSS.switchesHxOff(ch[0],ch[1],ch[2],ch[3], ch[4]);
-        }
-        else 
-            Serial.println("Invalid input");
-    }
-    else
-        Serial.println(" Selected switches are on! To turn them off, press 'enter'. ");
+    /** Turn on the selected channels */
+    Serial.println("\nTurning on all switches at once!");
+    HSS.switchesHxOn(switch_no[0], switch_no[1], switch_no[2], switch_no[3], switch_no[4]);
+
+    /** Keep all switches on for a second */
+    delay(1000);
+
+    /** Turn on the selected channels */
+    Serial.println("\nTurning off all switches at once!");
+    HSS.switchesHxOff(switch_no[0],switch_no[1],switch_no[2],switch_no[3], switch_no[4]);
+    
+    /** Keep all switches off for a second */
+    delay(1000);
 }

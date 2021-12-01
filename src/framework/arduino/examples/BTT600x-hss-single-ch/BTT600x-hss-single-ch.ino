@@ -1,7 +1,7 @@
 /**
- * @file        BTS-hss-single-ch.ino
- * @brief       High-Side-Switch Basic Example for the Arduino form factored shields
- * @details     This example demonstrates how to switch on/off single channel in thr BTT shield. It also 
+ * @file        BTT600x-hss-single-ch.ino
+ * @brief       High-Side-Switch Basic Example for the BTT600x Arduino form factored shields
+ * @details     This example demonstrates how to switch on/off single channel in the BTT shield. It also 
  *              calls API to read the current value.
  *    
  *              Find below the Profet 24V shield part details and its offered channels: 
@@ -19,21 +19,24 @@
 
 #include <hss-shield-profet24v-ino.hpp>
 
-/* Create an object of the shield with High-side-switch by passing the correct variant name.
-   With this constructor invoking, all the mandatory configurations for the shield are done
-   and hence it is important you pass the correct variant name.
-*/
 Profet24VBTTShieldIno HSS = Profet24VBTTShieldIno();
 
-int channel = 2;
-
 Error_t err = OK;
-int incomingSerial = 0;
+
+/** Set channel to operate
+ * switch_no    Controls
+ *     0         OUT0.0
+ *     1         OUT0.1
+ *     2         OUT1.0
+ *     3         OUT1.1
+ *     4         OUT 2
+ */
+int switch_no = 0;
 
 void setup()
 {
     /** Serial initialization */
-    Serial.begin(115200);
+    Serial.begin(9600);
     Serial.println("Serial initialized");
 
     /** Initialization of the High-Side-Switch-Board */
@@ -46,35 +49,26 @@ void setup()
         Serial.println("Initialization successful!");
     
     delay(1000);
-
-    /** Turn on the selected channel */
-    Serial.println("\nTurning on selected switch...");
-    HSS.switchHxOn(channel);
-    delay(25);
-    Serial.print("Switched Channel ");
-    Serial.print(channel);
-    Serial.println(" on");
 }
 
 void loop()
 {
-    /** Read current value continuously */
+    /** Turn on the selected channel */
+    Serial.println("Turning on selected switch...");
+    HSS.switchHxOn(switch_no);
+
+    /** Read current value */
     readCurrent();
 
-    /** Press 'enter' to switch off all channels */
-    if(Serial.available() > 0)
-    {
-        incomingSerial = Serial.read();
-        if(incomingSerial == 13)
-        {
-            Serial.println("\nTurning off the selected switch");
-            HSS.switchHxOff(channel);
-        }
-        else 
-            Serial.println("Invalid input");
-    }
-    else
-        Serial.println(" To turn off the selected switch, press 'enter'. ");
+    /** Keep all switches on for a second */
+    delay(1000);
+
+    /** Turn off the selected channel */
+    Serial.println("Turning off the selected switch");
+    HSS.switchHxOff(switch_no);
+
+    /** Keep all switches off for a second */
+    delay(1000);
 }
 
 /**
@@ -83,8 +77,9 @@ void loop()
 void readCurrent()
 {
     float readAmps = 0.0;
-    readAmps = HSS.readIsx(channel);
+    readAmps = HSS.readIsx(switch_no);
     Serial.print("Current flowing through the switch: ");
-    Serial.print(readAmps);Serial.println(" A");
+    Serial.print(readAmps);
+    Serial.println(" A");
     return;
 }

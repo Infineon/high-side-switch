@@ -53,8 +53,8 @@ BtxVariants_t BTS7008 {
  */
 BtxVariants_t BTS50015 {
     .kilis = 51500,
-    .ampsOffset = 0.0,
-    .vBatOffset = 0.0
+    // .ampsOffset = 0.0,
+    // .vBatOffset = 0.0
 };
 
 /**
@@ -63,8 +63,8 @@ BtxVariants_t BTS50015 {
  */
 BtxVariants_t BTS50010 {
     .kilis = 52100,
-    .ampsOffset = 0.0,
-    .vBatOffset = 0.0
+    // .ampsOffset = 0.0,
+    // .vBatOffset = 0.0
 };
 
 /**
@@ -73,8 +73,8 @@ BtxVariants_t BTS50010 {
  */
 BtxVariants_t BTT6030 {
     .kilis = 2240,
-    .ampsOffset = 0.0,
-    .vBatOffset = 0.0
+    // .ampsOffset = 0.0,
+    // .vBatOffset = 0.0
 };
 
 /**
@@ -83,6 +83,6 @@ BtxVariants_t BTT6030 {
  */
 BtxVariants_t BTT6020 {
     .kilis = 2950,
-    .ampsOffset = 0.0,
-    .vBatOffset = 0.0
+    // .ampsOffset = 0.0,
+    // .vBatOffset = 0.0
 };

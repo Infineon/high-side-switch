@@ -18,8 +18,8 @@ using namespace hss;
 class Bts500xxShieldIno : public Bts500xxShield
 {
     public:
-                        Bts500xxShieldIno(BtsVariants_t *variantSel);
-                        Bts500xxShieldIno(BtsVariants_t *variantSel, BTS500xxHwConfig_t config);
+                        Bts500xxShieldIno(BtxVariants_t *variantSel);
+                        Bts500xxShieldIno(BtxVariants_t *variantSel, BTS500xxHwConfig_t config);
                         ~Bts500xxShieldIno();
 
 };

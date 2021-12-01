@@ -218,7 +218,7 @@ float Bts500xxShield::getIs(uint8_t x)
     uint16_t adcResult;
     float amps, ampsCalib;
         
-    adcResult = hss1->readIs();
+    adcResult = 0; //TODO :hss1->readIs();
     amps = ((float)adcResult/(float)1024) * (float)5;
     ampsCalib = 0; // TODO: add bstvariant in constructor. hss1->calibrateIs(amps, btsVariant->kilis, btsVariant->ampsOffset, btsVariant->ampsGain);
 

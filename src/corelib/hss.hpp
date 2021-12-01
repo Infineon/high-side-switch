@@ -34,26 +34,26 @@ class Hss
     public:
 
                             Hss(GPIOPAL *den, GPIOPAL *in, ADCPAL *is, TimerPAL *timer, BtxVariants_t *btxVariant);
-                            Hss(GPIOPAL *den, GPIOPAL *in, GPIOPAL *dsel, ADCPAL *is, TimerPAL *timer, BtxVariants_t *btxVariant);
+                            Hss(GPIOPAL *den, GPIOPAL *in0, GPIOPAL *in1, GPIOPAL *dsel, ADCPAL *is, TimerPAL *timer, BtxVariants_t *btxVariant);
                             ~Hss();
         Error_t             init();
         Error_t             deinit();
-        Error_t             enable();
-        Error_t             disable();
+        Error_t             enable(Channel_t ch=CHANNEL0);
+        Error_t             disable(Channel_t ch=CHANNEL0);
         Error_t             enableDiag();
         Error_t             disableDiag();
-        Error_t             diagReset();
 
         Status_t            getSwitchStatus();
-        DiagStatus_t        diagRead(float senseCurrent, Channel_t ch=NO_CHANNEL);
-        float               readIs(uint16_t rSense, Channel_t ch=NO_CHANNEL);
+        DiagStatus_t        diagRead(float senseCurrent, Channel_t ch=CHANNEL0); 
+        float               readIs(uint16_t rSense, Channel_t ch=CHANNEL0);
 
         void                setCurrentOffset(float offset);
 
     protected:
 
         GPIOPAL             *den;
-        GPIOPAL             *in;
+        GPIOPAL             *in0;
+        GPIOPAL             *in1;
         GPIOPAL             *dsel;
         ADCPAL              *is;
 
@@ -63,10 +63,13 @@ class Hss
 
         BtxVariants_t       *btxVariant;
         Status_t            status;
+        Status_t            statusCh0;
+        Status_t            statusCh1;
+
         DiagEnable_t        diagEnb;
         DiagStatus_t        diagStatus;
 
-        Error_t             selDiagCh(Channel_t ch=NO_CHANNEL);
+        Error_t             selDiagCh(Channel_t ch);
 
     private:
 

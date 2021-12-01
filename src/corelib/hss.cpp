@@ -15,7 +15,7 @@ using namespace hss;
  * @brief High-Side-Switch constructor
  *
  * This constructor is used to define all necessary pins and the variant
- * of the 12V PROFET.
+ * of the BTS700x - 12V PROFET.
  *
  * @param[in]   den         Pin number of DEN
  * @param[in]   in          Pin number of IN

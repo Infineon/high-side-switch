@@ -44,7 +44,7 @@ class Hss
         Error_t             disableDiag();
 
         Status_t            getSwitchStatus();
-        DiagStatus_t        diagRead(float senseCurrent, Channel_t ch=CHANNEL0); 
+        DiagStatus_t        diagRead(float senseCurrent, Channel_t ch=CHANNEL0);
         float               readIs(uint16_t rSense, Channel_t ch=CHANNEL0);
 
         void                setCurrentOffset(float offset);

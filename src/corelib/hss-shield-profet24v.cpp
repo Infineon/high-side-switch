@@ -344,43 +344,38 @@ float Profet24VBTTShield::readIsx(uint8_t x)
 float  Profet24VBTTShield::getIs(uint8_t x)
 {
     uint16_t adcResult;
-    float iis_A, vis_V, iisCalib;
+    float vis_V, iisCalib;
 
     switch(x)
     {
         case 0:
             adcResult = hss0->readIs(CHANNEL0);
             vis_V = ((float)adcResult/(float)1024) * (float)5;
-            iis_A = vis_V/ris_Ohm;
-            iisCalib = hss0->calibrateIs(iis_A,BTT6030.kilis,BTT6030.ampsOffset, BTT6030.ampsGain);
+            iisCalib = hss0->calibrateIs(vis_V,BTT6030.kilis,BTT6030.ampsOffset, BTT6030.ampsGain);
             break;
 
         case 1:
             adcResult = hss1->readIs(CHANNEL1);
             vis_V = ((float)adcResult/(float)1024) * (float)5;
-            iis_A = vis_V/ris_Ohm;
-            iisCalib = hss1->calibrateIs(iis_A,BTT6030.kilis,BTT6030.ampsOffset, BTT6030.ampsGain);
+            iisCalib = hss1->calibrateIs(vis_V,BTT6030.kilis,BTT6030.ampsOffset, BTT6030.ampsGain);
             break;
 
         case 2:
             adcResult = hss2->readIs(CHANNEL0);
             vis_V = ((float)adcResult/(float)1024) * (float)5;
-            iis_A = vis_V/ris_Ohm;
-            iisCalib = hss2->calibrateIs(iis_A,BTT6030.kilis,BTT6030.ampsOffset, BTT6030.ampsGain);
+            iisCalib = hss2->calibrateIs(vis_V,BTT6030.kilis,BTT6030.ampsOffset, BTT6030.ampsGain);
             break;
 
         case 3:
             adcResult = hss3->readIs(CHANNEL1);
             vis_V = ((float)adcResult/(float)1024) * (float)5;
-            iis_A = vis_V/ris_Ohm;
-            iisCalib = hss3->calibrateIs(iis_A,BTT6030.kilis,BTT6030.ampsOffset, BTT6030.ampsGain);
+            iisCalib = hss3->calibrateIs(vis_V,BTT6030.kilis,BTT6030.ampsOffset, BTT6030.ampsGain);
             break;
 
         case 4:
             adcResult = hss2->readIs();
             vis_V = ((float)adcResult/(float)1024) * (float)5;
-            iis_A = vis_V/ris_Ohm;
-            iisCalib = hss4->calibrateIs(iis_A,BTT6020.kilis,BTT6020.ampsOffset, BTT6020.ampsGain);
+            iisCalib = hss4->calibrateIs(vis_V,BTT6020.kilis,BTT6020.ampsOffset, BTT6020.ampsGain);
             break;
     }
     return iisCalib;

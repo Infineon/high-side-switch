@@ -32,7 +32,7 @@ using namespace hss;
 class Hss
 {
     public:
-
+                            Hss(GPIOPAL *in, ADCPAL *is, TimerPAL *timer);
                             Hss(GPIOPAL *den, GPIOPAL *in, ADCPAL *is, TimerPAL *timer);
                             Hss(GPIOPAL *den, GPIOPAL *in, GPIOPAL *dsel, ADCPAL *is, TimerPAL *timer);
                             ~Hss();

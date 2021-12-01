@@ -13,9 +13,11 @@
  * Is rated for nominal 21 A and is the Profet with the highest useable power
  */
 BtxVariants_t BTS7002 {
+    .type = BTS700X,
     .kilis = 22700,
-    .issFault = 0.0044,
-    .issOl = 0.0018
+    .iisFault = 0.0044,
+    .iisOl = 0.0018,
+    .iisEn = 0.000002
 };
 
 /**
@@ -23,9 +25,11 @@ BtxVariants_t BTS7002 {
  * Is rated for nominal 15 A
  */
 BtxVariants_t BTS7004 {
+    .type = BTS700X,
     .kilis = 20000,
-    .issFault = 0.0044,
-    .issOl = 0.0018
+    .iisFault = 0.0044,
+    .iisOl = 0.0018,
+    .iisEn = 0.000002
 };
 
 /**
@@ -33,9 +37,11 @@ BtxVariants_t BTS7004 {
  * Is rated for nominal 12.5 A
  */
 BtxVariants_t BTS7006 {
+    .type = BTS700X,
     .kilis = 17700,
-    .issFault = 0.0044,
-    .issOl = 0.0018
+    .iisFault = 0.0044,
+    .iisOl = 0.0018,
+    .iisEn = 0.000002
 };
 
 /**
@@ -43,18 +49,11 @@ BtxVariants_t BTS7006 {
  * Is rated for nominal 11 A
  */
 BtxVariants_t BTS7008 {
+    .type = BTS700X,
     .kilis = 14500,
-    .issFault = 0.0044,
-    .issOl = 0.0018
-};
-/**
- * @brief BTS50015-1TAD.
- * Is rated for nominal 33 A
- */
-BtxVariants_t BTS50015 {
-    .kilis = 51500,
-    // .ampsOffset = 0.0,
-    // .vBatOffset = 0.0
+    .iisFault = 0.0044,
+    .iisOl = 0.0018,
+    .iisEn = 0.000002
 };
 
 /**
@@ -62,19 +61,25 @@ BtxVariants_t BTS50015 {
  * Is rated for nominal 40 A
  */
 BtxVariants_t BTS50010 {
+    .type = BTS5001X,
     .kilis = 52100,
-    // .ampsOffset = 0.0,
-    // .vBatOffset = 0.0
+    .iisFault = 0.0035,
+    .iisOl = 0.0,
+    .iisEn = 0.0,
+    .iisO = 0.00018
 };
 
 /**
- * @brief BTT6030.
- * Is rated for nominal 5 A per channel
+ * @brief BTS50015-1TAD.
+ * Is rated for nominal 33 A
  */
-BtxVariants_t BTT6030 {
-    .kilis = 2240,
-    // .ampsOffset = 0.0,
-    // .vBatOffset = 0.0
+BtxVariants_t BTS50015 {
+    .type = BTS5001X,
+    .kilis = 51500,
+    .iisFault = 0.0035,
+    .iisOl = 0.0,
+    .iisEn = 0.0,
+    .iisO = 0.000125
 };
 
 /**
@@ -82,7 +87,19 @@ BtxVariants_t BTT6030 {
  * Is rated for nominal 7 A
  */
 BtxVariants_t BTT6020 {
+    .type = BTT60X0,
     .kilis = 2950,
-    // .ampsOffset = 0.0,
-    // .vBatOffset = 0.0
+    .iisFault = 0.006,
+    .iisOl = 0.000004
+};
+
+/**
+ * @brief BTT6030.
+ * Is rated for nominal 5 A per channel
+ */
+BtxVariants_t BTT6030 {
+    .type = BTT60X0,
+    .kilis = 2240,
+    .iisFault = 0.006,
+    .iisOl = 0.000005
 };

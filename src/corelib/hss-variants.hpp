@@ -17,25 +17,30 @@
  */
 
 /**
+ * @brief   Definition of the different High-Side-Switch types
+ *
+ */
+enum HssType_t
+{
+    BTS700X,
+    BTS5001X,
+    BTT60X0
+};
+
+/**
  * @brief   Structure for the different types of the BTS700x
  *          It contains all important parameters for the correct usage of
  *          of the diagnosis functions of the Switch
  */
 struct BtxVariants_t
 {
+    HssType_t       type;           /**< Type of the chosen High side switch */
     const uint16_t  kilis;          /**< Current sense ratio */
-    float           issFault;       /**< Current in case of fault event */
-    float           issOl;          /**< Current in case of an open load */
+    float           iisFault;       /**< Current in case of fault event */
+    float           iisOl;          /**< Current in case of an open load */
+    float           iisEn;          /**< Leakage current when channel is enabled */
+    float           iisO;           /**< Senseoffset */
 };
-
-// struct BttVariants_t
-// {
-//     const uint16_t kilis;       /**< Current sense ratio */
-//     float ampsGain;             /**< Gain factor for the current, may has to be adjusted */
-//     float ampsOffset;           /**< Current offset, can be used to correct the measured current */
-//     float vBatGain;             /**< Gain factor for the battery voltage, may has to be adjusted */
-//     float vBatOffset;           /**< Battery voltage offset, can be used to correct the measured battery voltage */
-// };
 
 extern BtxVariants_t BTS7002;
 extern BtxVariants_t BTS7004;
@@ -47,6 +52,7 @@ extern BtxVariants_t BTT6020;
 
 extern BtxVariants_t BTS50015;
 extern BtxVariants_t BTS50010;
+
 /** @} */
 
 #endif /** HSS_VARIANTS_HPP_ **/

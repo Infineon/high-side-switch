@@ -18,12 +18,12 @@ class Profet24VBTTShield : HssShield
 {
     public:
 
-                        Profet24VBTTShield(Hss * hsw0, Hss * sw1, Hss * hsw2);
+                        Profet24VBTTShield(Hss * hsw0, Hss * hsw1, Hss * hsw2);
                         ~Profet24VBTTShield();
 
         Error_t         init();
         Error_t         deinit();
-        Error_t         switchHxOn   (uint8_t x); //Hss_Output_t OUTPUT1, OUTPUTALL
+        Error_t         switchHxOn   (uint8_t x);
         Error_t         switchHxOff  (uint8_t x);
         Error_t         switchesHxOn (bool h0_0 = false, bool h1_0 = false, bool h0_1 = false, bool h1_1 = false, bool h2 = false);
         Error_t         switchesHxOff(bool h0_0 = false, bool h1_0 = false, bool h0_1 = false, bool h1_1 = false, bool h2 = false);
@@ -32,18 +32,12 @@ class Profet24VBTTShield : HssShield
 
     protected:
 
-        static constexpr uint8_t hssNum = 3;    /**< Number of high side switches in the baord */
+        static constexpr uint8_t hssNum = 3;    /**< Number of high side switches in the board */
         Hss      * switches[hssNum];
-
-        float getIs(uint8_t x);
 
     private:
 
-        const uint16_t ris_Ohm         = 1200;
-        const float    iisFault        = 0.006;
-        const float    iisOl_btt6030   = 0.000005;
-        const float    iisOl_btt6020   = 0.000004;
-
+        const uint16_t  rSense = 1200;
 
 };
 

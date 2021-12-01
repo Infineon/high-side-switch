@@ -1,8 +1,8 @@
-/** 
+/**
  * @file        hss-bts500xxShield-ino.cpp
  * @brief       BTS700x-1EPP (12V) Shield Implementation
  * @copyright   Copyright (c) 2021 Infineon Technologies AG
- * 
+ *
  * SPDX-License-Identifier: MIT
  */
 
@@ -21,7 +21,7 @@ Bts500xxShield(hss1 = new HssIno(BTS500XX_HWCONFIG.in, BTS500XX_HWCONFIG.is, var
                pushButton = new ADCIno(BTS500XX_HWCONFIG.pushButtonAnalog),
                vBat = new ADCIno(BTS500XX_HWCONFIG.vBat))
 {
-    btsVariant = variantSel;
+
 }
 
 Bts500xxShieldIno::Bts500xxShieldIno(BtxVariants_t *variantSel, BTS500xxHwConfig_t config):
@@ -31,13 +31,13 @@ Bts500xxShield(hss1 = new HssIno(config.in, config.is, variantSel),
                pushButton = new ADCIno(config.pushButtonAnalog),
                vBat = new ADCIno(config.vBat))
 {
-    btsVariant = variantSel;
+
 }
 
 
 /**
  * @brief Destructor of the High-Side-Switch-Board
- * 
+ *
  */
 Bts500xxShieldIno::~Bts500xxShieldIno()
 {

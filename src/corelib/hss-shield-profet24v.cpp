@@ -16,8 +16,8 @@ using namespace hss;
 Profet24VBTTShield::Profet24VBTTShield(Hss *hsw0, Hss *hsw1, Hss *hsw2)
 {
     switches[0] = hsw0;
-    switches[0] = hsw1;
-    switches[0] = hsw2;
+    switches[1] = hsw1;
+    switches[2] = hsw2;
 }
 
 /**
@@ -244,56 +244,12 @@ float Profet24VBTTShield::readIsx(uint8_t x)
 {
     float iisCalib;
     uint8_t hss = x/2;
+    Channel_t ch = Channel_t(x % 2);
 
     HSS_ASSERT_NULLPTR(switches[hss]);
     switches[hss]->enableDiag();
-    iisCalib = getIs(x);
+    iisCalib = switches[hss]->readIs(rSense, ch);
     switches[hss]->disableDiag();
-
-    return iisCalib;
-}
-
-/**
- * @brief   Get Is value
- *
- * This function:
- *  - Reads the IS pin of the chosen High-Side-Switch to get ADC stored value
- *  - Converts raw ADC value to voltage and in-turn to sensed current
- *  - Performs current calibration
- *
- * @param[in]   x    Number of the Switch the should be turned on (0-4). Possible values:
- *                    Switch 0    -   Profet 0 (BTT6030 - channel 0)
- *                    Switch 1    -   Profet 0 (BTT6030 - channel 1)
- *                    Switch 2    -   Profet 1 (BTT6030 - channel 0)
- *                    Switch 3    -   Profet 1 (BTT6030 - channel 1)
- *                    Switch 4    -   Profet 2 (Single channel)
- *
- * @param[out]  iisCalib    Calibrated sensed current value
- *
- * @return          Error_t
- */
-float  Profet24VBTTShield::getIs(uint8_t x)
-{
-    uint16_t adcResult;
-    float iis_A, vis_V, iisCalib;
-    BtxVariants_t * v;
-
-    Channel_t ch = (Channel_t)(x % 2);
-    uint8_t hss  = x/2;
-
-    if(4 == x)
-    {
-        v  = &BTT6020;
-    }
-    else
-    {
-        v  = &BTT6030;
-    }
-
-    // adcResult = switches[hss]->readIs(ch);
-    vis_V = ((float)adcResult/(float)1024) * (float)5;
-    iis_A = vis_V/ris_Ohm;
-    iisCalib = 0; //switches[hss]->calibrateIs(iis_A,v.kilis,v.ampsOffset, v.ampsGain);
 
     return iisCalib;
 }
@@ -321,24 +277,14 @@ float  Profet24VBTTShield::getIs(uint8_t x)
 DiagStatus_t Profet24VBTTShield::readDiagx(uint8_t x)
 {
     DiagStatus_t diagStatus = NORMAL;
-    BtxVariants_t * v;
-    float iisOl;
+    float currentOn = 0.0;
 
     uint8_t hss  = x/2;
 
-    if(4 == x)
-    {
-        iisOl = iisOl_btt6020;
-        v  = &BTT6020;
-    }
-    else
-    {
-        iisOl = iisOl_btt6030;
-        v  = &BTT6030;
-    }
     switches[hss]->enableDiag();
     if(switches[hss]->getSwitchStatus() == POWER_ON){
-        diagStatus = NORMAL; //switches[hss]->diagRead(getIs(ch), iisFault, iisOl, BTT6030.kilis, CHANNEL0);
+        currentOn = readIsx(x);
+        diagStatus = switches[hss]->diagRead(currentOn);
     }
     switches[hss]->disableDiag();
 

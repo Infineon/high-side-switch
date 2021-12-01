@@ -176,7 +176,7 @@ Error_t Hss::deinit()
  *
  * This function is turning on the High-Side-Switch.
  * It is also setting the status of the switch to ON.
- * 
+ *
  * @param[in]   ch      Channel number. Default 0.
  * @return Error_t
  */
@@ -216,7 +216,7 @@ Error_t Hss::enable(Channel_t ch)
  *
  * This function turns off the High-Side-Switch.
  * It is also setting the status of the switch to OFF.
- * 
+ *
  * @param[in]   ch      Channel number. Default 0.
  * @return Error_t
  */
@@ -226,7 +226,7 @@ Error_t Hss::disable(Channel_t ch)
 
     if(UNINITED != status)
     {
-    
+
         if(CHANNEL0 == ch || ALL_CHANNELS == ch)
         {
             HSS_ASSERT_NULLPTR(in0);
@@ -409,22 +409,35 @@ float Hss::readIs(uint16_t rSense, Channel_t ch)
  * @retval  -2  Not enabled
  * @retval   0  Switch is working fine
  * @retval   1  Fault condition detected
+ * @retval   2  Open Load in ON or Inverse Current
  *
  * @note    This function should be called only after you get the Is value.
  *          Also note, in case you are using shield with no channel differentiation,
  *          then ignore the 'ch' parameter and this will default to CHANNEL0.
  */
-DiagStatus_t Hss::diagRead(float senseCurrent, Channel_t ch) 
+DiagStatus_t Hss::diagRead(float senseCurrent, Channel_t ch)
 {
     (void)ch;
 
     if(DIAG_EN == diagEnb)
     {
-        if(senseCurrent >= (btxVariant->issFault * btxVariant->kilis)){
+        if(senseCurrent >= (btxVariant->iisFault * btxVariant->kilis)){
             diagStatus = FAULT;
         }
-        else if(senseCurrent < (btxVariant->issEn * btxVariant->kilis)){
-            diagStatus = FAULT_OL_IC;
+        else if(btxVariant->type == BTS700X){
+            if(senseCurrent <= (btxVariant->iisEn * btxVariant->kilis)){
+                diagStatus = FAULT_OL_IC;
+            }
+        }
+        else if(btxVariant->type == BTS5001X){
+            if(senseCurrent <= (btxVariant->iisO * btxVariant->kilis)){
+                diagStatus = FAULT_OL_IC;
+            }
+        }
+        else if(btxVariant->type == BTT60X0){
+            if(senseCurrent <= (btxVariant->iisOl * btxVariant->kilis)){
+                diagStatus = FAULT_OL_IC;
+            }
         }
         else{
             diagStatus = NORMAL;

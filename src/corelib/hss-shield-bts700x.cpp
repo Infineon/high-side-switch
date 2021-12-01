@@ -588,7 +588,7 @@ DiagStatus_t Bts700xShield::readDiagx(uint8_t x)
 
     float currentOn = 0.0;
     float currentOff = 0.0;
-/**
+
     switch(x)
     {
         case 1:
@@ -675,7 +675,7 @@ DiagStatus_t Bts700xShield::readDiagx(uint8_t x)
             hss4->disableDiag();
             break;
     }
-*/
+
     return diagStatus;
 }
 
@@ -786,7 +786,7 @@ bool Bts700xShield::analogReadButton()
  * This function can be used to change the value of the internal variable
  * of the battery voltage offset
  *
- * @param[in]   offset  Desired value of the offset in [A]
+ * @param[in]   offset  Desired value of the offset in [V]
  */
 void Bts700xShield::setVoltageOffset(float offset)
 {
@@ -806,8 +806,8 @@ void Bts700xShield::setVoltageOffset(float offset)
  */
 DiagStatus_t Bts700xShield::diagnosisOff(float currentOn, float currentOff)
 {
-    if((currentOn > (btxVariant->issOl * btxVariant->kilis)) && (currentOn < (btxVariant->issFault * btxVariant->kilis))){
-        if((currentOff > (btxVariant->issOl * btxVariant->kilis)) && (currentOff < (btxVariant->issFault * btxVariant->kilis))){
+    if((currentOn > (btxVariant->iisOl * btxVariant->kilis)) && (currentOn < (btxVariant->iisFault * btxVariant->kilis))){
+        if((currentOff > (btxVariant->iisOl * btxVariant->kilis)) && (currentOff < (btxVariant->iisFault * btxVariant->kilis))){
             return SHORT_TO_VSS;
         }
         else{
@@ -815,7 +815,7 @@ DiagStatus_t Bts700xShield::diagnosisOff(float currentOn, float currentOff)
         }
     }
     else{
-        if((currentOn > (btxVariant->issFault * btxVariant->kilis))){
+        if((currentOn > (btxVariant->iisFault * btxVariant->kilis))){
             return SHORT_TO_GND_OR_OT;
         }
         else{

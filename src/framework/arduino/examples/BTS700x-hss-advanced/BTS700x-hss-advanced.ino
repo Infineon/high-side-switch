@@ -1,25 +1,25 @@
 /**
  * @file        BTS700x-hss-advanced.ino
  * @brief       High-Side-Switch Advanced Example for Profet 12V BTS700x Arduino form factored shields
- * @details     This example shows the usage of all the offered functionalities of the shield. 
+ * @details     This example shows the usage of all the offered functionalities of the shield.
  *              It has 2 parts:
- * 
+ *
  *              1. PART A
  *              - Switches a channel ON
  *              - Reads current through the switch, battery voltage and performs diagnosis in 'ON' state
  *              - Switches the channel OFF
  *              - Reads current through the switch, battery voltage and performs diagnosis in 'OFF' state
- *              
+ *
  *              2. PART B
  *              - Switch multiple channels 'ON' at once
  *              - Switch multiple channels 'OFF' at once
- *              
+ *
  *             You can configure following variants for this shield:
  *              - BTS7002
  *              - BTS7004
  *              - BTS7006
  *              - BTS7008
- *  
+ *
  *              It can be deployed to the Arduino Uno or the XMC's with corresponding form factor.
  *
  * @copyright   Copyright (c) 2021 Infineon Technologies AG
@@ -51,7 +51,7 @@ void setup()
 }
 
 void loop()
-{   
+{
     Serial.println("*** Part A: Single switch operation ***");
 
     /** Perform single switch operation for all switches one after the other */
@@ -75,13 +75,13 @@ void loop()
 
         /** Get switch related params like current, diagnosis output while it is in 'OFF' state */
         getSwitchParams(switch_count);
-        
+
         /** Keep switch off for a second */
         delay(1000);
     }
-    
+
     Serial.println("*** Part B: Multiple switch operation ***");
-    
+
     /** Turn on all 4 switches parallelly */
     Serial.println("--> Turning on all switches at once!");
     HSS.switchesHxOn(1,1,1,1);
@@ -101,7 +101,7 @@ void loop()
  * @brief       Perform switch related functionalities
  * @details     This function is going to perform the following:
  *              - Read current through the selected switch
- *              - Perform diagnosis 
+ *              - Perform diagnosis
  *              - Read the battery voltage
  * @param[in]   switch_no   Switch No.
  */
@@ -119,7 +119,7 @@ void getSwitchParams(int switch_no)
 
 /**
  * @brief       Read current flowing through the switch
- * @param   switch_no  Switch number 
+ * @param   switch_no  Switch number
  */
 void readCurrent(int switch_no)
 {
@@ -133,7 +133,7 @@ void readCurrent(int switch_no)
 
 /**
  * @brief       Read diagnosis status of the switch
- * @param   switch_no  Switch number 
+ * @param   switch_no  Switch number
  */
 void readDiagnosis(int switch_no)
 {
@@ -142,17 +142,17 @@ void readDiagnosis(int switch_no)
     {
         Serial.println("Openload detected!");
     }
-    if(switchStatus & OVERLOAD)
+    if(switchStatus & FAULT)
     {
-        Serial.println("Overload detected!");
+        Serial.println("Short circuit to ground detected, Overtemperature or Overload detected!");
+    }
+    if(switchStatus & FAULT_OL_IC)
+    {
+        Serial.println("Open load with active switch or inverse current detected!");
     }
     if(switchStatus & SHORT_TO_VSS)
     {
         Serial.println("Short circuit to Vss detected!");
-    }
-    if(switchStatus & SHORT_TO_GND)
-    {
-        Serial.println("Short circuit to ground detected!");
     }
     if(switchStatus & NORMAL)
     {

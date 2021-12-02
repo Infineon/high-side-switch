@@ -201,12 +201,12 @@ TEST_F(Hss_BTS700xShield_Test, init_successful)
     .Times(1)
     .WillOnce(Return(OK));
 
-    Hss hsw1(&den1, &in1, &dsel1, &is1, &timer1);
-    Hss hsw2(&den2, &in2, &dsel2, &is2, &timer2);
-    Hss hsw3(&den3, &in3, &dsel3, &is3, &timer3);
-    Hss hsw4(&den4, &in4, &dsel4, &is4, &timer4);
+Hss hsw1(&den1, &in1, nullptr, &dsel1, &is1, &timer1, &BTS7002);
+    Hss hsw2(&den2, &in2, nullptr, &dsel2, &is2, &timer2, &BTS7002);
+    Hss hsw3(&den3, &in3, nullptr, &dsel3, &is3, &timer3, &BTS7002);
+    Hss hsw4(&den4, &in4, nullptr, &dsel4, &is4, &timer4, &BTS7002);
 
-    Bts700xShield hssShield(&led1, &led2, &led3, &led4, &hsw1, &hsw2, &hsw3, &hsw4, &timer, &oloff, &pushButtonDigital, &pushButtonAnalog, &vBat);
+    Bts700xShield hssShield(&led1, &led2, &led3, &led4, &hsw1, &hsw2, &hsw3, &hsw4, &timer, &oloff, &pushButtonDigital, &pushButtonAnalog, &vBat, &BTS7002);
 
     ASSERT_EQ(OK, hssShield.init());
 }
@@ -217,12 +217,12 @@ TEST_F(Hss_BTS700xShield_Test, init_led1_failed)
     .Times(1)
     .WillOnce(Return(CONF_ERROR));
 
-    Hss hsw1(&den1, &in1, &dsel1, &is1, &timer1);
-    Hss hsw2(&den2, &in2, &dsel2, &is2, &timer2);
-    Hss hsw3(&den3, &in3, &dsel3, &is3, &timer3);
-    Hss hsw4(&den4, &in4, &dsel4, &is4, &timer4);
+Hss hsw1(&den1, &in1, nullptr, &dsel1, &is1, &timer1, &BTS7002);
+    Hss hsw2(&den2, &in2, nullptr, &dsel2, &is2, &timer2, &BTS7002);
+    Hss hsw3(&den3, &in3, nullptr, &dsel3, &is3, &timer3, &BTS7002);
+    Hss hsw4(&den4, &in4, nullptr, &dsel4, &is4, &timer4, &BTS7002);
 
-    Bts700xShield hssShield(&led1, &led2, &led3, &led4, &hsw1, &hsw2, &hsw3, &hsw4, &timer, &oloff, &pushButtonDigital, &pushButtonAnalog, &vBat);
+    Bts700xShield hssShield(&led1, &led2, &led3, &led4, &hsw1, &hsw2, &hsw3, &hsw4, &timer, &oloff, &pushButtonDigital, &pushButtonAnalog, &vBat, &BTS7002);
 
     ASSERT_EQ(CONF_ERROR, hssShield.init());
 }
@@ -236,12 +236,12 @@ TEST_F(Hss_BTS700xShield_Test, init_led2_failed)
     .Times(1)
     .WillOnce(Return(CONF_ERROR));
 
-    Hss hsw1(&den1, &in1, &dsel1, &is1, &timer1);
-    Hss hsw2(&den2, &in2, &dsel2, &is2, &timer2);
-    Hss hsw3(&den3, &in3, &dsel3, &is3, &timer3);
-    Hss hsw4(&den4, &in4, &dsel4, &is4, &timer4);
+Hss hsw1(&den1, &in1, nullptr, &dsel1, &is1, &timer1, &BTS7002);
+    Hss hsw2(&den2, &in2, nullptr, &dsel2, &is2, &timer2, &BTS7002);
+    Hss hsw3(&den3, &in3, nullptr, &dsel3, &is3, &timer3, &BTS7002);
+    Hss hsw4(&den4, &in4, nullptr, &dsel4, &is4, &timer4, &BTS7002);
 
-    Bts700xShield hssShield(&led1, &led2, &led3, &led4, &hsw1, &hsw2, &hsw3, &hsw4, &timer, &oloff, &pushButtonDigital, &pushButtonAnalog, &vBat);
+    Bts700xShield hssShield(&led1, &led2, &led3, &led4, &hsw1, &hsw2, &hsw3, &hsw4, &timer, &oloff, &pushButtonDigital, &pushButtonAnalog, &vBat, &BTS7002);
 
     ASSERT_EQ(CONF_ERROR, hssShield.init());
 }
@@ -258,12 +258,12 @@ TEST_F(Hss_BTS700xShield_Test, init_led3_failed)
     .Times(1)
     .WillOnce(Return(CONF_ERROR));
 
-    Hss hsw1(&den1, &in1, &dsel1, &is1, &timer1);
-    Hss hsw2(&den2, &in2, &dsel2, &is2, &timer2);
-    Hss hsw3(&den3, &in3, &dsel3, &is3, &timer3);
-    Hss hsw4(&den4, &in4, &dsel4, &is4, &timer4);
+Hss hsw1(&den1, &in1, nullptr, &dsel1, &is1, &timer1, &BTS7002);
+    Hss hsw2(&den2, &in2, nullptr, &dsel2, &is2, &timer2, &BTS7002);
+    Hss hsw3(&den3, &in3, nullptr, &dsel3, &is3, &timer3, &BTS7002);
+    Hss hsw4(&den4, &in4, nullptr, &dsel4, &is4, &timer4, &BTS7002);
 
-    Bts700xShield hssShield(&led1, &led2, &led3, &led4, &hsw1, &hsw2, &hsw3, &hsw4, &timer, &oloff, &pushButtonDigital, &pushButtonAnalog, &vBat);
+    Bts700xShield hssShield(&led1, &led2, &led3, &led4, &hsw1, &hsw2, &hsw3, &hsw4, &timer, &oloff, &pushButtonDigital, &pushButtonAnalog, &vBat, &BTS7002);
 
     ASSERT_EQ(CONF_ERROR, hssShield.init());
 }
@@ -283,12 +283,12 @@ TEST_F(Hss_BTS700xShield_Test, init_led4_failed)
     .Times(1)
     .WillOnce(Return(CONF_ERROR));
 
-    Hss hsw1(&den1, &in1, &dsel1, &is1, &timer1);
-    Hss hsw2(&den2, &in2, &dsel2, &is2, &timer2);
-    Hss hsw3(&den3, &in3, &dsel3, &is3, &timer3);
-    Hss hsw4(&den4, &in4, &dsel4, &is4, &timer4);
+Hss hsw1(&den1, &in1, nullptr, &dsel1, &is1, &timer1, &BTS7002);
+    Hss hsw2(&den2, &in2, nullptr, &dsel2, &is2, &timer2, &BTS7002);
+    Hss hsw3(&den3, &in3, nullptr, &dsel3, &is3, &timer3, &BTS7002);
+    Hss hsw4(&den4, &in4, nullptr, &dsel4, &is4, &timer4, &BTS7002);
 
-    Bts700xShield hssShield(&led1, &led2, &led3, &led4, &hsw1, &hsw2, &hsw3, &hsw4, &timer, &oloff, &pushButtonDigital, &pushButtonAnalog, &vBat);
+    Bts700xShield hssShield(&led1, &led2, &led3, &led4, &hsw1, &hsw2, &hsw3, &hsw4, &timer, &oloff, &pushButtonDigital, &pushButtonAnalog, &vBat, &BTS7002);
 
     ASSERT_EQ(CONF_ERROR, hssShield.init());
 }
@@ -312,12 +312,12 @@ TEST_F(Hss_BTS700xShield_Test, init_timer_failed)
     .Times(1)
     .WillOnce(Return(CONF_ERROR));
 
-    Hss hsw1(&den1, &in1, &dsel1, &is1, &timer1);
-    Hss hsw2(&den2, &in2, &dsel2, &is2, &timer2);
-    Hss hsw3(&den3, &in3, &dsel3, &is3, &timer3);
-    Hss hsw4(&den4, &in4, &dsel4, &is4, &timer4);
+Hss hsw1(&den1, &in1, nullptr, &dsel1, &is1, &timer1, &BTS7002);
+    Hss hsw2(&den2, &in2, nullptr, &dsel2, &is2, &timer2, &BTS7002);
+    Hss hsw3(&den3, &in3, nullptr, &dsel3, &is3, &timer3, &BTS7002);
+    Hss hsw4(&den4, &in4, nullptr, &dsel4, &is4, &timer4, &BTS7002);
 
-    Bts700xShield hssShield(&led1, &led2, &led3, &led4, &hsw1, &hsw2, &hsw3, &hsw4, &timer, &oloff, &pushButtonDigital, &pushButtonAnalog, &vBat);
+    Bts700xShield hssShield(&led1, &led2, &led3, &led4, &hsw1, &hsw2, &hsw3, &hsw4, &timer, &oloff, &pushButtonDigital, &pushButtonAnalog, &vBat, &BTS7002);
 
     ASSERT_EQ(CONF_ERROR, hssShield.init());
 }
@@ -345,12 +345,12 @@ TEST_F(Hss_BTS700xShield_Test, init_oloff_failed)
     .Times(1)
     .WillOnce(Return(CONF_ERROR));
 
-    Hss hsw1(&den1, &in1, &dsel1, &is1, &timer1);
-    Hss hsw2(&den2, &in2, &dsel2, &is2, &timer2);
-    Hss hsw3(&den3, &in3, &dsel3, &is3, &timer3);
-    Hss hsw4(&den4, &in4, &dsel4, &is4, &timer4);
+Hss hsw1(&den1, &in1, nullptr, &dsel1, &is1, &timer1, &BTS7002);
+    Hss hsw2(&den2, &in2, nullptr, &dsel2, &is2, &timer2, &BTS7002);
+    Hss hsw3(&den3, &in3, nullptr, &dsel3, &is3, &timer3, &BTS7002);
+    Hss hsw4(&den4, &in4, nullptr, &dsel4, &is4, &timer4, &BTS7002);
 
-    Bts700xShield hssShield(&led1, &led2, &led3, &led4, &hsw1, &hsw2, &hsw3, &hsw4, &timer, &oloff, &pushButtonDigital, &pushButtonAnalog, &vBat);
+    Bts700xShield hssShield(&led1, &led2, &led3, &led4, &hsw1, &hsw2, &hsw3, &hsw4, &timer, &oloff, &pushButtonDigital, &pushButtonAnalog, &vBat, &BTS7002);
 
     ASSERT_EQ(CONF_ERROR, hssShield.init());
 }
@@ -381,12 +381,12 @@ TEST_F(Hss_BTS700xShield_Test, init_pushButtonDigital_failed)
     .Times(1)
     .WillOnce(Return(CONF_ERROR));
 
-    Hss hsw1(&den1, &in1, &dsel1, &is1, &timer1);
-    Hss hsw2(&den2, &in2, &dsel2, &is2, &timer2);
-    Hss hsw3(&den3, &in3, &dsel3, &is3, &timer3);
-    Hss hsw4(&den4, &in4, &dsel4, &is4, &timer4);
+Hss hsw1(&den1, &in1, nullptr, &dsel1, &is1, &timer1, &BTS7002);
+    Hss hsw2(&den2, &in2, nullptr, &dsel2, &is2, &timer2, &BTS7002);
+    Hss hsw3(&den3, &in3, nullptr, &dsel3, &is3, &timer3, &BTS7002);
+    Hss hsw4(&den4, &in4, nullptr, &dsel4, &is4, &timer4, &BTS7002);
 
-    Bts700xShield hssShield(&led1, &led2, &led3, &led4, &hsw1, &hsw2, &hsw3, &hsw4, &timer, &oloff, &pushButtonDigital, &pushButtonAnalog, &vBat);
+    Bts700xShield hssShield(&led1, &led2, &led3, &led4, &hsw1, &hsw2, &hsw3, &hsw4, &timer, &oloff, &pushButtonDigital, &pushButtonAnalog, &vBat, &BTS7002);
 
     ASSERT_EQ(CONF_ERROR, hssShield.init());
 }
@@ -421,12 +421,12 @@ TEST_F(Hss_BTS700xShield_Test, init_pushButtonAnalog_failed)
     .Times(1)
     .WillOnce(Return(CONF_ERROR));
 
-    Hss hsw1(&den1, &in1, &dsel1, &is1, &timer1);
-    Hss hsw2(&den2, &in2, &dsel2, &is2, &timer2);
-    Hss hsw3(&den3, &in3, &dsel3, &is3, &timer3);
-    Hss hsw4(&den4, &in4, &dsel4, &is4, &timer4);
+Hss hsw1(&den1, &in1, nullptr, &dsel1, &is1, &timer1, &BTS7002);
+    Hss hsw2(&den2, &in2, nullptr, &dsel2, &is2, &timer2, &BTS7002);
+    Hss hsw3(&den3, &in3, nullptr, &dsel3, &is3, &timer3, &BTS7002);
+    Hss hsw4(&den4, &in4, nullptr, &dsel4, &is4, &timer4, &BTS7002);
 
-    Bts700xShield hssShield(&led1, &led2, &led3, &led4, &hsw1, &hsw2, &hsw3, &hsw4, &timer, &oloff, &pushButtonDigital, &pushButtonAnalog, &vBat);
+    Bts700xShield hssShield(&led1, &led2, &led3, &led4, &hsw1, &hsw2, &hsw3, &hsw4, &timer, &oloff, &pushButtonDigital, &pushButtonAnalog, &vBat, &BTS7002);
 
     ASSERT_EQ(CONF_ERROR, hssShield.init());
 }
@@ -464,24 +464,24 @@ TEST_F(Hss_BTS700xShield_Test, init_vBat_failed)
     .Times(1)
     .WillOnce(Return(CONF_ERROR));
 
-    Hss hsw1(&den1, &in1, &dsel1, &is1, &timer1);
-    Hss hsw2(&den2, &in2, &dsel2, &is2, &timer2);
-    Hss hsw3(&den3, &in3, &dsel3, &is3, &timer3);
-    Hss hsw4(&den4, &in4, &dsel4, &is4, &timer4);
+Hss hsw1(&den1, &in1, nullptr, &dsel1, &is1, &timer1, &BTS7002);
+    Hss hsw2(&den2, &in2, nullptr, &dsel2, &is2, &timer2, &BTS7002);
+    Hss hsw3(&den3, &in3, nullptr, &dsel3, &is3, &timer3, &BTS7002);
+    Hss hsw4(&den4, &in4, nullptr, &dsel4, &is4, &timer4, &BTS7002);
 
-    Bts700xShield hssShield(&led1, &led2, &led3, &led4, &hsw1, &hsw2, &hsw3, &hsw4, &timer, &oloff, &pushButtonDigital, &pushButtonAnalog, &vBat);
+    Bts700xShield hssShield(&led1, &led2, &led3, &led4, &hsw1, &hsw2, &hsw3, &hsw4, &timer, &oloff, &pushButtonDigital, &pushButtonAnalog, &vBat, &BTS7002);
 
     ASSERT_EQ(CONF_ERROR, hssShield.init());
 }
 
 TEST_F(Hss_BTS700xShield_Test, init_led1_nullptr)
 {
-    Hss hsw1(&den1, &in1, &dsel1, &is1, &timer1);
-    Hss hsw2(&den2, &in2, &dsel2, &is2, &timer2);
-    Hss hsw3(&den3, &in3, &dsel3, &is3, &timer3);
-    Hss hsw4(&den4, &in4, &dsel4, &is4, &timer4);
+Hss hsw1(&den1, &in1, nullptr, &dsel1, &is1, &timer1, &BTS7002);
+    Hss hsw2(&den2, &in2, nullptr, &dsel2, &is2, &timer2, &BTS7002);
+    Hss hsw3(&den3, &in3, nullptr, &dsel3, &is3, &timer3, &BTS7002);
+    Hss hsw4(&den4, &in4, nullptr, &dsel4, &is4, &timer4, &BTS7002);
 
-    Bts700xShield hssShield(nullptr, &led2, &led3, &led4, &hsw1, &hsw2, &hsw3, &hsw4, &timer, &oloff, &pushButtonDigital, &pushButtonAnalog, &vBat);
+    Bts700xShield hssShield(nullptr, &led2, &led3, &led4, &hsw1, &hsw2, &hsw3, &hsw4, &timer, &oloff, &pushButtonDigital, &pushButtonAnalog, &vBat, &BTS7002);
 
     ASSERT_EQ(NULLPTR_ERROR, hssShield.init());
 }
@@ -492,12 +492,12 @@ TEST_F(Hss_BTS700xShield_Test, init_led2_nullptr)
     .Times(1)
     .WillOnce(Return(OK));
 
-    Hss hsw1(&den1, &in1, &dsel1, &is1, &timer1);
-    Hss hsw2(&den2, &in2, &dsel2, &is2, &timer2);
-    Hss hsw3(&den3, &in3, &dsel3, &is3, &timer3);
-    Hss hsw4(&den4, &in4, &dsel4, &is4, &timer4);
+Hss hsw1(&den1, &in1, nullptr, &dsel1, &is1, &timer1, &BTS7002);
+    Hss hsw2(&den2, &in2, nullptr, &dsel2, &is2, &timer2, &BTS7002);
+    Hss hsw3(&den3, &in3, nullptr, &dsel3, &is3, &timer3, &BTS7002);
+    Hss hsw4(&den4, &in4, nullptr, &dsel4, &is4, &timer4, &BTS7002);
 
-    Bts700xShield hssShield(&led1, nullptr, &led3, &led4, &hsw1, &hsw2, &hsw3, &hsw4, &timer, &oloff, &pushButtonDigital, &pushButtonAnalog, &vBat);
+    Bts700xShield hssShield(&led1, nullptr, &led3, &led4, &hsw1, &hsw2, &hsw3, &hsw4, &timer, &oloff, &pushButtonDigital, &pushButtonAnalog, &vBat, &BTS7002);
 
     ASSERT_EQ(NULLPTR_ERROR, hssShield.init());
 }
@@ -511,12 +511,12 @@ TEST_F(Hss_BTS700xShield_Test, init_led3_nullptr)
     .Times(1)
     .WillOnce(Return(OK));
 
-    Hss hsw1(&den1, &in1, &dsel1, &is1, &timer1);
-    Hss hsw2(&den2, &in2, &dsel2, &is2, &timer2);
-    Hss hsw3(&den3, &in3, &dsel3, &is3, &timer3);
-    Hss hsw4(&den4, &in4, &dsel4, &is4, &timer4);
+Hss hsw1(&den1, &in1, nullptr, &dsel1, &is1, &timer1, &BTS7002);
+    Hss hsw2(&den2, &in2, nullptr, &dsel2, &is2, &timer2, &BTS7002);
+    Hss hsw3(&den3, &in3, nullptr, &dsel3, &is3, &timer3, &BTS7002);
+    Hss hsw4(&den4, &in4, nullptr, &dsel4, &is4, &timer4, &BTS7002);
 
-    Bts700xShield hssShield(&led1, &led2, nullptr, &led4, &hsw1, &hsw2, &hsw3, &hsw4, &timer, &oloff, &pushButtonDigital, &pushButtonAnalog, &vBat);
+    Bts700xShield hssShield(&led1, &led2, nullptr, &led4, &hsw1, &hsw2, &hsw3, &hsw4, &timer, &oloff, &pushButtonDigital, &pushButtonAnalog, &vBat, &BTS7002);
 
     ASSERT_EQ(NULLPTR_ERROR, hssShield.init());
 }
@@ -533,12 +533,12 @@ TEST_F(Hss_BTS700xShield_Test, init_led4_nullptr)
     .Times(1)
     .WillOnce(Return(OK));
 
-    Hss hsw1(&den1, &in1, &dsel1, &is1, &timer1);
-    Hss hsw2(&den2, &in2, &dsel2, &is2, &timer2);
-    Hss hsw3(&den3, &in3, &dsel3, &is3, &timer3);
-    Hss hsw4(&den4, &in4, &dsel4, &is4, &timer4);
+Hss hsw1(&den1, &in1, nullptr, &dsel1, &is1, &timer1, &BTS7002);
+    Hss hsw2(&den2, &in2, nullptr, &dsel2, &is2, &timer2, &BTS7002);
+    Hss hsw3(&den3, &in3, nullptr, &dsel3, &is3, &timer3, &BTS7002);
+    Hss hsw4(&den4, &in4, nullptr, &dsel4, &is4, &timer4, &BTS7002);
 
-    Bts700xShield hssShield(&led1, &led2, &led3, nullptr, &hsw1, &hsw2, &hsw3, &hsw4, &timer, &oloff, &pushButtonDigital, &pushButtonAnalog, &vBat);
+    Bts700xShield hssShield(&led1, &led2, &led3, nullptr, &hsw1, &hsw2, &hsw3, &hsw4, &timer, &oloff, &pushButtonDigital, &pushButtonAnalog, &vBat, &BTS7002);
 
     ASSERT_EQ(NULLPTR_ERROR, hssShield.init());
 }
@@ -558,12 +558,12 @@ TEST_F(Hss_BTS700xShield_Test, init_hss1_nullptr)
     .Times(1)
     .WillOnce(Return(OK));
 
-    Hss hsw1(&den1, &in1, &dsel1, &is1, &timer1);
-    Hss hsw2(&den2, &in2, &dsel2, &is2, &timer2);
-    Hss hsw3(&den3, &in3, &dsel3, &is3, &timer3);
-    Hss hsw4(&den4, &in4, &dsel4, &is4, &timer4);
+Hss hsw1(&den1, &in1, nullptr, &dsel1, &is1, &timer1, &BTS7002);
+    Hss hsw2(&den2, &in2, nullptr, &dsel2, &is2, &timer2, &BTS7002);
+    Hss hsw3(&den3, &in3, nullptr, &dsel3, &is3, &timer3, &BTS7002);
+    Hss hsw4(&den4, &in4, nullptr, &dsel4, &is4, &timer4, &BTS7002);
 
-    Bts700xShield hssShield(&led1, &led2, &led3, &led4, nullptr, &hsw2, &hsw3, &hsw4, &timer, &oloff, &pushButtonDigital, &pushButtonAnalog, &vBat);
+    Bts700xShield hssShield(&led1, &led2, &led3, &led4, nullptr, &hsw2, &hsw3, &hsw4, &timer, &oloff, &pushButtonDigital, &pushButtonAnalog, &vBat, &BTS7002);
 
     ASSERT_EQ(NULLPTR_ERROR, hssShield.init());
 }
@@ -583,12 +583,12 @@ TEST_F(Hss_BTS700xShield_Test, init_hss2_nullptr)
     .Times(1)
     .WillOnce(Return(OK));
 
-    Hss hsw1(&den1, &in1, &dsel1, &is1, &timer1);
-    Hss hsw2(&den2, &in2, &dsel2, &is2, &timer2);
-    Hss hsw3(&den3, &in3, &dsel3, &is3, &timer3);
-    Hss hsw4(&den4, &in4, &dsel4, &is4, &timer4);
+Hss hsw1(&den1, &in1, nullptr, &dsel1, &is1, &timer1, &BTS7002);
+    Hss hsw2(&den2, &in2, nullptr, &dsel2, &is2, &timer2, &BTS7002);
+    Hss hsw3(&den3, &in3, nullptr, &dsel3, &is3, &timer3, &BTS7002);
+    Hss hsw4(&den4, &in4, nullptr, &dsel4, &is4, &timer4, &BTS7002);
 
-    Bts700xShield hssShield(&led1, &led2, &led3, &led4, &hsw1, nullptr, &hsw3, &hsw4, &timer, &oloff, &pushButtonDigital, &pushButtonAnalog, &vBat);
+    Bts700xShield hssShield(&led1, &led2, &led3, &led4, &hsw1, nullptr, &hsw3, &hsw4, &timer, &oloff, &pushButtonDigital, &pushButtonAnalog, &vBat, &BTS7002);
 
     ASSERT_EQ(NULLPTR_ERROR, hssShield.init());
 }
@@ -608,12 +608,12 @@ TEST_F(Hss_BTS700xShield_Test, init_hss3_nullptr)
     .Times(1)
     .WillOnce(Return(OK));
 
-    Hss hsw1(&den1, &in1, &dsel1, &is1, &timer1);
-    Hss hsw2(&den2, &in2, &dsel2, &is2, &timer2);
-    Hss hsw3(&den3, &in3, &dsel3, &is3, &timer3);
-    Hss hsw4(&den4, &in4, &dsel4, &is4, &timer4);
+Hss hsw1(&den1, &in1, nullptr, &dsel1, &is1, &timer1, &BTS7002);
+    Hss hsw2(&den2, &in2, nullptr, &dsel2, &is2, &timer2, &BTS7002);
+    Hss hsw3(&den3, &in3, nullptr, &dsel3, &is3, &timer3, &BTS7002);
+    Hss hsw4(&den4, &in4, nullptr, &dsel4, &is4, &timer4, &BTS7002);
 
-    Bts700xShield hssShield(&led1, &led2, &led3, &led4, &hsw1, &hsw2, nullptr, &hsw4, &timer, &oloff, &pushButtonDigital, &pushButtonAnalog, &vBat);
+    Bts700xShield hssShield(&led1, &led2, &led3, &led4, &hsw1, &hsw2, nullptr, &hsw4, &timer, &oloff, &pushButtonDigital, &pushButtonAnalog, &vBat, &BTS7002);
 
     ASSERT_EQ(NULLPTR_ERROR, hssShield.init());
 }
@@ -633,12 +633,12 @@ TEST_F(Hss_BTS700xShield_Test, init_hss4_nullptr)
     .Times(1)
     .WillOnce(Return(OK));
 
-    Hss hsw1(&den1, &in1, &dsel1, &is1, &timer1);
-    Hss hsw2(&den2, &in2, &dsel2, &is2, &timer2);
-    Hss hsw3(&den3, &in3, &dsel3, &is3, &timer3);
-    Hss hsw4(&den4, &in4, &dsel4, &is4, &timer4);
+    Hss hsw1(&den1, &in1, nullptr, &dsel1, &is1, &timer1, &BTS7002);
+    Hss hsw2(&den2, &in2, nullptr, &dsel2, &is2, &timer2, &BTS7002);
+    Hss hsw3(&den3, &in3, nullptr, &dsel3, &is3, &timer3, &BTS7002);
+    Hss hsw4(&den4, &in4, nullptr, &dsel4, &is4, &timer4, &BTS7002);
 
-    Bts700xShield hssShield(&led1, &led2, &led3, &led4, &hsw1, &hsw2, &hsw3, nullptr, &timer, &oloff, &pushButtonDigital, &pushButtonAnalog, &vBat);
+    Bts700xShield hssShield(&led1, &led2, &led3, &led4, &hsw1, &hsw2, &hsw3, nullptr, &timer, &oloff, &pushButtonDigital, &pushButtonAnalog, &vBat, &BTS7002);
 
     ASSERT_EQ(NULLPTR_ERROR, hssShield.init());
 }
@@ -658,12 +658,12 @@ TEST_F(Hss_BTS700xShield_Test, init_timer_nullptr)
     .Times(1)
     .WillOnce(Return(OK));
 
-    Hss hsw1(&den1, &in1, &dsel1, &is1, &timer1);
-    Hss hsw2(&den2, &in2, &dsel2, &is2, &timer2);
-    Hss hsw3(&den3, &in3, &dsel3, &is3, &timer3);
-    Hss hsw4(&den4, &in4, &dsel4, &is4, &timer4);
+    Hss hsw1(&den1, &in1, nullptr, &dsel1, &is1, &timer1, &BTS7002);
+    Hss hsw2(&den2, &in2, nullptr, &dsel2, &is2, &timer2, &BTS7002);
+    Hss hsw3(&den3, &in3, nullptr, &dsel3, &is3, &timer3, &BTS7002);
+    Hss hsw4(&den4, &in4, nullptr, &dsel4, &is4, &timer4, &BTS7002);
 
-    Bts700xShield hssShield(&led1, &led2, &led3, &led4, &hsw1, &hsw2, &hsw3, &hsw4, nullptr, &oloff, &pushButtonDigital, &pushButtonAnalog, &vBat);
+    Bts700xShield hssShield(&led1, &led2, &led3, &led4, &hsw1, &hsw2, &hsw3, &hsw4, nullptr, &oloff, &pushButtonDigital, &pushButtonAnalog, &vBat, &BTS7002);
 
     ASSERT_EQ(NULLPTR_ERROR, hssShield.init());
 }
@@ -687,12 +687,12 @@ TEST_F(Hss_BTS700xShield_Test, init_oloff_nullptr)
     .Times(1)
     .WillOnce(Return(OK));
 
-    Hss hsw1(&den1, &in1, &dsel1, &is1, &timer1);
-    Hss hsw2(&den2, &in2, &dsel2, &is2, &timer2);
-    Hss hsw3(&den3, &in3, &dsel3, &is3, &timer3);
-    Hss hsw4(&den4, &in4, &dsel4, &is4, &timer4);
+    Hss hsw1(&den1, &in1, nullptr, &dsel1, &is1, &timer1, &BTS7002);
+    Hss hsw2(&den2, &in2, nullptr, &dsel2, &is2, &timer2, &BTS7002);
+    Hss hsw3(&den3, &in3, nullptr, &dsel3, &is3, &timer3, &BTS7002);
+    Hss hsw4(&den4, &in4, nullptr, &dsel4, &is4, &timer4, &BTS7002);
 
-    Bts700xShield hssShield(&led1, &led2, &led3, &led4, &hsw1, &hsw2, &hsw3, &hsw4, &timer, nullptr, &pushButtonDigital, &pushButtonAnalog, &vBat);
+    Bts700xShield hssShield(&led1, &led2, &led3, &led4, &hsw1, &hsw2, &hsw3, &hsw4, &timer, nullptr, &pushButtonDigital, &pushButtonAnalog, &vBat, &BTS7002);
 
     ASSERT_EQ(NULLPTR_ERROR, hssShield.init());
 }
@@ -721,12 +721,12 @@ TEST_F(Hss_BTS700xShield_Test, init_pushButtonDigital_nullptr)
     .WillOnce(Return(OK));
 
 
-    Hss hsw1(&den1, &in1, &dsel1, &is1, &timer1);
-    Hss hsw2(&den2, &in2, &dsel2, &is2, &timer2);
-    Hss hsw3(&den3, &in3, &dsel3, &is3, &timer3);
-    Hss hsw4(&den4, &in4, &dsel4, &is4, &timer4);
+    Hss hsw1(&den1, &in1, nullptr, &dsel1, &is1, &timer1, &BTS7002);
+    Hss hsw2(&den2, &in2, nullptr, &dsel2, &is2, &timer2, &BTS7002);
+    Hss hsw3(&den3, &in3, nullptr, &dsel3, &is3, &timer3, &BTS7002);
+    Hss hsw4(&den4, &in4, nullptr, &dsel4, &is4, &timer4, &BTS7002);
 
-    Bts700xShield hssShield(&led1, &led2, &led3, &led4, &hsw1, &hsw2, &hsw3, &hsw4, &timer, &oloff, nullptr, &pushButtonAnalog, &vBat);
+    Bts700xShield hssShield(&led1, &led2, &led3, &led4, &hsw1, &hsw2, &hsw3, &hsw4, &timer, &oloff, nullptr, &pushButtonAnalog, &vBat, &BTS7002);
 
     ASSERT_EQ(NULLPTR_ERROR, hssShield.init());
 }
@@ -757,12 +757,12 @@ TEST_F(Hss_BTS700xShield_Test, init_pushButtonAnalog_nullptr)
     .Times(1)
     .WillOnce(Return(OK));
 
-    Hss hsw1(&den1, &in1, &dsel1, &is1, &timer1);
-    Hss hsw2(&den2, &in2, &dsel2, &is2, &timer2);
-    Hss hsw3(&den3, &in3, &dsel3, &is3, &timer3);
-    Hss hsw4(&den4, &in4, &dsel4, &is4, &timer4);
+    Hss hsw1(&den1, &in1, nullptr, &dsel1, &is1, &timer1, &BTS7002);
+    Hss hsw2(&den2, &in2, nullptr, &dsel2, &is2, &timer2, &BTS7002);
+    Hss hsw3(&den3, &in3, nullptr, &dsel3, &is3, &timer3, &BTS7002);
+    Hss hsw4(&den4, &in4, nullptr, &dsel4, &is4, &timer4, &BTS7002);
 
-    Bts700xShield hssShield(&led1, &led2, &led3, &led4, &hsw1, &hsw2, &hsw3, &hsw4, &timer, &oloff, &pushButtonDigital, nullptr, &vBat);
+    Bts700xShield hssShield(&led1, &led2, &led3, &led4, &hsw1, &hsw2, &hsw3, &hsw4, &timer, &oloff, &pushButtonDigital, nullptr, &vBat, &BTS7002);
 
     ASSERT_EQ(NULLPTR_ERROR, hssShield.init());
 }
@@ -797,12 +797,12 @@ TEST_F(Hss_BTS700xShield_Test, init_vBat_nullptr)
     .Times(1)
     .WillOnce(Return(OK));
 
-    Hss hsw1(&den1, &in1, &dsel1, &is1, &timer1);
-    Hss hsw2(&den2, &in2, &dsel2, &is2, &timer2);
-    Hss hsw3(&den3, &in3, &dsel3, &is3, &timer3);
-    Hss hsw4(&den4, &in4, &dsel4, &is4, &timer4);
+    Hss hsw1(&den1, &in1, nullptr, &dsel1, &is1, &timer1, &BTS7002);
+    Hss hsw2(&den2, &in2, nullptr, &dsel2, &is2, &timer2, &BTS7002);
+    Hss hsw3(&den3, &in3, nullptr, &dsel3, &is3, &timer3, &BTS7002);
+    Hss hsw4(&den4, &in4, nullptr, &dsel4, &is4, &timer4, &BTS7002);
 
-    Bts700xShield hssShield(&led1, &led2, &led3, &led4, &hsw1, &hsw2, &hsw3, &hsw4, &timer, &oloff, &pushButtonDigital, &pushButtonAnalog, nullptr);
+    Bts700xShield hssShield(&led1, &led2, &led3, &led4, &hsw1, &hsw2, &hsw3, &hsw4, &timer, &oloff, &pushButtonDigital, &pushButtonAnalog, nullptr, &BTS7002);
 
     ASSERT_EQ(NULLPTR_ERROR, hssShield.init());
 }
@@ -840,12 +840,12 @@ TEST_F(Hss_BTS700xShield_Test, deinit_successful)
     .Times(1)
     .WillOnce(Return(OK));
 
-    Hss hsw1(&den1, &in1, &dsel1, &is1, &timer1);
-    Hss hsw2(&den2, &in2, &dsel2, &is2, &timer2);
-    Hss hsw3(&den3, &in3, &dsel3, &is3, &timer3);
-    Hss hsw4(&den4, &in4, &dsel4, &is4, &timer4);
+    Hss hsw1(&den1, &in1, nullptr, &dsel1, &is1, &timer1, &BTS7002);
+    Hss hsw2(&den2, &in2, nullptr, &dsel2, &is2, &timer2, &BTS7002);
+    Hss hsw3(&den3, &in3, nullptr, &dsel3, &is3, &timer3, &BTS7002);
+    Hss hsw4(&den4, &in4, nullptr, &dsel4, &is4, &timer4, &BTS7002);
 
-    Bts700xShield hssShield(&led1, &led2, &led3, &led4, &hsw1, &hsw2, &hsw3, &hsw4, &timer, &oloff, &pushButtonDigital, &pushButtonAnalog, &vBat);
+    Bts700xShield hssShield(&led1, &led2, &led3, &led4, &hsw1, &hsw2, &hsw3, &hsw4, &timer, &oloff, &pushButtonDigital, &pushButtonAnalog, &vBat, &BTS7002);
 
     ASSERT_EQ(OK, hssShield.deinit());
 }
@@ -856,12 +856,12 @@ TEST_F(Hss_BTS700xShield_Test, deinit_led1_failed)
     .Times(1)
     .WillOnce(Return(CONF_ERROR));
 
-    Hss hsw1(&den1, &in1, &dsel1, &is1, &timer1);
-    Hss hsw2(&den2, &in2, &dsel2, &is2, &timer2);
-    Hss hsw3(&den3, &in3, &dsel3, &is3, &timer3);
-    Hss hsw4(&den4, &in4, &dsel4, &is4, &timer4);
+    Hss hsw1(&den1, &in1, nullptr, &dsel1, &is1, &timer1, &BTS7002);
+    Hss hsw2(&den2, &in2, nullptr, &dsel2, &is2, &timer2, &BTS7002);
+    Hss hsw3(&den3, &in3, nullptr, &dsel3, &is3, &timer3, &BTS7002);
+    Hss hsw4(&den4, &in4, nullptr, &dsel4, &is4, &timer4, &BTS7002);
 
-    Bts700xShield hssShield(&led1, &led2, &led3, &led4, &hsw1, &hsw2, &hsw3, &hsw4, &timer, &oloff, &pushButtonDigital, &pushButtonAnalog, &vBat);
+    Bts700xShield hssShield(&led1, &led2, &led3, &led4, &hsw1, &hsw2, &hsw3, &hsw4, &timer, &oloff, &pushButtonDigital, &pushButtonAnalog, &vBat, &BTS7002);
 
     ASSERT_EQ(CONF_ERROR, hssShield.deinit());
 }
@@ -875,12 +875,12 @@ TEST_F(Hss_BTS700xShield_Test, deinit_led2_failed)
     .Times(1)
     .WillOnce(Return(CONF_ERROR));
 
-    Hss hsw1(&den1, &in1, &dsel1, &is1, &timer1);
-    Hss hsw2(&den2, &in2, &dsel2, &is2, &timer2);
-    Hss hsw3(&den3, &in3, &dsel3, &is3, &timer3);
-    Hss hsw4(&den4, &in4, &dsel4, &is4, &timer4);
+    Hss hsw1(&den1, &in1, nullptr, &dsel1, &is1, &timer1, &BTS7002);
+    Hss hsw2(&den2, &in2, nullptr, &dsel2, &is2, &timer2, &BTS7002);
+    Hss hsw3(&den3, &in3, nullptr, &dsel3, &is3, &timer3, &BTS7002);
+    Hss hsw4(&den4, &in4, nullptr, &dsel4, &is4, &timer4, &BTS7002);
 
-    Bts700xShield hssShield(&led1, &led2, &led3, &led4, &hsw1, &hsw2, &hsw3, &hsw4, &timer, &oloff, &pushButtonDigital, &pushButtonAnalog, &vBat);
+    Bts700xShield hssShield(&led1, &led2, &led3, &led4, &hsw1, &hsw2, &hsw3, &hsw4, &timer, &oloff, &pushButtonDigital, &pushButtonAnalog, &vBat, &BTS7002);
 
     ASSERT_EQ(CONF_ERROR, hssShield.deinit());
 }
@@ -897,12 +897,12 @@ TEST_F(Hss_BTS700xShield_Test, deinit_led3_failed)
     .Times(1)
     .WillOnce(Return(CONF_ERROR));
 
-    Hss hsw1(&den1, &in1, &dsel1, &is1, &timer1);
-    Hss hsw2(&den2, &in2, &dsel2, &is2, &timer2);
-    Hss hsw3(&den3, &in3, &dsel3, &is3, &timer3);
-    Hss hsw4(&den4, &in4, &dsel4, &is4, &timer4);
+    Hss hsw1(&den1, &in1, nullptr, &dsel1, &is1, &timer1, &BTS7002);
+    Hss hsw2(&den2, &in2, nullptr, &dsel2, &is2, &timer2, &BTS7002);
+    Hss hsw3(&den3, &in3, nullptr, &dsel3, &is3, &timer3, &BTS7002);
+    Hss hsw4(&den4, &in4, nullptr, &dsel4, &is4, &timer4, &BTS7002);
 
-    Bts700xShield hssShield(&led1, &led2, &led3, &led4, &hsw1, &hsw2, &hsw3, &hsw4, &timer, &oloff, &pushButtonDigital, &pushButtonAnalog, &vBat);
+    Bts700xShield hssShield(&led1, &led2, &led3, &led4, &hsw1, &hsw2, &hsw3, &hsw4, &timer, &oloff, &pushButtonDigital, &pushButtonAnalog, &vBat, &BTS7002);
 
     ASSERT_EQ(CONF_ERROR, hssShield.deinit());
 }
@@ -922,12 +922,12 @@ TEST_F(Hss_BTS700xShield_Test, deinit_led4_failed)
     .Times(1)
     .WillOnce(Return(CONF_ERROR));
 
-    Hss hsw1(&den1, &in1, &dsel1, &is1, &timer1);
-    Hss hsw2(&den2, &in2, &dsel2, &is2, &timer2);
-    Hss hsw3(&den3, &in3, &dsel3, &is3, &timer3);
-    Hss hsw4(&den4, &in4, &dsel4, &is4, &timer4);
+    Hss hsw1(&den1, &in1, nullptr, &dsel1, &is1, &timer1, &BTS7002);
+    Hss hsw2(&den2, &in2, nullptr, &dsel2, &is2, &timer2, &BTS7002);
+    Hss hsw3(&den3, &in3, nullptr, &dsel3, &is3, &timer3, &BTS7002);
+    Hss hsw4(&den4, &in4, nullptr, &dsel4, &is4, &timer4, &BTS7002);
 
-    Bts700xShield hssShield(&led1, &led2, &led3, &led4, &hsw1, &hsw2, &hsw3, &hsw4, &timer, &oloff, &pushButtonDigital, &pushButtonAnalog, &vBat);
+    Bts700xShield hssShield(&led1, &led2, &led3, &led4, &hsw1, &hsw2, &hsw3, &hsw4, &timer, &oloff, &pushButtonDigital, &pushButtonAnalog, &vBat, &BTS7002);
 
     ASSERT_EQ(CONF_ERROR, hssShield.deinit());
 }
@@ -951,12 +951,12 @@ TEST_F(Hss_BTS700xShield_Test, deinit_timer_failed)
     .Times(1)
     .WillOnce(Return(CONF_ERROR));
 
-    Hss hsw1(&den1, &in1, &dsel1, &is1, &timer1);
-    Hss hsw2(&den2, &in2, &dsel2, &is2, &timer2);
-    Hss hsw3(&den3, &in3, &dsel3, &is3, &timer3);
-    Hss hsw4(&den4, &in4, &dsel4, &is4, &timer4);
+    Hss hsw1(&den1, &in1, nullptr, &dsel1, &is1, &timer1, &BTS7002);
+    Hss hsw2(&den2, &in2, nullptr, &dsel2, &is2, &timer2, &BTS7002);
+    Hss hsw3(&den3, &in3, nullptr, &dsel3, &is3, &timer3, &BTS7002);
+    Hss hsw4(&den4, &in4, nullptr, &dsel4, &is4, &timer4, &BTS7002);
 
-    Bts700xShield hssShield(&led1, &led2, &led3, &led4, &hsw1, &hsw2, &hsw3, &hsw4, &timer, &oloff, &pushButtonDigital, &pushButtonAnalog, &vBat);
+    Bts700xShield hssShield(&led1, &led2, &led3, &led4, &hsw1, &hsw2, &hsw3, &hsw4, &timer, &oloff, &pushButtonDigital, &pushButtonAnalog, &vBat, &BTS7002);
 
     ASSERT_EQ(CONF_ERROR, hssShield.deinit());
 }
@@ -984,12 +984,12 @@ TEST_F(Hss_BTS700xShield_Test, deinit_oloff_failed)
     .Times(1)
     .WillOnce(Return(CONF_ERROR));
 
-    Hss hsw1(&den1, &in1, &dsel1, &is1, &timer1);
-    Hss hsw2(&den2, &in2, &dsel2, &is2, &timer2);
-    Hss hsw3(&den3, &in3, &dsel3, &is3, &timer3);
-    Hss hsw4(&den4, &in4, &dsel4, &is4, &timer4);
+    Hss hsw1(&den1, &in1, nullptr, &dsel1, &is1, &timer1, &BTS7002);
+    Hss hsw2(&den2, &in2, nullptr, &dsel2, &is2, &timer2, &BTS7002);
+    Hss hsw3(&den3, &in3, nullptr, &dsel3, &is3, &timer3, &BTS7002);
+    Hss hsw4(&den4, &in4, nullptr, &dsel4, &is4, &timer4, &BTS7002);
 
-    Bts700xShield hssShield(&led1, &led2, &led3, &led4, &hsw1, &hsw2, &hsw3, &hsw4, &timer, &oloff, &pushButtonDigital, &pushButtonAnalog, &vBat);
+    Bts700xShield hssShield(&led1, &led2, &led3, &led4, &hsw1, &hsw2, &hsw3, &hsw4, &timer, &oloff, &pushButtonDigital, &pushButtonAnalog, &vBat, &BTS7002);
 
     ASSERT_EQ(CONF_ERROR, hssShield.deinit());
 }
@@ -1020,12 +1020,12 @@ TEST_F(Hss_BTS700xShield_Test, deinit_pushButtonDigital_failed)
     .Times(1)
     .WillOnce(Return(CONF_ERROR));
 
-    Hss hsw1(&den1, &in1, &dsel1, &is1, &timer1);
-    Hss hsw2(&den2, &in2, &dsel2, &is2, &timer2);
-    Hss hsw3(&den3, &in3, &dsel3, &is3, &timer3);
-    Hss hsw4(&den4, &in4, &dsel4, &is4, &timer4);
+    Hss hsw1(&den1, &in1, nullptr, &dsel1, &is1, &timer1, &BTS7002);
+    Hss hsw2(&den2, &in2, nullptr, &dsel2, &is2, &timer2, &BTS7002);
+    Hss hsw3(&den3, &in3, nullptr, &dsel3, &is3, &timer3, &BTS7002);
+    Hss hsw4(&den4, &in4, nullptr, &dsel4, &is4, &timer4, &BTS7002);
 
-    Bts700xShield hssShield(&led1, &led2, &led3, &led4, &hsw1, &hsw2, &hsw3, &hsw4, &timer, &oloff, &pushButtonDigital, &pushButtonAnalog, &vBat);
+    Bts700xShield hssShield(&led1, &led2, &led3, &led4, &hsw1, &hsw2, &hsw3, &hsw4, &timer, &oloff, &pushButtonDigital, &pushButtonAnalog, &vBat, &BTS7002);
 
     ASSERT_EQ(CONF_ERROR, hssShield.deinit());
 }
@@ -1060,12 +1060,12 @@ TEST_F(Hss_BTS700xShield_Test, deinit_pushButtonAnalog_failed)
     .Times(1)
     .WillOnce(Return(CONF_ERROR));
 
-    Hss hsw1(&den1, &in1, &dsel1, &is1, &timer1);
-    Hss hsw2(&den2, &in2, &dsel2, &is2, &timer2);
-    Hss hsw3(&den3, &in3, &dsel3, &is3, &timer3);
-    Hss hsw4(&den4, &in4, &dsel4, &is4, &timer4);
+    Hss hsw1(&den1, &in1, nullptr, &dsel1, &is1, &timer1, &BTS7002);
+    Hss hsw2(&den2, &in2, nullptr, &dsel2, &is2, &timer2, &BTS7002);
+    Hss hsw3(&den3, &in3, nullptr, &dsel3, &is3, &timer3, &BTS7002);
+    Hss hsw4(&den4, &in4, nullptr, &dsel4, &is4, &timer4, &BTS7002);
 
-    Bts700xShield hssShield(&led1, &led2, &led3, &led4, &hsw1, &hsw2, &hsw3, &hsw4, &timer, &oloff, &pushButtonDigital, &pushButtonAnalog, &vBat);
+    Bts700xShield hssShield(&led1, &led2, &led3, &led4, &hsw1, &hsw2, &hsw3, &hsw4, &timer, &oloff, &pushButtonDigital, &pushButtonAnalog, &vBat, &BTS7002);
 
     ASSERT_EQ(CONF_ERROR, hssShield.deinit());
 }
@@ -1103,24 +1103,24 @@ TEST_F(Hss_BTS700xShield_Test, deinit_vBat_failed)
     .Times(1)
     .WillOnce(Return(CONF_ERROR));
 
-    Hss hsw1(&den1, &in1, &dsel1, &is1, &timer1);
-    Hss hsw2(&den2, &in2, &dsel2, &is2, &timer2);
-    Hss hsw3(&den3, &in3, &dsel3, &is3, &timer3);
-    Hss hsw4(&den4, &in4, &dsel4, &is4, &timer4);
+    Hss hsw1(&den1, &in1, nullptr, &dsel1, &is1, &timer1, &BTS7002);
+    Hss hsw2(&den2, &in2, nullptr, &dsel2, &is2, &timer2, &BTS7002);
+    Hss hsw3(&den3, &in3, nullptr, &dsel3, &is3, &timer3, &BTS7002);
+    Hss hsw4(&den4, &in4, nullptr, &dsel4, &is4, &timer4, &BTS7002);
 
-    Bts700xShield hssShield(&led1, &led2, &led3, &led4, &hsw1, &hsw2, &hsw3, &hsw4, &timer, &oloff, &pushButtonDigital, &pushButtonAnalog, &vBat);
+    Bts700xShield hssShield(&led1, &led2, &led3, &led4, &hsw1, &hsw2, &hsw3, &hsw4, &timer, &oloff, &pushButtonDigital, &pushButtonAnalog, &vBat, &BTS7002);
 
     ASSERT_EQ(CONF_ERROR, hssShield.deinit());
 }
 
 TEST_F(Hss_BTS700xShield_Test, deinit_led1_nullptr)
 {
-    Hss hsw1(&den1, &in1, &dsel1, &is1, &timer1);
-    Hss hsw2(&den2, &in2, &dsel2, &is2, &timer2);
-    Hss hsw3(&den3, &in3, &dsel3, &is3, &timer3);
-    Hss hsw4(&den4, &in4, &dsel4, &is4, &timer4);
+    Hss hsw1(&den1, &in1, nullptr, &dsel1, &is1, &timer1, &BTS7002);
+    Hss hsw2(&den2, &in2, nullptr, &dsel2, &is2, &timer2, &BTS7002);
+    Hss hsw3(&den3, &in3, nullptr, &dsel3, &is3, &timer3, &BTS7002);
+    Hss hsw4(&den4, &in4, nullptr, &dsel4, &is4, &timer4, &BTS7002);
 
-    Bts700xShield hssShield(nullptr, &led2, &led3, &led4, &hsw1, &hsw2, &hsw3, &hsw4, &timer, &oloff, &pushButtonDigital, &pushButtonAnalog, &vBat);
+    Bts700xShield hssShield(nullptr, &led2, &led3, &led4, &hsw1, &hsw2, &hsw3, &hsw4, &timer, &oloff, &pushButtonDigital, &pushButtonAnalog, &vBat, &BTS7002);
 
     ASSERT_EQ(NULLPTR_ERROR, hssShield.deinit());
 }
@@ -1131,12 +1131,12 @@ TEST_F(Hss_BTS700xShield_Test, deinit_led2_nullptr)
     .Times(1)
     .WillOnce(Return(OK));
 
-    Hss hsw1(&den1, &in1, &dsel1, &is1, &timer1);
-    Hss hsw2(&den2, &in2, &dsel2, &is2, &timer2);
-    Hss hsw3(&den3, &in3, &dsel3, &is3, &timer3);
-    Hss hsw4(&den4, &in4, &dsel4, &is4, &timer4);
+    Hss hsw1(&den1, &in1, nullptr, &dsel1, &is1, &timer1, &BTS7002);
+    Hss hsw2(&den2, &in2, nullptr, &dsel2, &is2, &timer2, &BTS7002);
+    Hss hsw3(&den3, &in3, nullptr, &dsel3, &is3, &timer3, &BTS7002);
+    Hss hsw4(&den4, &in4, nullptr, &dsel4, &is4, &timer4, &BTS7002);
 
-    Bts700xShield hssShield(&led1, nullptr, &led3, &led4, &hsw1, &hsw2, &hsw3, &hsw4, &timer, &oloff, &pushButtonDigital, &pushButtonAnalog, &vBat);
+    Bts700xShield hssShield(&led1, nullptr, &led3, &led4, &hsw1, &hsw2, &hsw3, &hsw4, &timer, &oloff, &pushButtonDigital, &pushButtonAnalog, &vBat, &BTS7002);
 
     ASSERT_EQ(NULLPTR_ERROR, hssShield.deinit());
 }
@@ -1150,12 +1150,12 @@ TEST_F(Hss_BTS700xShield_Test, deinit_led3_nullptr)
     .Times(1)
     .WillOnce(Return(OK));
 
-    Hss hsw1(&den1, &in1, &dsel1, &is1, &timer1);
-    Hss hsw2(&den2, &in2, &dsel2, &is2, &timer2);
-    Hss hsw3(&den3, &in3, &dsel3, &is3, &timer3);
-    Hss hsw4(&den4, &in4, &dsel4, &is4, &timer4);
+    Hss hsw1(&den1, &in1, nullptr, &dsel1, &is1, &timer1, &BTS7002);
+    Hss hsw2(&den2, &in2, nullptr, &dsel2, &is2, &timer2, &BTS7002);
+    Hss hsw3(&den3, &in3, nullptr, &dsel3, &is3, &timer3, &BTS7002);
+    Hss hsw4(&den4, &in4, nullptr, &dsel4, &is4, &timer4, &BTS7002);
 
-    Bts700xShield hssShield(&led1, &led2, nullptr, &led4, &hsw1, &hsw2, &hsw3, &hsw4, &timer, &oloff, &pushButtonDigital, &pushButtonAnalog, &vBat);
+    Bts700xShield hssShield(&led1, &led2, nullptr, &led4, &hsw1, &hsw2, &hsw3, &hsw4, &timer, &oloff, &pushButtonDigital, &pushButtonAnalog, &vBat, &BTS7002);
 
     ASSERT_EQ(NULLPTR_ERROR, hssShield.deinit());
 }
@@ -1172,12 +1172,12 @@ TEST_F(Hss_BTS700xShield_Test, deinit_led4_nullptr)
     .Times(1)
     .WillOnce(Return(OK));
 
-    Hss hsw1(&den1, &in1, &dsel1, &is1, &timer1);
-    Hss hsw2(&den2, &in2, &dsel2, &is2, &timer2);
-    Hss hsw3(&den3, &in3, &dsel3, &is3, &timer3);
-    Hss hsw4(&den4, &in4, &dsel4, &is4, &timer4);
+    Hss hsw1(&den1, &in1, nullptr, &dsel1, &is1, &timer1, &BTS7002);
+    Hss hsw2(&den2, &in2, nullptr, &dsel2, &is2, &timer2, &BTS7002);
+    Hss hsw3(&den3, &in3, nullptr, &dsel3, &is3, &timer3, &BTS7002);
+    Hss hsw4(&den4, &in4, nullptr, &dsel4, &is4, &timer4, &BTS7002);
 
-    Bts700xShield hssShield(&led1, &led2, &led3, nullptr, &hsw1, &hsw2, &hsw3, &hsw4, &timer, &oloff, &pushButtonDigital, &pushButtonAnalog, &vBat);
+    Bts700xShield hssShield(&led1, &led2, &led3, nullptr, &hsw1, &hsw2, &hsw3, &hsw4, &timer, &oloff, &pushButtonDigital, &pushButtonAnalog, &vBat, &BTS7002);
 
     ASSERT_EQ(NULLPTR_ERROR, hssShield.deinit());
 }
@@ -1197,12 +1197,12 @@ TEST_F(Hss_BTS700xShield_Test, deinit_hss1_nullptr)
     .Times(1)
     .WillOnce(Return(OK));
 
-    Hss hsw1(&den1, &in1, &dsel1, &is1, &timer1);
-    Hss hsw2(&den2, &in2, &dsel2, &is2, &timer2);
-    Hss hsw3(&den3, &in3, &dsel3, &is3, &timer3);
-    Hss hsw4(&den4, &in4, &dsel4, &is4, &timer4);
+    Hss hsw1(&den1, &in1, nullptr, &dsel1, &is1, &timer1, &BTS7002);
+    Hss hsw2(&den2, &in2, nullptr, &dsel2, &is2, &timer2, &BTS7002);
+    Hss hsw3(&den3, &in3, nullptr, &dsel3, &is3, &timer3, &BTS7002);
+    Hss hsw4(&den4, &in4, nullptr, &dsel4, &is4, &timer4, &BTS7002);
 
-    Bts700xShield hssShield(&led1, &led2, &led3, &led4, nullptr, &hsw2, &hsw3, &hsw4, &timer, &oloff, &pushButtonDigital, &pushButtonAnalog, &vBat);
+    Bts700xShield hssShield(&led1, &led2, &led3, &led4, nullptr, &hsw2, &hsw3, &hsw4, &timer, &oloff, &pushButtonDigital, &pushButtonAnalog, &vBat, &BTS7002);
 
     ASSERT_EQ(NULLPTR_ERROR, hssShield.deinit());
 }
@@ -1222,12 +1222,12 @@ TEST_F(Hss_BTS700xShield_Test, deinit_hss2_nullptr)
     .Times(1)
     .WillOnce(Return(OK));
 
-    Hss hsw1(&den1, &in1, &dsel1, &is1, &timer1);
-    Hss hsw2(&den2, &in2, &dsel2, &is2, &timer2);
-    Hss hsw3(&den3, &in3, &dsel3, &is3, &timer3);
-    Hss hsw4(&den4, &in4, &dsel4, &is4, &timer4);
+    Hss hsw1(&den1, &in1, nullptr, &dsel1, &is1, &timer1, &BTS7002);
+    Hss hsw2(&den2, &in2, nullptr, &dsel2, &is2, &timer2, &BTS7002);
+    Hss hsw3(&den3, &in3, nullptr, &dsel3, &is3, &timer3, &BTS7002);
+    Hss hsw4(&den4, &in4, nullptr, &dsel4, &is4, &timer4, &BTS7002);
 
-    Bts700xShield hssShield(&led1, &led2, &led3, &led4, &hsw1, nullptr, &hsw3, &hsw4, &timer, &oloff, &pushButtonDigital, &pushButtonAnalog, &vBat);
+    Bts700xShield hssShield(&led1, &led2, &led3, &led4, &hsw1, nullptr, &hsw3, &hsw4, &timer, &oloff, &pushButtonDigital, &pushButtonAnalog, &vBat, &BTS7002);
 
     ASSERT_EQ(NULLPTR_ERROR, hssShield.deinit());
 }
@@ -1247,12 +1247,12 @@ TEST_F(Hss_BTS700xShield_Test, deinit_hss3_nullptr)
     .Times(1)
     .WillOnce(Return(OK));
 
-    Hss hsw1(&den1, &in1, &dsel1, &is1, &timer1);
-    Hss hsw2(&den2, &in2, &dsel2, &is2, &timer2);
-    Hss hsw3(&den3, &in3, &dsel3, &is3, &timer3);
-    Hss hsw4(&den4, &in4, &dsel4, &is4, &timer4);
+    Hss hsw1(&den1, &in1, nullptr, &dsel1, &is1, &timer1, &BTS7002);
+    Hss hsw2(&den2, &in2, nullptr, &dsel2, &is2, &timer2, &BTS7002);
+    Hss hsw3(&den3, &in3, nullptr, &dsel3, &is3, &timer3, &BTS7002);
+    Hss hsw4(&den4, &in4, nullptr, &dsel4, &is4, &timer4, &BTS7002);
 
-    Bts700xShield hssShield(&led1, &led2, &led3, &led4, &hsw1, &hsw2, nullptr, &hsw4, &timer, &oloff, &pushButtonDigital, &pushButtonAnalog, &vBat);
+    Bts700xShield hssShield(&led1, &led2, &led3, &led4, &hsw1, &hsw2, nullptr, &hsw4, &timer, &oloff, &pushButtonDigital, &pushButtonAnalog, &vBat, &BTS7002);
 
     ASSERT_EQ(NULLPTR_ERROR, hssShield.deinit());
 }
@@ -1272,12 +1272,12 @@ TEST_F(Hss_BTS700xShield_Test, deinit_hss4_nullptr)
     .Times(1)
     .WillOnce(Return(OK));
 
-    Hss hsw1(&den1, &in1, &dsel1, &is1, &timer1);
-    Hss hsw2(&den2, &in2, &dsel2, &is2, &timer2);
-    Hss hsw3(&den3, &in3, &dsel3, &is3, &timer3);
-    Hss hsw4(&den4, &in4, &dsel4, &is4, &timer4);
+    Hss hsw1(&den1, &in1, nullptr, &dsel1, &is1, &timer1, &BTS7002);
+    Hss hsw2(&den2, &in2, nullptr, &dsel2, &is2, &timer2, &BTS7002);
+    Hss hsw3(&den3, &in3, nullptr, &dsel3, &is3, &timer3, &BTS7002);
+    Hss hsw4(&den4, &in4, nullptr, &dsel4, &is4, &timer4, &BTS7002);
 
-    Bts700xShield hssShield(&led1, &led2, &led3, &led4, &hsw1, &hsw2, &hsw3, nullptr, &timer, &oloff, &pushButtonDigital, &pushButtonAnalog, &vBat);
+    Bts700xShield hssShield(&led1, &led2, &led3, &led4, &hsw1, &hsw2, &hsw3, nullptr, &timer, &oloff, &pushButtonDigital, &pushButtonAnalog, &vBat, &BTS7002);
 
     ASSERT_EQ(NULLPTR_ERROR, hssShield.deinit());
 }
@@ -1297,12 +1297,12 @@ TEST_F(Hss_BTS700xShield_Test, deinit_timer_nullptr)
     .Times(1)
     .WillOnce(Return(OK));
 
-    Hss hsw1(&den1, &in1, &dsel1, &is1, &timer1);
-    Hss hsw2(&den2, &in2, &dsel2, &is2, &timer2);
-    Hss hsw3(&den3, &in3, &dsel3, &is3, &timer3);
-    Hss hsw4(&den4, &in4, &dsel4, &is4, &timer4);
+    Hss hsw1(&den1, &in1, nullptr, &dsel1, &is1, &timer1, &BTS7002);
+    Hss hsw2(&den2, &in2, nullptr, &dsel2, &is2, &timer2, &BTS7002);
+    Hss hsw3(&den3, &in3, nullptr, &dsel3, &is3, &timer3, &BTS7002);
+    Hss hsw4(&den4, &in4, nullptr, &dsel4, &is4, &timer4, &BTS7002);
 
-    Bts700xShield hssShield(&led1, &led2, &led3, &led4, &hsw1, &hsw2, &hsw3, &hsw4, nullptr, &oloff, &pushButtonDigital, &pushButtonAnalog, &vBat);
+    Bts700xShield hssShield(&led1, &led2, &led3, &led4, &hsw1, &hsw2, &hsw3, &hsw4, nullptr, &oloff, &pushButtonDigital, &pushButtonAnalog, &vBat, &BTS7002);
 
     ASSERT_EQ(NULLPTR_ERROR, hssShield.deinit());
 }
@@ -1326,12 +1326,12 @@ TEST_F(Hss_BTS700xShield_Test, deinit_oloff_nullptr)
     .Times(1)
     .WillOnce(Return(OK));
 
-    Hss hsw1(&den1, &in1, &dsel1, &is1, &timer1);
-    Hss hsw2(&den2, &in2, &dsel2, &is2, &timer2);
-    Hss hsw3(&den3, &in3, &dsel3, &is3, &timer3);
-    Hss hsw4(&den4, &in4, &dsel4, &is4, &timer4);
+    Hss hsw1(&den1, &in1, nullptr, &dsel1, &is1, &timer1, &BTS7002);
+    Hss hsw2(&den2, &in2, nullptr, &dsel2, &is2, &timer2, &BTS7002);
+    Hss hsw3(&den3, &in3, nullptr, &dsel3, &is3, &timer3, &BTS7002);
+    Hss hsw4(&den4, &in4, nullptr, &dsel4, &is4, &timer4, &BTS7002);
 
-    Bts700xShield hssShield(&led1, &led2, &led3, &led4, &hsw1, &hsw2, &hsw3, &hsw4, &timer, nullptr, &pushButtonDigital, &pushButtonAnalog, &vBat);
+    Bts700xShield hssShield(&led1, &led2, &led3, &led4, &hsw1, &hsw2, &hsw3, &hsw4, &timer, nullptr, &pushButtonDigital, &pushButtonAnalog, &vBat, &BTS7002);
 
     ASSERT_EQ(NULLPTR_ERROR, hssShield.deinit());
 }
@@ -1360,12 +1360,12 @@ TEST_F(Hss_BTS700xShield_Test, deinit_pushButtonDigital_nullptr)
     .WillOnce(Return(OK));
 
 
-    Hss hsw1(&den1, &in1, &dsel1, &is1, &timer1);
-    Hss hsw2(&den2, &in2, &dsel2, &is2, &timer2);
-    Hss hsw3(&den3, &in3, &dsel3, &is3, &timer3);
-    Hss hsw4(&den4, &in4, &dsel4, &is4, &timer4);
+    Hss hsw1(&den1, &in1, nullptr, &dsel1, &is1, &timer1, &BTS7002);
+    Hss hsw2(&den2, &in2, nullptr, &dsel2, &is2, &timer2, &BTS7002);
+    Hss hsw3(&den3, &in3, nullptr, &dsel3, &is3, &timer3, &BTS7002);
+    Hss hsw4(&den4, &in4, nullptr, &dsel4, &is4, &timer4, &BTS7002);
 
-    Bts700xShield hssShield(&led1, &led2, &led3, &led4, &hsw1, &hsw2, &hsw3, &hsw4, &timer, &oloff, nullptr, &pushButtonAnalog, &vBat);
+    Bts700xShield hssShield(&led1, &led2, &led3, &led4, &hsw1, &hsw2, &hsw3, &hsw4, &timer, &oloff, nullptr, &pushButtonAnalog, &vBat, &BTS7002);
 
     ASSERT_EQ(NULLPTR_ERROR, hssShield.deinit());
 }
@@ -1396,12 +1396,12 @@ TEST_F(Hss_BTS700xShield_Test, deinit_pushButtonAnalog_nullptr)
     .Times(1)
     .WillOnce(Return(OK));
 
-    Hss hsw1(&den1, &in1, &dsel1, &is1, &timer1);
-    Hss hsw2(&den2, &in2, &dsel2, &is2, &timer2);
-    Hss hsw3(&den3, &in3, &dsel3, &is3, &timer3);
-    Hss hsw4(&den4, &in4, &dsel4, &is4, &timer4);
+    Hss hsw1(&den1, &in1, nullptr, &dsel1, &is1, &timer1, &BTS7002);
+    Hss hsw2(&den2, &in2, nullptr, &dsel2, &is2, &timer2, &BTS7002);
+    Hss hsw3(&den3, &in3, nullptr, &dsel3, &is3, &timer3, &BTS7002);
+    Hss hsw4(&den4, &in4, nullptr, &dsel4, &is4, &timer4, &BTS7002);
 
-    Bts700xShield hssShield(&led1, &led2, &led3, &led4, &hsw1, &hsw2, &hsw3, &hsw4, &timer, &oloff, &pushButtonDigital, nullptr, &vBat);
+    Bts700xShield hssShield(&led1, &led2, &led3, &led4, &hsw1, &hsw2, &hsw3, &hsw4, &timer, &oloff, &pushButtonDigital, nullptr, &vBat, &BTS7002);
 
     ASSERT_EQ(NULLPTR_ERROR, hssShield.deinit());
 }
@@ -1436,12 +1436,12 @@ TEST_F(Hss_BTS700xShield_Test, deinit_vBat_nullptr)
     .Times(1)
     .WillOnce(Return(OK));
 
-    Hss hsw1(&den1, &in1, &dsel1, &is1, &timer1);
-    Hss hsw2(&den2, &in2, &dsel2, &is2, &timer2);
-    Hss hsw3(&den3, &in3, &dsel3, &is3, &timer3);
-    Hss hsw4(&den4, &in4, &dsel4, &is4, &timer4);
+    Hss hsw1(&den1, &in1, nullptr, &dsel1, &is1, &timer1, &BTS7002);
+    Hss hsw2(&den2, &in2, nullptr, &dsel2, &is2, &timer2, &BTS7002);
+    Hss hsw3(&den3, &in3, nullptr, &dsel3, &is3, &timer3, &BTS7002);
+    Hss hsw4(&den4, &in4, nullptr, &dsel4, &is4, &timer4, &BTS7002);
 
-    Bts700xShield hssShield(&led1, &led2, &led3, &led4, &hsw1, &hsw2, &hsw3, &hsw4, &timer, &oloff, &pushButtonDigital, &pushButtonAnalog, nullptr);
+    Bts700xShield hssShield(&led1, &led2, &led3, &led4, &hsw1, &hsw2, &hsw3, &hsw4, &timer, &oloff, &pushButtonDigital, &pushButtonAnalog, nullptr, &BTS7002);
 
     ASSERT_EQ(NULLPTR_ERROR, hssShield.deinit());
 }
@@ -1452,12 +1452,12 @@ TEST_F(Hss_BTS700xShield_Test, switchHxOn_1_successful)
     .Times(1)
     .WillOnce(Return(OK));
 
-    Hss hsw1(&den1, &in1, &dsel1, &is1, &timer1);
-    Hss hsw2(&den2, &in2, &dsel2, &is2, &timer2);
-    Hss hsw3(&den3, &in3, &dsel3, &is3, &timer3);
-    Hss hsw4(&den4, &in4, &dsel4, &is4, &timer4);
+    Hss hsw1(&den1, &in1, nullptr, &dsel1, &is1, &timer1, &BTS7002);
+    Hss hsw2(&den2, &in2, nullptr, &dsel2, &is2, &timer2, &BTS7002);
+    Hss hsw3(&den3, &in3, nullptr, &dsel3, &is3, &timer3, &BTS7002);
+    Hss hsw4(&den4, &in4, nullptr, &dsel4, &is4, &timer4, &BTS7002);
 
-    Bts700xShield hssShield(&led1, &led2, &led3, &led4, &hsw1, &hsw2, &hsw3, &hsw4, &timer, &oloff, &pushButtonDigital, &pushButtonAnalog, &vBat);
+    Bts700xShield hssShield(&led1, &led2, &led3, &led4, &hsw1, &hsw2, &hsw3, &hsw4, &timer, &oloff, &pushButtonDigital, &pushButtonAnalog, &vBat, &BTS7002);
     hssShield.init();
 
     ASSERT_EQ(OK, hssShield.switchHxOn(1));
@@ -1469,12 +1469,12 @@ TEST_F(Hss_BTS700xShield_Test, switchHxOn_2_successful)
     .Times(1)
     .WillOnce(Return(OK));
 
-    Hss hsw1(&den1, &in1, &dsel1, &is1, &timer1);
-    Hss hsw2(&den2, &in2, &dsel2, &is2, &timer2);
-    Hss hsw3(&den3, &in3, &dsel3, &is3, &timer3);
-    Hss hsw4(&den4, &in4, &dsel4, &is4, &timer4);
+    Hss hsw1(&den1, &in1, nullptr, &dsel1, &is1, &timer1, &BTS7002);
+    Hss hsw2(&den2, &in2, nullptr, &dsel2, &is2, &timer2, &BTS7002);
+    Hss hsw3(&den3, &in3, nullptr, &dsel3, &is3, &timer3, &BTS7002);
+    Hss hsw4(&den4, &in4, nullptr, &dsel4, &is4, &timer4, &BTS7002);
 
-    Bts700xShield hssShield(&led1, &led2, &led3, &led4, &hsw1, &hsw2, &hsw3, &hsw4, &timer, &oloff, &pushButtonDigital, &pushButtonAnalog, &vBat);
+    Bts700xShield hssShield(&led1, &led2, &led3, &led4, &hsw1, &hsw2, &hsw3, &hsw4, &timer, &oloff, &pushButtonDigital, &pushButtonAnalog, &vBat, &BTS7002);
     hssShield.init();
 
     ASSERT_EQ(OK, hssShield.switchHxOn(2));
@@ -1486,12 +1486,12 @@ TEST_F(Hss_BTS700xShield_Test, switchHxOn_3_successful)
     .Times(1)
     .WillOnce(Return(OK));
 
-    Hss hsw1(&den1, &in1, &dsel1, &is1, &timer1);
-    Hss hsw2(&den2, &in2, &dsel2, &is2, &timer2);
-    Hss hsw3(&den3, &in3, &dsel3, &is3, &timer3);
-    Hss hsw4(&den4, &in4, &dsel4, &is4, &timer4);
+    Hss hsw1(&den1, &in1, nullptr, &dsel1, &is1, &timer1, &BTS7002);
+    Hss hsw2(&den2, &in2, nullptr, &dsel2, &is2, &timer2, &BTS7002);
+    Hss hsw3(&den3, &in3, nullptr, &dsel3, &is3, &timer3, &BTS7002);
+    Hss hsw4(&den4, &in4, nullptr, &dsel4, &is4, &timer4, &BTS7002);
 
-    Bts700xShield hssShield(&led1, &led2, &led3, &led4, &hsw1, &hsw2, &hsw3, &hsw4, &timer, &oloff, &pushButtonDigital, &pushButtonAnalog, &vBat);
+    Bts700xShield hssShield(&led1, &led2, &led3, &led4, &hsw1, &hsw2, &hsw3, &hsw4, &timer, &oloff, &pushButtonDigital, &pushButtonAnalog, &vBat, &BTS7002);
     hssShield.init();
 
     ASSERT_EQ(OK, hssShield.switchHxOn(3));
@@ -1503,12 +1503,12 @@ TEST_F(Hss_BTS700xShield_Test, switchHxOn_4_successful)
     .Times(1)
     .WillOnce(Return(OK));
 
-    Hss hsw1(&den1, &in1, &dsel1, &is1, &timer1);
-    Hss hsw2(&den2, &in2, &dsel2, &is2, &timer2);
-    Hss hsw3(&den3, &in3, &dsel3, &is3, &timer3);
-    Hss hsw4(&den4, &in4, &dsel4, &is4, &timer4);
+    Hss hsw1(&den1, &in1, nullptr, &dsel1, &is1, &timer1, &BTS7002);
+    Hss hsw2(&den2, &in2, nullptr, &dsel2, &is2, &timer2, &BTS7002);
+    Hss hsw3(&den3, &in3, nullptr, &dsel3, &is3, &timer3, &BTS7002);
+    Hss hsw4(&den4, &in4, nullptr, &dsel4, &is4, &timer4, &BTS7002);
 
-    Bts700xShield hssShield(&led1, &led2, &led3, &led4, &hsw1, &hsw2, &hsw3, &hsw4, &timer, &oloff, &pushButtonDigital, &pushButtonAnalog, &vBat);
+    Bts700xShield hssShield(&led1, &led2, &led3, &led4, &hsw1, &hsw2, &hsw3, &hsw4, &timer, &oloff, &pushButtonDigital, &pushButtonAnalog, &vBat, &BTS7002);
     hssShield.init();
 
     ASSERT_EQ(OK, hssShield.switchHxOn(4));
@@ -1520,12 +1520,12 @@ TEST_F(Hss_BTS700xShield_Test, switchHxOn_1_failed)
     .Times(1)
     .WillOnce(Return(INTF_ERROR));
 
-    Hss hsw1(&den1, &in1, &dsel1, &is1, &timer1);
-    Hss hsw2(&den2, &in2, &dsel2, &is2, &timer2);
-    Hss hsw3(&den3, &in3, &dsel3, &is3, &timer3);
-    Hss hsw4(&den4, &in4, &dsel4, &is4, &timer4);
+    Hss hsw1(&den1, &in1, nullptr, &dsel1, &is1, &timer1, &BTS7002);
+    Hss hsw2(&den2, &in2, nullptr, &dsel2, &is2, &timer2, &BTS7002);
+    Hss hsw3(&den3, &in3, nullptr, &dsel3, &is3, &timer3, &BTS7002);
+    Hss hsw4(&den4, &in4, nullptr, &dsel4, &is4, &timer4, &BTS7002);
 
-    Bts700xShield hssShield(&led1, &led2, &led3, &led4, &hsw1, &hsw2, &hsw3, &hsw4, &timer, &oloff, &pushButtonDigital, &pushButtonAnalog, &vBat);
+    Bts700xShield hssShield(&led1, &led2, &led3, &led4, &hsw1, &hsw2, &hsw3, &hsw4, &timer, &oloff, &pushButtonDigital, &pushButtonAnalog, &vBat, &BTS7002);
     hssShield.init();
 
     ASSERT_EQ(INTF_ERROR, hssShield.switchHxOn(1));
@@ -1537,12 +1537,12 @@ TEST_F(Hss_BTS700xShield_Test, switchHxOn_2_failed)
     .Times(1)
     .WillOnce(Return(INTF_ERROR));
 
-    Hss hsw1(&den1, &in1, &dsel1, &is1, &timer1);
-    Hss hsw2(&den2, &in2, &dsel2, &is2, &timer2);
-    Hss hsw3(&den3, &in3, &dsel3, &is3, &timer3);
-    Hss hsw4(&den4, &in4, &dsel4, &is4, &timer4);
+    Hss hsw1(&den1, &in1, nullptr, &dsel1, &is1, &timer1, &BTS7002);
+    Hss hsw2(&den2, &in2, nullptr, &dsel2, &is2, &timer2, &BTS7002);
+    Hss hsw3(&den3, &in3, nullptr, &dsel3, &is3, &timer3, &BTS7002);
+    Hss hsw4(&den4, &in4, nullptr, &dsel4, &is4, &timer4, &BTS7002);
 
-    Bts700xShield hssShield(&led1, &led2, &led3, &led4, &hsw1, &hsw2, &hsw3, &hsw4, &timer, &oloff, &pushButtonDigital, &pushButtonAnalog, &vBat);
+    Bts700xShield hssShield(&led1, &led2, &led3, &led4, &hsw1, &hsw2, &hsw3, &hsw4, &timer, &oloff, &pushButtonDigital, &pushButtonAnalog, &vBat, &BTS7002);
     hssShield.init();
 
     ASSERT_EQ(INTF_ERROR, hssShield.switchHxOn(2));
@@ -1554,12 +1554,12 @@ TEST_F(Hss_BTS700xShield_Test, switchHxOn_3_failed)
     .Times(1)
     .WillOnce(Return(INTF_ERROR));
 
-    Hss hsw1(&den1, &in1, &dsel1, &is1, &timer1);
-    Hss hsw2(&den2, &in2, &dsel2, &is2, &timer2);
-    Hss hsw3(&den3, &in3, &dsel3, &is3, &timer3);
-    Hss hsw4(&den4, &in4, &dsel4, &is4, &timer4);
+    Hss hsw1(&den1, &in1, nullptr, &dsel1, &is1, &timer1, &BTS7002);
+    Hss hsw2(&den2, &in2, nullptr, &dsel2, &is2, &timer2, &BTS7002);
+    Hss hsw3(&den3, &in3, nullptr, &dsel3, &is3, &timer3, &BTS7002);
+    Hss hsw4(&den4, &in4, nullptr, &dsel4, &is4, &timer4, &BTS7002);
 
-    Bts700xShield hssShield(&led1, &led2, &led3, &led4, &hsw1, &hsw2, &hsw3, &hsw4, &timer, &oloff, &pushButtonDigital, &pushButtonAnalog, &vBat);
+    Bts700xShield hssShield(&led1, &led2, &led3, &led4, &hsw1, &hsw2, &hsw3, &hsw4, &timer, &oloff, &pushButtonDigital, &pushButtonAnalog, &vBat, &BTS7002);
     hssShield.init();
 
     ASSERT_EQ(INTF_ERROR, hssShield.switchHxOn(3));
@@ -1571,12 +1571,12 @@ TEST_F(Hss_BTS700xShield_Test, switchHxOn_4_failed)
     .Times(1)
     .WillOnce(Return(INTF_ERROR));
 
-    Hss hsw1(&den1, &in1, &dsel1, &is1, &timer1);
-    Hss hsw2(&den2, &in2, &dsel2, &is2, &timer2);
-    Hss hsw3(&den3, &in3, &dsel3, &is3, &timer3);
-    Hss hsw4(&den4, &in4, &dsel4, &is4, &timer4);
+    Hss hsw1(&den1, &in1, nullptr, &dsel1, &is1, &timer1, &BTS7002);
+    Hss hsw2(&den2, &in2, nullptr, &dsel2, &is2, &timer2, &BTS7002);
+    Hss hsw3(&den3, &in3, nullptr, &dsel3, &is3, &timer3, &BTS7002);
+    Hss hsw4(&den4, &in4, nullptr, &dsel4, &is4, &timer4, &BTS7002);
 
-    Bts700xShield hssShield(&led1, &led2, &led3, &led4, &hsw1, &hsw2, &hsw3, &hsw4, &timer, &oloff, &pushButtonDigital, &pushButtonAnalog, &vBat);
+    Bts700xShield hssShield(&led1, &led2, &led3, &led4, &hsw1, &hsw2, &hsw3, &hsw4, &timer, &oloff, &pushButtonDigital, &pushButtonAnalog, &vBat, &BTS7002);
     hssShield.init();
 
     ASSERT_EQ(INTF_ERROR, hssShield.switchHxOn(4));
@@ -1588,12 +1588,12 @@ TEST_F(Hss_BTS700xShield_Test, switchHxOn_1_hss_failed)
     .Times(1)
     .WillOnce(Return(INTF_ERROR));
 
-    Hss hsw1(&den1, &in1, &dsel1, &is1, &timer1);
-    Hss hsw2(&den2, &in2, &dsel2, &is2, &timer2);
-    Hss hsw3(&den3, &in3, &dsel3, &is3, &timer3);
-    Hss hsw4(&den4, &in4, &dsel4, &is4, &timer4);
+    Hss hsw1(&den1, &in1, nullptr, &dsel1, &is1, &timer1, &BTS7002);
+    Hss hsw2(&den2, &in2, nullptr, &dsel2, &is2, &timer2, &BTS7002);
+    Hss hsw3(&den3, &in3, nullptr, &dsel3, &is3, &timer3, &BTS7002);
+    Hss hsw4(&den4, &in4, nullptr, &dsel4, &is4, &timer4, &BTS7002);
 
-    Bts700xShield hssShield(&led1, &led2, &led3, &led4, &hsw1, &hsw2, &hsw3, &hsw4, &timer, &oloff, &pushButtonDigital, &pushButtonAnalog, &vBat);
+    Bts700xShield hssShield(&led1, &led2, &led3, &led4, &hsw1, &hsw2, &hsw3, &hsw4, &timer, &oloff, &pushButtonDigital, &pushButtonAnalog, &vBat, &BTS7002);
     hssShield.init();
 
     ASSERT_EQ(INTF_ERROR, hssShield.switchHxOn(1));
@@ -1605,12 +1605,12 @@ TEST_F(Hss_BTS700xShield_Test, switchHxOn_2_hss_failed)
     .Times(1)
     .WillOnce(Return(INTF_ERROR));
 
-    Hss hsw1(&den1, &in1, &dsel1, &is1, &timer1);
-    Hss hsw2(&den2, &in2, &dsel2, &is2, &timer2);
-    Hss hsw3(&den3, &in3, &dsel3, &is3, &timer3);
-    Hss hsw4(&den4, &in4, &dsel4, &is4, &timer4);
+    Hss hsw1(&den1, &in1, nullptr, &dsel1, &is1, &timer1, &BTS7002);
+    Hss hsw2(&den2, &in2, nullptr, &dsel2, &is2, &timer2, &BTS7002);
+    Hss hsw3(&den3, &in3, nullptr, &dsel3, &is3, &timer3, &BTS7002);
+    Hss hsw4(&den4, &in4, nullptr, &dsel4, &is4, &timer4, &BTS7002);
 
-    Bts700xShield hssShield(&led1, &led2, &led3, &led4, &hsw1, &hsw2, &hsw3, &hsw4, &timer, &oloff, &pushButtonDigital, &pushButtonAnalog, &vBat);
+    Bts700xShield hssShield(&led1, &led2, &led3, &led4, &hsw1, &hsw2, &hsw3, &hsw4, &timer, &oloff, &pushButtonDigital, &pushButtonAnalog, &vBat, &BTS7002);
     hssShield.init();
 
     ASSERT_EQ(INTF_ERROR, hssShield.switchHxOn(2));
@@ -1622,12 +1622,12 @@ TEST_F(Hss_BTS700xShield_Test, switchHxOn_3_hss_failed)
     .Times(1)
     .WillOnce(Return(INTF_ERROR));
 
-    Hss hsw1(&den1, &in1, &dsel1, &is1, &timer1);
-    Hss hsw2(&den2, &in2, &dsel2, &is2, &timer2);
-    Hss hsw3(&den3, &in3, &dsel3, &is3, &timer3);
-    Hss hsw4(&den4, &in4, &dsel4, &is4, &timer4);
+    Hss hsw1(&den1, &in1, nullptr, &dsel1, &is1, &timer1, &BTS7002);
+    Hss hsw2(&den2, &in2, nullptr, &dsel2, &is2, &timer2, &BTS7002);
+    Hss hsw3(&den3, &in3, nullptr, &dsel3, &is3, &timer3, &BTS7002);
+    Hss hsw4(&den4, &in4, nullptr, &dsel4, &is4, &timer4, &BTS7002);
 
-    Bts700xShield hssShield(&led1, &led2, &led3, &led4, &hsw1, &hsw2, &hsw3, &hsw4, &timer, &oloff, &pushButtonDigital, &pushButtonAnalog, &vBat);
+    Bts700xShield hssShield(&led1, &led2, &led3, &led4, &hsw1, &hsw2, &hsw3, &hsw4, &timer, &oloff, &pushButtonDigital, &pushButtonAnalog, &vBat, &BTS7002);
     hssShield.init();
 
     ASSERT_EQ(INTF_ERROR, hssShield.switchHxOn(3));
@@ -1639,12 +1639,12 @@ TEST_F(Hss_BTS700xShield_Test, switchHxOn_4_hss_failed)
     .Times(1)
     .WillOnce(Return(INTF_ERROR));
 
-    Hss hsw1(&den1, &in1, &dsel1, &is1, &timer1);
-    Hss hsw2(&den2, &in2, &dsel2, &is2, &timer2);
-    Hss hsw3(&den3, &in3, &dsel3, &is3, &timer3);
-    Hss hsw4(&den4, &in4, &dsel4, &is4, &timer4);
+    Hss hsw1(&den1, &in1, nullptr, &dsel1, &is1, &timer1, &BTS7002);
+    Hss hsw2(&den2, &in2, nullptr, &dsel2, &is2, &timer2, &BTS7002);
+    Hss hsw3(&den3, &in3, nullptr, &dsel3, &is3, &timer3, &BTS7002);
+    Hss hsw4(&den4, &in4, nullptr, &dsel4, &is4, &timer4, &BTS7002);
 
-    Bts700xShield hssShield(&led1, &led2, &led3, &led4, &hsw1, &hsw2, &hsw3, &hsw4, &timer, &oloff, &pushButtonDigital, &pushButtonAnalog, &vBat);
+    Bts700xShield hssShield(&led1, &led2, &led3, &led4, &hsw1, &hsw2, &hsw3, &hsw4, &timer, &oloff, &pushButtonDigital, &pushButtonAnalog, &vBat, &BTS7002);
     hssShield.init();
 
     ASSERT_EQ(INTF_ERROR, hssShield.switchHxOn(4));
@@ -1656,12 +1656,12 @@ TEST_F(Hss_BTS700xShield_Test, switchHxOff_1_successful)
     .Times(1)
     .WillOnce(Return(OK));
 
-    Hss hsw1(&den1, &in1, &dsel1, &is1, &timer1);
-    Hss hsw2(&den2, &in2, &dsel2, &is2, &timer2);
-    Hss hsw3(&den3, &in3, &dsel3, &is3, &timer3);
-    Hss hsw4(&den4, &in4, &dsel4, &is4, &timer4);
+    Hss hsw1(&den1, &in1, nullptr, &dsel1, &is1, &timer1, &BTS7002);
+    Hss hsw2(&den2, &in2, nullptr, &dsel2, &is2, &timer2, &BTS7002);
+    Hss hsw3(&den3, &in3, nullptr, &dsel3, &is3, &timer3, &BTS7002);
+    Hss hsw4(&den4, &in4, nullptr, &dsel4, &is4, &timer4, &BTS7002);
 
-    Bts700xShield hssShield(&led1, &led2, &led3, &led4, &hsw1, &hsw2, &hsw3, &hsw4, &timer, &oloff, &pushButtonDigital, &pushButtonAnalog, &vBat);
+    Bts700xShield hssShield(&led1, &led2, &led3, &led4, &hsw1, &hsw2, &hsw3, &hsw4, &timer, &oloff, &pushButtonDigital, &pushButtonAnalog, &vBat, &BTS7002);
     hssShield.init();
 
     ASSERT_EQ(OK, hssShield.switchHxOff(1));
@@ -1673,12 +1673,12 @@ TEST_F(Hss_BTS700xShield_Test, switchHxOff_2_successful)
     .Times(1)
     .WillOnce(Return(OK));
 
-    Hss hsw1(&den1, &in1, &dsel1, &is1, &timer1);
-    Hss hsw2(&den2, &in2, &dsel2, &is2, &timer2);
-    Hss hsw3(&den3, &in3, &dsel3, &is3, &timer3);
-    Hss hsw4(&den4, &in4, &dsel4, &is4, &timer4);
+    Hss hsw1(&den1, &in1, nullptr, &dsel1, &is1, &timer1, &BTS7002);
+    Hss hsw2(&den2, &in2, nullptr, &dsel2, &is2, &timer2, &BTS7002);
+    Hss hsw3(&den3, &in3, nullptr, &dsel3, &is3, &timer3, &BTS7002);
+    Hss hsw4(&den4, &in4, nullptr, &dsel4, &is4, &timer4, &BTS7002);
 
-    Bts700xShield hssShield(&led1, &led2, &led3, &led4, &hsw1, &hsw2, &hsw3, &hsw4, &timer, &oloff, &pushButtonDigital, &pushButtonAnalog, &vBat);
+    Bts700xShield hssShield(&led1, &led2, &led3, &led4, &hsw1, &hsw2, &hsw3, &hsw4, &timer, &oloff, &pushButtonDigital, &pushButtonAnalog, &vBat, &BTS7002);
     hssShield.init();
 
     ASSERT_EQ(OK, hssShield.switchHxOff(2));
@@ -1690,12 +1690,12 @@ TEST_F(Hss_BTS700xShield_Test, switchHxOff_3_successful)
     .Times(1)
     .WillOnce(Return(OK));
 
-    Hss hsw1(&den1, &in1, &dsel1, &is1, &timer1);
-    Hss hsw2(&den2, &in2, &dsel2, &is2, &timer2);
-    Hss hsw3(&den3, &in3, &dsel3, &is3, &timer3);
-    Hss hsw4(&den4, &in4, &dsel4, &is4, &timer4);
+    Hss hsw1(&den1, &in1, nullptr, &dsel1, &is1, &timer1, &BTS7002);
+    Hss hsw2(&den2, &in2, nullptr, &dsel2, &is2, &timer2, &BTS7002);
+    Hss hsw3(&den3, &in3, nullptr, &dsel3, &is3, &timer3, &BTS7002);
+    Hss hsw4(&den4, &in4, nullptr, &dsel4, &is4, &timer4, &BTS7002);
 
-    Bts700xShield hssShield(&led1, &led2, &led3, &led4, &hsw1, &hsw2, &hsw3, &hsw4, &timer, &oloff, &pushButtonDigital, &pushButtonAnalog, &vBat);
+    Bts700xShield hssShield(&led1, &led2, &led3, &led4, &hsw1, &hsw2, &hsw3, &hsw4, &timer, &oloff, &pushButtonDigital, &pushButtonAnalog, &vBat, &BTS7002);
     hssShield.init();
 
     ASSERT_EQ(OK, hssShield.switchHxOff(3));
@@ -1707,12 +1707,12 @@ TEST_F(Hss_BTS700xShield_Test, switchHxOff_4_successful)
     .Times(1)
     .WillOnce(Return(OK));
 
-    Hss hsw1(&den1, &in1, &dsel1, &is1, &timer1);
-    Hss hsw2(&den2, &in2, &dsel2, &is2, &timer2);
-    Hss hsw3(&den3, &in3, &dsel3, &is3, &timer3);
-    Hss hsw4(&den4, &in4, &dsel4, &is4, &timer4);
+    Hss hsw1(&den1, &in1, nullptr, &dsel1, &is1, &timer1, &BTS7002);
+    Hss hsw2(&den2, &in2, nullptr, &dsel2, &is2, &timer2, &BTS7002);
+    Hss hsw3(&den3, &in3, nullptr, &dsel3, &is3, &timer3, &BTS7002);
+    Hss hsw4(&den4, &in4, nullptr, &dsel4, &is4, &timer4, &BTS7002);
 
-    Bts700xShield hssShield(&led1, &led2, &led3, &led4, &hsw1, &hsw2, &hsw3, &hsw4, &timer, &oloff, &pushButtonDigital, &pushButtonAnalog, &vBat);
+    Bts700xShield hssShield(&led1, &led2, &led3, &led4, &hsw1, &hsw2, &hsw3, &hsw4, &timer, &oloff, &pushButtonDigital, &pushButtonAnalog, &vBat, &BTS7002);
     hssShield.init();
 
     ASSERT_EQ(OK, hssShield.switchHxOff(4));
@@ -1724,12 +1724,12 @@ TEST_F(Hss_BTS700xShield_Test, switchHxOff_1_failed)
     .Times(1)
     .WillOnce(Return(INTF_ERROR));
 
-    Hss hsw1(&den1, &in1, &dsel1, &is1, &timer1);
-    Hss hsw2(&den2, &in2, &dsel2, &is2, &timer2);
-    Hss hsw3(&den3, &in3, &dsel3, &is3, &timer3);
-    Hss hsw4(&den4, &in4, &dsel4, &is4, &timer4);
+    Hss hsw1(&den1, &in1, nullptr, &dsel1, &is1, &timer1, &BTS7002);
+    Hss hsw2(&den2, &in2, nullptr, &dsel2, &is2, &timer2, &BTS7002);
+    Hss hsw3(&den3, &in3, nullptr, &dsel3, &is3, &timer3, &BTS7002);
+    Hss hsw4(&den4, &in4, nullptr, &dsel4, &is4, &timer4, &BTS7002);
 
-    Bts700xShield hssShield(&led1, &led2, &led3, &led4, &hsw1, &hsw2, &hsw3, &hsw4, &timer, &oloff, &pushButtonDigital, &pushButtonAnalog, &vBat);
+    Bts700xShield hssShield(&led1, &led2, &led3, &led4, &hsw1, &hsw2, &hsw3, &hsw4, &timer, &oloff, &pushButtonDigital, &pushButtonAnalog, &vBat, &BTS7002);
     hssShield.init();
 
     ASSERT_EQ(INTF_ERROR, hssShield.switchHxOff(1));
@@ -1741,12 +1741,12 @@ TEST_F(Hss_BTS700xShield_Test, switchHxOff_2_failed)
     .Times(1)
     .WillOnce(Return(INTF_ERROR));
 
-    Hss hsw1(&den1, &in1, &dsel1, &is1, &timer1);
-    Hss hsw2(&den2, &in2, &dsel2, &is2, &timer2);
-    Hss hsw3(&den3, &in3, &dsel3, &is3, &timer3);
-    Hss hsw4(&den4, &in4, &dsel4, &is4, &timer4);
+    Hss hsw1(&den1, &in1, nullptr, &dsel1, &is1, &timer1, &BTS7002);
+    Hss hsw2(&den2, &in2, nullptr, &dsel2, &is2, &timer2, &BTS7002);
+    Hss hsw3(&den3, &in3, nullptr, &dsel3, &is3, &timer3, &BTS7002);
+    Hss hsw4(&den4, &in4, nullptr, &dsel4, &is4, &timer4, &BTS7002);
 
-    Bts700xShield hssShield(&led1, &led2, &led3, &led4, &hsw1, &hsw2, &hsw3, &hsw4, &timer, &oloff, &pushButtonDigital, &pushButtonAnalog, &vBat);
+    Bts700xShield hssShield(&led1, &led2, &led3, &led4, &hsw1, &hsw2, &hsw3, &hsw4, &timer, &oloff, &pushButtonDigital, &pushButtonAnalog, &vBat, &BTS7002);
     hssShield.init();
 
     ASSERT_EQ(INTF_ERROR, hssShield.switchHxOff(2));
@@ -1758,12 +1758,12 @@ TEST_F(Hss_BTS700xShield_Test, switchHxOff_3_failed)
     .Times(1)
     .WillOnce(Return(INTF_ERROR));
 
-    Hss hsw1(&den1, &in1, &dsel1, &is1, &timer1);
-    Hss hsw2(&den2, &in2, &dsel2, &is2, &timer2);
-    Hss hsw3(&den3, &in3, &dsel3, &is3, &timer3);
-    Hss hsw4(&den4, &in4, &dsel4, &is4, &timer4);
+    Hss hsw1(&den1, &in1, nullptr, &dsel1, &is1, &timer1, &BTS7002);
+    Hss hsw2(&den2, &in2, nullptr, &dsel2, &is2, &timer2, &BTS7002);
+    Hss hsw3(&den3, &in3, nullptr, &dsel3, &is3, &timer3, &BTS7002);
+    Hss hsw4(&den4, &in4, nullptr, &dsel4, &is4, &timer4, &BTS7002);
 
-    Bts700xShield hssShield(&led1, &led2, &led3, &led4, &hsw1, &hsw2, &hsw3, &hsw4, &timer, &oloff, &pushButtonDigital, &pushButtonAnalog, &vBat);
+    Bts700xShield hssShield(&led1, &led2, &led3, &led4, &hsw1, &hsw2, &hsw3, &hsw4, &timer, &oloff, &pushButtonDigital, &pushButtonAnalog, &vBat, &BTS7002);
     hssShield.init();
 
     ASSERT_EQ(INTF_ERROR, hssShield.switchHxOff(3));
@@ -1775,12 +1775,12 @@ TEST_F(Hss_BTS700xShield_Test, switchHxOff_4_failed)
     .Times(1)
     .WillOnce(Return(INTF_ERROR));
 
-    Hss hsw1(&den1, &in1, &dsel1, &is1, &timer1);
-    Hss hsw2(&den2, &in2, &dsel2, &is2, &timer2);
-    Hss hsw3(&den3, &in3, &dsel3, &is3, &timer3);
-    Hss hsw4(&den4, &in4, &dsel4, &is4, &timer4);
+    Hss hsw1(&den1, &in1, nullptr, &dsel1, &is1, &timer1, &BTS7002);
+    Hss hsw2(&den2, &in2, nullptr, &dsel2, &is2, &timer2, &BTS7002);
+    Hss hsw3(&den3, &in3, nullptr, &dsel3, &is3, &timer3, &BTS7002);
+    Hss hsw4(&den4, &in4, nullptr, &dsel4, &is4, &timer4, &BTS7002);
 
-    Bts700xShield hssShield(&led1, &led2, &led3, &led4, &hsw1, &hsw2, &hsw3, &hsw4, &timer, &oloff, &pushButtonDigital, &pushButtonAnalog, &vBat);
+    Bts700xShield hssShield(&led1, &led2, &led3, &led4, &hsw1, &hsw2, &hsw3, &hsw4, &timer, &oloff, &pushButtonDigital, &pushButtonAnalog, &vBat, &BTS7002);
     hssShield.init();
 
     ASSERT_EQ(INTF_ERROR, hssShield.switchHxOff(4));
@@ -1792,12 +1792,12 @@ TEST_F(Hss_BTS700xShield_Test, switchHxOff_1_hss_failed)
     .Times(1)
     .WillOnce(Return(INTF_ERROR));
 
-    Hss hsw1(&den1, &in1, &dsel1, &is1, &timer1);
-    Hss hsw2(&den2, &in2, &dsel2, &is2, &timer2);
-    Hss hsw3(&den3, &in3, &dsel3, &is3, &timer3);
-    Hss hsw4(&den4, &in4, &dsel4, &is4, &timer4);
+    Hss hsw1(&den1, &in1, nullptr, &dsel1, &is1, &timer1, &BTS7002);
+    Hss hsw2(&den2, &in2, nullptr, &dsel2, &is2, &timer2, &BTS7002);
+    Hss hsw3(&den3, &in3, nullptr, &dsel3, &is3, &timer3, &BTS7002);
+    Hss hsw4(&den4, &in4, nullptr, &dsel4, &is4, &timer4, &BTS7002);
 
-    Bts700xShield hssShield(&led1, &led2, &led3, &led4, &hsw1, &hsw2, &hsw3, &hsw4, &timer, &oloff, &pushButtonDigital, &pushButtonAnalog, &vBat);
+    Bts700xShield hssShield(&led1, &led2, &led3, &led4, &hsw1, &hsw2, &hsw3, &hsw4, &timer, &oloff, &pushButtonDigital, &pushButtonAnalog, &vBat, &BTS7002);
     hssShield.init();
 
     ASSERT_EQ(INTF_ERROR, hssShield.switchHxOff(1));
@@ -1809,12 +1809,12 @@ TEST_F(Hss_BTS700xShield_Test, switchHxOff_2_hss_failed)
     .Times(1)
     .WillOnce(Return(INTF_ERROR));
 
-    Hss hsw1(&den1, &in1, &dsel1, &is1, &timer1);
-    Hss hsw2(&den2, &in2, &dsel2, &is2, &timer2);
-    Hss hsw3(&den3, &in3, &dsel3, &is3, &timer3);
-    Hss hsw4(&den4, &in4, &dsel4, &is4, &timer4);
+    Hss hsw1(&den1, &in1, nullptr, &dsel1, &is1, &timer1, &BTS7002);
+    Hss hsw2(&den2, &in2, nullptr, &dsel2, &is2, &timer2, &BTS7002);
+    Hss hsw3(&den3, &in3, nullptr, &dsel3, &is3, &timer3, &BTS7002);
+    Hss hsw4(&den4, &in4, nullptr, &dsel4, &is4, &timer4, &BTS7002);
 
-    Bts700xShield hssShield(&led1, &led2, &led3, &led4, &hsw1, &hsw2, &hsw3, &hsw4, &timer, &oloff, &pushButtonDigital, &pushButtonAnalog, &vBat);
+    Bts700xShield hssShield(&led1, &led2, &led3, &led4, &hsw1, &hsw2, &hsw3, &hsw4, &timer, &oloff, &pushButtonDigital, &pushButtonAnalog, &vBat, &BTS7002);
     hssShield.init();
 
     ASSERT_EQ(INTF_ERROR, hssShield.switchHxOff(2));
@@ -1826,12 +1826,12 @@ TEST_F(Hss_BTS700xShield_Test, switchHxOff_3_hss_failed)
     .Times(1)
     .WillOnce(Return(INTF_ERROR));
 
-    Hss hsw1(&den1, &in1, &dsel1, &is1, &timer1);
-    Hss hsw2(&den2, &in2, &dsel2, &is2, &timer2);
-    Hss hsw3(&den3, &in3, &dsel3, &is3, &timer3);
-    Hss hsw4(&den4, &in4, &dsel4, &is4, &timer4);
+    Hss hsw1(&den1, &in1, nullptr, &dsel1, &is1, &timer1, &BTS7002);
+    Hss hsw2(&den2, &in2, nullptr, &dsel2, &is2, &timer2, &BTS7002);
+    Hss hsw3(&den3, &in3, nullptr, &dsel3, &is3, &timer3, &BTS7002);
+    Hss hsw4(&den4, &in4, nullptr, &dsel4, &is4, &timer4, &BTS7002);
 
-    Bts700xShield hssShield(&led1, &led2, &led3, &led4, &hsw1, &hsw2, &hsw3, &hsw4, &timer, &oloff, &pushButtonDigital, &pushButtonAnalog, &vBat);
+    Bts700xShield hssShield(&led1, &led2, &led3, &led4, &hsw1, &hsw2, &hsw3, &hsw4, &timer, &oloff, &pushButtonDigital, &pushButtonAnalog, &vBat, &BTS7002);
     hssShield.init();
 
     ASSERT_EQ(INTF_ERROR, hssShield.switchHxOff(3));
@@ -1843,12 +1843,12 @@ TEST_F(Hss_BTS700xShield_Test, switchHxOff_4_hss_failed)
     .Times(1)
     .WillOnce(Return(INTF_ERROR));
 
-    Hss hsw1(&den1, &in1, &dsel1, &is1, &timer1);
-    Hss hsw2(&den2, &in2, &dsel2, &is2, &timer2);
-    Hss hsw3(&den3, &in3, &dsel3, &is3, &timer3);
-    Hss hsw4(&den4, &in4, &dsel4, &is4, &timer4);
+    Hss hsw1(&den1, &in1, nullptr, &dsel1, &is1, &timer1, &BTS7002);
+    Hss hsw2(&den2, &in2, nullptr, &dsel2, &is2, &timer2, &BTS7002);
+    Hss hsw3(&den3, &in3, nullptr, &dsel3, &is3, &timer3, &BTS7002);
+    Hss hsw4(&den4, &in4, nullptr, &dsel4, &is4, &timer4, &BTS7002);
 
-    Bts700xShield hssShield(&led1, &led2, &led3, &led4, &hsw1, &hsw2, &hsw3, &hsw4, &timer, &oloff, &pushButtonDigital, &pushButtonAnalog, &vBat);
+    Bts700xShield hssShield(&led1, &led2, &led3, &led4, &hsw1, &hsw2, &hsw3, &hsw4, &timer, &oloff, &pushButtonDigital, &pushButtonAnalog, &vBat, &BTS7002);
     hssShield.init();
 
     ASSERT_EQ(INTF_ERROR, hssShield.switchHxOff(4));
@@ -1869,12 +1869,12 @@ TEST_F(Hss_BTS700xShield_Test, switchesHxOn_success_all)
     .Times(1)
     .WillOnce(Return(OK));
 
-    Hss hsw1(&den1, &in1, &dsel1, &is1, &timer1);
-    Hss hsw2(&den2, &in2, &dsel2, &is2, &timer2);
-    Hss hsw3(&den3, &in3, &dsel3, &is3, &timer3);
-    Hss hsw4(&den4, &in4, &dsel4, &is4, &timer4);
+    Hss hsw1(&den1, &in1, nullptr, &dsel1, &is1, &timer1, &BTS7002);
+    Hss hsw2(&den2, &in2, nullptr, &dsel2, &is2, &timer2, &BTS7002);
+    Hss hsw3(&den3, &in3, nullptr, &dsel3, &is3, &timer3, &BTS7002);
+    Hss hsw4(&den4, &in4, nullptr, &dsel4, &is4, &timer4, &BTS7002);
 
-    Bts700xShield hssShield(&led1, &led2, &led3, &led4, &hsw1, &hsw2, &hsw3, &hsw4, &timer, &oloff, &pushButtonDigital, &pushButtonAnalog, &vBat);
+    Bts700xShield hssShield(&led1, &led2, &led3, &led4, &hsw1, &hsw2, &hsw3, &hsw4, &timer, &oloff, &pushButtonDigital, &pushButtonAnalog, &vBat, &BTS7002);
     hssShield.init();
 
     ASSERT_EQ(OK, hssShield.switchesHxOn(true, true, true, true));
@@ -1886,12 +1886,12 @@ TEST_F(Hss_BTS700xShield_Test, switchesHxOn_success_only_third)
     .Times(1)
     .WillOnce(Return(OK));
 
-    Hss hsw1(&den1, &in1, &dsel1, &is1, &timer1);
-    Hss hsw2(&den2, &in2, &dsel2, &is2, &timer2);
-    Hss hsw3(&den3, &in3, &dsel3, &is3, &timer3);
-    Hss hsw4(&den4, &in4, &dsel4, &is4, &timer4);
+    Hss hsw1(&den1, &in1, nullptr, &dsel1, &is1, &timer1, &BTS7002);
+    Hss hsw2(&den2, &in2, nullptr, &dsel2, &is2, &timer2, &BTS7002);
+    Hss hsw3(&den3, &in3, nullptr, &dsel3, &is3, &timer3, &BTS7002);
+    Hss hsw4(&den4, &in4, nullptr, &dsel4, &is4, &timer4, &BTS7002);
 
-    Bts700xShield hssShield(&led1, &led2, &led3, &led4, &hsw1, &hsw2, &hsw3, &hsw4, &timer, &oloff, &pushButtonDigital, &pushButtonAnalog, &vBat);
+    Bts700xShield hssShield(&led1, &led2, &led3, &led4, &hsw1, &hsw2, &hsw3, &hsw4, &timer, &oloff, &pushButtonDigital, &pushButtonAnalog, &vBat, &BTS7002);
     hssShield.init();
 
     ASSERT_EQ(OK, hssShield.switchesHxOn(false, false, true));
@@ -1903,12 +1903,12 @@ TEST_F(Hss_BTS700xShield_Test, switchesHxOn_1_fail)
     .Times(1)
     .WillOnce(Return(INTF_ERROR));
 
-    Hss hsw1(&den1, &in1, &dsel1, &is1, &timer1);
-    Hss hsw2(&den2, &in2, &dsel2, &is2, &timer2);
-    Hss hsw3(&den3, &in3, &dsel3, &is3, &timer3);
-    Hss hsw4(&den4, &in4, &dsel4, &is4, &timer4);
+    Hss hsw1(&den1, &in1, nullptr, &dsel1, &is1, &timer1, &BTS7002);
+    Hss hsw2(&den2, &in2, nullptr, &dsel2, &is2, &timer2, &BTS7002);
+    Hss hsw3(&den3, &in3, nullptr, &dsel3, &is3, &timer3, &BTS7002);
+    Hss hsw4(&den4, &in4, nullptr, &dsel4, &is4, &timer4, &BTS7002);
 
-    Bts700xShield hssShield(&led1, &led2, &led3, &led4, &hsw1, &hsw2, &hsw3, &hsw4, &timer, &oloff, &pushButtonDigital, &pushButtonAnalog, &vBat);
+    Bts700xShield hssShield(&led1, &led2, &led3, &led4, &hsw1, &hsw2, &hsw3, &hsw4, &timer, &oloff, &pushButtonDigital, &pushButtonAnalog, &vBat, &BTS7002);
     hssShield.init();
 
     ASSERT_EQ(INTF_ERROR, hssShield.switchesHxOn(true, true, true, true));
@@ -1924,12 +1924,12 @@ TEST_F(Hss_BTS700xShield_Test, switchesHxOn_2_fail)
     .WillOnce(Return(INTF_ERROR));
 
 
-    Hss hsw1(&den1, &in1, &dsel1, &is1, &timer1);
-    Hss hsw2(&den2, &in2, &dsel2, &is2, &timer2);
-    Hss hsw3(&den3, &in3, &dsel3, &is3, &timer3);
-    Hss hsw4(&den4, &in4, &dsel4, &is4, &timer4);
+    Hss hsw1(&den1, &in1, nullptr, &dsel1, &is1, &timer1, &BTS7002);
+    Hss hsw2(&den2, &in2, nullptr, &dsel2, &is2, &timer2, &BTS7002);
+    Hss hsw3(&den3, &in3, nullptr, &dsel3, &is3, &timer3, &BTS7002);
+    Hss hsw4(&den4, &in4, nullptr, &dsel4, &is4, &timer4, &BTS7002);
 
-    Bts700xShield hssShield(&led1, &led2, &led3, &led4, &hsw1, &hsw2, &hsw3, &hsw4, &timer, &oloff, &pushButtonDigital, &pushButtonAnalog, &vBat);
+    Bts700xShield hssShield(&led1, &led2, &led3, &led4, &hsw1, &hsw2, &hsw3, &hsw4, &timer, &oloff, &pushButtonDigital, &pushButtonAnalog, &vBat, &BTS7002);
     hssShield.init();
 
     ASSERT_EQ(INTF_ERROR, hssShield.switchesHxOn(true, true, true, true));
@@ -1947,12 +1947,12 @@ TEST_F(Hss_BTS700xShield_Test, switchesHxOn_3_fail)
     .Times(1)
     .WillOnce(Return(INTF_ERROR));
 
-    Hss hsw1(&den1, &in1, &dsel1, &is1, &timer1);
-    Hss hsw2(&den2, &in2, &dsel2, &is2, &timer2);
-    Hss hsw3(&den3, &in3, &dsel3, &is3, &timer3);
-    Hss hsw4(&den4, &in4, &dsel4, &is4, &timer4);
+    Hss hsw1(&den1, &in1, nullptr, &dsel1, &is1, &timer1, &BTS7002);
+    Hss hsw2(&den2, &in2, nullptr, &dsel2, &is2, &timer2, &BTS7002);
+    Hss hsw3(&den3, &in3, nullptr, &dsel3, &is3, &timer3, &BTS7002);
+    Hss hsw4(&den4, &in4, nullptr, &dsel4, &is4, &timer4, &BTS7002);
 
-    Bts700xShield hssShield(&led1, &led2, &led3, &led4, &hsw1, &hsw2, &hsw3, &hsw4, &timer, &oloff, &pushButtonDigital, &pushButtonAnalog, &vBat);
+    Bts700xShield hssShield(&led1, &led2, &led3, &led4, &hsw1, &hsw2, &hsw3, &hsw4, &timer, &oloff, &pushButtonDigital, &pushButtonAnalog, &vBat, &BTS7002);
     hssShield.init();
 
     ASSERT_EQ(INTF_ERROR, hssShield.switchesHxOn(true, true, true, true));
@@ -1973,12 +1973,12 @@ TEST_F(Hss_BTS700xShield_Test, switchesHxOn_4_fail)
     .Times(1)
     .WillOnce(Return(INTF_ERROR));
 
-    Hss hsw1(&den1, &in1, &dsel1, &is1, &timer1);
-    Hss hsw2(&den2, &in2, &dsel2, &is2, &timer2);
-    Hss hsw3(&den3, &in3, &dsel3, &is3, &timer3);
-    Hss hsw4(&den4, &in4, &dsel4, &is4, &timer4);
+    Hss hsw1(&den1, &in1, nullptr, &dsel1, &is1, &timer1, &BTS7002);
+    Hss hsw2(&den2, &in2, nullptr, &dsel2, &is2, &timer2, &BTS7002);
+    Hss hsw3(&den3, &in3, nullptr, &dsel3, &is3, &timer3, &BTS7002);
+    Hss hsw4(&den4, &in4, nullptr, &dsel4, &is4, &timer4, &BTS7002);
 
-    Bts700xShield hssShield(&led1, &led2, &led3, &led4, &hsw1, &hsw2, &hsw3, &hsw4, &timer, &oloff, &pushButtonDigital, &pushButtonAnalog, &vBat);
+    Bts700xShield hssShield(&led1, &led2, &led3, &led4, &hsw1, &hsw2, &hsw3, &hsw4, &timer, &oloff, &pushButtonDigital, &pushButtonAnalog, &vBat, &BTS7002);
     hssShield.init();
 
     ASSERT_EQ(INTF_ERROR, hssShield.switchesHxOn(true, true, true, true));
@@ -1999,12 +1999,12 @@ TEST_F(Hss_BTS700xShield_Test, switchesHxOff_success_all)
     .Times(1)
     .WillOnce(Return(OK));
 
-    Hss hsw1(&den1, &in1, &dsel1, &is1, &timer1);
-    Hss hsw2(&den2, &in2, &dsel2, &is2, &timer2);
-    Hss hsw3(&den3, &in3, &dsel3, &is3, &timer3);
-    Hss hsw4(&den4, &in4, &dsel4, &is4, &timer4);
+    Hss hsw1(&den1, &in1, nullptr, &dsel1, &is1, &timer1, &BTS7002);
+    Hss hsw2(&den2, &in2, nullptr, &dsel2, &is2, &timer2, &BTS7002);
+    Hss hsw3(&den3, &in3, nullptr, &dsel3, &is3, &timer3, &BTS7002);
+    Hss hsw4(&den4, &in4, nullptr, &dsel4, &is4, &timer4, &BTS7002);
 
-    Bts700xShield hssShield(&led1, &led2, &led3, &led4, &hsw1, &hsw2, &hsw3, &hsw4, &timer, &oloff, &pushButtonDigital, &pushButtonAnalog, &vBat);
+    Bts700xShield hssShield(&led1, &led2, &led3, &led4, &hsw1, &hsw2, &hsw3, &hsw4, &timer, &oloff, &pushButtonDigital, &pushButtonAnalog, &vBat, &BTS7002);
     hssShield.init();
 
     ASSERT_EQ(OK, hssShield.switchesHxOff(true, true, true, true));
@@ -2016,12 +2016,12 @@ TEST_F(Hss_BTS700xShield_Test, switchesHxOff_success_only_third)
     .Times(1)
     .WillOnce(Return(OK));
 
-    Hss hsw1(&den1, &in1, &dsel1, &is1, &timer1);
-    Hss hsw2(&den2, &in2, &dsel2, &is2, &timer2);
-    Hss hsw3(&den3, &in3, &dsel3, &is3, &timer3);
-    Hss hsw4(&den4, &in4, &dsel4, &is4, &timer4);
+    Hss hsw1(&den1, &in1, nullptr, &dsel1, &is1, &timer1, &BTS7002);
+    Hss hsw2(&den2, &in2, nullptr, &dsel2, &is2, &timer2, &BTS7002);
+    Hss hsw3(&den3, &in3, nullptr, &dsel3, &is3, &timer3, &BTS7002);
+    Hss hsw4(&den4, &in4, nullptr, &dsel4, &is4, &timer4, &BTS7002);
 
-    Bts700xShield hssShield(&led1, &led2, &led3, &led4, &hsw1, &hsw2, &hsw3, &hsw4, &timer, &oloff, &pushButtonDigital, &pushButtonAnalog, &vBat);
+    Bts700xShield hssShield(&led1, &led2, &led3, &led4, &hsw1, &hsw2, &hsw3, &hsw4, &timer, &oloff, &pushButtonDigital, &pushButtonAnalog, &vBat, &BTS7002);
     hssShield.init();
 
     ASSERT_EQ(OK, hssShield.switchesHxOff(false, false, true));
@@ -2033,12 +2033,12 @@ TEST_F(Hss_BTS700xShield_Test, switchesHxOff_1_fail)
     .Times(1)
     .WillOnce(Return(INTF_ERROR));
 
-    Hss hsw1(&den1, &in1, &dsel1, &is1, &timer1);
-    Hss hsw2(&den2, &in2, &dsel2, &is2, &timer2);
-    Hss hsw3(&den3, &in3, &dsel3, &is3, &timer3);
-    Hss hsw4(&den4, &in4, &dsel4, &is4, &timer4);
+    Hss hsw1(&den1, &in1, nullptr, &dsel1, &is1, &timer1, &BTS7002);
+    Hss hsw2(&den2, &in2, nullptr, &dsel2, &is2, &timer2, &BTS7002);
+    Hss hsw3(&den3, &in3, nullptr, &dsel3, &is3, &timer3, &BTS7002);
+    Hss hsw4(&den4, &in4, nullptr, &dsel4, &is4, &timer4, &BTS7002);
 
-    Bts700xShield hssShield(&led1, &led2, &led3, &led4, &hsw1, &hsw2, &hsw3, &hsw4, &timer, &oloff, &pushButtonDigital, &pushButtonAnalog, &vBat);
+    Bts700xShield hssShield(&led1, &led2, &led3, &led4, &hsw1, &hsw2, &hsw3, &hsw4, &timer, &oloff, &pushButtonDigital, &pushButtonAnalog, &vBat, &BTS7002);
     hssShield.init();
 
     ASSERT_EQ(INTF_ERROR, hssShield.switchesHxOff(true, true, true, true));
@@ -2054,12 +2054,12 @@ TEST_F(Hss_BTS700xShield_Test, switchesHxOff_2_fail)
     .WillOnce(Return(INTF_ERROR));
 
 
-    Hss hsw1(&den1, &in1, &dsel1, &is1, &timer1);
-    Hss hsw2(&den2, &in2, &dsel2, &is2, &timer2);
-    Hss hsw3(&den3, &in3, &dsel3, &is3, &timer3);
-    Hss hsw4(&den4, &in4, &dsel4, &is4, &timer4);
+    Hss hsw1(&den1, &in1, nullptr, &dsel1, &is1, &timer1, &BTS7002);
+    Hss hsw2(&den2, &in2, nullptr, &dsel2, &is2, &timer2, &BTS7002);
+    Hss hsw3(&den3, &in3, nullptr, &dsel3, &is3, &timer3, &BTS7002);
+    Hss hsw4(&den4, &in4, nullptr, &dsel4, &is4, &timer4, &BTS7002);
 
-    Bts700xShield hssShield(&led1, &led2, &led3, &led4, &hsw1, &hsw2, &hsw3, &hsw4, &timer, &oloff, &pushButtonDigital, &pushButtonAnalog, &vBat);
+    Bts700xShield hssShield(&led1, &led2, &led3, &led4, &hsw1, &hsw2, &hsw3, &hsw4, &timer, &oloff, &pushButtonDigital, &pushButtonAnalog, &vBat, &BTS7002);
     hssShield.init();
 
     ASSERT_EQ(INTF_ERROR, hssShield.switchesHxOff(true, true, true, true));
@@ -2077,12 +2077,12 @@ TEST_F(Hss_BTS700xShield_Test, switchesHxOff_3_fail)
     .Times(1)
     .WillOnce(Return(INTF_ERROR));
 
-    Hss hsw1(&den1, &in1, &dsel1, &is1, &timer1);
-    Hss hsw2(&den2, &in2, &dsel2, &is2, &timer2);
-    Hss hsw3(&den3, &in3, &dsel3, &is3, &timer3);
-    Hss hsw4(&den4, &in4, &dsel4, &is4, &timer4);
+    Hss hsw1(&den1, &in1, nullptr, &dsel1, &is1, &timer1, &BTS7002);
+    Hss hsw2(&den2, &in2, nullptr, &dsel2, &is2, &timer2, &BTS7002);
+    Hss hsw3(&den3, &in3, nullptr, &dsel3, &is3, &timer3, &BTS7002);
+    Hss hsw4(&den4, &in4, nullptr, &dsel4, &is4, &timer4, &BTS7002);
 
-    Bts700xShield hssShield(&led1, &led2, &led3, &led4, &hsw1, &hsw2, &hsw3, &hsw4, &timer, &oloff, &pushButtonDigital, &pushButtonAnalog, &vBat);
+    Bts700xShield hssShield(&led1, &led2, &led3, &led4, &hsw1, &hsw2, &hsw3, &hsw4, &timer, &oloff, &pushButtonDigital, &pushButtonAnalog, &vBat, &BTS7002);
     hssShield.init();
 
     ASSERT_EQ(INTF_ERROR, hssShield.switchesHxOff(true, true, true, true));
@@ -2103,12 +2103,12 @@ TEST_F(Hss_BTS700xShield_Test, switchesHxOff_4_fail)
     .Times(1)
     .WillOnce(Return(INTF_ERROR));
 
-    Hss hsw1(&den1, &in1, &dsel1, &is1, &timer1);
-    Hss hsw2(&den2, &in2, &dsel2, &is2, &timer2);
-    Hss hsw3(&den3, &in3, &dsel3, &is3, &timer3);
-    Hss hsw4(&den4, &in4, &dsel4, &is4, &timer4);
+    Hss hsw1(&den1, &in1, nullptr, &dsel1, &is1, &timer1, &BTS7002);
+    Hss hsw2(&den2, &in2, nullptr, &dsel2, &is2, &timer2, &BTS7002);
+    Hss hsw3(&den3, &in3, nullptr, &dsel3, &is3, &timer3, &BTS7002);
+    Hss hsw4(&den4, &in4, nullptr, &dsel4, &is4, &timer4, &BTS7002);
 
-    Bts700xShield hssShield(&led1, &led2, &led3, &led4, &hsw1, &hsw2, &hsw3, &hsw4, &timer, &oloff, &pushButtonDigital, &pushButtonAnalog, &vBat);
+    Bts700xShield hssShield(&led1, &led2, &led3, &led4, &hsw1, &hsw2, &hsw3, &hsw4, &timer, &oloff, &pushButtonDigital, &pushButtonAnalog, &vBat, &BTS7002);
     hssShield.init();
 
     ASSERT_EQ(INTF_ERROR, hssShield.switchesHxOff(true, true, true, true));
@@ -2116,12 +2116,12 @@ TEST_F(Hss_BTS700xShield_Test, switchesHxOff_4_fail)
 
 TEST_F(Hss_BTS700xShield_Test, readIsx_1)
 {
-    Hss hsw1(&den1, &in1, &dsel1, &is1, &timer1);
-    Hss hsw2(&den2, &in2, &dsel2, &is2, &timer2);
-    Hss hsw3(&den3, &in3, &dsel3, &is3, &timer3);
-    Hss hsw4(&den4, &in4, &dsel4, &is4, &timer4);
+    Hss hsw1(&den1, &in1, nullptr, &dsel1, &is1, &timer1, &BTS7002);
+    Hss hsw2(&den2, &in2, nullptr, &dsel2, &is2, &timer2, &BTS7002);
+    Hss hsw3(&den3, &in3, nullptr, &dsel3, &is3, &timer3, &BTS7002);
+    Hss hsw4(&den4, &in4, nullptr, &dsel4, &is4, &timer4, &BTS7002);
 
-    Bts700xShield hssShield(&led1, &led2, &led3, &led4, &hsw1, &hsw2, &hsw3, &hsw4, &timer, &oloff, &pushButtonDigital, &pushButtonAnalog, &vBat);
+    Bts700xShield hssShield(&led1, &led2, &led3, &led4, &hsw1, &hsw2, &hsw3, &hsw4, &timer, &oloff, &pushButtonDigital, &pushButtonAnalog, &vBat, &BTS7002);
     hssShield.init();
 
     ASSERT_NEAR(0, hssShield.readIsx(1), 9223372036854755807);
@@ -2129,12 +2129,12 @@ TEST_F(Hss_BTS700xShield_Test, readIsx_1)
 
 TEST_F(Hss_BTS700xShield_Test, readIsx_2)
 {
-    Hss hsw1(&den1, &in1, &dsel1, &is1, &timer1);
-    Hss hsw2(&den2, &in2, &dsel2, &is2, &timer2);
-    Hss hsw3(&den3, &in3, &dsel3, &is3, &timer3);
-    Hss hsw4(&den4, &in4, &dsel4, &is4, &timer4);
+    Hss hsw1(&den1, &in1, nullptr, &dsel1, &is1, &timer1, &BTS7002);
+    Hss hsw2(&den2, &in2, nullptr, &dsel2, &is2, &timer2, &BTS7002);
+    Hss hsw3(&den3, &in3, nullptr, &dsel3, &is3, &timer3, &BTS7002);
+    Hss hsw4(&den4, &in4, nullptr, &dsel4, &is4, &timer4, &BTS7002);
 
-    Bts700xShield hssShield(&led1, &led2, &led3, &led4, &hsw1, &hsw2, &hsw3, &hsw4, &timer, &oloff, &pushButtonDigital, &pushButtonAnalog, &vBat);
+    Bts700xShield hssShield(&led1, &led2, &led3, &led4, &hsw1, &hsw2, &hsw3, &hsw4, &timer, &oloff, &pushButtonDigital, &pushButtonAnalog, &vBat, &BTS7002);
     hssShield.init();
 
     ASSERT_NEAR(0, hssShield.readIsx(2), 9223372036854755807);
@@ -2142,12 +2142,12 @@ TEST_F(Hss_BTS700xShield_Test, readIsx_2)
 
 TEST_F(Hss_BTS700xShield_Test, readIsx_3)
 {
-    Hss hsw1(&den1, &in1, &dsel1, &is1, &timer1);
-    Hss hsw2(&den2, &in2, &dsel2, &is2, &timer2);
-    Hss hsw3(&den3, &in3, &dsel3, &is3, &timer3);
-    Hss hsw4(&den4, &in4, &dsel4, &is4, &timer4);
+    Hss hsw1(&den1, &in1, nullptr, &dsel1, &is1, &timer1, &BTS7002);
+    Hss hsw2(&den2, &in2, nullptr, &dsel2, &is2, &timer2, &BTS7002);
+    Hss hsw3(&den3, &in3, nullptr, &dsel3, &is3, &timer3, &BTS7002);
+    Hss hsw4(&den4, &in4, nullptr, &dsel4, &is4, &timer4, &BTS7002);
 
-    Bts700xShield hssShield(&led1, &led2, &led3, &led4, &hsw1, &hsw2, &hsw3, &hsw4, &timer, &oloff, &pushButtonDigital, &pushButtonAnalog, &vBat);
+    Bts700xShield hssShield(&led1, &led2, &led3, &led4, &hsw1, &hsw2, &hsw3, &hsw4, &timer, &oloff, &pushButtonDigital, &pushButtonAnalog, &vBat, &BTS7002);
     hssShield.init();
 
     ASSERT_NEAR(0, hssShield.readIsx(3), 9223372036854755807);
@@ -2155,12 +2155,12 @@ TEST_F(Hss_BTS700xShield_Test, readIsx_3)
 
 TEST_F(Hss_BTS700xShield_Test, readIsx_4)
 {
-    Hss hsw1(&den1, &in1, &dsel1, &is1, &timer1);
-    Hss hsw2(&den2, &in2, &dsel2, &is2, &timer2);
-    Hss hsw3(&den3, &in3, &dsel3, &is3, &timer3);
-    Hss hsw4(&den4, &in4, &dsel4, &is4, &timer4);
+    Hss hsw1(&den1, &in1, nullptr, &dsel1, &is1, &timer1, &BTS7002);
+    Hss hsw2(&den2, &in2, nullptr, &dsel2, &is2, &timer2, &BTS7002);
+    Hss hsw3(&den3, &in3, nullptr, &dsel3, &is3, &timer3, &BTS7002);
+    Hss hsw4(&den4, &in4, nullptr, &dsel4, &is4, &timer4, &BTS7002);
 
-    Bts700xShield hssShield(&led1, &led2, &led3, &led4, &hsw1, &hsw2, &hsw3, &hsw4, &timer, &oloff, &pushButtonDigital, &pushButtonAnalog, &vBat);
+    Bts700xShield hssShield(&led1, &led2, &led3, &led4, &hsw1, &hsw2, &hsw3, &hsw4, &timer, &oloff, &pushButtonDigital, &pushButtonAnalog, &vBat, &BTS7002);
     hssShield.init();
 
     ASSERT_NEAR(0, hssShield.readIsx(4), 9223372036854755807);
@@ -2172,12 +2172,12 @@ TEST_F(Hss_BTS700xShield_Test, readDiagx_1_on)
     .Times(1)
     .WillOnce(Return(OK));
 
-    Hss hsw1(&den1, &in1, &dsel1, &is1, &timer1);
-    Hss hsw2(&den2, &in2, &dsel2, &is2, &timer2);
-    Hss hsw3(&den3, &in3, &dsel3, &is3, &timer3);
-    Hss hsw4(&den4, &in4, &dsel4, &is4, &timer4);
+    Hss hsw1(&den1, &in1, nullptr, &dsel1, &is1, &timer1, &BTS7002);
+    Hss hsw2(&den2, &in2, nullptr, &dsel2, &is2, &timer2, &BTS7002);
+    Hss hsw3(&den3, &in3, nullptr, &dsel3, &is3, &timer3, &BTS7002);
+    Hss hsw4(&den4, &in4, nullptr, &dsel4, &is4, &timer4, &BTS7002);
 
-    Bts700xShield hssShield(&led1, &led2, &led3, &led4, &hsw1, &hsw2, &hsw3, &hsw4, &timer, &oloff, &pushButtonDigital, &pushButtonAnalog, &vBat);
+    Bts700xShield hssShield(&led1, &led2, &led3, &led4, &hsw1, &hsw2, &hsw3, &hsw4, &timer, &oloff, &pushButtonDigital, &pushButtonAnalog, &vBat, &BTS7002);
     hssShield.init();
     hssShield.switchHxOn(1);
 
@@ -2190,12 +2190,12 @@ TEST_F(Hss_BTS700xShield_Test, readDiagx_2_on)
     .Times(1)
     .WillOnce(Return(OK));
 
-    Hss hsw1(&den1, &in1, &dsel1, &is1, &timer1);
-    Hss hsw2(&den2, &in2, &dsel2, &is2, &timer2);
-    Hss hsw3(&den3, &in3, &dsel3, &is3, &timer3);
-    Hss hsw4(&den4, &in4, &dsel4, &is4, &timer4);
+    Hss hsw1(&den1, &in1, nullptr, &dsel1, &is1, &timer1, &BTS7002);
+    Hss hsw2(&den2, &in2, nullptr, &dsel2, &is2, &timer2, &BTS7002);
+    Hss hsw3(&den3, &in3, nullptr, &dsel3, &is3, &timer3, &BTS7002);
+    Hss hsw4(&den4, &in4, nullptr, &dsel4, &is4, &timer4, &BTS7002);
 
-    Bts700xShield hssShield(&led1, &led2, &led3, &led4, &hsw1, &hsw2, &hsw3, &hsw4, &timer, &oloff, &pushButtonDigital, &pushButtonAnalog, &vBat);
+    Bts700xShield hssShield(&led1, &led2, &led3, &led4, &hsw1, &hsw2, &hsw3, &hsw4, &timer, &oloff, &pushButtonDigital, &pushButtonAnalog, &vBat, &BTS7002);
     hssShield.init();
     hssShield.switchHxOn(2);
 
@@ -2208,12 +2208,12 @@ TEST_F(Hss_BTS700xShield_Test, readDiagx_3_on)
     .Times(1)
     .WillOnce(Return(OK));
 
-    Hss hsw1(&den1, &in1, &dsel1, &is1, &timer1);
-    Hss hsw2(&den2, &in2, &dsel2, &is2, &timer2);
-    Hss hsw3(&den3, &in3, &dsel3, &is3, &timer3);
-    Hss hsw4(&den4, &in4, &dsel4, &is4, &timer4);
+    Hss hsw1(&den1, &in1, nullptr, &dsel1, &is1, &timer1, &BTS7002);
+    Hss hsw2(&den2, &in2, nullptr, &dsel2, &is2, &timer2, &BTS7002);
+    Hss hsw3(&den3, &in3, nullptr, &dsel3, &is3, &timer3, &BTS7002);
+    Hss hsw4(&den4, &in4, nullptr, &dsel4, &is4, &timer4, &BTS7002);
 
-    Bts700xShield hssShield(&led1, &led2, &led3, &led4, &hsw1, &hsw2, &hsw3, &hsw4, &timer, &oloff, &pushButtonDigital, &pushButtonAnalog, &vBat);
+    Bts700xShield hssShield(&led1, &led2, &led3, &led4, &hsw1, &hsw2, &hsw3, &hsw4, &timer, &oloff, &pushButtonDigital, &pushButtonAnalog, &vBat, &BTS7002);
     hssShield.init();
     hssShield.switchHxOn(3);
 
@@ -2226,12 +2226,12 @@ TEST_F(Hss_BTS700xShield_Test, readDiagx_4_on)
     .Times(1)
     .WillOnce(Return(OK));
 
-    Hss hsw1(&den1, &in1, &dsel1, &is1, &timer1);
-    Hss hsw2(&den2, &in2, &dsel2, &is2, &timer2);
-    Hss hsw3(&den3, &in3, &dsel3, &is3, &timer3);
-    Hss hsw4(&den4, &in4, &dsel4, &is4, &timer4);
+    Hss hsw1(&den1, &in1, nullptr, &dsel1, &is1, &timer1, &BTS7002);
+    Hss hsw2(&den2, &in2, nullptr, &dsel2, &is2, &timer2, &BTS7002);
+    Hss hsw3(&den3, &in3, nullptr, &dsel3, &is3, &timer3, &BTS7002);
+    Hss hsw4(&den4, &in4, nullptr, &dsel4, &is4, &timer4, &BTS7002);
 
-    Bts700xShield hssShield(&led1, &led2, &led3, &led4, &hsw1, &hsw2, &hsw3, &hsw4, &timer, &oloff, &pushButtonDigital, &pushButtonAnalog, &vBat);
+    Bts700xShield hssShield(&led1, &led2, &led3, &led4, &hsw1, &hsw2, &hsw3, &hsw4, &timer, &oloff, &pushButtonDigital, &pushButtonAnalog, &vBat, &BTS7002);
     hssShield.init();
     hssShield.switchHxOn(4);
 
@@ -2244,12 +2244,12 @@ TEST_F(Hss_BTS700xShield_Test, readDiagx_1_off)
     .Times(1)
     .WillOnce(Return(OK));
 
-    Hss hsw1(&den1, &in1, &dsel1, &is1, &timer1);
-    Hss hsw2(&den2, &in2, &dsel2, &is2, &timer2);
-    Hss hsw3(&den3, &in3, &dsel3, &is3, &timer3);
-    Hss hsw4(&den4, &in4, &dsel4, &is4, &timer4);
+    Hss hsw1(&den1, &in1, nullptr, &dsel1, &is1, &timer1, &BTS7002);
+    Hss hsw2(&den2, &in2, nullptr, &dsel2, &is2, &timer2, &BTS7002);
+    Hss hsw3(&den3, &in3, nullptr, &dsel3, &is3, &timer3, &BTS7002);
+    Hss hsw4(&den4, &in4, nullptr, &dsel4, &is4, &timer4, &BTS7002);
 
-    Bts700xShield hssShield(&led1, &led2, &led3, &led4, &hsw1, &hsw2, &hsw3, &hsw4, &timer, &oloff, &pushButtonDigital, &pushButtonAnalog, &vBat);
+    Bts700xShield hssShield(&led1, &led2, &led3, &led4, &hsw1, &hsw2, &hsw3, &hsw4, &timer, &oloff, &pushButtonDigital, &pushButtonAnalog, &vBat, &BTS7002);
     hssShield.init();
 
     ASSERT_EQ(NORMAL, hssShield.readDiagx(1));
@@ -2261,12 +2261,12 @@ TEST_F(Hss_BTS700xShield_Test, readDiagx_2_off)
     .Times(1)
     .WillOnce(Return(OK));
 
-    Hss hsw1(&den1, &in1, &dsel1, &is1, &timer1);
-    Hss hsw2(&den2, &in2, &dsel2, &is2, &timer2);
-    Hss hsw3(&den3, &in3, &dsel3, &is3, &timer3);
-    Hss hsw4(&den4, &in4, &dsel4, &is4, &timer4);
+    Hss hsw1(&den1, &in1, nullptr, &dsel1, &is1, &timer1, &BTS7002);
+    Hss hsw2(&den2, &in2, nullptr, &dsel2, &is2, &timer2, &BTS7002);
+    Hss hsw3(&den3, &in3, nullptr, &dsel3, &is3, &timer3, &BTS7002);
+    Hss hsw4(&den4, &in4, nullptr, &dsel4, &is4, &timer4, &BTS7002);
 
-    Bts700xShield hssShield(&led1, &led2, &led3, &led4, &hsw1, &hsw2, &hsw3, &hsw4, &timer, &oloff, &pushButtonDigital, &pushButtonAnalog, &vBat);
+    Bts700xShield hssShield(&led1, &led2, &led3, &led4, &hsw1, &hsw2, &hsw3, &hsw4, &timer, &oloff, &pushButtonDigital, &pushButtonAnalog, &vBat, &BTS7002);
     hssShield.init();
 
     ASSERT_EQ(NORMAL, hssShield.readDiagx(2));
@@ -2278,12 +2278,12 @@ TEST_F(Hss_BTS700xShield_Test, readDiagx_3_off)
     .Times(1)
     .WillOnce(Return(OK));
 
-    Hss hsw1(&den1, &in1, &dsel1, &is1, &timer1);
-    Hss hsw2(&den2, &in2, &dsel2, &is2, &timer2);
-    Hss hsw3(&den3, &in3, &dsel3, &is3, &timer3);
-    Hss hsw4(&den4, &in4, &dsel4, &is4, &timer4);
+    Hss hsw1(&den1, &in1, nullptr, &dsel1, &is1, &timer1, &BTS7002);
+    Hss hsw2(&den2, &in2, nullptr, &dsel2, &is2, &timer2, &BTS7002);
+    Hss hsw3(&den3, &in3, nullptr, &dsel3, &is3, &timer3, &BTS7002);
+    Hss hsw4(&den4, &in4, nullptr, &dsel4, &is4, &timer4, &BTS7002);
 
-    Bts700xShield hssShield(&led1, &led2, &led3, &led4, &hsw1, &hsw2, &hsw3, &hsw4, &timer, &oloff, &pushButtonDigital, &pushButtonAnalog, &vBat);
+    Bts700xShield hssShield(&led1, &led2, &led3, &led4, &hsw1, &hsw2, &hsw3, &hsw4, &timer, &oloff, &pushButtonDigital, &pushButtonAnalog, &vBat, &BTS7002);
     hssShield.init();
 
     ASSERT_EQ(NORMAL, hssShield.readDiagx(3));
@@ -2295,12 +2295,12 @@ TEST_F(Hss_BTS700xShield_Test, readDiagx_4_off)
     .Times(1)
     .WillOnce(Return(OK));
 
-    Hss hsw1(&den1, &in1, &dsel1, &is1, &timer1);
-    Hss hsw2(&den2, &in2, &dsel2, &is2, &timer2);
-    Hss hsw3(&den3, &in3, &dsel3, &is3, &timer3);
-    Hss hsw4(&den4, &in4, &dsel4, &is4, &timer4);
+    Hss hsw1(&den1, &in1, nullptr, &dsel1, &is1, &timer1, &BTS7002);
+    Hss hsw2(&den2, &in2, nullptr, &dsel2, &is2, &timer2, &BTS7002);
+    Hss hsw3(&den3, &in3, nullptr, &dsel3, &is3, &timer3, &BTS7002);
+    Hss hsw4(&den4, &in4, nullptr, &dsel4, &is4, &timer4, &BTS7002);
 
-    Bts700xShield hssShield(&led1, &led2, &led3, &led4, &hsw1, &hsw2, &hsw3, &hsw4, &timer, &oloff, &pushButtonDigital, &pushButtonAnalog, &vBat);
+    Bts700xShield hssShield(&led1, &led2, &led3, &led4, &hsw1, &hsw2, &hsw3, &hsw4, &timer, &oloff, &pushButtonDigital, &pushButtonAnalog, &vBat, &BTS7002);
     hssShield.init();
 
     ASSERT_EQ(NORMAL, hssShield.readDiagx(4));
@@ -2308,12 +2308,12 @@ TEST_F(Hss_BTS700xShield_Test, readDiagx_4_off)
 
 TEST_F(Hss_BTS700xShield_Test, diagnosisOff_normal)
 {
-    Hss hsw1(&den1, &in1, &dsel1, &is1, &timer1);
-    Hss hsw2(&den2, &in2, &dsel2, &is2, &timer2);
-    Hss hsw3(&den3, &in3, &dsel3, &is3, &timer3);
-    Hss hsw4(&den4, &in4, &dsel4, &is4, &timer4);
+    Hss hsw1(&den1, &in1, nullptr, &dsel1, &is1, &timer1, &BTS7002);
+    Hss hsw2(&den2, &in2, nullptr, &dsel2, &is2, &timer2, &BTS7002);
+    Hss hsw3(&den3, &in3, nullptr, &dsel3, &is3, &timer3, &BTS7002);
+    Hss hsw4(&den4, &in4, nullptr, &dsel4, &is4, &timer4, &BTS7002);
 
-    Bts700xShield hssShield(&led1, &led2, &led3, &led4, &hsw1, &hsw2, &hsw3, &hsw4, &timer, &oloff, &pushButtonDigital, &pushButtonAnalog, &vBat);
+    Bts700xShield hssShield(&led1, &led2, &led3, &led4, &hsw1, &hsw2, &hsw3, &hsw4, &timer, &oloff, &pushButtonDigital, &pushButtonAnalog, &vBat, &BTS7002);
     hssShield.init();
 
     ASSERT_EQ(0, hssShield.diagnosisOff(5.0, 0.01));    //TODO!
@@ -2321,12 +2321,12 @@ TEST_F(Hss_BTS700xShield_Test, diagnosisOff_normal)
 
 TEST_F(Hss_BTS700xShield_Test, readVss)
 {
-    Hss hsw1(&den1, &in1, &dsel1, &is1, &timer1);
-    Hss hsw2(&den2, &in2, &dsel2, &is2, &timer2);
-    Hss hsw3(&den3, &in3, &dsel3, &is3, &timer3);
-    Hss hsw4(&den4, &in4, &dsel4, &is4, &timer4);
+    Hss hsw1(&den1, &in1, nullptr, &dsel1, &is1, &timer1, &BTS7002);
+    Hss hsw2(&den2, &in2, nullptr, &dsel2, &is2, &timer2, &BTS7002);
+    Hss hsw3(&den3, &in3, nullptr, &dsel3, &is3, &timer3, &BTS7002);
+    Hss hsw4(&den4, &in4, nullptr, &dsel4, &is4, &timer4, &BTS7002);
 
-    Bts700xShield hssShield(&led1, &led2, &led3, &led4, &hsw1, &hsw2, &hsw3, &hsw4, &timer, &oloff, &pushButtonDigital, &pushButtonAnalog, &vBat);
+    Bts700xShield hssShield(&led1, &led2, &led3, &led4, &hsw1, &hsw2, &hsw3, &hsw4, &timer, &oloff, &pushButtonDigital, &pushButtonAnalog, &vBat, &BTS7002);
     hssShield.init();
 
     ASSERT_EQ(0, hssShield.readVss());
@@ -2338,12 +2338,12 @@ TEST_F(Hss_BTS700xShield_Test, digitalReadButton_pressed)
     .Times(1)
     .WillOnce(Return(GPIOPAL::GPIO_LOW));
 
-    Hss hsw1(&den1, &in1, &dsel1, &is1, &timer1);
-    Hss hsw2(&den2, &in2, &dsel2, &is2, &timer2);
-    Hss hsw3(&den3, &in3, &dsel3, &is3, &timer3);
-    Hss hsw4(&den4, &in4, &dsel4, &is4, &timer4);
+    Hss hsw1(&den1, &in1, nullptr, &dsel1, &is1, &timer1, &BTS7002);
+    Hss hsw2(&den2, &in2, nullptr, &dsel2, &is2, &timer2, &BTS7002);
+    Hss hsw3(&den3, &in3, nullptr, &dsel3, &is3, &timer3, &BTS7002);
+    Hss hsw4(&den4, &in4, nullptr, &dsel4, &is4, &timer4, &BTS7002);
 
-    Bts700xShield hssShield(&led1, &led2, &led3, &led4, &hsw1, &hsw2, &hsw3, &hsw4, &timer, &oloff, &pushButtonDigital, &pushButtonAnalog, &vBat);
+    Bts700xShield hssShield(&led1, &led2, &led3, &led4, &hsw1, &hsw2, &hsw3, &hsw4, &timer, &oloff, &pushButtonDigital, &pushButtonAnalog, &vBat, &BTS7002);
     hssShield.init();
 
     ASSERT_EQ(1, hssShield.digitalReadButton());
@@ -2355,12 +2355,12 @@ TEST_F(Hss_BTS700xShield_Test, digitalReadButton_not_pressed)
     .Times(1)
     .WillOnce(Return(GPIOPAL::GPIO_HIGH));
 
-    Hss hsw1(&den1, &in1, &dsel1, &is1, &timer1);
-    Hss hsw2(&den2, &in2, &dsel2, &is2, &timer2);
-    Hss hsw3(&den3, &in3, &dsel3, &is3, &timer3);
-    Hss hsw4(&den4, &in4, &dsel4, &is4, &timer4);
+    Hss hsw1(&den1, &in1, nullptr, &dsel1, &is1, &timer1, &BTS7002);
+    Hss hsw2(&den2, &in2, nullptr, &dsel2, &is2, &timer2, &BTS7002);
+    Hss hsw3(&den3, &in3, nullptr, &dsel3, &is3, &timer3, &BTS7002);
+    Hss hsw4(&den4, &in4, nullptr, &dsel4, &is4, &timer4, &BTS7002);
 
-    Bts700xShield hssShield(&led1, &led2, &led3, &led4, &hsw1, &hsw2, &hsw3, &hsw4, &timer, &oloff, &pushButtonDigital, &pushButtonAnalog, &vBat);
+    Bts700xShield hssShield(&led1, &led2, &led3, &led4, &hsw1, &hsw2, &hsw3, &hsw4, &timer, &oloff, &pushButtonDigital, &pushButtonAnalog, &vBat, &BTS7002);
     hssShield.init();
 
     ASSERT_EQ(0, hssShield.digitalReadButton());
@@ -2372,12 +2372,12 @@ TEST_F(Hss_BTS700xShield_Test, analogReadButton_pressed)
     .Times(1)
     .WillOnce(Return(10));
 
-    Hss hsw1(&den1, &in1, &dsel1, &is1, &timer1);
-    Hss hsw2(&den2, &in2, &dsel2, &is2, &timer2);
-    Hss hsw3(&den3, &in3, &dsel3, &is3, &timer3);
-    Hss hsw4(&den4, &in4, &dsel4, &is4, &timer4);
+    Hss hsw1(&den1, &in1, nullptr, &dsel1, &is1, &timer1, &BTS7002);
+    Hss hsw2(&den2, &in2, nullptr, &dsel2, &is2, &timer2, &BTS7002);
+    Hss hsw3(&den3, &in3, nullptr, &dsel3, &is3, &timer3, &BTS7002);
+    Hss hsw4(&den4, &in4, nullptr, &dsel4, &is4, &timer4, &BTS7002);
 
-    Bts700xShield hssShield(&led1, &led2, &led3, &led4, &hsw1, &hsw2, &hsw3, &hsw4, &timer, &oloff, &pushButtonDigital, &pushButtonAnalog, &vBat);
+    Bts700xShield hssShield(&led1, &led2, &led3, &led4, &hsw1, &hsw2, &hsw3, &hsw4, &timer, &oloff, &pushButtonDigital, &pushButtonAnalog, &vBat, &BTS7002);
     hssShield.init();
 
     ASSERT_EQ(1, hssShield.analogReadButton());
@@ -2389,12 +2389,12 @@ TEST_F(Hss_BTS700xShield_Test, analogReadButton_not_pressed)
     .Times(1)
     .WillOnce(Return(500));
 
-    Hss hsw1(&den1, &in1, &dsel1, &is1, &timer1);
-    Hss hsw2(&den2, &in2, &dsel2, &is2, &timer2);
-    Hss hsw3(&den3, &in3, &dsel3, &is3, &timer3);
-    Hss hsw4(&den4, &in4, &dsel4, &is4, &timer4);
+    Hss hsw1(&den1, &in1, nullptr, &dsel1, &is1, &timer1, &BTS7002);
+    Hss hsw2(&den2, &in2, nullptr, &dsel2, &is2, &timer2, &BTS7002);
+    Hss hsw3(&den3, &in3, nullptr, &dsel3, &is3, &timer3, &BTS7002);
+    Hss hsw4(&den4, &in4, nullptr, &dsel4, &is4, &timer4, &BTS7002);
 
-    Bts700xShield hssShield(&led1, &led2, &led3, &led4, &hsw1, &hsw2, &hsw3, &hsw4, &timer, &oloff, &pushButtonDigital, &pushButtonAnalog, &vBat);
+    Bts700xShield hssShield(&led1, &led2, &led3, &led4, &hsw1, &hsw2, &hsw3, &hsw4, &timer, &oloff, &pushButtonDigital, &pushButtonAnalog, &vBat, &BTS7002);
     hssShield.init();
 
     ASSERT_EQ(0, hssShield.analogReadButton());

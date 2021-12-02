@@ -21,7 +21,7 @@ class Bts500xxShield_Test : public ::testing::Test
          */
         void SetUp()
         {
-            hsw    = new Hss(&den, &in, &is, &timer);
+            hsw    = new Hss(&den, &in, &is, &timer, &BTS50015);
             shield = new Bts500xxShield(hsw, &led1, &led2, &pushButton, &vBat);
 
             ON_CALL(den,init())

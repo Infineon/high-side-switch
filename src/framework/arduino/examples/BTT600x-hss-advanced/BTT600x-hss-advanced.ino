@@ -3,26 +3,26 @@
  * @brief       High-Side-Switch Advanced Example for the Profet24V BTT600x Arduino form factored shield
  * @details     This example shows the usage of the offered functionalities of the shield.
  *              It has 2 parts:
- * 
+ *
  *              1. PART A
  *              - Switches a channel ON
  *              - Reads current through the switch, battery voltage and performs diagnosis in 'ON' state
  *              - Switches the channel OFF
  *              - Reads current through the switch, battery voltage and performs diagnosis in 'OFF' state
- *              
+ *
  *              2. PART B
  *              - Switch multiple channels 'ON' at once
  *              - Switch multiple channels 'OFF' at once
- *              
- *              Find below the Profet 24V shield part details and its offered channels: 
+ *
+ *              Find below the Profet 24V shield part details and its offered channels:
  *              _________________________________________________________________________________
  *                  Shield Name            Included parts          Supported number of channels
  *              _________________________________________________________________________________
- *               24V_SHIELD_BTT6030    Profet 0 (BTT6030-2ERA)                2         
- *                                     Profet 1 (BTT6030-2ERA)                2                                 
- *                                     Profet 2 (BTT6020-1ERA)                1                          
+ *               24V_SHIELD_BTT6030    Profet 0 (BTT6030-2ERA)                2
+ *                                     Profet 1 (BTT6030-2ERA)                2
+ *                                     Profet 2 (BTT6020-1ERA)                1
  *              _________________________________________________________________________________
- * 
+ *
  *              It can be deployed to the Arduino Uno or the XMC's with corresponding form factor.
  *
  * @copyright   Copyright (c) 2021 Infineon Technologies AG
@@ -53,7 +53,7 @@ void setup()
 }
 
 void loop()
-{   
+{
     Serial.println("*** Part A: Single switch operation ***");
 
     /** Turn on Profet 0 - channel 0, get current value and perform diagnosis and then turn it off */
@@ -82,7 +82,7 @@ void loop()
     Serial.println("Turning off Profet 2 (OUT2) ");
 
     Serial.println("*** Part B: Multiple switch operation ***");
-    
+
     /** Turn on all 5 switches parallelly */
     Serial.println("\n--> Turning on all switches at once!");
     HSS.switchesHxOn(1,1,1,1,1);
@@ -103,7 +103,7 @@ void loop()
  * @details     This function is going to perform the following:
  *              - Switch on the selected channel
  *              - Read current through the selected switch
- *              - Perform diagnosis 
+ *              - Perform diagnosis
  *              - Switch off the selected channel
  * @param[in]   switch_no   Switch No.
  */
@@ -122,13 +122,13 @@ void singleSwOperation(int switch_no)
 
     /** Get diagnosis result */
     int switchStatus = HSS.readDiagx(switch_no);
-    if(switchStatus & OPEN_LOAD)
+    if(switchStatus & FAULT_OL_IC)
     {
-        Serial.println("Openload detected!");
+        Serial.println("Open load with enabled switch or inverse current detected!");
     }
-    if(switchStatus & OVERLOAD)
+    if(switchStatus & FAULT)
     {
-        Serial.println("Overload detected!");
+        Serial.println("Overtemperature, overload or shot to ground detected!");
     }
     if(switchStatus & NORMAL)
     {

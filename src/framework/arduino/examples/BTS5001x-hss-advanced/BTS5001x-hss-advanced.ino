@@ -1,16 +1,16 @@
 /**
  * @file        BTS5001x-hss-advanced.ino
  * @brief       High-Side-Switch Advanced Example for BTS5001x Arduino form factored shields
- * @details     This example shows the usage of all the offered functionalities of the shield. 
+ * @details     This example shows the usage of all the offered functionalities of the shield.
  *              It does the following:
  *              - Switches a channel ON
  *              - Reads current through the switch, battery voltage and performs diagnosis in 'ON' state
  *              - Switches the channel OFF
- *              
+ *
  *              You can configure following variants for this shield:
  *              - BTS50010
  *              - BTS50015
- * 
+ *
  *              It can be deployed to the Arduino Uno or the XMC's with corresponding form factor.
  *
  * @copyright   Copyright (c) 2021 Infineon Technologies AG
@@ -42,7 +42,7 @@ void setup()
 }
 
 void loop()
-{   
+{
         /** Turn on the selected channel */
         Serial.println("\n--> Turning the switch ON");
         HSS.switchHxOn();
@@ -65,7 +65,7 @@ void loop()
  * @brief       Perform switch related functionalities
  * @details     This function is going to perform the following:
  *              - Read current through the selected switch
- *              - Perform diagnosis 
+ *              - Perform diagnosis
  *              - Read the battery voltage
  */
 void getSwitchParams()
@@ -100,17 +100,13 @@ void readDiagnosis()
 {
     int switchStatus = HSS.readDiagx();
 
-    if(switchStatus & OPEN_LOAD)
+    if(switchStatus & FAULT_OL_IC)
     {
-        Serial.println("Openload detected!");
+        Serial.println("Open load with enabled switch or inverse current detected!");
     }
-    if(switchStatus & SHORT_TO_VSS)
+    if(switchStatus & FAULT)
     {
-        Serial.println("Short circuit to Vss detected!");
-    }
-    if(switchStatus & SHORT_TO_GND)
-    {
-        Serial.println("Short circuit to ground detected!");
+        Serial.println("Overtemperature, overload or shot to ground detected!");
     }
     if(switchStatus & NORMAL)
     {

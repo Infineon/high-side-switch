@@ -19,7 +19,8 @@ class Bts700xShield : public HssShield
 {
     public:
 
-                        Bts700xShield(GPIOPAL *led1, GPIOPAL *led2, GPIOPAL *led3, GPIOPAL *led4, Hss *hsw1, Hss *hsw2, Hss *hsw3, Hss *hsw4, TimerPAL *timer, GPIOPAL *oloff, GPIOPAL *pushButtonDigital, ADCPAL *pushButtonAnalog, ADCPAL *vBat);
+                        Bts700xShield(GPIOPAL *led1, GPIOPAL *led2, GPIOPAL *led3, GPIOPAL *led4, Hss *hsw1, Hss *hsw2, Hss *hsw3, Hss *hsw4, TimerPAL *timer,
+                                      GPIOPAL *oloff, GPIOPAL *pushButtonDigital, ADCPAL *pushButtonAnalog, ADCPAL *vBat, BtxVariants_t* btxVariant);
                         ~Bts700xShield();
 
         Error_t         init();
@@ -30,13 +31,14 @@ class Bts700xShield : public HssShield
         Error_t         switchesHxOff(bool h1 = false, bool h2 = false, bool h3 = false, bool h4 = false);
 
         DiagStatus_t    readDiagx(uint8_t x);
-        DiagStatus_t    diagnosisOff(float currentOn, float currentOff);
 
         float           readIsx(uint8_t x);
         float           readVss();
 
         bool            digitalReadButton();
         bool            analogReadButton();
+
+        void            setVoltageOffset(float offset);
 
     protected:
 
@@ -60,17 +62,14 @@ class Bts700xShield : public HssShield
         ADCPAL              *pushButtonAnalog;
         ADCPAL              *vBat;
 
-        BtsVariants_t       *btsVariant;
-
-        const float         vBatGain = 1.0;
-        const float         vBatOffset = 0.0;
-
-        float               getIs(uint8_t x);
+        BtxVariants_t       *btxVariant;
 
     private:
 
-        const float iisFault = 0.0044;
-        const float iisOl =  0.00002;
+        DiagStatus_t        diagnosisOff(float currentOn, float currentOff);
+
+        float               vBatOffset = 0.0;
+        const uint16_t      rSense = 1000;
 };
 
 #endif /** HSS_SHIELD_BTS700x_HPP_ */

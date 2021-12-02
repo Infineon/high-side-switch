@@ -11,13 +11,13 @@ class Profet24VBTTShield_Test : public ::testing::Test
 
     public:
 
-        NiceMock<MockGPIO> den[5];
+        NiceMock<MockGPIO> den[3];
         NiceMock<MockGPIO> in[5];   
-        NiceMock<MockGPIO> dsel[5];
-        NiceMock<MockADC> is[5];
-        NiceMock<MockTimer> timer[5];
+        NiceMock<MockGPIO> dsel[2];
+        NiceMock<MockADC> is[3];
+        NiceMock<MockTimer> timer[3];
 
-        Hss * hsw[5];
+        Hss * hsw[3];
         Profet24VBTTShield * shieldProfet24V;
 
         /**
@@ -25,9 +25,16 @@ class Profet24VBTTShield_Test : public ::testing::Test
          */
         void SetUp()
         {
-            for(uint8_t i = 0; i < 5; i++)
+            for(uint8_t i = 0; i < 3; i++)
             {
-                hsw[i] = new Hss(&den[i], &in[i], &dsel[i], &is[i], &timer[i]);
+                if(2 == i)
+                {
+                    hsw[i] = new Hss(&den[i], &in[2*i], &is[i], &timer[i], &BTT6020);   
+                }
+                else
+                {
+                    hsw[i] = new Hss(&den[i], &in[2*i], &in[2*i + 1], &dsel[i], &is[i], &timer[i], &BTT6030);
+                }
 
                 ON_CALL(den[i],init())
                 .WillByDefault(Return(OK));
@@ -60,7 +67,7 @@ class Profet24VBTTShield_Test : public ::testing::Test
                 .WillByDefault(Return(OK));
             }
 
-            shieldProfet24V = new Profet24VBTTShield(hsw[0], hsw[1], hsw[2], hsw[3], hsw[4]);
+            shieldProfet24V = new Profet24VBTTShield(hsw[0], hsw[1], hsw[2]);
         }
 
         /**
@@ -68,7 +75,7 @@ class Profet24VBTTShield_Test : public ::testing::Test
          */
         void TearDown()
         {   
-            for(uint8_t i = 0; i < 5; i++)
+            for(uint8_t i = 0; i < 3; i++)
             {
                 delete hsw[i];
             }

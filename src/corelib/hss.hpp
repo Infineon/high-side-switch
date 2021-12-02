@@ -32,31 +32,28 @@ using namespace hss;
 class Hss
 {
     public:
-                            Hss(GPIOPAL *in, ADCPAL *is, TimerPAL *timer);
-                            Hss(GPIOPAL *den, GPIOPAL *in, ADCPAL *is, TimerPAL *timer);
-                            Hss(GPIOPAL *den, GPIOPAL *in, GPIOPAL *dsel, ADCPAL *is, TimerPAL *timer);
+
+                            Hss(GPIOPAL *den, GPIOPAL *in, ADCPAL *is, TimerPAL *timer, BtxVariants_t *btxVariant);
+                            Hss(GPIOPAL *den, GPIOPAL *in0, GPIOPAL *in1, GPIOPAL *dsel, ADCPAL *is, TimerPAL *timer, BtxVariants_t *btxVariant);
                             ~Hss();
         Error_t             init();
         Error_t             deinit();
-        Error_t             enable();
-        Error_t             disable();
+        Error_t             enable(Channel_t ch=CHANNEL0);
+        Error_t             disable(Channel_t ch=CHANNEL0);
         Error_t             enableDiag();
         Error_t             disableDiag();
-        Error_t             diagReset();
 
         Status_t            getSwitchStatus();
-        // TODO: Rework the diagRead function, also for the shield(s)
-        DiagStatus_t        diagRead(float amps, float iisFault, float iisOl, uint16_t kilis, Channel_t ch=NO_CHANNEL);
+        DiagStatus_t        diagRead(float senseCurrent, Channel_t ch=CHANNEL0);
+        float               readIs(uint16_t rSense, Channel_t ch=CHANNEL0);
 
-        uint16_t            readIs(Channel_t ch=NO_CHANNEL);
-        // TODO: Check if this function is really needed, or if this can be included into the diagRead function
-        float               calibrateIs(float inVal, uint16_t kilis, float ampsOffset, float ampsGain);
-
+        void                setCurrentOffset(float offset);
 
     protected:
 
         GPIOPAL             *den;
-        GPIOPAL             *in;
+        GPIOPAL             *in0;
+        GPIOPAL             *in1;
         GPIOPAL             *dsel;
         ADCPAL              *is;
 
@@ -64,12 +61,19 @@ class Hss
 
         ExponentialFilter   *currentFilter;
 
+        BtxVariants_t       *btxVariant;
         Status_t            status;
+        Status_t            statusCh0;
+        Status_t            statusCh1;
+
         DiagEnable_t        diagEnb;
         DiagStatus_t        diagStatus;
 
-        Error_t             selDiagCh(Channel_t ch=NO_CHANNEL);
+        Error_t             selDiagCh(Channel_t ch);
 
+    private:
+
+        float               currentOffset = 0.0;
 
 };
 

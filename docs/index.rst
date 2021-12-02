@@ -95,7 +95,6 @@ Please find the license file for this library `here <https://github.com/Infineon
 
    API <lib-details/api.rst>
    PAL Interface <lib-details/pal-interface.rst>
-   Doxygen Docs <lib-details/doxygen.rst>
 
 .. toctree::
    :maxdepth: 3
@@ -108,3 +107,11 @@ Please find the license file for this library `here <https://github.com/Infineon
    :hidden:
 
    sw-frmwk/arduino/index
+
+.. toctree::
+   :maxdepth: 2
+   :caption: API DOCS
+   :hidden:
+
+   about
+   api-docs-index

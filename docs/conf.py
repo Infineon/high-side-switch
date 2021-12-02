@@ -10,33 +10,14 @@
 # add these directories to sys.path here. If the directory is relative to the
 # documentation root, use os.path.abspath to make it absolute, like shown here.
 #
-import os
-import sys
-sys.path.insert(0, os.path.abspath('./../xfpdev'))
 
+from recommonmark.parser import CommonMarkParser
+from sphinx.builders.html import StandaloneHTMLBuilder
 import subprocess, os, sys
-
-# def configureDoxyfile(input_dir, output_dir):
-
-# 	with open('doxygen/rtd_doxygen.in', 'r') as file :
-# 		filedata = file.read()
-
-# 	filedata = filedata.replace('@DOXYGEN_INPUT_DIR@', input_dir)
-# 	filedata = filedata.replace('@DOXYGEN_OUTPUT_DIR@', output_dir)
-
-# 	with open('Doxyfile', 'w') as file:
-# 		file.write(filedata)
+import textwrap
 
 # Check if we're running on Read the Docs' servers
 read_the_docs_build = os.environ.get('READTHEDOCS', None) == 'True'
-
-# breathe_projects = {}
-# if read_the_docs_build:
-# 	input_dir = '../src'
-# 	output_dir = 'build'
-# 	configureDoxyfile(input_dir, output_dir)
-# 	subprocess.call('doxygen', shell=True)
-# 	breathe_projects[''] = output_dir + '/xml'
 
 # -- Project information -----------------------------------------------------
 
@@ -66,9 +47,23 @@ author = 'Infineon Technologies AG'
 extensions = [
     'sphinx.ext.autodoc',
     'sphinxemoji.sphinxemoji',
-    'sphinx_tabs.tabs'
+    'sphinx_tabs.tabs',
+    'sphinx.ext.intersphinx',
+    'sphinx.ext.autosectionlabel',
+    'sphinx.ext.todo',
+    'sphinx.ext.coverage',
+    'sphinx.ext.mathjax',
+    'sphinx.ext.ifconfig',
+    'sphinx.ext.viewcode',
+    'sphinx_sitemap',
+    'sphinx.ext.graphviz',
+    'sphinx.ext.inheritance_diagram',
+    'breathe',
+    'exhale'
+    
 ]
 
+autosectionlabel_prefix_document = True
 # source_parsers = {
 #    '.md': 'recommonmark.parser.CommonMarkParser',
 # }
@@ -78,20 +73,52 @@ source_suffix = [
     # '.md'
 ]
 
+suppress_warnings = ['autosectionlabel.*', 'epub.duplicated_toc_entry']
+
+# Setup the exhale extension
+exhale_args = {
+    # These arguments are required
+    "containmentFolder":     "./library-api-docs",
+    "rootFileName":          "library_root.rst",
+    "rootFileTitle":         "Library Index",
+    "doxygenStripFromPath":  "..",
+    # Suggested optional arguments
+    "createTreeView":        False,
+    # TIP: if using the sphinx-bootstrap-theme, you need
+    # "treeViewIsBootstrap": True,
+    "exhaleExecutesDoxygen": True,
+    "exhaleDoxygenStdin":    textwrap.dedent('''
+        INPUT            = ../src
+        GENERATE_LATEX   = NO
+        GENERATE_XML     = YES
+        RECURSIVE        = YES
+        VERBATIM_HEADERS = NO
+        EXCLUDE          = ./../src/framework/raspberrypi/examples ./../src/framework/raspberrypi/examples_py ./../../src/framework/arduino/examples ./../../src/framework/arduino/README.md
+    '''),
+
+    # Configure what not to show in the API index page
+    "unabridgedOrphanKinds": {"function", "define", "dir","file", "variable", "namespace"},
+    "fullToctreeMaxDepth" : 2
+    
+}
+
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
+
+# Tell sphinx what the primary language being documented is.
+primary_domain = 'cpp'
 
 # List of patterns, relative to source directory, that match files and
 # directories to ignore when looking for source files.
 # This pattern also affects html_static_path and html_extra_path.
-exclude_patterns = ['build', 'Thumbs.db', '.DS_Store']
+exclude_patterns = ['_build', 'build', 'Thumbs.db', '.DS_Store']
+
+highlight_language = 'c++'
 
 # -- Options for HTML output -------------------------------------------------
 
 # The theme to use for HTML and HTML Help pages.  See the documentation for
 # a list of builtin themes.
-#
-# import sphinx_theme_pd
 
 html_theme = 'sphinx_rtd_theme'
 # html_theme_options = {
@@ -107,9 +134,10 @@ html_logo = 'img/ifx_logo_white_green_s.png'
 # so a file named "default.css" will overwrite the builtin "default.css".
 html_static_path = ['_templates']
 
-# # Breathe Configuration
-# breathe_default_project = "xfp-dev"
+# -- Breathe configuration -------------------------------------------------
 
-# breathe_domain_by_extension = {
-#         "hpp" : "cpp",
-#         }
+breathe_projects = {
+	"High-Side Switch": "_build/xml/"
+}
+breathe_default_project = "High-Side Switch"
+breathe_default_members = ('members', 'undoc-members')

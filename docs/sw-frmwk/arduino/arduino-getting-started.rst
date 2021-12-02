@@ -37,7 +37,7 @@ Tutorial
 --------
 
 Software Installation
-"""""""""""""""""""""
+""""""""""""""""""""""
 
 1. **Install the Arduino IDE**. If you are new to Arduino, please `download <https://www.arduino.cc/en/Main/Software>`__ the program and install it first.
 

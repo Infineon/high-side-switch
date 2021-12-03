@@ -1,0 +1,51 @@
+
+File Hierarchy
+--------------
+
+- :ref:`dir_src`
+    - :ref:`dir_src_config`
+        - :ref:`file_src_config_hss-conf-dfl.hpp`
+        - :ref:`file_src_config_hss-conf-opts.hpp`
+        - :ref:`file_src_config_hss-conf.hpp`
+    - :ref:`dir_src_corelib`
+        - :ref:`file_src_corelib_hss-filter.cpp`
+        - :ref:`file_src_corelib_hss-filter.hpp`
+        - :ref:`file_src_corelib_hss-shield-bts500xx.cpp`
+        - :ref:`file_src_corelib_hss-shield-bts500xx.hpp`
+        - :ref:`file_src_corelib_hss-shield-bts700x.cpp`
+        - :ref:`file_src_corelib_hss-shield-bts700x.hpp`
+        - :ref:`file_src_corelib_hss-shield-profet24v.cpp`
+        - :ref:`file_src_corelib_hss-shield-profet24v.hpp`
+        - :ref:`file_src_corelib_hss-shield.hpp`
+        - :ref:`file_src_corelib_hss-types.hpp`
+        - :ref:`file_src_corelib_hss-variants.cpp`
+        - :ref:`file_src_corelib_hss-variants.hpp`
+        - :ref:`file_src_corelib_hss.cpp`
+        - :ref:`file_src_corelib_hss.hpp`
+    - :ref:`dir_src_framework`
+        - :ref:`dir_src_framework_arduino`
+            - :ref:`dir_src_framework_arduino_pal`
+                - :ref:`file_src_framework_arduino_pal_hss-pal-adc-ino.cpp`
+                - :ref:`file_src_framework_arduino_pal_hss-pal-adc-ino.hpp`
+                - :ref:`file_src_framework_arduino_pal_hss-pal-gpio-ino.cpp`
+                - :ref:`file_src_framework_arduino_pal_hss-pal-gpio-ino.hpp`
+                - :ref:`file_src_framework_arduino_pal_hss-pal-timer-ino.cpp`
+                - :ref:`file_src_framework_arduino_pal_hss-pal-timer-ino.hpp`
+            - :ref:`dir_src_framework_arduino_wrapper`
+                - :ref:`file_src_framework_arduino_wrapper_hss-arduino.cpp`
+                - :ref:`file_src_framework_arduino_wrapper_hss-arduino.hpp`
+                - :ref:`file_src_framework_arduino_wrapper_hss-shield-bts500xx-ino.cpp`
+                - :ref:`file_src_framework_arduino_wrapper_hss-shield-bts500xx-ino.hpp`
+                - :ref:`file_src_framework_arduino_wrapper_hss-shield-bts700x-ino.cpp`
+                - :ref:`file_src_framework_arduino_wrapper_hss-shield-bts700x-ino.hpp`
+                - :ref:`file_src_framework_arduino_wrapper_hss-shield-platf.cpp`
+                - :ref:`file_src_framework_arduino_wrapper_hss-shield-platf.hpp`
+                - :ref:`file_src_framework_arduino_wrapper_hss-shield-profet24v-ino.cpp`
+                - :ref:`file_src_framework_arduino_wrapper_hss-shield-profet24v-ino.hpp`
+            - :ref:`file_src_framework_arduino_README.md`
+    - :ref:`dir_src_pal`
+        - :ref:`file_src_pal_hss-pal-adc.hpp`
+        - :ref:`file_src_pal_hss-pal-gpio.hpp`
+        - :ref:`file_src_pal_hss-pal-timer.hpp`
+
+

@@ -1,13 +1,13 @@
 /**
  * @file        hss-pal-gpio-ino.hpp
- * @details     Arduino PAL for the GPIO
+ * @details     Ino PAL for the GPIO
  */
 
 #include <Arduino.h>
 #include "hss-pal-gpio-ino.hpp"
 
 /**
- * @brief   Constructor of the Arduino GPIO class
+ * @brief   Constructor of the GPIO class for arduino
  * @details This function is setting the basics for a GPIO.
  */
 GPIOIno::GPIOIno() : pin(0), mode(OUTPUT), logic(POSITIVE)
@@ -16,7 +16,7 @@ GPIOIno::GPIOIno() : pin(0), mode(OUTPUT), logic(POSITIVE)
 }
 
 /**
- * @brief    Constructor of the Arduino GPIO class
+ * @brief    Constructor of the  GPIO class for arduino
  * @details  This function is setting the basics for a GPIO. It allows to set the pin number,
  *           mode of the pin and the logic level.
  * @param[in]   pin     Number of the desired pin

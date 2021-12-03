@@ -17,7 +17,7 @@ using namespace hss;
  */
 
 /**
- * @class Arduino GPIO class
+ * @class  GPIO ino class
  * @details Class implementing Arduino GPIO functionality
  */
 class GPIOIno: virtual public GPIOPAL

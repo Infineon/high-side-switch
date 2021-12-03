@@ -1,6 +1,6 @@
 /**
  * @file        hss-pal-timer-ino.hpp
- * @brief       Arduino Timer PAL
+ * @brief       Ino Timer PAL
  */
 
 #ifndef HSS_PAL_TIMER_INO_HPP_
@@ -15,8 +15,8 @@ using namespace hss;
  * @{
  */
 /**
- * @class Arduino Timer class
- * @details Class implementing Arduino Timer functionality
+ * @class Ino Timer class
+ * @details Class implementing Timer functionality for arduino
  */
 class TimerIno: virtual public TimerPAL
 {

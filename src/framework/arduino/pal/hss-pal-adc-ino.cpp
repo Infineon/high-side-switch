@@ -1,13 +1,13 @@
 /**
  * @file        hss-pal-adc-ino.hpp
- * @details     Arduino PAL for the ADC
+ * @details     Ino PAL for the ADC
  */
 
 #include <Arduino.h>
 #include "hss-pal-adc-ino.hpp"
 
 /**
- * @brief Default constructor of the Arduino ADC class
+ * @brief Default constructor of the ADC class for arduino
  */
 ADCIno::ADCIno() : pin(0)
 {
@@ -15,7 +15,7 @@ ADCIno::ADCIno() : pin(0)
 }
 
 /**
- * @brief    Constructor of the Arduino ADC class
+ * @brief    Constructor of the ADC class for arduino
  * @details  This constructor takes the number of the pin.
  * @param[in]   pin Number of the desired ADC pin
  */

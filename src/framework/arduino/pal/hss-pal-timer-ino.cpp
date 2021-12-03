@@ -1,14 +1,13 @@
 /**
  * @file        hss-pal-timer-ino.cpp
- * @details     Arduino Timer Platform Abstraction Layer
+ * @details     Ino PAL for Timer
  */
 
 #include <Arduino.h>
 #include "hss-pal-timer-ino.hpp"
 
 /**
- * @brief Constructor of the Arduino Timer class
- *
+ * @brief Constructor of the Timer class for arduino
  */
 TimerIno::TimerIno()
 {
@@ -16,7 +15,7 @@ TimerIno::TimerIno()
 }
 
 /**
- * @brief Destructor of the Arduino Timer class
+ * @brief Destructor of the Timer class for arduino
  *
  */
 TimerIno::~TimerIno()

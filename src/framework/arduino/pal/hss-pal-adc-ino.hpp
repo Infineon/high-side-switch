@@ -1,6 +1,6 @@
 /**
  * @file        hss-pal-adc-ino.hpp
- * @details     Arduino PAL for the ADC
+ * @details     Ino PAL for the ADC
  */
 
 #ifndef HSS_PAL_ADC_INO_HPP
@@ -16,8 +16,8 @@ using namespace hss;
  */
 
 /**
- * @class Arduino ADC class
- * @details Class implementing Arduino ADC functionality
+ * @class  ADC ino class
+ * @details Class implementing arduino ADC functionality
  */
 class ADCIno : virtual public ADCPAL
 {

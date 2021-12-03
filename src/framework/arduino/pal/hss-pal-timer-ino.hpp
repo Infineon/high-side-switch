@@ -1,9 +1,6 @@
 /**
  * @file        hss-pal-timer-ino.hpp
  * @brief       Arduino Timer PAL
- * @copyright   Copyright (c) 2021 Infineon Technologies AG
- *
- * SPDX-License-Identifier: MIT
  */
 
 #ifndef HSS_PAL_TIMER_INO_HPP_
@@ -17,7 +14,10 @@ using namespace hss;
  * @addtogroup arduinoPal
  * @{
  */
-
+/**
+ * @class Arduino Timer class
+ * @details Class implementing Arduino Timer functionality
+ */
 class TimerIno: virtual public TimerPAL
 {
     public:

@@ -1,6 +1,7 @@
 /**
  * @file        hss-variants.cpp
- * @brief       Defines the characteristic values of the different high side switches variants
+ * @brief       High-Side-Switch Variant Specific Defines
+ * @details     Defines the characteristic values of the different high side switches variants
  */
 
 #include "hss-variants.hpp"

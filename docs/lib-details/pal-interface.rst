@@ -1,3 +1,5 @@
+.. _pal-interface:
+
 PAL Interface
 =============
 

@@ -1,4 +1,4 @@
-High-Side-Switch API Implementation Guide  
+High-Side-Switch Implementation Guide  
 ------------------------------------------
 This section covers the API implementation for High Side Switches used in the Profet family of shields.
 This library is currently usable with:

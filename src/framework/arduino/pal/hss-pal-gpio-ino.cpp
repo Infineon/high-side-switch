@@ -1,19 +1,14 @@
 /**
  * @file        hss-pal-gpio-ino.hpp
- * @brief       Arduino PAL for the GPIO
- * @copyright   Copyright (c) 2021 Infineon Technologies AG
- *
- * SPDX-License-Identifier: MIT
+ * @details     Arduino PAL for the GPIO
  */
 
 #include <Arduino.h>
 #include "hss-pal-gpio-ino.hpp"
 
 /**
- * @brief Constructor of the Arduino GPIO class
- *
- * This function is setting the basics for a GPIO.
- *
+ * @brief   Constructor of the Arduino GPIO class
+ * @details This function is setting the basics for a GPIO.
  */
 GPIOIno::GPIOIno() : pin(0), mode(OUTPUT), logic(POSITIVE)
 {
@@ -21,11 +16,9 @@ GPIOIno::GPIOIno() : pin(0), mode(OUTPUT), logic(POSITIVE)
 }
 
 /**
- * @brief Constructor of the Arduino GPIO class
- *
- * This function is setting the basics for a GPIO. It allows to set the pin number,
- * mode of the pin and the logic level.
- *
+ * @brief    Constructor of the Arduino GPIO class
+ * @details  This function is setting the basics for a GPIO. It allows to set the pin number,
+ *           mode of the pin and the logic level.
  * @param[in]   pin     Number of the desired pin
  * @param[in]   mode    Defines the mode of the pin (INPUT, OUTPUT, etc.)
  * @param[in]   logic   Defines the logic level of the pin
@@ -37,11 +30,9 @@ GPIOIno::GPIOIno(uint8_t pin, uint8_t mode, VLogic_t logic)
 }
 
 /**
- * @brief Initialize the GPIO
- *
- * This function is initializing the chosen pin.
- *
- * @return      GPIOIno::Error_t
+ * @brief   Initialize the GPIO
+ * @details This function is initializing the chosen pin.
+ * @return  Error_t
  */
 Error_t GPIOIno::init()
 {
@@ -50,11 +41,9 @@ Error_t GPIOIno::init()
 }
 
 /**
- * @brief Deinitialize the GPIO
- *
- * This function is deinitializing the chosen pin.
- *
- * @return      GPIOIno::Error_t
+ * @brief   Deinitialize the GPIO
+ * @details This function is deinitializing the chosen pin.
+ * @return  Error_t
  */
 Error_t GPIOIno::deinit()
 {
@@ -62,14 +51,12 @@ Error_t GPIOIno::deinit()
 }
 
 /**
- * @brief Read GPIO logic level
- *
- * This function reads the logic level of the chosen pin and
- * returns the logic level value.
- *
- * @return      GPIOIno::VLevel_t
- * @retval      0    = GPIO_LOW
- * @retval      1    = GPIO_HIGH
+ * @brief   Read GPIO logic level
+ * @details This function reads the logic level of the chosen pin and
+ *          returns the logic level value.
+ * @return  VLevel_t
+ * @retval  0    GPIO_LOW
+ * @retval  1    GPIO_HIGH
  */
 GPIOIno::VLevel_t GPIOIno::read()
 {
@@ -77,12 +64,10 @@ GPIOIno::VLevel_t GPIOIno::read()
 }
 
 /**
- * @brief Set GPIO logic level
- *
- * This functions sets the logic level of the chosen pin.
- *
+ * @brief   Set GPIO logic level
+ * @details This functions sets the logic level of the chosen pin.
  * @param[in]   level   Desired logic level of the pin
- * @return      GPIOIno::Error_t
+ * @return      Error_t
  */
 Error_t GPIOIno::write(VLevel_t level)
 {
@@ -91,12 +76,10 @@ Error_t GPIOIno::write(VLevel_t level)
 }
 
 /**
- * @brief Enable the GPIO
- *
- * This functions enable the chosen pin. Depending on the chosen logic of the pin
- * it sets the right logic level of the pin.
- *
- * @return      GPIOIno::Error_t
+ * @brief   Enable the GPIO
+ * @details This functions enable the chosen pin. Depending on the chosen logic of the pin
+ *          it sets the right logic level of the pin.
+ * @return  Error_t
  */
 Error_t GPIOIno::enable()
 {
@@ -110,12 +93,10 @@ Error_t GPIOIno::enable()
 }
 
 /**
- * @brief Disable the GPIO
- *
- * This functions disables the chosen pin. Depending on the chosen logic of the pin
- * it sets the right logic level of the pin.
- *
- * @return      GPIOIno::Error_t
+ * @brief   Disable the GPIO
+ * @details This functions disables the chosen pin. Depending on the chosen logic of the pin
+ *          it sets the right logic level of the pin.
+ * @return  Error_t
  */
 Error_t GPIOIno::disable()
 {

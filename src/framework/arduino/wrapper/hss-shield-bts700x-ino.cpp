@@ -1,9 +1,6 @@
 /**
  * @file        hss-bts700xShield-ino.cpp
- * @brief       BTS700x-1EPP (12V) Shield Implementation
- * @copyright   Copyright (c) 2021 Infineon Technologies AG
- *
- * SPDX-License-Identifier: MIT
+ * @details     BTS700x-1EPP (12V) Shield Implementation
  */
 
 #include "hss-shield-bts700x-ino.hpp"
@@ -12,8 +9,8 @@
 using namespace hss;
 
 /**
- * @brief BTS700x Shield constructor
- * Initialize all protected class pointers.
+ * @brief    BTS700xShield High-Side-Switch constructor
+ * @details  Initializes all class pointers.
  */
 Bts700xShieldIno::Bts700xShieldIno(BtxVariants_t *variantSel):
 Bts700xShield   (   led1 = ((BTS700X_HWCONFIG.led1 == GPIOIno::unusedPin) ? NULL : new GPIOIno(BTS700X_HWCONFIG.led1, OUTPUT, GPIOIno::POSITIVE)),
@@ -36,8 +33,8 @@ Bts700xShield   (   led1 = ((BTS700X_HWCONFIG.led1 == GPIOIno::unusedPin) ? NULL
 }
 
 /**
- * @brief BTS700x Shield constructor
- * Initialize all class pointers. This constructor allows to pass custom shield configuration.
+ * @brief   BTS700xShield High-Side-Switch constructor for custom configuration 
+ * @details Initialize all class pointers. This constructor allows to pass custom shield configuration.
  */
 Bts700xShieldIno::Bts700xShieldIno(BtxVariants_t *variantSel, Bts700xHwConfig_t config):
 Bts700xShield   (   led1 = ((config.led1 == GPIOIno::unusedPin) ? NULL : new GPIOIno(config.led1, OUTPUT, GPIOIno::POSITIVE)),

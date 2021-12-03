@@ -1,9 +1,6 @@
 /**
  * @file        hss-shield-bts700x.hpp
- * @brief       Class for BTS700x-1EPP (12V) Shield
- * @copyright   Copyright (c) 2021 Infineon Technologies AG
- *
- * SPDX-License-Identifier: MIT
+ * @details     Class for BTS700x-1EPP (12V) Shield
  */
 
 #ifndef HSS_SHIELD_BTS700x_HPP_
@@ -15,6 +12,10 @@
 
 using namespace hss;
 
+/**
+ * @class    Bts700xShield
+ * @details  Class implementing HSS functionalities for Bts700x Shield
+ */
 class Bts700xShield : public HssShield
 {
     public:

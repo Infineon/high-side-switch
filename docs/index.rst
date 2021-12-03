@@ -93,8 +93,10 @@ Please find the license file for this library `here <https://github.com/Infineon
    :caption: Library Details
    :hidden:
 
-   API <lib-details/api.rst>
+   HSS API <lib-details/api.rst>
    PAL Interface <lib-details/pal-interface.rst>
+   Source Tree Structure <lib-details/source-tree.rst>
+   api-docs-index
 
 .. toctree::
    :maxdepth: 3
@@ -107,11 +109,3 @@ Please find the license file for this library `here <https://github.com/Infineon
    :hidden:
 
    sw-frmwk/arduino/index
-
-.. toctree::
-   :maxdepth: 2
-   :caption: API DOCS
-   :hidden:
-
-   about
-   api-docs-index

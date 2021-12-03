@@ -1,10 +1,6 @@
 /**
  * @file        hss-conf-dfl.hpp
- * @author      Infineon Technologies AG
- * @brief       High-Side-Switch default configuration
- * @copyright   Copyright (c) 2021 Infineon Technologies AG
- *
- * SPDX-License-Identifier: MIT
+ * @details     High-Side-Switch default configuration
  */
 
 #ifndef HSS_CONF_DFL_HPP_

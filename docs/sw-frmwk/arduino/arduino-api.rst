@@ -6,6 +6,7 @@ Arduino API
 Find here the PAL interface defined for each Arduino framework through its low level peripheral drivers. 
 The interface abstract classes declared in :ref:`pal-interface` are inherited and defined in this layer.
 
+
 .. list-table::
     :header-rows: 1
 

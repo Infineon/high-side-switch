@@ -13,8 +13,6 @@ Additionaly, it covers sense and diagnostic functionalities to flag any unintend
 Table of Contents 
 ++++++++++++++++++
 
-:ref:`exhale_class_class_hss`
-
 Class Details
 ^^^^^^^^^^^^^^
 

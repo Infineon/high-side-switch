@@ -19,7 +19,7 @@ class Bts500xxShield : public HssShield
 {
     public:
 
-                        Bts500xxShield(Hss * hsw1, GPIOPAL * led1, GPIOPAL * led2, ADCPAL * pushButton, ADCPAL * vBat);
+                        Bts500xxShield(Hss * hsw1, GPIOPAL * led2, GPIOPAL * led3, ADCPAL * pushButton, ADCPAL * vBat);
                         ~Bts500xxShield();
 
         Error_t         init();
@@ -39,8 +39,8 @@ class Bts500xxShield : public HssShield
         ExponentialFilter *filterVbat;
 
         Hss      * hss1;
-        GPIOPAL  * led1;
         GPIOPAL  * led2;
+        GPIOPAL  * led3;
         ADCPAL   * pushButton;
         ADCPAL   * vBat;
 

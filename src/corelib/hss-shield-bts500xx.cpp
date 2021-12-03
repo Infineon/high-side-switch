@@ -14,11 +14,11 @@ using namespace hss;
  * @brief High-Side-Switch-Board constructor
  * Initialize all protected class pointers with a null pointer.
  */
-Bts500xxShield::Bts500xxShield(Hss * hsw1, GPIOPAL * led1, GPIOPAL * led2, ADCPAL * pushButton, ADCPAL * vBat)
+Bts500xxShield::Bts500xxShield(Hss * hsw1, GPIOPAL * led2, GPIOPAL * led3, ADCPAL * pushButton, ADCPAL * vBat)
 :
 hss1(hsw1),
-led1(led1),
 led2(led2),
+led3(led3),
 pushButton(pushButton),
 vBat(vBat)
 {
@@ -50,15 +50,15 @@ Error_t Bts500xxShield::init()
     err= hss1->init();
     HSS_ASSERT_RET(err);
 
-    if(nullptr != led1)
-    {
-        err = led1->init();
-        HSS_ASSERT_RET(err);
-    }
-
     if(nullptr != led2)
     {
         err = led2->init();
+        HSS_ASSERT_RET(err);
+    }
+
+    if(nullptr != led3)
+    {
+        err = led3->init();
         HSS_ASSERT_RET(err);
     }
 
@@ -95,15 +95,15 @@ Error_t Bts500xxShield::deinit()
     err= hss1->deinit();
     HSS_ASSERT_RET(err);
 
-    if(nullptr != led1)
-    {
-        err = led1->deinit();
-        HSS_ASSERT_RET(err);
-    }
-
     if(nullptr != led2)
     {
         err = led2->deinit();
+        HSS_ASSERT_RET(err);
+    }
+
+    if(nullptr != led3)
+    {
+        err = led3->deinit();
         HSS_ASSERT_RET(err);
     }
 
@@ -140,9 +140,9 @@ Error_t Bts500xxShield::switchHxOn(uint8_t x)
     err = hss1->enable();
     HSS_ASSERT_RET(err);
 
-    if (nullptr != led1)
+    if (nullptr != led2)
     {
-        err = led1->enable();
+        err = led2->enable();
         HSS_ASSERT_RET(err);
     }
 
@@ -167,9 +167,9 @@ Error_t Bts500xxShield::switchHxOff(uint8_t x)
     err= hss1->disable();
     HSS_ASSERT_RET(err);
 
-    if (nullptr != led1)
+    if (nullptr != led2)
     {
-        err = led1->disable();
+        err = led2->disable();
         HSS_ASSERT_RET(err);
     }
 

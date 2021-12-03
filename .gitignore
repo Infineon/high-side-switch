@@ -7,3 +7,6 @@ cmake_install.cmake
 CTestTestfile.cmake
 InfineonDoxyGenerator/
 docs/doxygen/doxyfile_auto
+/docs/_build
+.pio/
+/workflow/

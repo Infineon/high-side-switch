@@ -138,9 +138,11 @@ Error_t Hss::deinit()
 {
     Error_t err = OK;
 
-    HSS_ASSERT_NULLPTR(den);
-    err = den->deinit();
-    HSS_ASSERT_RET(err);
+    if(nullptr != den)
+    {
+        err = den->deinit();
+        HSS_ASSERT_RET(err);
+    }
 
     HSS_ASSERT_NULLPTR(in0);
     err = in0->deinit();
@@ -268,12 +270,16 @@ Error_t Hss::enableDiag()
 {
     Error_t err = OK;
 
-    if(UNINITED != status)
+    if((nullptr != den) & (UNINITED != status))
     {
         HSS_ASSERT_NULLPTR(den);
         err = den->enable();
         HSS_ASSERT_RET(err);
 
+        diagEnb = DIAG_EN;
+    }
+    else if(nullptr == den)
+    {
         diagEnb = DIAG_EN;
     }
     else
@@ -295,13 +301,17 @@ Error_t Hss::disableDiag()
 {
     Error_t err = OK;
 
-    if(UNINITED != status)
+    if((nullptr != den) & (UNINITED != status))
     {
-        HSS_ASSERT_NULLPTR(timer);
+        HSS_ASSERT_NULLPTR(den);
         err = den->disable();
         HSS_ASSERT_RET(err);
 
         diagEnb = DIAG_DIS;
+    }
+    else if(nullptr == den)
+    {
+        diagEnb = DIAG_EN;
     }
     else
     {

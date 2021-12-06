@@ -64,8 +64,8 @@ Profet24VBTTHwConfig_t PROFET24VBTT_HWCONFIG
  */
 BTS500xxHwConfig_t BTS500XX_HWCONFIG
 {
-    .led1 = 4,                      //LED 1
     .led2 = 9,                      //LED 2
+    .led3 = 5,                      //LED 3
 
     .in = 6,                        //IN
 

@@ -83,9 +83,11 @@ Error_t Hss::init()
 {
     Error_t err = OK;
 
-    HSS_ASSERT_NULLPTR(den);
-    err = den->init();
-    HSS_ASSERT_RET(err);
+    if(nullptr != den)
+    {
+        err = den->init();
+        HSS_ASSERT_RET(err);
+    }
 
     HSS_ASSERT_NULLPTR(in0);
     err = in0->init();

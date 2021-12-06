@@ -74,8 +74,8 @@ extern Profet24VBTTHwConfig_t PROFET24VBTT_HWCONFIG;
  */
 struct BTS500xxHwConfig_t
 {
-    uint8_t led1;
     uint8_t led2;
+    uint8_t led3;
 
     uint8_t in;
 

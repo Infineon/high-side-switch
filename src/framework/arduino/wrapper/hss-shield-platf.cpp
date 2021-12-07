@@ -64,7 +64,7 @@ BTS500xxHwConfig_t BTS500XX_HWCONFIG
     .in = 6,                        //IN
 
     .pushButtonAnalog = A0,         //PUSHBUTTONANALOG
-    .vBat = A1,                     //VBAT
+    .vBat = A5,                     //VBAT
     .is = A2,                       //IS 1
-    
+
 };

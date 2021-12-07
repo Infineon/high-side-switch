@@ -47,7 +47,7 @@ Error_t Bts500xxShield::init()
     Error_t err= OK;
 
     HSS_ASSERT_NULLPTR(hss1);
-    err= hss1->init();
+    err = hss1->init();
     HSS_ASSERT_RET(err);
 
     if(nullptr != led2)
@@ -92,7 +92,7 @@ Error_t Bts500xxShield::deinit()
     Error_t err= OK;
 
     HSS_ASSERT_NULLPTR(hss1);
-    err= hss1->deinit();
+    err = hss1->deinit();
     HSS_ASSERT_RET(err);
 
     if(nullptr != led2)
@@ -164,7 +164,7 @@ Error_t Bts500xxShield::switchHxOff(uint8_t x)
 
     Error_t err= OK;
 
-    err= hss1->disable();
+    err = hss1->disable();
     HSS_ASSERT_RET(err);
 
     if (nullptr != led2)
@@ -193,9 +193,7 @@ float Bts500xxShield::readIsx(uint8_t x)
 
     float isVal;
 
-    hss1->enableDiag();
     isVal = hss1->readIs(rSense);
-    hss1->disableDiag();
 
     return isVal;
 }

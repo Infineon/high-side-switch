@@ -125,6 +125,8 @@ Error_t Hss::init()
     HSS_ASSERT_NULLPTR(btxVariant);
 
     status = INITED;
+    statusCh0 = POWER_OFF;
+    statusCh1 = POWER_OFF;
 
     return err;
 }
@@ -169,6 +171,8 @@ Error_t Hss::deinit()
     HSS_ASSERT_NULLPTR(btxVariant);
 
     status = UNINITED;
+    statusCh0 = POWER_OFF;
+    statusCh1 = POWER_OFF;
 
     return err;
 }
@@ -260,7 +264,7 @@ Error_t Hss::disable(Channel_t ch)
 /**
  * @brief Enable diagnosis function
  *
- * This funtion is enabling the diagnosis function of the High-Side-Switch.
+ * This function is enabling the diagnosis function of the High-Side-Switch.
  *
  * @return Error_t
  */
@@ -297,7 +301,7 @@ Error_t Hss::disableDiag()
 
     if(UNINITED != status)
     {
-        HSS_ASSERT_NULLPTR(timer);
+        HSS_ASSERT_NULLPTR(den);
         err = den->disable();
         HSS_ASSERT_RET(err);
 
@@ -377,21 +381,19 @@ Status_t Hss::getSwitchStatus()
  */
 float Hss::readIs(uint16_t rSense, Channel_t ch)
 {
-    uint16_t isVoltage = 0;
-    float isCurrent = 0;
+    uint16_t adcVal = 0;
+    float isVoltage = 0.0;
+    float isCurrent = 0.0;
 
     if(UNINITED != status)
     {
         selDiagCh(ch);
 
-        if(diagEnb == DIAG_EN)
-        {
-            timer->delayMilli(1);
-            isVoltage = is->ADCRead();
-            isVoltage = (float)(isVoltage/1024)*5.0;
-            isCurrent = ((isVoltage*btxVariant->kilis)/rSense) - currentOffset;
-            currentFilter->input(isCurrent);
-        }
+        timer->delayMilli(1);
+        adcVal = is->ADCRead();
+        isVoltage = (adcVal/1024.0)*5.0;
+        isCurrent = ((isVoltage*btxVariant->kilis)/rSense) - currentOffset;
+        currentFilter->input(isCurrent);
     }
 
     return currentFilter->output();
@@ -408,7 +410,6 @@ float Hss::readIs(uint16_t rSense, Channel_t ch)
  *
  * @return  DiagStatus_t
  *
- * @retval  -2  Not enabled
  * @retval   0  Switch is working fine
  * @retval   1  Fault condition detected
  * @retval   2  Open Load in ON or Inverse Current
@@ -421,33 +422,20 @@ DiagStatus_t Hss::diagRead(float senseCurrent, Channel_t ch)
 {
     (void)ch;
 
-    if(DIAG_EN == diagEnb)
-    {
-        if(senseCurrent >= (btxVariant->iisFault * btxVariant->kilis)){
-            diagStatus = FAULT;
-        }
-        else if(btxVariant->type == BTS700X){
-            if(senseCurrent <= (btxVariant->iisEn * btxVariant->kilis)){
-                diagStatus = FAULT_OL_IC;
-            }
-        }
-        else if(btxVariant->type == BTS5001X){
-            if(senseCurrent <= (btxVariant->iisO * btxVariant->kilis)){
-                diagStatus = FAULT_OL_IC;
-            }
-        }
-        else if(btxVariant->type == BTT60X0){
-            if(senseCurrent <= (btxVariant->iisOl * btxVariant->kilis)){
-                diagStatus = FAULT_OL_IC;
-            }
-        }
-        else{
-            diagStatus = NORMAL;
-        }
+    if(senseCurrent >= (btxVariant->iisFault * btxVariant->kilis)){
+        diagStatus = FAULT;
     }
-    else
-    {
-        diagStatus = NOT_ENABLED;
+    else if((btxVariant->type == BTS700X) && (senseCurrent <= (btxVariant->iisEn * btxVariant->kilis))){
+            diagStatus = FAULT_OL_IC;
+    }
+    else if((btxVariant->type == BTS5001X) && (senseCurrent <= (btxVariant->iisO * btxVariant->kilis))){
+            diagStatus = FAULT_OL_IC;
+    }
+    else if((btxVariant->type == BTT60X0) && (senseCurrent <= (btxVariant->iisOl * btxVariant->kilis))){
+            diagStatus = FAULT_OL_IC;
+    }
+    else{
+        diagStatus = NORMAL;
     }
 
     return diagStatus;

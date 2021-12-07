@@ -1,9 +1,6 @@
 /**
  * @file        hss-profet24VShield-ino.cpp
- * @brief       Profet (24V) BTT6030 Shield Implementation
- * @copyright   Copyright (c) 2021 Infineon Technologies AG
- *
- * SPDX-License-Identifier: MIT
+ * @details     Profet (24V) BTT6030 Shield Implementation
  */
 
 #include "hss-shield-profet24v-ino.hpp"
@@ -12,8 +9,8 @@
 using namespace hss;
 
 /**
- * @brief Profet (24V) BTT6030 Shield constructor
- * Initialize all protected class pointers.
+ * @brief   Profet (24V) BTT6030 Shield constructor
+ * @details Initialize all protected class pointers.
  */
 Profet24VBTTShieldIno::Profet24VBTTShieldIno():
 Profet24VBTTShield  (
@@ -26,8 +23,8 @@ Profet24VBTTShield  (
 }
 
 /**
- * @brief Profet (24V) BTT6030 Shield constructor
- * Initialize all class pointers. This constructor allows to pass custom shield configuration.
+ * @brief   Profet (24V) BTT6030 Shield constructor for custom configuration
+ * @details Initialize all class pointers. This constructor allows to pass custom shield configuration.
  */
 Profet24VBTTShieldIno::Profet24VBTTShieldIno(Profet24VBTTHwConfig_t config):
 Profet24VBTTShield  (

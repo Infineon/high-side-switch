@@ -1,9 +1,6 @@
 /**
  * @file        hss-shield-bts500xx.hpp
- * @brief       BTS500xx Shield Implementation
- * @copyright   Copyright (c) 2021 Infineon Technologies AG
- *
- * SPDX-License-Identifier: MIT
+ * @details     Class for BTS500xx (12V) Shield Implementation
  */
 
 #ifndef HSS_SHIELD_BTS500XX_HPP_
@@ -15,6 +12,10 @@
 
 using namespace hss;
 
+/**
+ * @class    Bts500xxShield
+ * @details  Class implementing HSS functionalities for Bts500xx Shield
+ */
 class Bts500xxShield : public HssShield
 {
     public:

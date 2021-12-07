@@ -93,9 +93,10 @@ Please find the license file for this library `here <https://github.com/Infineon
    :caption: Library Details
    :hidden:
 
-   API <lib-details/api.rst>
+   HSS API <lib-details/api.rst>
    PAL Interface <lib-details/pal-interface.rst>
-   Doxygen Docs <lib-details/doxygen.rst>
+   Source Tree Structure <lib-details/source-tree.rst>
+   api-docs-index
 
 .. toctree::
    :maxdepth: 3

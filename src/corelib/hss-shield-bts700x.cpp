@@ -1,17 +1,14 @@
 /**
  * @file        hss-shield-bts700x.cpp
- * @brief       BTS700x-1EPP (12V) Shield Implementation
- * @copyright   Copyright (c) 2021 Infineon Technologies AG
- *
- * SPDX-License-Identifier: MIT
+ * @details     BTS700x-1EPP (12V) Shield Implementation
  */
 
 #include "hss-shield-bts700x.hpp"
 
 using namespace hss;
 /**
- * @brief High-Side-Switch-Board constructor
- * Initialize all protected class pointers with a null pointer.
+ * @brief   High-Side-Switch-Board constructor
+ * @details Initialize all protected class pointers with a null pointer.
  */
 Bts700xShield::Bts700xShield(GPIOPAL *led1, GPIOPAL *led2, GPIOPAL *led3, GPIOPAL *led4, Hss *hsw1, Hss *hsw2, Hss *hsw3, Hss *hsw4, TimerPAL *timer,
                              GPIOPAL *oloff, GPIOPAL *pushButtonDigital, ADCPAL *pushButtonAnalog, ADCPAL *vBat, BtxVariants_t* btxVariant)
@@ -47,12 +44,10 @@ Bts700xShield::~Bts700xShield()
 }
 
 /**
- * @brief Initialize all necessary objects of the High-Side-Switch-Board
- *
- * This function initializes all necessary objects of the High-Side-Switch-Board.
- * It retruns an error code to see if everything was initialized correctly.
- *
- * @return Bts700xShield::Error_t
+ * @brief   Initialize all necessary objects of the High-Side-Switch-Board
+ * @details This function initializes all necessary objects of the High-Side-Switch-Board.
+ *          It retruns an error code to see if everything was initialized correctly.
+ * @return  Error_t
  */
 Error_t Bts700xShield::init()
 {
@@ -214,12 +209,10 @@ Error_t Bts700xShield::init()
 }
 
 /**
- * @brief Deinitialize all necessary objects of the High-Side-Switch-Board
- *
- * This function deinitializes all necessary objects of the High-Side-Switch-Board.
- * It retruns an error code to see if everything was deinitialized correctly.
- *
- * @return Bts700xShield::Error_t
+ * @brief    Deinitialize all necessary objects of the High-Side-Switch-Board
+ * @details  This function deinitializes all necessary objects of the High-Side-Switch-Board.
+ *           It retruns an error code to see if everything was deinitialized correctly.
+ * @return   Error_t
  */
 Error_t Bts700xShield::deinit()
 {
@@ -379,13 +372,11 @@ Error_t Bts700xShield::deinit()
 }
 
 /**
- * @brief Switch on the selected High-Side-Switch
- *
- * This function turns on the desired High-Side-Switch.
- * It also turns on the corresponding LED of the switch.
- *
+ * @brief   Switch on the selected High-Side-Switch
+ * @details This function turns on the desired High-Side-Switch.
+ *          It also turns on the corresponding LED of the switch.
  * @param[in]   x   Number of the Switch the should be turned on (1-4)
- * @return          Bts700xShield::Error_t
+ * @return          Error_t
  */
 Error_t Bts700xShield::switchHxOn(uint8_t x)
 {
@@ -422,13 +413,11 @@ Error_t Bts700xShield::switchHxOn(uint8_t x)
 }
 
 /**
- * @brief Switch off the selected High-Side-Switch
- *
- * This function turns off the desired High-Side-Switch.
- * It also turns off the corresponding LED of the switch.
- *
+ * @brief   Switch off the selected High-Side-Switch
+ * @details This function turns off the desired High-Side-Switch.
+ *          It also turns off the corresponding LED of the switch.
  * @param[in]   x   Number of the Switch the should be turned off (1-4)
- * @return          Bts700xShield::Error_t
+ * @return          Error_t
  */
 Error_t Bts700xShield::switchHxOff(uint8_t x)
 {
@@ -465,15 +454,13 @@ Error_t Bts700xShield::switchHxOff(uint8_t x)
 }
 
 /**
- * @brief Turn on the selected High-Side-Switches
- *
- * This function is used to enable multiple switches at once.
- *
+ * @brief   Turn on the selected High-Side-Switches
+ * @details This function is used to enable multiple switches at once.
  * @param[in] h1    Enable the first switch if h1 == true
  * @param[in] h2    Enable the second switch if h2 == true
  * @param[in] h3    Enable the third switch if h3 == true
  * @param[in] h4    Enable the fourth switch if h4 == true
- * @return          Bts700xShield::Error_t
+ * @return          Error_t
  */
 Error_t Bts700xShield::switchesHxOn(bool h1, bool h2, bool h3, bool h4)
 {
@@ -517,15 +504,13 @@ Error_t Bts700xShield::switchesHxOn(bool h1, bool h2, bool h3, bool h4)
 }
 
 /**
- * @brief Turn off the selected High-Side-Switches
- *
- * This function is used to disable multiple switches at once.
- *
+ * @brief    Turn off the selected High-Side-Switches
+ * @details  This function is used to disable multiple switches at once.
  * @param[in] h1    Disable the first switch if h1 == true
  * @param[in] h2    Disable the second switch if h2 == true
  * @param[in] h3    Disable the third switch if h3 == true
  * @param[in] h4    Disable the fourth switch if h4 == true
- * @return          Bts700xShield::Error_t
+ * @return          Error_t
  */
 Error_t Bts700xShield::switchesHxOff(bool h1, bool h2, bool h3, bool h4)
 {
@@ -569,14 +554,11 @@ Error_t Bts700xShield::switchesHxOff(bool h1, bool h2, bool h3, bool h4)
 }
 
 /**
- * @brief Read the diagnosis of the chosen channel
- *
- * This function uses the current signal of the channel to diagnose the channel.
- * It returns the different states depending on the channels condition.
- *
+ * @brief   Read the diagnosis of the chosen channel
+ * @details This function uses the current signal of the channel to diagnose the channel.
+ *          It returns the different states depending on the channels condition.
  * @param[in]   x   Desired channel for the diagnosis (1-4)
- * @return      Bts700xShield::DiagStatus_t
- *
+ * @return          DiagStatus_t
  * @retval      0   Everything works correctly
  * @retval      2   Short to ground
  * @retval      4   Short to battery
@@ -680,12 +662,10 @@ DiagStatus_t Bts700xShield::readDiagx(uint8_t x)
 }
 
 /**
- * @brief Read the desired current value of the chosen channel
- *
- * This function reads the IS pin of the chosen High-Side-Switch
- * and calculates the current which is flowing through the switch
- * with the acquired ADC value.
- *
+ * @brief    Read the desired current value of the chosen channel
+ * @details  This function reads the IS pin of the chosen High-Side-Switch
+ *           and calculates the current which is flowing through the switch
+ *           with the acquired ADC value.
  * @param[in]   x   Number of the desired channel (1-4)
  * @return          The value of the current in [A]
  */
@@ -724,11 +704,9 @@ float Bts700xShield::readIsx(uint8_t x)
 }
 
 /**
- * @brief Reads the batter voltage
- *
- * This functions is reading the attached voltage at the Profet-Board.
- *
- * @return Value of the battery voltage in [V]
+ * @brief   Reads the batter voltage
+ * @details This functions is reading the attached voltage at the Profet-Board.
+ * @return  Value of the battery voltage in [V]
  */
 float Bts700xShield::readVss()
 {
@@ -746,10 +724,10 @@ float Bts700xShield::readVss()
 }
 
 /**
- * @brief Read the button state
- *
- * @retval true if button is pressed
- * @retval false if button is not pressed
+ * @brief  Read the button state
+ * @return bool
+ * @retval true  If button is pressed
+ * @retval false If button is not pressed
  */
 bool Bts700xShield::digitalReadButton()
 {
@@ -763,9 +741,8 @@ bool Bts700xShield::digitalReadButton()
 
 /**
  * @brief Read the button state (analog)
- *
- * @retval true if button is pressed
- * @retval false if button is not pressed
+ * @retval true  If button is pressed
+ * @retval false If button is not pressed
  */
 bool Bts700xShield::analogReadButton()
 {
@@ -781,11 +758,9 @@ bool Bts700xShield::analogReadButton()
 }
 
 /**
- * @brief Set battery voltage offset
- *
- * This function can be used to change the value of the internal variable
- * of the battery voltage offset
- *
+ * @brief    Set battery voltage offset
+ * @details  This function can be used to change the value of the internal variable
+ *           of the battery voltage offset
  * @param[in]   offset  Desired value of the offset in [V]
  */
 void Bts700xShield::setVoltageOffset(float offset)
@@ -794,15 +769,12 @@ void Bts700xShield::setVoltageOffset(float offset)
 }
 
 /**
- * @brief Calculates the diagnosis state
- *
- * This functions determines the diagnosis state of the High-Side-Switch.
- * It uses the measrued currents with en- and disabled Open-Load-Detection.
- *
+ * @brief    Calculates the diagnosis state
+ * @details  This functions determines the diagnosis state of the High-Side-Switch.
+ *           It uses the measured currents with en- and disabled Open-Load-Detection.
  * @param[in]   currentOn   Measrued current with Open-Load-Detection on
  * @param[in]   currentOff  Measrued current with Open-Load-Detection off
- *
- * @return Bts700xShield::DiagStatus_t
+ * @return   DiagStatus_t
  */
 DiagStatus_t Bts700xShield::diagnosisOff(float currentOn, float currentOff)
 {

@@ -1,9 +1,7 @@
 /**
  * @file        hss-variants.hpp
- * @brief       Defines the characteristic values of the different high side switches variants
- * @copyright   Copyright (c) 2021 Infineon Technologies AG
- *
- * SPDX-License-Identifier: MIT
+ * @brief       High-Side-Switch Variant Specific Defines
+ * @details     Defines the characteristic values of the different high side switches variants
  */
 
 #ifndef HSS_VARIANTS_HPP_
@@ -29,7 +27,7 @@ enum HssType_t
 
 /**
  * @brief   Structure for the different types of the BTS700x
- *          It contains all important parameters for the correct usage of
+ * @details It contains all important parameters for the correct usage of
  *          of the diagnosis functions of the Switch
  */
 struct BtxVariants_t

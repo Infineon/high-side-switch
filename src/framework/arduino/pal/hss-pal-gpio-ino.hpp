@@ -1,9 +1,6 @@
 /**
  * @file        hss-pal-gpio-pal.hpp
- * @brief       Arduino PAL for the GPIO
- * @copyright   Copyright (c) 2021 Infineon Technologies AG
- *
- * SPDX-License-Identifier: MIT
+ * @details     Arduino PAL for the GPIO
  */
 
 
@@ -20,8 +17,8 @@ using namespace hss;
  */
 
 /**
- * @brief Arduino GPIO class
- *
+ * @class  GPIO ino class
+ * @details Class implementing Arduino GPIO functionality
  */
 class GPIOIno: virtual public GPIOPAL
 {

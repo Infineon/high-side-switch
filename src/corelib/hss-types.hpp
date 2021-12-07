@@ -1,9 +1,6 @@
 /**
  * @file        hss-types.hpp
- * @brief       High-Side Switch Core Types
- * @copyright   Copyright (c) 2021 Infineon Technologies AG
- *
- * SPDX-License-Identifier: MIT
+ * @details     High-Side Switch Core Types
  */
 
 #ifndef HSS_TYPES_HPP_

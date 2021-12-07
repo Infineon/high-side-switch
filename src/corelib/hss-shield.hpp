@@ -1,9 +1,6 @@
 /**
  * @file        hss-shield.hpp
- * @brief       Definition of the High-Side-Switch-Shield class
- * @copyright   Copyright (c) 2021 Infineon Technologies AG
- *
- * SPDX-License-Identifier: MIT
+ * @details     Definition of the High-Side-Switch-Shield class
  */
 
 #ifndef HSS_SHIELD_HPP_
@@ -20,8 +17,8 @@ using namespace hss;
  */
 
 /**
- * @brief High-Side-Switch-Board Class
- * This class is the base class for the PROFET-Shield with all it's functions.
+ * @class    High-Side-Switch-Board Class
+ * @details  This class is the base class for the PROFET-Shield with all it's functions.
  */
 
 class HssShield

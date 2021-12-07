@@ -1,10 +1,8 @@
 /**
  * @file        hss-profet24VShield-ino.hpp
  * @brief       Profet (24V) BTT6030 Shield Implementation
- * @copyright   Copyright (c) 2021 Infineon Technologies AG
- *
- * SPDX-License-Identifier: MIT
  */
+
 #ifndef HSS_SHIELD_PROFET24V_INO_HPP_
 #define HSS_SHIELD_PROFET24V_INO_HPP_
 
@@ -15,6 +13,10 @@
 
 using namespace hss;
 
+/** 
+ * @class    Profet24VBTTShieldIno
+ * @details  Profet24VBTTShield Wrapper Class Declaration
+*/
 class Profet24VBTTShieldIno : public Profet24VBTTShield
 {
     public:

@@ -1,9 +1,6 @@
 /**
  * @file        hss.hpp
  * @brief       Definition of the High-Side-Switch class functions
- * @copyright   Copyright (c) 2021 Infineon Technologies AG
- *
- * SPDX-License-Identifier: MIT
  */
 #ifndef HSS_H_
 #define HSS_H_
@@ -26,8 +23,8 @@ using namespace hss;
  */
 
 /**
- * @brief High-Side-Switch class
- * This class defines the High-Side-Switch Class with all its functionality
+ * @class   High-Side-Switch class
+ * @details This class defines the High-Side-Switch Class with all its functionality
  */
 class Hss
 {

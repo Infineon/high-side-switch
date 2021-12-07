@@ -1,18 +1,16 @@
 /**
  * @file        hss-bts500xxShield-ino.cpp
- * @brief       BTS700x-1EPP (12V) Shield Implementation
- * @copyright   Copyright (c) 2021 Infineon Technologies AG
- *
- * SPDX-License-Identifier: MIT
+ * @details     BTS700x-1EPP (12V) Shield Implementation
  */
 
 #include "hss-shield-bts500xx-ino.hpp"
 #include <Arduino.h>
 
 using namespace hss;
+
 /**
- * @brief High-Side-Switch-Board constructor
- * Initialize all protected class pointers with a null pointer.
+ * @brief    Bts500xxShield High-Side-Switch constructor
+ * @details  Initializes all class pointers.
  */
 Bts500xxShieldIno::Bts500xxShieldIno(BtxVariants_t *variantSel):
 Bts500xxShield(hss1 = new HssIno(BTS500XX_HWCONFIG.in, BTS500XX_HWCONFIG.is, variantSel),
@@ -24,6 +22,10 @@ Bts500xxShield(hss1 = new HssIno(BTS500XX_HWCONFIG.in, BTS500XX_HWCONFIG.is, var
 
 }
 
+/**
+ * @brief    Bts500xxShield High-Side-Switch constructor for custom configuration 
+ * @details  Initialize all class pointers. This constructor allows to pass custom shield configuration.
+ */
 Bts500xxShieldIno::Bts500xxShieldIno(BtxVariants_t *variantSel, BTS500xxHwConfig_t config):
 Bts500xxShield(hss1 = new HssIno(config.in, config.is, variantSel),
                led2 = ((config.led2 == GPIOIno::unusedPin) ? NULL : new GPIOIno(config.led2, OUTPUT, GPIOIno::POSITIVE)),

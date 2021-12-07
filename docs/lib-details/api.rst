@@ -1,4 +1,1 @@
-API
-===
-
-TODO - Will be removed and replaced by code reference
+.. include:: ../library-api-docs/class_hss.rst

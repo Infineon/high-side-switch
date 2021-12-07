@@ -1,9 +1,6 @@
 /**
  * @file        hss-filter.cpp
  * @brief       Definition of the filter class functions
- * @copyright   Copyright (c) 2021 Infineon Technologies AG
- *
- * SPDX-License-Identifier: MIT
  */
 
 #include "hss-filter.hpp"

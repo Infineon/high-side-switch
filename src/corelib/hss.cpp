@@ -274,9 +274,8 @@ Error_t Hss::enableDiag()
 {
     Error_t err = OK;
 
-    if((nullptr != den) & (UNINITED != status))
+    if((nullptr != den) && (UNINITED != status))
     {
-        HSS_ASSERT_NULLPTR(den);
         err = den->enable();
         HSS_ASSERT_RET(err);
 
@@ -305,9 +304,8 @@ Error_t Hss::disableDiag()
 {
     Error_t err = OK;
 
-    if((nullptr != den) & (UNINITED != status))
+    if((nullptr != den) && (UNINITED != status))
     {
-        HSS_ASSERT_NULLPTR(den);
         err = den->disable();
         HSS_ASSERT_RET(err);
 

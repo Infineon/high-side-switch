@@ -44,8 +44,28 @@ struct Bts700xHwConfig_t
     uint8_t is1_is2;
     uint8_t is3_is4;
 };
+extern Bts700xHwConfig_t BTS700X_HWCONFIG;
 
-struct Profet24VBTTHwConfig_t
+/**
+ * @brief Struct with all necessary defines of the Profet-Shield BTS50010/15-1TAD
+ *
+ */
+struct BTS5001xHwConfig_t
+{
+    uint8_t led2;
+    uint8_t led3;
+
+    uint8_t in;
+
+    uint8_t pushButtonAnalog;
+
+    uint8_t vBat;
+
+    uint8_t is;
+};
+extern BTS5001xHwConfig_t BTS5001X_HWCONFIG;
+
+struct Btt60xxHwConfig_t
 {
     //Profet0 - BTT6030 (2 channel) pin config
     uint8_t in0_0;
@@ -67,28 +87,7 @@ struct Profet24VBTTHwConfig_t
     uint8_t is_2;
 
 };
+extern Btt60xxHwConfig_t BTT60XX_HWCONFIG;
 
-extern Bts700xHwConfig_t BTS700X_HWCONFIG;
-extern Profet24VBTTHwConfig_t PROFET24VBTT_HWCONFIG;
-
-/**
- * @brief Struct with all necessary defines of the Profet-Shield BTS50010/15-1TAD
- *
- */
-struct BTS500xxHwConfig_t
-{
-    uint8_t led2;
-    uint8_t led3;
-
-    uint8_t in;
-
-    uint8_t pushButtonAnalog;
-
-    uint8_t vBat;
-   
-    uint8_t is;
-};
-
-extern BTS500xxHwConfig_t BTS500XX_HWCONFIG;
 /** @} */
 #endif /** HSS_SHIELD_PLATF_HPP_ **/

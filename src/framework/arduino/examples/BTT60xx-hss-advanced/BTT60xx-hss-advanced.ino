@@ -28,9 +28,9 @@
  * @copyright   Copyright (c) 2021 Infineon Technologies AG
  */
 
-#include <hss-shield-profet24v-ino.hpp>
+#include <hss-shield-btt60xx-ino.hpp>
 
-Profet24VBTTShieldIno HSS = Profet24VBTTShieldIno();
+Btt60xxShieldIno HSS = Btt60xxShieldIno();
 
 Error_t err = OK;
 

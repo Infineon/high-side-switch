@@ -34,7 +34,20 @@ Bts700xHwConfig_t BTS700X_HWCONFIG
     .is3_is4 =          A3          //IS 3_4
 };
 
-Profet24VBTTHwConfig_t PROFET24VBTT_HWCONFIG
+BTS5001xHwConfig_t BTS5001X_HWCONFIG
+{
+    .led2 = 9,                      //LED 2
+    .led3 = 5,                      //LED 3
+
+    .in = 6,                        //IN
+
+    .pushButtonAnalog = A0,         //PUSHBUTTONANALOG
+    .vBat = A5,                     //VBAT
+    .is = A2,                       //IS 1
+
+};
+
+Btt60xxHwConfig_t BTT60XX_HWCONFIG
 {
     //Profet0 - BTT6030 (2 channel) pin config
     .in0_0  = A3,
@@ -54,17 +67,4 @@ Profet24VBTTHwConfig_t PROFET24VBTT_HWCONFIG
     .in0_2  = 8,
     .den_2  = 9,
     .is_2   = A2,
-};
-
-BTS500xxHwConfig_t BTS500XX_HWCONFIG
-{
-    .led2 = 9,                      //LED 2
-    .led3 = 5,                      //LED 3
-
-    .in = 6,                        //IN
-
-    .pushButtonAnalog = A0,         //PUSHBUTTONANALOG
-    .vBat = A5,                     //VBAT
-    .is = A2,                       //IS 1
-
 };

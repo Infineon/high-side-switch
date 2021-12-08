@@ -1,12 +1,12 @@
 /**
- * @file        hss-shield-profet24v.cpp
+ * @file        hss-shield-btt60xx.hpp
  * @brief       Profet (24V) Shield with BTT6030-2EKA and BTT6020-1EKA Implementation
  * @copyright   Copyright (c) 2021 Infineon Technologies AG
  *
  * SPDX-License-Identifier: MIT
  */
-#ifndef HSS_SHIELD_PROFET24V_HPP_
-#define HSS_SHIELD_PROFET24V_HPP_
+#ifndef HSS_SHIELD_BTT60XX_HPP_
+#define HSS_SHIELD_BTT60XX_HPP_
 
 #include "hss-shield.hpp"
 #include "hss.hpp"
@@ -14,12 +14,12 @@
 
 using namespace hss;
 
-class Profet24VBTTShield : HssShield
+class Btt60xxShield : HssShield
 {
     public:
 
-                        Profet24VBTTShield(Hss * hsw0, Hss * hsw1, Hss * hsw2);
-                        ~Profet24VBTTShield();
+                        Btt60xxShield(Hss * hsw0, Hss * hsw1, Hss * hsw2);
+                        ~Btt60xxShield();
 
         Error_t         init();
         Error_t         deinit();
@@ -41,4 +41,4 @@ class Profet24VBTTShield : HssShield
 
 };
 
-#endif /** HSS_SHIELD_PROFET24V_HPP_ */
+#endif /** HSS_SHIELD_BTT60XX_HPP_ */

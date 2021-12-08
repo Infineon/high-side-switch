@@ -17,9 +17,9 @@
  */
 
 
-#include <hss-shield-bts500xx-ino.hpp>
+#include <hss-shield-bts5001x-ino.hpp>
 
-Bts500xxShieldIno HSS = Bts500xxShieldIno(&BTS50015);
+Bts5001xShieldIno HSS = Bts5001xShieldIno(&BTS50015);
 
 Error_t err = OK;
 

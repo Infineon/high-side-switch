@@ -1,19 +1,19 @@
 /**
  * @file        BTS5001x-button-test.ino
  * @brief       Button Test Example for Profet 12V BTS5001x Arduino form factored Shields
- * @details     SHIELD_BTS5001x-1TAD Shield have optional user button to 
+ * @details     SHIELD_BTS5001x-1TAD Shield have optional user button to
  *              perform switching. This example demonstrates the use of optional user button.
- *              
+ *
  *              You can configure following variants for this shield:
  *              - BTS50010
- *              - BTS50015      
- * 
+ *              - BTS50015
+ *
  * @copyright   Copyright (c) 2021 Infineon Technologies AG
  */
 
-#include <hss-shield-bts500xx-ino.hpp>
+#include <hss-shield-bts5001x-ino.hpp>
 
-Bts500xxShieldIno HSS = Bts500xxShieldIno(&BTS50015);
+Bts5001xShieldIno HSS = Bts5001xShieldIno(&BTS50015);
 
 Error_t err = OK;
 

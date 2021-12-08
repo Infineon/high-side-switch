@@ -1,14 +1,9 @@
 /**
-<<<<<<< HEAD:src/framework/arduino/wrapper/hss-shield-btt60xx-ino.cpp
  * @file        hss-shield-btt60xx-ino.cpp
  * @brief       Profet (24V) BTT6030 Shield Implementation
  * @copyright   Copyright (c) 2021 Infineon Technologies AG
  *
  * SPDX-License-Identifier: MIT
-=======
- * @file        hss-profet24VShield-ino.cpp
- * @details     Profet (24V) BTT6030 Shield Implementation
->>>>>>> 12b3bf5978ae96efcccb6c4a05ed40c65101e138:src/framework/arduino/wrapper/hss-shield-profet24v-ino.cpp
  */
 
 #include "hss-shield-btt60xx-ino.hpp"

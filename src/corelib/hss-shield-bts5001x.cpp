@@ -11,8 +11,8 @@
 using namespace hss;
 
 /**
- * @brief High-Side-Switch-Board constructor
- * Initialize all protected class pointers with a null pointer.
+ * @brief   High-Side-Switch-Board constructor
+ * @details Initialize all protected class pointers with a null pointer.
  */
 Bts5001xShield::Bts5001xShield(Hss * hsw1, GPIOPAL * led2, GPIOPAL * led3, ADCPAL * pushButton, ADCPAL * vBat)
 :
@@ -123,11 +123,9 @@ Error_t Bts5001xShield::deinit()
 }
 
 /**
- * @brief Switch on the selected High-Side-Switch
- *
- * This function turns on the desired High-Side-Switch.
- * It also turns on the corresponding LED of the switch.
- *
+ * @brief    Switch on the selected High-Side-Switch
+ * @details  This function turns on the desired High-Side-Switch.
+ *           It also turns on the corresponding LED of the switch.
  * @param[in]   x   Number of the Switch the should be turned on (1-4)
  * @return          Error_t
  */
@@ -150,11 +148,9 @@ Error_t Bts5001xShield::switchHxOn(uint8_t x)
 }
 
 /**
- * @brief Switch off the selected High-Side-Switch
- *
- * This function turns off the desired High-Side-Switch.
- * It also turns off the corresponding LED of the switch.
- *
+ * @brief    Switch off the selected High-Side-Switch
+ * @details  This function turns off the desired High-Side-Switch.
+ *           It also turns off the corresponding LED of the switch.
  * @param[in]   x   Number of the Switch the should be turned off (1-4)
  * @return          Error_t
  */
@@ -178,12 +174,10 @@ Error_t Bts5001xShield::switchHxOff(uint8_t x)
 
 
 /**
- * @brief Read the desired current value of the chosen channel
- *
- * This function reads the IS pin of the chosen High-Side-Switch
- * and calculates the current which is flowing through the switch
- * with the acquired ADC value.
- *
+ * @brief   Read the desired current value of the chosen channel
+ * @details This function reads the IS pin of the chosen High-Side-Switch
+ *          and calculates the current which is flowing through the switch
+ *          with the acquired ADC value.
  * @param[in]   x   Number of the desired channel (1)
  * @return          The value of the current in [A]
  */
@@ -199,11 +193,9 @@ float Bts5001xShield::readIsx(uint8_t x)
 }
 
 /**
- * @brief Read the diagnosis of the chosen channel
- *
- * This function uses the current signal of the channel to diagnose the channel.
- * It returns the different states depending on the channels condition.
- *
+ * @brief    Read the diagnosis of the chosen channel
+ * @details  This function uses the current signal of the channel to diagnose the channel.
+ *           It returns the different states depending on the channels condition.
  * @param[in]   x   Desired channel for the diagnosis (1)
  * @return          DiagStatus_t
  *
@@ -231,11 +223,9 @@ DiagStatus_t Bts5001xShield::readDiagx(uint8_t x)
 
 
 /**
- * @brief Reads the batter voltage
- *
- * This functions is reading the attached voltage at the Profet-Board.
- *
- * @return Value of the battery voltage in [V]
+ * @brief    Reads the batter voltage
+ * @details  This functions is reading the attached voltage at the Profet-Board.
+ * @return   Value of the battery voltage in [V]
  */
 float Bts5001xShield::readVss()
 {
@@ -253,10 +243,10 @@ float Bts5001xShield::readVss()
 }
 
 /**
- * @brief Read the button state (analog)
- *
- * @retval true if button is pressed
- * @retval false if button is not pressed
+ * @brief  Read the button state (analog)
+ * @return bool
+ * @retval true  If button is pressed
+ * @retval false If button is not pressed
  */
 bool Bts5001xShield::analogReadButton()
 {
@@ -272,11 +262,9 @@ bool Bts5001xShield::analogReadButton()
 }
 
 /**
- * @brief Set battery voltage offset
- *
- * This function can be used to change the value of the internal variable
- * of the battery voltage offset
- *
+ * @brief   Set battery voltage offset
+ * @details This function can be used to change the value of the internal variable
+ *          of the battery voltage offset
  * @param[in]   offset  Desired value of the offset in [V]
  */
 void Bts5001xShield::setVoltageOffset(float offset)

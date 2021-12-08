@@ -1,9 +1,6 @@
 /**
  * @file        hss-shield-platf.hpp
- * @brief       Platform configurations for different shields
- * @copyright   Copyright (c) 2021 Infineon Technologies AG
- *
- * SPDX-License-Identifier: MIT
+ * @details     Platform configurations for different shields
  */
 
 #ifndef HSS_SHIELD_PLATF_HPP_

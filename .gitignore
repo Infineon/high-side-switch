@@ -8,5 +8,6 @@ CTestTestfile.cmake
 InfineonDoxyGenerator/
 docs/doxygen/doxyfile_auto
 /docs/_build
+docs/doxyoutput
 .pio/
 /workflow/

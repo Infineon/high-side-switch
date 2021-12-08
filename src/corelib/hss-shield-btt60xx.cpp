@@ -31,10 +31,8 @@ Btt60xxShield::~Btt60xxShield()
 
 /**
  * @brief   Initialize all necessary objects of the Profet 24V Shield
- *
- * This function initializes all necessary objects of the Profet 24V Shield.
- * It returns an error code to see if everything was initialized correctly.
- *
+ * @details This function initializes all necessary objects of the Profet 24V Shield.
+ *          It returns an error code to see if everything was initialized correctly.
  * @return  Error_t
  */
 Error_t Btt60xxShield::init()
@@ -74,17 +72,14 @@ Error_t Btt60xxShield::deinit()
 }
 
 /**
- * @brief Switch on the selected High-Side-Switch
- *
- * This function turns on the desired High-Side-Switch.
- *
- * @param[in]   x    Number of the Switch the should be turned on (0-4). Possible values:
- *                    Switch 0    -   Profet 0 (BTT6030 - channel 0)
- *                    Switch 1    -   Profet 0 (BTT6030 - channel 1)
- *                    Switch 2    -   Profet 1 (BTT6030 - channel 0)
- *                    Switch 3    -   Profet 1 (BTT6030 - channel 1)
+ * @brief    Switch on the selected High-Side-Switch
+ * @details  This function turns on the desired High-Side-Switch.
+ * @param[in]   x    Number of the Switch the should be turned on (0-4). Possible values: \n
+ *                    Switch 0    -   Profet 0 (BTT6030 - channel 0) \n
+ *                    Switch 1    -   Profet 0 (BTT6030 - channel 1) \n
+ *                    Switch 2    -   Profet 1 (BTT6030 - channel 0) \n
+ *                    Switch 3    -   Profet 1 (BTT6030 - channel 1) \n
  *                    Switch 4    -   Profet 2 (Single channel)
- *
  * @return          Error_t
  */
 Error_t Btt60xxShield::switchHxOn(uint8_t x)
@@ -101,17 +96,14 @@ Error_t Btt60xxShield::switchHxOn(uint8_t x)
 
 /**
  * @brief   Switch off the selected High-Side-Switch
- *
- * This function turns off the desired High-Side-Switch.
- *
- * @param[in]   x    Number of the Switch the should be turned on (0-4). Possible values:
- *                    Switch 0    -   Profet 0 (BTT6030 - channel 0)
- *                    Switch 1    -   Profet 0 (BTT6030 - channel 1)
- *                    Switch 2    -   Profet 1 (BTT6030 - channel 0)
- *                    Switch 3    -   Profet 1 (BTT6030 - channel 1)
+ * @details This function turns off the desired High-Side-Switch.
+ * @param[in]   x    Number of the Switch the should be turned on (0-4). Possible values: \n
+ *                    Switch 0    -   Profet 0 (BTT6030 - channel 0) \n
+ *                    Switch 1    -   Profet 0 (BTT6030 - channel 1) \n
+ *                    Switch 2    -   Profet 1 (BTT6030 - channel 0) \n
+ *                    Switch 3    -   Profet 1 (BTT6030 - channel 1) \n
  *                    Switch 4    -   Profet 2 (Single channel)
- *
- * @return          Error_t
+ * @return  Error_t
  */
 Error_t Btt60xxShield::switchHxOff(uint8_t x)
 {
@@ -126,17 +118,14 @@ Error_t Btt60xxShield::switchHxOff(uint8_t x)
 }
 
 /**
- * @brief Turn on the selected High-Side-Switches
- *
- * This function is used to enable multiple switches at once.
- *
+ * @brief     Turn on the selected High-Side-Switches
+ * @details   This function is used to enable multiple switches at once.
  * @param[in] h0_0    Enable the Switch 0 - channel 0 if h0_0 = true
  * @param[in] h1_0    Enable the Switch 0 - channel 1 if h1_0 = true
  * @param[in] h0_1    Enable the Switch 1 - channel 0 if h0_1 = true
  * @param[in] h1_1    Enable the Switch 1 - channel 1 if h1_1 = true
  * @param[in] h2      Enable the Switch 2 - channel 0 if h2   = true
- *
- * @return            Error_t
+ * @return    Error_t
  */
 Error_t Btt60xxShield::switchesHxOn(bool h0_0, bool h1_0, bool h0_1, bool h1_1, bool h2)
 {
@@ -175,17 +164,14 @@ Error_t Btt60xxShield::switchesHxOn(bool h0_0, bool h1_0, bool h0_1, bool h1_1, 
 }
 
 /**
- * @brief Turn off the selected High-Side-Switches
- *
- * This function is used to disable multiple switches at once.
- *
+ * @brief     Turn off the selected High-Side-Switches
+ * @details   This function is used to disable multiple switches at once.
  * @param[in] h0_0    Disable the Switch 0 - channel 0 if h0_0 = true
  * @param[in] h1_0    Disable the Switch 0 - channel 1 if h1_0 = true
  * @param[in] h0_1    Disable the Switch 1 - channel 0 if h0_1 = true
  * @param[in] h1_1    Disable the Switch 1 - channel 1 if h1_1 = true
  * @param[in] h2      Disable the Switch 2 - channel 0 if h2   = true
- *
- * @return          Error_t
+ * @return    Error_t
  */
 Error_t Btt60xxShield::switchesHxOff(bool h0_0, bool h1_0, bool h0_1, bool h1_1, bool h2)
 {
@@ -224,21 +210,19 @@ Error_t Btt60xxShield::switchesHxOff(bool h0_0, bool h1_0, bool h0_1, bool h1_1,
 }
 
 /**
- * @brief Read the desired current value of the chosen channel
- *
- * This function:
- *      - Enables diagnosis for the channel
- *      - Selects the channel through dsel
- *      - Calls function to get the calibrated sensed current value on chosen channel
- *      - Disables diagnosis pin post operation completion
- *
- * @param[in]   x    Number of the Switch the should be turned on (0-4). Possible values:
- *                    Switch 0    -   Profet 0 (BTT6030 - channel 0)
- *                    Switch 1    -   Profet 0 (BTT6030 - channel 1)
- *                    Switch 2    -   Profet 1 (BTT6030 - channel 0)
- *                    Switch 3    -   Profet 1 (BTT6030 - channel 1)
+ * @brief   Read the desired current value of the chosen channel
+ * @details This function: \n
+ *          - Enables diagnosis for the channel \n
+ *          - Selects the channel through dsel \n
+ *          - Calls function to get the calibrated sensed current value on chosen channel \n
+ *          - Disables diagnosis pin post operation completion \n
+ * @param[in]   x    Number of the Switch the should be turned on (0-4). Possible values: \n
+ *                    Switch 0    -   Profet 0 (BTT6030 - channel 0) \n
+ *                    Switch 1    -   Profet 0 (BTT6030 - channel 1) \n
+ *                    Switch 2    -   Profet 1 (BTT6030 - channel 0) \n
+ *                    Switch 3    -   Profet 1 (BTT6030 - channel 1) \n
  *                    Switch 4    -   Profet 2 (Single channel)
- * @return          The calibrated value of the current in [A]
+ * @return  The calibrated value of the current in [A]
  */
 float Btt60xxShield::readIsx(uint8_t x)
 {
@@ -255,20 +239,16 @@ float Btt60xxShield::readIsx(uint8_t x)
 }
 
 /**
- * @brief Read the diagnosis of the chosen channel
- *
- * This function uses the current signal of the channel to diagnose perform diagnosis.
- * It returns the different states depending on the channels condition.
- *
- * @param[in]   x           Number of the Switch the should be turned on (0-4). Possible values:
- *                          Switch 0    -   Profet 0 (BTT6030 - channel 0)
- *                          Switch 1    -   Profet 0 (BTT6030 - channel 1)
- *                          Switch 2    -   Profet 1 (BTT6030 - channel 0)
- *                          Switch 3    -   Profet 1 (BTT6030 - channel 1)
- *                          Switch 4    -   Profet 2 (Single channel)
- *
+ * @brief    Read the diagnosis of the chosen channel
+ * @details  This function uses the current signal of the channel to diagnose perform diagnosis.
+ *           It returns the different states depending on the channels condition.
+ * @param[in]   x    Number of the Switch the should be turned on (0-4). Possible values: \n
+ *                    Switch 0    -   Profet 0 (BTT6030 - channel 0) \n
+ *                    Switch 1    -   Profet 0 (BTT6030 - channel 1) \n
+ *                    Switch 2    -   Profet 1 (BTT6030 - channel 0) \n
+ *                    Switch 3    -   Profet 1 (BTT6030 - channel 1) \n
+ *                    Switch 4    -   Profet 2 (Single channel)
  * @return      DiagStatus_t
- *
  * @retval      0   Everything works correctly
  * @retval      2   Short to ground
  * @retval      4   Short to battery

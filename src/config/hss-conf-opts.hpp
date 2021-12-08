@@ -1,9 +1,6 @@
 /**
  * @file        hss-conf-opts.hpp
- * @brief       High-Side-Switch Library Configuration Options
- * @copyright   Copyright (c) 2021 Infineon Technologies AG
- *
- * SPDX-License-Identifier: MIT
+ * @details     High-Side-Switch Library Configuration Options
  */
 
 /**

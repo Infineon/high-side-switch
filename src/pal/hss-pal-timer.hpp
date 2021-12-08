@@ -1,9 +1,6 @@
 /**
  * @file        hss-pal-timer.hpp
- * @brief       Timer Platform Abstraction Layer
- * @copyright   Copyright (c) 2021 Infineon Technologies AG
- *
- * SPDX-License-Identifier: MIT
+ * @details     Timer Platform Abstraction Layer
  */
 
 #include <stdint.h>
@@ -20,66 +17,70 @@ namespace hss
  * @{
  */
 
+/**
+ * @class   TimerPAL
+ * @details Abstract class declaration for Timer
+ */
 class TimerPAL
 {
     public:
 
         /**
          * @brief   Initialize the timer
-         * @return  Timer error code
-         * @retval  OK if success
-         * @retval  INIT_ERROR if hardware interface error
+         * @return  Error_t
+         * @retval      OK          If success
+         * @retval      INIT_ERROR  If hardware interface error
          */
         virtual  Error_t         init    () = 0;
 
         /**
          * @brief   Deinitialize the timer
-         * @return  Timer error code
-         * @retval  OK if success
-         * @retval  INIT_ERROR if hardware interface error
+         * @return  Error_t
+         * @retval      OK          If success
+         * @retval      INIT_ERROR  If hardware interface error
          */
         virtual  Error_t         deinit   () = 0;
 
         /**
          * @brief   Starts the timer
-         * @return  Timer error code
-         * @retval  OK if success
-         * @retval  INIT_ERROR if hardware interface error
+         * @return  Error_t
+         * @retval      OK          If success
+         * @retval      INIT_ERROR  If hardware interface error
          */
         virtual  Error_t         start   () = 0;
 
         /**
          * @brief       Elapsed time since the timer was started
          * @param[out]  elapsed Time in milliseconds
-         * @return      Timer error code
-         * @retval      OK if success
-         * @retval      INIT_ERROR if hardware interface error
+         * @return      Error_t
+         * @retval      OK          If success
+         * @retval      INIT_ERROR  If hardware interface error
          */
         virtual  Error_t         elapsed (uint32_t &elapsed) = 0;
 
         /**
          * @brief   Stops the timer
-         * @return  Timer error code
-         * @retval  OK if success
-         * @retval  INIT_ERROR if hardware interface error
+         * @return  Error_t
+         * @retval      OK          If success
+         * @retval      INIT_ERROR  If hardware interface error
          */
         virtual  Error_t         stop    () = 0;
 
         /**
          * @brief       Introduces a delay during the specified time
          * @param[in]   timeout    Delay time in milliseconds
-         * @return      Timer error code
-         * @retval      OK if success
-         * @retval      INIT_ERROR if hardware interface error
+         * @return      Error_t
+         * @retval      OK          If success
+         * @retval      INIT_ERROR  If hardware interface error
          */
         virtual  Error_t        delayMilli (uint32_t timeout) = 0;
 
         /**
          * @brief       Introduces a delay during the specified time
          * @param[in]   timeout     Delay time in microseconds
-         * @return      Timer error code
-         * @retval      OK if success
-         * @retval      INIT_ERROR if hardware interface error
+         * @return      Error_t
+         * @retval      OK          If success
+         * @retval      INIT_ERROR  If hardware interface error
          */
         virtual  Error_t        delayMicro  (uint32_t timeout) = 0;
 

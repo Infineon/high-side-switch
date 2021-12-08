@@ -1,9 +1,6 @@
 /**
  * @file        hss-pal-gpio.hpp
- * @brief       PAL of the GPIO
- * @copyright   Copyright (c) 2021 Infineon Technologies AG
- *
- * SPDX-License-Identifier: MIT
+ * @details     PAL of the GPIO
  */
 
 #include <stdint.h>
@@ -20,6 +17,10 @@ namespace hss
  * @{
  */
 
+/**
+ * @class   ADCPAL
+ * @details Abstract class declaration for ADC
+ */
 class GPIOPAL
 {
     public:
@@ -59,34 +60,34 @@ class GPIOPAL
 
         /**
          * @brief       Initializes the GPIO
-         * @return      GPIO error code
-         * @retval      OK if success
-         * @retval      INIT_ERROR if initialization error
+         * @return      Error_t
+         * @retval      OK          If success
+         * @retval      INIT_ERROR  If initialization error
          */
         virtual Error_t        init        () = 0;
 
         /**
              * @brief       Deinitializes the GPIO
-             * @return      GPIO error code
-             * @retval      OK if success
-             * @retval      INIT_ERROR if deinitialization error
+             * @return      Error_t
+             * @retval      OK          If success
+             * @retval      INIT_ERROR  If deinitialization error
          */
         virtual Error_t       deinit      () = 0;
 
         /**
          * @brief       Reads the GPIO voltage level
-         * @return      GPIO voltage level
-         * @retval      GPIO_LOW if voltage low
-         * @retval      GPIO_HIGH if voltage high
+         * @return      VLevel_t
+         * @retval      GPIO_LOW    If voltage low
+         * @retval      GPIO_HIGH   If voltage high
          */
         virtual VLevel_t       read        () = 0;
 
         /**
          * @brief       Writes the GPIO output voltage level
          * @param[in]   level  Voltage level
-         * @return      GPIO error code
-         * @retval      OK if success
-         * @retval      WRITE_ERROR if write error
+         * @return      Error_t
+         * @retval      OK              If success
+         * @retval      WRITE_ERROR     If write error
          */
         virtual Error_t        write       (VLevel_t level) = 0;
 
@@ -94,9 +95,9 @@ class GPIOPAL
          * @brief       Enables the GPIO output according to the GPIO logic
          *              - Low if negative
          *              - High if positive
-         * @return      GPIO interrupt event
-         * @retval      OK if success
-         * @retval      WRITE_ERROR if write error
+         * @return      Error_t
+         * @retval      OK              If success
+         * @retval      WRITE_ERROR     If write error
          */
         virtual Error_t        enable      () = 0;
 
@@ -104,9 +105,9 @@ class GPIOPAL
          * @brief       Disables the GPIO output according to the GPIO logic
          *              - Low if positive
          *              - High if negative
-         * @return      GPIO error code
-         * @retval      OK if success
-         * @retval      WRITE_ERROR if write error
+         * @return      Error_t
+         * @retval      OK              If success
+         * @retval      WRITE_ERROR     If write error
          */
         virtual Error_t        disable     () = 0;
 

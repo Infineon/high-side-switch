@@ -1,9 +1,6 @@
 /**
  * @file        hss-arduino.hpp
- * @brief       Definition of the High-Side-Switch Class in Arduino
- * @copyright   Copyright (c) 2021 Infineon Technologies AG
- *
- * SPDX-License-Identifier: MIT
+ * @details     Definition of the High-Side-Switch Class in Arduino
  */
 
 #ifndef HSS_ARDUINO_HPP_
@@ -15,8 +12,8 @@
 #include "hss-pal-timer-ino.hpp"
 
 /**
- * @brief Arduino class of the High-Side-Swich
- *
+ * @class   HssIno
+ * @details Arduino class of the High-Side-Swich
  */
 class HssIno : public Hss
 {

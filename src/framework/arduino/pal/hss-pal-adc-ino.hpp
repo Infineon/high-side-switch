@@ -1,9 +1,6 @@
 /**
  * @file        hss-pal-adc-ino.hpp
- * @brief       Arduino PAL for the ADC
- * @copyright   Copyright (c) 2021 Infineon Technologies AG
- *
- * SPDX-License-Identifier: MIT
+ * @details     Ino PAL for the ADC
  */
 
 #ifndef HSS_PAL_ADC_INO_HPP
@@ -19,8 +16,8 @@ using namespace hss;
  */
 
 /**
- * @brief Arduino ADC class
- *
+ * @class  ADC ino class
+ * @details Class implementing arduino ADC functionality
  */
 class ADCIno : virtual public ADCPAL
 {

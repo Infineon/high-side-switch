@@ -137,24 +137,29 @@ void readCurrent(int switch_no)
  */
 void readDiagnosis(int switch_no)
 {
-    int switchStatus = HSS.readDiagx(switch_no);
-    if(switchStatus & OPEN_LOAD)
+    DiagStatus_t switchStatus;
+
+    for(int i = 0; i<10; i++){
+        switchStatus = HSS.readDiagx(switch_no);            // Read the diagnosis function more than once to make sure the IS value is correct (internal exponential filter)
+    }
+
+    if(switchStatus == OPEN_LOAD)
     {
         Serial.println("Openload detected!");
     }
-    if(switchStatus & FAULT)
+    if(switchStatus == FAULT)
     {
         Serial.println("Short circuit to ground detected, Overtemperature or Overload detected!");
     }
-    if(switchStatus & FAULT_OL_IC)
+    if(switchStatus == FAULT_OL_IC)
     {
         Serial.println("Open load with active switch or inverse current detected!");
     }
-    if(switchStatus & SHORT_TO_VSS)
+    if(switchStatus == SHORT_TO_VSS)
     {
         Serial.println("Short circuit to Vss detected!");
     }
-    if(switchStatus & NORMAL)
+    if(switchStatus == NORMAL)
     {
         Serial.println("Normal operation!");
     }
@@ -167,7 +172,9 @@ void readDiagnosis(int switch_no)
 void readBatteryVoltage()
 {
     float batteryVoltage = 0.0;
-    batteryVoltage = HSS.readVss();
+    for(int i = 0; 0<10; i++){
+        batteryVoltage = HSS.readVss();                 // Measure more than once to make use of the internal exponential filter
+    }
     Serial.print("Current battery voltage : ");
     Serial.print(batteryVoltage);
     Serial.println(" V");

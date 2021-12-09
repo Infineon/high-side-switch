@@ -109,28 +109,34 @@ void loop()
  */
 void singleSwOperation(int switch_no)
 {
+    DiagStatus_t switchStatus;
     float readAmps = 0.0;
 
     /** Turn on the selected channel */
     HSS.switchHxOn(switch_no);
 
     /** Read current value */
-    readAmps = HSS.readIsx(switch_no);
+    for(int i = 0; i<10; i++){
+        readAmps = HSS.readIsx(switch_no);                                          // Measure more than once to make use of the internal exponential filter
+    }
     Serial.print("Current flowing through the switch: ");
     Serial.print(readAmps);
     Serial.println(" A");
 
     /** Get diagnosis result */
-    int switchStatus = HSS.readDiagx(switch_no);
-    if(switchStatus & FAULT_OL_IC)
+    for(int i = 0; i<10; i++){
+        switchStatus = HSS.readDiagx(switch_no);                                    // Read the diagnosis function more than once to make sure the IS value is correct (internal exponential filter)
+    }
+
+    if(switchStatus == FAULT_OL_IC)
     {
         Serial.println("Open load with enabled switch or inverse current detected!");
     }
-    if(switchStatus & FAULT)
+    if(switchStatus == FAULT)
     {
         Serial.println("Overtemperature, overload or shot to ground detected!");
     }
-    if(switchStatus & NORMAL)
+    if(switchStatus == NORMAL)
     {
         Serial.println("Normal operation!");
     }

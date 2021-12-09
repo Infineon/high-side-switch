@@ -63,7 +63,9 @@ void loop()
 void readCurrent()
 {
     float readAmps = 0.0;
-    readAmps = HSS.readIsx();
+    for(int i = 0; i<10; i++){                              // Measure more than once to make use of the internal exponential filter
+        readAmps = HSS.readIsx();
+    }
     Serial.print("Current flowing through the switch: ");
     Serial.print(readAmps);
     Serial.println(" A");

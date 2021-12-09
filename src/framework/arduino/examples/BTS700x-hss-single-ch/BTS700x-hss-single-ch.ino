@@ -1,16 +1,16 @@
 /**
  * @file        BTS700x-hss-single-ch.ino
  * @brief       High-Side-Switch Basic Example for the BTS700x Arduino form factored shields
- * @details     This example demonstrates how to switch on/off single channel in the BTT shield. It also 
+ * @details     This example demonstrates how to switch on/off single channel in the BTT shield. It also
  *              calls API to read the current value.
- *    
+ *
  *              You can configure following variants for this shield:
  *              - BTS7002
  *              - BTS7004
  *              - BTS7006
  *              - BTS7008
  *              It can be deployed to the Arduino Uno or the XMC's with corresponding form factor.
- * 
+ *
  * @copyright   Copyright (c) 2021 Infineon Technologies AG
  */
 
@@ -38,7 +38,7 @@ void setup()
     }
     else
         Serial.println("Initialization successful!");
-    
+
     delay(1000);
 }
 
@@ -68,7 +68,9 @@ void loop()
 void readCurrent()
 {
     float readAmps = 0.0;
-    readAmps = HSS.readIsx(switch_no);
+    for(int i = 0; i<10; i++){
+        readAmps = HSS.readIsx(switch_no);                  // Measure more than once to make use of the internal exponential filter
+    }
     Serial.print("Current flowing through the switch: ");
     Serial.print(readAmps);
     Serial.println(" A");

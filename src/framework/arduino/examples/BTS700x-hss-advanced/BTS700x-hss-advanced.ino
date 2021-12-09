@@ -172,7 +172,7 @@ void readDiagnosis(int switch_no)
 void readBatteryVoltage()
 {
     float batteryVoltage = 0.0;
-    for(int i = 0; 0<10; i++){
+    for(int i = 0; i<10; i++){
         batteryVoltage = HSS.readVss();                 // Measure more than once to make use of the internal exponential filter
     }
     Serial.print("Current battery voltage : ");

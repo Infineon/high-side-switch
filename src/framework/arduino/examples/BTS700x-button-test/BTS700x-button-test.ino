@@ -58,7 +58,7 @@ void loop()
 
     if(HSS.digitalReadButton() && button_pressed == false){
         button_pressed = true;
-        for(int i = 0; 0<10; i++){
+        for(int i = 0; i<10; i++){
             voltage = HSS.readVss();                            // Measure more than once to make use of the internal exponential filter
         }
         Serial.print("Supply voltage is: ");

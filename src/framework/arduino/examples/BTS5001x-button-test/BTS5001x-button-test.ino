@@ -18,6 +18,7 @@
 Bts5001xShieldIno HSS = Bts5001xShieldIno(&BTS50015);
 
 Error_t err = OK;
+unsigned int iteration = 0;
 
 void setup()
 {
@@ -50,8 +51,6 @@ void loop()
         delay(10);
     } 
 
-    delay(100);
-
     /** Toogles the output when the button is pressed */
     if(button_pressed)
     {
@@ -68,10 +67,10 @@ void loop()
         }
     }
     
-    delay(300);
+    delay(50);
 
-    /** Read the Vss value when the switch is ON */
-    if(switch_on)
+    /** Read the Vss value when the switch is ON and only in every 10th iteration (500ms interval) */
+    if ((switch_on) && !( iteration % 10 ))
     {
         for(int i = 0; i<10; i++){
             voltage = HSS.readVss();                            // Measure more than once to make use of the internal exponential filter
@@ -80,4 +79,6 @@ void loop()
         Serial.print("Supply voltage is: ");
         Serial.println(voltage);
     }
+
+    iteration++;
 }

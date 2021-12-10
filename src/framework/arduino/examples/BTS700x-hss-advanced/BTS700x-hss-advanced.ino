@@ -28,6 +28,8 @@
 
 #include <hss-shield-bts700x-ino.hpp>
 
+/** Creation the hss board object */
+/** The user needs to specify the BTS700x variant in the constructor argument */
 Bts700xShieldIno HSS = Bts700xShieldIno(&BTS7002);
 
 Error_t err = OK;
@@ -52,7 +54,7 @@ void setup()
 
 void loop()
 {
-    Serial.println("*** Part A: Single switch operation ***");
+    Serial.println("\n*** Part A: Single switch operation ***");
 
     /** Perform single switch operation for all switches one after the other */
     for (int switch_count = 1; switch_count <=4; switch_count++)
@@ -61,6 +63,9 @@ void loop()
         Serial.println("\n--> Turning on switch : ");
         Serial.println(switch_count);
         HSS.switchHxOn(switch_count);
+
+        /** Wait for a second before reading diagnose current */
+        delay(1000);
 
         /** Get switch related params like current, diagnosis output while it is in 'ON' state */
         getSwitchParams(switch_count);
@@ -76,14 +81,14 @@ void loop()
         /** Get switch related params like current, diagnosis output while it is in 'OFF' state */
         getSwitchParams(switch_count);
 
-        /** Keep switch off for a second */
-        delay(1000);
+        /** Keep switch off for 5 seconds */
+        delay(5000);
     }
 
-    Serial.println("*** Part B: Multiple switch operation ***");
+    Serial.println("\n*** Part B: Multiple switch operation ***");
 
     /** Turn on all 4 switches parallelly */
-    Serial.println("--> Turning on all switches at once!");
+    Serial.println("\n--> Turning on all switches at once!");
     HSS.switchesHxOn(1,1,1,1);
 
     /** Keep all switches on for a second */

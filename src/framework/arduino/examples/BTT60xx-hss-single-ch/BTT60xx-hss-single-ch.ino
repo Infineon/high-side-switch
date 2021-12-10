@@ -46,7 +46,7 @@ void setup()
         Serial.println("Initialization failed!");
     }
     else
-        Serial.println("Initialization successful!");
+        Serial.println("Initialization successful!\n");
 
     delay(1000);
 }
@@ -54,8 +54,11 @@ void setup()
 void loop()
 {
     /** Turn on the selected channel */
-    Serial.println("Turning on selected switch...");
+    Serial.println("\nTurning on selected switch...");
     HSS.switchHxOn(switch_no);
+
+   /** Wait for a second before reading diagnose current */
+    delay(1000);
 
     /** Read current value */
     readCurrent();
@@ -68,7 +71,7 @@ void loop()
     HSS.switchHxOff(switch_no);
 
     /** Keep all switches off for a second */
-    delay(1000);
+    delay(5000);
 }
 
 /**

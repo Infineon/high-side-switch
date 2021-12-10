@@ -19,6 +19,8 @@
 
 #include <hss-shield-bts5001x-ino.hpp>
 
+/** Creation the hss board object */
+/** The user needs to specify the BTS5001x variant in the constructor argument */
 Bts5001xShieldIno HSS = Bts5001xShieldIno(&BTS50015);
 
 Error_t err = OK;
@@ -47,6 +49,9 @@ void loop()
         Serial.println("\n--> Turning the switch ON");
         HSS.switchHxOn();
 
+        /** Wait for a second before reading diagnosis*/
+        delay(1000);
+
         /** Get switch related params like current, diagnosis output while it is in 'ON' state */
         getSwitchParams();
 
@@ -58,7 +63,7 @@ void loop()
         HSS.switchHxOff();
 
         /** Keep switch off for a second */
-        delay(1000);
+        delay(5000);
 }
 
 /**

@@ -45,7 +45,7 @@ void setup()
         Serial.println("Initialization failed!");
     }
     else
-        Serial.println("Initialization successful!");
+        Serial.println("Initialization successful!\n");
 
     delay(1000);
 }
@@ -64,5 +64,5 @@ void loop()
     HSS.switchesHxOff(switch_no[0],switch_no[1],switch_no[2],switch_no[3], switch_no[4]);
 
     /** Keep all switches off for a second */
-    delay(1000);
+    delay(5000);
 }

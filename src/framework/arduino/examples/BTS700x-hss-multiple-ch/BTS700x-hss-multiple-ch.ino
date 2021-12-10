@@ -14,6 +14,8 @@
 
 #include <hss-shield-bts700x-ino.hpp>
 
+/** Creation the hss board object */
+/** The user needs to specify the BTS700x variant in the constructor argument */
 Bts700xShieldIno HSS = Bts700xShieldIno(&BTS7002);
 
 /** Select channels to be used parallelly (index 0 being channel 1) */
@@ -49,9 +51,9 @@ void loop()
     delay(1000);
 
     /** Turn off the selected channels */
-    Serial.println("\nTurning off all switches at once!");
+    Serial.println("Turning off all switches at once!");
     HSS.switchesHxOff(switch_no[0],switch_no[1],switch_no[2],switch_no[3]);
 
-    /** Keep them OFF for a second */
-    delay(1000);
+    /** Keep them OFF for 5 second */
+    delay(5000);
 }

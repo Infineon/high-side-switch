@@ -13,6 +13,8 @@
 
 #include <hss-shield-bts5001x-ino.hpp>
 
+/** Creation the hss board object */
+/** The user needs to specify the BTS5001x variant in the constructor argument */
 Bts5001xShieldIno HSS = Bts5001xShieldIno(&BTS50015);
 
 Error_t err = OK;

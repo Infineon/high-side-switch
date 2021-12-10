@@ -41,17 +41,43 @@ void loop()
 {
     float voltage = 0.0;
     static bool button_pressed = false;                         // The flag is used to avoid printing constantly
+    static bool switch_on = false;
 
-    if(HSS.analogReadButton() && button_pressed == false){
+    /** Read push button */
+    while(HSS.analogReadButton())
+    {
         button_pressed = true;
-        for(int i = 0; i<10; i++){                              // Measure more than once to make use of the internal exponential filter
-            voltage = HSS.readVss();
+        delay(10);
+    } 
+
+    delay(100);
+
+    /** Toogles the output when the button is pressed */
+    if(button_pressed)
+    {
+        button_pressed = false;
+        switch_on = !switch_on;
+
+        if(switch_on)
+        {
+            HSS.switchHxOn();
         }
+        else
+        {
+            HSS.switchHxOff();
+        }
+    }
+    
+    delay(300);
+
+    /** Read the Vss value when the switch is ON */
+    if(switch_on)
+    {
+        for(int i = 0; i<10; i++){
+            voltage = HSS.readVss();                            // Measure more than once to make use of the internal exponential filter
+        }
+
         Serial.print("Supply voltage is: ");
         Serial.println(voltage);
-    }
-
-    if(!HSS.analogReadButton()){
-        button_pressed = false;
     }
 }

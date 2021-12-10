@@ -98,8 +98,8 @@ void loop()
     Serial.println("--> Turning off all switches at once!");
     HSS.switchesHxOff(1,1,1,1);
 
-    /** Keep all switches off for a second */
-    delay(1000);
+    /** Keep all switches off for 5 seconds */
+    delay(5000);
 }
 
 /**

@@ -1,25 +1,25 @@
 /**
  * @file        BTT600x-hss-single-ch.ino
  * @brief       High-Side-Switch Basic Example for the BTT600x Arduino form factored shields
- * @details     This example demonstrates how to switch on/off single channel in the BTT shield. It also 
+ * @details     This example demonstrates how to switch on/off single channel in the BTT shield. It also
  *              calls API to read the current value.
- *    
- *              Find below the Profet 24V shield part details and its offered channels: 
+ *
+ *              Find below the Profet 24V shield part details and its offered channels:
  *              _________________________________________________________________________________
  *                  Shield Name            Included parts          Supported number of channels
  *              _________________________________________________________________________________
- *               24V_SHIELD_BTT6030    Profet 0 (BTT6030-2ERA)                2         
- *                                     Profet 1 (BTT6030-2ERA)                2                                 
- *                                     Profet 2 (BTT6020-1ERA)                1                          
+ *               24V_SHIELD_BTT6030    Profet 0 (BTT6030-2ERA)                2
+ *                                     Profet 1 (BTT6030-2ERA)                2
+ *                                     Profet 2 (BTT6020-1ERA)                1
  *              _________________________________________________________________________________
- * 
+ *
  *              It can be deployed to the Arduino Uno or the XMC's with corresponding form factor.
  * @copyright   Copyright (c) 2021 Infineon Technologies AG
  */
 
-#include <hss-shield-profet24v-ino.hpp>
+#include <hss-shield-btt60xx-ino.hpp>
 
-Profet24VBTTShieldIno HSS = Profet24VBTTShieldIno();
+Btt60xxShieldIno HSS = Btt60xxShieldIno();
 
 Error_t err = OK;
 
@@ -46,16 +46,19 @@ void setup()
         Serial.println("Initialization failed!");
     }
     else
-        Serial.println("Initialization successful!");
-    
+        Serial.println("Initialization successful!\n");
+
     delay(1000);
 }
 
 void loop()
 {
     /** Turn on the selected channel */
-    Serial.println("Turning on selected switch...");
+    Serial.println("\nTurning on selected switch...");
     HSS.switchHxOn(switch_no);
+
+   /** Wait for a second before reading diagnose current */
+    delay(1000);
 
     /** Read current value */
     readCurrent();
@@ -68,7 +71,7 @@ void loop()
     HSS.switchHxOff(switch_no);
 
     /** Keep all switches off for a second */
-    delay(1000);
+    delay(5000);
 }
 
 /**
@@ -77,7 +80,9 @@ void loop()
 void readCurrent()
 {
     float readAmps = 0.0;
-    readAmps = HSS.readIsx(switch_no);
+    for(int i = 0; i<10; i++){                              // Measure more than once to make use of the internal exponential filter
+        readAmps = HSS.readIsx(switch_no);
+    }
     Serial.print("Current flowing through the switch: ");
     Serial.print(readAmps);
     Serial.println(" A");

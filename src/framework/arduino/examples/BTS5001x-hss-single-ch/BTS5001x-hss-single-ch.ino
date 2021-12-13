@@ -1,21 +1,23 @@
 /**
  * @file        BTS5001x-hss-single-ch.ino
  * @brief       High-Side-Switch Basic Example for the BTS5001x Arduino form factored shields
- * @details     This example demonstrates how to switch on/off single channel in the BTT shield. It also 
+ * @details     This example demonstrates how to switch on/off single channel in the BTT shield. It also
  *              calls API to read the current value.
- *    
+ *
  *              You can configure following variants for this shield:
  *              - BTS50010
  *              - BTS50015
- * 
+ *
  *              It can be deployed to the Arduino Uno or the XMC's with corresponding form factor.
  * @copyright   Copyright (c) 2021 Infineon Technologies AG
  */
 
 
-#include <hss-shield-bts500xx-ino.hpp>
+#include <hss-shield-bts5001x-ino.hpp>
 
-Bts500xxShieldIno HSS = Bts500xxShieldIno(&BTS50015);
+/** Creation the hss board object */
+/** The user needs to specify the BTS5001x variant in the constructor argument */
+Bts5001xShieldIno HSS = Bts5001xShieldIno(&BTS50015);
 
 Error_t err = OK;
 
@@ -33,7 +35,7 @@ void setup()
     }
     else
         Serial.println("Initialization successful!");
-    
+
     delay(1000);
 }
 
@@ -42,6 +44,9 @@ void loop()
     /** Turn on the selected channel */
     Serial.println("\n--> Turning the switch ON");
     HSS.switchHxOn();
+
+    /** Wait for a second before reading diagnose current */
+    delay(1000);
 
     /** Read current value */
     readCurrent();
@@ -54,7 +59,7 @@ void loop()
     HSS.switchHxOff();
 
     /** Keep all switches off for a second */
-    delay(1000);
+    delay(5000);
 }
 
 /**
@@ -63,7 +68,9 @@ void loop()
 void readCurrent()
 {
     float readAmps = 0.0;
-    readAmps = HSS.readIsx();
+    for(int i = 0; i<10; i++){                              // Measure more than once to make use of the internal exponential filter
+        readAmps = HSS.readIsx();
+    }
     Serial.print("Current flowing through the switch: ");
     Serial.print(readAmps);
     Serial.println(" A");

@@ -1,9 +1,12 @@
 /**
- * @file        hss-shield-bts500xx.cpp
- * @details     BTS500xx Shield Implementation
+ * @file        hss-shield-bts5001x.cpp
+ * @brief       BTS500xx Shield Implementation
+ * @copyright   Copyright (c) 2021 Infineon Technologies AG
+ *
+ * SPDX-License-Identifier: MIT
  */
 
-#include "hss-shield-bts500xx.hpp"
+#include "hss-shield-bts5001x.hpp"
 
 using namespace hss;
 
@@ -11,7 +14,7 @@ using namespace hss;
  * @brief   High-Side-Switch-Board constructor
  * @details Initialize all protected class pointers with a null pointer.
  */
-Bts500xxShield::Bts500xxShield(Hss * hsw1, GPIOPAL * led2, GPIOPAL * led3, ADCPAL * pushButton, ADCPAL * vBat)
+Bts5001xShield::Bts5001xShield(Hss * hsw1, GPIOPAL * led2, GPIOPAL * led3, ADCPAL * pushButton, ADCPAL * vBat)
 :
 hss1(hsw1),
 led2(led2),
@@ -26,23 +29,25 @@ vBat(vBat)
  * @brief Destructor of the High-Side-Switch-Board
  *
  */
-Bts500xxShield::~Bts500xxShield()
+Bts5001xShield::~Bts5001xShield()
 {
 
 }
 
 /**
- * @brief   Initialize all necessary objects of the High-Side-Switch-Board
- * @details This function initializes all necessary objects of the High-Side-Switch-Board.
- *          It retruns an error code to see if everything was initialized correctly.
- * @return  Error_t
+ * @brief Initialize all necessary objects of the High-Side-Switch-Board
+ *
+ * This function initializes all necessary objects of the High-Side-Switch-Board.
+ * It retruns an error code to see if everything was initialized correctly.
+ *
+ * @return Error_t
  */
-Error_t Bts500xxShield::init()
+Error_t Bts5001xShield::init()
 {
     Error_t err= OK;
 
     HSS_ASSERT_NULLPTR(hss1);
-    err= hss1->init();
+    err = hss1->init();
     HSS_ASSERT_RET(err);
 
     if(nullptr != led2)
@@ -75,17 +80,19 @@ Error_t Bts500xxShield::init()
 }
 
 /**
- * @brief    Deinitialize all necessary objects of the High-Side-Switch-Board
- * @details  This function deinitializes all necessary objects of the High-Side-Switch-Board.
- *           It retruns an error code to see if everything was deinitialized correctly.
- * @return   Error_t
+ * @brief Deinitialize all necessary objects of the High-Side-Switch-Board
+ *
+ * This function deinitializes all necessary objects of the High-Side-Switch-Board.
+ * It retruns an error code to see if everything was deinitialized correctly.
+ *
+ * @return Error_t
  */
-Error_t Bts500xxShield::deinit()
+Error_t Bts5001xShield::deinit()
 {
     Error_t err= OK;
 
     HSS_ASSERT_NULLPTR(hss1);
-    err= hss1->deinit();
+    err = hss1->deinit();
     HSS_ASSERT_RET(err);
 
     if(nullptr != led2)
@@ -122,7 +129,7 @@ Error_t Bts500xxShield::deinit()
  * @param[in]   x   Number of the Switch the should be turned on (1-4)
  * @return          Error_t
  */
-Error_t Bts500xxShield::switchHxOn(uint8_t x)
+Error_t Bts5001xShield::switchHxOn(uint8_t x)
 {
     (void)x;  /** Unused argument */
 
@@ -147,13 +154,13 @@ Error_t Bts500xxShield::switchHxOn(uint8_t x)
  * @param[in]   x   Number of the Switch the should be turned off (1-4)
  * @return          Error_t
  */
-Error_t Bts500xxShield::switchHxOff(uint8_t x)
+Error_t Bts5001xShield::switchHxOff(uint8_t x)
 {
     (void)x;  /** Unused argument */
 
     Error_t err= OK;
 
-    err= hss1->disable();
+    err = hss1->disable();
     HSS_ASSERT_RET(err);
 
     if (nullptr != led2)
@@ -174,15 +181,13 @@ Error_t Bts500xxShield::switchHxOff(uint8_t x)
  * @param[in]   x   Number of the desired channel (1)
  * @return          The value of the current in [A]
  */
-float Bts500xxShield::readIsx(uint8_t x)
+float Bts5001xShield::readIsx(uint8_t x)
 {
     (void)x;  /** Unused argument */
 
     float isVal;
 
-    hss1->enableDiag();
     isVal = hss1->readIs(rSense);
-    hss1->disableDiag();
 
     return isVal;
 }
@@ -192,14 +197,15 @@ float Bts500xxShield::readIsx(uint8_t x)
  * @details  This function uses the current signal of the channel to diagnose the channel.
  *           It returns the different states depending on the channels condition.
  * @param[in]   x   Desired channel for the diagnosis (1)
- * @return      DiagStatus_t
+ * @return          DiagStatus_t
+ *
  * @retval  -2  Not enabled
  * @retval  0   Switch is working fine
  * @retval  2   Short circuit to ground
  * @retval  4   Short circuit to Vs
  * @retval  5   Open load detected
  */
-DiagStatus_t Bts500xxShield::readDiagx(uint8_t x)
+DiagStatus_t Bts5001xShield::readDiagx(uint8_t x)
 {
     (void)x;  /** Unused argument */
 
@@ -221,7 +227,7 @@ DiagStatus_t Bts500xxShield::readDiagx(uint8_t x)
  * @details  This functions is reading the attached voltage at the Profet-Board.
  * @return   Value of the battery voltage in [V]
  */
-float Bts500xxShield::readVss()
+float Bts5001xShield::readVss()
 {
     uint16_t adcResult = 0;
     float voltage = 0.0;
@@ -242,7 +248,7 @@ float Bts500xxShield::readVss()
  * @retval true  If button is pressed
  * @retval false If button is not pressed
  */
-bool Bts500xxShield::analogReadButton()
+bool Bts5001xShield::analogReadButton()
 {
     uint16_t result = 0;
 
@@ -261,7 +267,7 @@ bool Bts500xxShield::analogReadButton()
  *          of the battery voltage offset
  * @param[in]   offset  Desired value of the offset in [V]
  */
-void Bts500xxShield::setVoltageOffset(float offset)
+void Bts5001xShield::setVoltageOffset(float offset)
 {
     vBatOffset = offset;
 }

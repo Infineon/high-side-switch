@@ -17,9 +17,11 @@
  */
 
 
-#include <hss-shield-bts500xx-ino.hpp>
+#include <hss-shield-bts5001x-ino.hpp>
 
-Bts500xxShieldIno HSS = Bts500xxShieldIno(&BTS50015);
+/** Creation the hss board object */
+/** The user needs to specify the BTS5001x variant in the constructor argument */
+Bts5001xShieldIno HSS = Bts5001xShieldIno(&BTS50015);
 
 Error_t err = OK;
 
@@ -47,6 +49,9 @@ void loop()
         Serial.println("\n--> Turning the switch ON");
         HSS.switchHxOn();
 
+        /** Wait for a second before reading diagnosis*/
+        delay(1000);
+
         /** Get switch related params like current, diagnosis output while it is in 'ON' state */
         getSwitchParams();
 
@@ -58,7 +63,7 @@ void loop()
         HSS.switchHxOff();
 
         /** Keep switch off for a second */
-        delay(1000);
+        delay(5000);
 }
 
 /**
@@ -86,7 +91,9 @@ void getSwitchParams()
 void readCurrent()
 {
     float readAmps = 0.0;
-    readAmps = HSS.readIsx();
+    for(int i = 0; i<10; i++){                              // Measure more than once to make use of the internal exponential filter
+        readAmps = HSS.readIsx();
+    }
     Serial.print("Current flowing through the switch: ");
     Serial.print(readAmps);
     Serial.println(" A");
@@ -98,17 +105,21 @@ void readCurrent()
  */
 void readDiagnosis()
 {
-    int switchStatus = HSS.readDiagx();
+    DiagStatus_t switchStatus;
 
-    if(switchStatus & FAULT_OL_IC)
+    for(int i = 0; i<10; i++){
+        switchStatus = HSS.readDiagx();                     // Read the diagnosis function more than once to make sure the IS value is correct (internal exponential filter)
+    }
+
+    if(switchStatus == FAULT_OL_IC)
     {
         Serial.println("Open load with enabled switch or inverse current detected!");
     }
-    if(switchStatus & FAULT)
+    if(switchStatus == FAULT)
     {
         Serial.println("Overtemperature, overload or shot to ground detected!");
     }
-    if(switchStatus & NORMAL)
+    if(switchStatus == NORMAL)
     {
         Serial.println("Normal operation!");
     }
@@ -121,7 +132,9 @@ void readDiagnosis()
 void readBatteryVoltage()
 {
     float batteryVoltage = 0.0;
-    batteryVoltage = HSS.readVss();
+    for(int i = 0; i<10; i++){
+        batteryVoltage = HSS.readVss();
+    }
     Serial.print("Current battery voltage : ");
     Serial.print(batteryVoltage);
     Serial.println(" V");

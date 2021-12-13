@@ -3,8 +3,8 @@
  * @details     Class for BTS500xx (12V) Shield Implementation
  */
 
-#ifndef HSS_SHIELD_BTS500XX_HPP_
-#define HSS_SHIELD_BTS500XX_HPP_
+#ifndef HSS_SHIELD_BTS5001X_HPP_
+#define HSS_SHIELD_BTS5001X_HPP_
 
 #include "hss-shield.hpp"
 #include "hss-variants.hpp"
@@ -12,16 +12,12 @@
 
 using namespace hss;
 
-/**
- * @class    Bts500xxShield
- * @details  Class implementing HSS functionalities for Bts500xx Shield
- */
-class Bts500xxShield : public HssShield
+class Bts5001xShield : public HssShield
 {
     public:
 
-                        Bts500xxShield(Hss * hsw1, GPIOPAL * led2, GPIOPAL * led3, ADCPAL * pushButton, ADCPAL * vBat);
-                        ~Bts500xxShield();
+                        Bts5001xShield(Hss * hsw1, GPIOPAL * led2, GPIOPAL * led3, ADCPAL * pushButton, ADCPAL * vBat);
+                        ~Bts5001xShield();
 
         Error_t         init();
         Error_t         deinit();
@@ -52,4 +48,4 @@ class Bts500xxShield : public HssShield
 
 };
 
-#endif /** HSS_SHIELD_BTS500XX_HPP_ */
+#endif /** HSS_SHIELD_BTS5001X_HPP_ */

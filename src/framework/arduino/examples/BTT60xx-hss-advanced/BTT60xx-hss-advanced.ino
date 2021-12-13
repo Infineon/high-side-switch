@@ -28,9 +28,9 @@
  * @copyright   Copyright (c) 2021 Infineon Technologies AG
  */
 
-#include <hss-shield-profet24v-ino.hpp>
+#include <hss-shield-btt60xx-ino.hpp>
 
-Profet24VBTTShieldIno HSS = Profet24VBTTShieldIno();
+Btt60xxShieldIno HSS = Btt60xxShieldIno();
 
 Error_t err = OK;
 
@@ -54,7 +54,7 @@ void setup()
 
 void loop()
 {
-    Serial.println("*** Part A: Single switch operation ***");
+    Serial.println("\n*** Part A: Single switch operation ***\n");
 
     /** Turn on Profet 0 - channel 0, get current value and perform diagnosis and then turn it off */
     Serial.println("\n--> Turning on Profet 0 - channel 0 (OUT0.0)");
@@ -62,26 +62,26 @@ void loop()
     Serial.println("Turning off Profet 0 - channel 0 (OUT0.0) ");
 
     /** Turn on Profet 0 - channel 1, get current value and perform diagnosis and then turn it off */
-    Serial.println("--> Turning on Profet 0 - channel 1 (OUT0.1)");
+    Serial.println("\n--> Turning on Profet 0 - channel 1 (OUT0.1)");
     singleSwOperation(1);
     Serial.println("Turning off Profet 0 - channel 1 (OUT0.1) ");
 
     /** Turn on Profet 1 - channel 0, get current value and perform diagnosis and then turn it off */
-    Serial.println("--> Turning on Profet 1 - channel 0 (OUT1.0)");
+    Serial.println("\n--> Turning on Profet 1 - channel 0 (OUT1.0)");
     singleSwOperation(2);
     Serial.println("Turning off Profet 1 - channel 0 (OUT1.0) ");
 
     /** Turn on Profet 1 - channel 1, get current value and perform diagnosis and then turn it off */
-    Serial.println("--> Turning on Profet 1 - channel 1 (OUT1.1)");
+    Serial.println("\n--> Turning on Profet 1 - channel 1 (OUT1.1)");
     singleSwOperation(3);
     Serial.println("Turning off Profet 1 - channel 1 (OUT1.1) ");
 
     /** Turn on Profet 2, get current value and perform diagnosis and then turn it off */
-    Serial.println("--> Turning on Profet 2 (OUT2)");
+    Serial.println("\n--> Turning on Profet 2 (OUT2)");
     singleSwOperation(4);
     Serial.println("Turning off Profet 2 (OUT2) ");
 
-    Serial.println("*** Part B: Multiple switch operation ***");
+    Serial.println("\n*** Part B: Multiple switch operation ***");
 
     /** Turn on all 5 switches parallelly */
     Serial.println("\n--> Turning on all switches at once!");
@@ -95,7 +95,7 @@ void loop()
     HSS.switchesHxOff(1,1,1,1,1);
 
     /** Keep all switches off for a second */
-    delay(1000);
+    delay(5000);
 }
 
 /**
@@ -109,28 +109,37 @@ void loop()
  */
 void singleSwOperation(int switch_no)
 {
+    DiagStatus_t switchStatus;
     float readAmps = 0.0;
 
     /** Turn on the selected channel */
     HSS.switchHxOn(switch_no);
 
+   /** Wait for a second before reading diagnose current */
+    delay(1000);
+
     /** Read current value */
-    readAmps = HSS.readIsx(switch_no);
+    for(int i = 0; i<10; i++){
+        readAmps = HSS.readIsx(switch_no);                                          // Measure more than once to make use of the internal exponential filter
+    }
     Serial.print("Current flowing through the switch: ");
     Serial.print(readAmps);
     Serial.println(" A");
 
     /** Get diagnosis result */
-    int switchStatus = HSS.readDiagx(switch_no);
-    if(switchStatus & FAULT_OL_IC)
+    for(int i = 0; i<10; i++){
+        switchStatus = HSS.readDiagx(switch_no);                                    // Read the diagnosis function more than once to make sure the IS value is correct (internal exponential filter)
+    }
+
+    if(switchStatus == FAULT_OL_IC)
     {
         Serial.println("Open load with enabled switch or inverse current detected!");
     }
-    if(switchStatus & FAULT)
+    if(switchStatus == FAULT)
     {
         Serial.println("Overtemperature, overload or shot to ground detected!");
     }
-    if(switchStatus & NORMAL)
+    if(switchStatus == NORMAL)
     {
         Serial.println("Normal operation!");
     }

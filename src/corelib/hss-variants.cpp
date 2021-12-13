@@ -64,7 +64,7 @@ BtxVariants_t BTS50010 {
     .iisFault = 0.0035,
     .iisOl = 0.0,
     .iisEn = 0.0,
-    .iisO = 0.00018
+    .iisO = 0.000008
 };
 
 /**
@@ -77,7 +77,7 @@ BtxVariants_t BTS50015 {
     .iisFault = 0.0035,
     .iisOl = 0.0,
     .iisEn = 0.0,
-    .iisO = 0.000125
+    .iisO = 0.000005
 };
 
 /**

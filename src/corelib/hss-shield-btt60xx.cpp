@@ -1,16 +1,19 @@
 /**
- * @file        hss-shield-profet24V.cpp
- * @details     Profet (24V) Shield with BTT6030-2EKA and BTT6020-1EKA Implementation
+ * @file        hss-shield-btt60xx.cpp
+ * @brief       Profet (24V) Shield with BTT6030-2EKA and BTT6020-1EKA Implementation
+ * @copyright   Copyright (c) 2021 Infineon Technologies AG
+ *
+ * SPDX-License-Identifier: MIT
  */
 
-#include "hss-shield-profet24v.hpp"
+#include "hss-shield-btt60xx.hpp"
 
 using namespace hss;
 
 /**
- * @brief   Profet 24V BTT6030 Shield constructor
+ * @brief   Profet 24V BTT60xx Shield constructor
  */
-Profet24VBTTShield::Profet24VBTTShield(Hss *hsw0, Hss *hsw1, Hss *hsw2)
+Btt60xxShield::Btt60xxShield(Hss *hsw0, Hss *hsw1, Hss *hsw2)
 {
     switches[0] = hsw0;
     switches[1] = hsw1;
@@ -21,7 +24,7 @@ Profet24VBTTShield::Profet24VBTTShield(Hss *hsw0, Hss *hsw1, Hss *hsw2)
  * @brief   Destructor of the Profet 24V Shield
  *
  */
-Profet24VBTTShield::~Profet24VBTTShield()
+Btt60xxShield::~Btt60xxShield()
 {
 
 }
@@ -32,7 +35,7 @@ Profet24VBTTShield::~Profet24VBTTShield()
  *          It returns an error code to see if everything was initialized correctly.
  * @return  Error_t
  */
-Error_t Profet24VBTTShield::init()
+Error_t Btt60xxShield::init()
 {
     Error_t err = OK;
 
@@ -47,12 +50,14 @@ Error_t Profet24VBTTShield::init()
 }
 
 /**
- * @brief    Deinitialize all necessary objects of the Profet 24V Shield
- * @details  This function deinitializes all necessary objects of the Profet 24V Shield.
- *           It retruns an error code to see if everything was deinitialized correctly.
- * @return   Error_t
+ * @brief   Deinitialize all necessary objects of the Profet 24V Shield
+ *
+ * This function deinitializes all necessary objects of the Profet 24V Shield.
+ * It retruns an error code to see if everything was deinitialized correctly.
+ *
+ * @return Error_t
  */
-Error_t Profet24VBTTShield::deinit()
+Error_t Btt60xxShield::deinit()
 {
     Error_t err = OK;
 
@@ -77,7 +82,7 @@ Error_t Profet24VBTTShield::deinit()
  *                    Switch 4    -   Profet 2 (Single channel)
  * @return          Error_t
  */
-Error_t Profet24VBTTShield::switchHxOn(uint8_t x)
+Error_t Btt60xxShield::switchHxOn(uint8_t x)
 {
     Error_t err = OK;
 
@@ -100,7 +105,7 @@ Error_t Profet24VBTTShield::switchHxOn(uint8_t x)
  *                    Switch 4    -   Profet 2 (Single channel)
  * @return  Error_t
  */
-Error_t Profet24VBTTShield::switchHxOff(uint8_t x)
+Error_t Btt60xxShield::switchHxOff(uint8_t x)
 {
     Error_t err = OK;
 
@@ -122,7 +127,7 @@ Error_t Profet24VBTTShield::switchHxOff(uint8_t x)
  * @param[in] h2      Enable the Switch 2 - channel 0 if h2   = true
  * @return    Error_t
  */
-Error_t Profet24VBTTShield::switchesHxOn(bool h0_0, bool h1_0, bool h0_1, bool h1_1, bool h2)
+Error_t Btt60xxShield::switchesHxOn(bool h0_0, bool h1_0, bool h0_1, bool h1_1, bool h2)
 {
     Error_t err = OK;
 
@@ -168,7 +173,7 @@ Error_t Profet24VBTTShield::switchesHxOn(bool h0_0, bool h1_0, bool h0_1, bool h
  * @param[in] h2      Disable the Switch 2 - channel 0 if h2   = true
  * @return    Error_t
  */
-Error_t Profet24VBTTShield::switchesHxOff(bool h0_0, bool h1_0, bool h0_1, bool h1_1, bool h2)
+Error_t Btt60xxShield::switchesHxOff(bool h0_0, bool h1_0, bool h0_1, bool h1_1, bool h2)
 {
     Error_t err = OK;
 
@@ -216,10 +221,10 @@ Error_t Profet24VBTTShield::switchesHxOff(bool h0_0, bool h1_0, bool h0_1, bool 
  *                    Switch 1    -   Profet 0 (BTT6030 - channel 1) \n
  *                    Switch 2    -   Profet 1 (BTT6030 - channel 0) \n
  *                    Switch 3    -   Profet 1 (BTT6030 - channel 1) \n
- *                    Switch 4    -   Profet 2 (Single channel) 
+ *                    Switch 4    -   Profet 2 (Single channel)
  * @return  The calibrated value of the current in [A]
  */
-float Profet24VBTTShield::readIsx(uint8_t x)
+float Btt60xxShield::readIsx(uint8_t x)
 {
     float iisCalib;
     uint8_t hss = x/2;
@@ -242,14 +247,14 @@ float Profet24VBTTShield::readIsx(uint8_t x)
  *                    Switch 1    -   Profet 0 (BTT6030 - channel 1) \n
  *                    Switch 2    -   Profet 1 (BTT6030 - channel 0) \n
  *                    Switch 3    -   Profet 1 (BTT6030 - channel 1) \n
- *                    Switch 4    -   Profet 2 (Single channel) 
+ *                    Switch 4    -   Profet 2 (Single channel)
  * @return      DiagStatus_t
  * @retval      0   Everything works correctly
  * @retval      2   Short to ground
  * @retval      4   Short to battery
  * @retval      5   Open load
  */
-DiagStatus_t Profet24VBTTShield::readDiagx(uint8_t x)
+DiagStatus_t Btt60xxShield::readDiagx(uint8_t x)
 {
     DiagStatus_t diagStatus = NORMAL;
     float currentOn = 0.0;

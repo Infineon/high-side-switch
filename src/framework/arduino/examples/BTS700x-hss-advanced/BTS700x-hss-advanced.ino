@@ -28,6 +28,8 @@
 
 #include <hss-shield-bts700x-ino.hpp>
 
+/** Creation the hss board object */
+/** The user needs to specify the BTS700x variant in the constructor argument */
 Bts700xShieldIno HSS = Bts700xShieldIno(&BTS7002);
 
 Error_t err = OK;
@@ -52,7 +54,7 @@ void setup()
 
 void loop()
 {
-    Serial.println("*** Part A: Single switch operation ***");
+    Serial.println("\n*** Part A: Single switch operation ***");
 
     /** Perform single switch operation for all switches one after the other */
     for (int switch_count = 1; switch_count <=4; switch_count++)
@@ -61,6 +63,9 @@ void loop()
         Serial.println("\n--> Turning on switch : ");
         Serial.println(switch_count);
         HSS.switchHxOn(switch_count);
+
+        /** Wait for a second before reading diagnose current */
+        delay(1000);
 
         /** Get switch related params like current, diagnosis output while it is in 'ON' state */
         getSwitchParams(switch_count);
@@ -76,14 +81,14 @@ void loop()
         /** Get switch related params like current, diagnosis output while it is in 'OFF' state */
         getSwitchParams(switch_count);
 
-        /** Keep switch off for a second */
-        delay(1000);
+        /** Keep switch off for 5 seconds */
+        delay(5000);
     }
 
-    Serial.println("*** Part B: Multiple switch operation ***");
+    Serial.println("\n*** Part B: Multiple switch operation ***");
 
     /** Turn on all 4 switches parallelly */
-    Serial.println("--> Turning on all switches at once!");
+    Serial.println("\n--> Turning on all switches at once!");
     HSS.switchesHxOn(1,1,1,1);
 
     /** Keep all switches on for a second */
@@ -93,8 +98,8 @@ void loop()
     Serial.println("--> Turning off all switches at once!");
     HSS.switchesHxOff(1,1,1,1);
 
-    /** Keep all switches off for a second */
-    delay(1000);
+    /** Keep all switches off for 5 seconds */
+    delay(5000);
 }
 
 /**
@@ -137,24 +142,29 @@ void readCurrent(int switch_no)
  */
 void readDiagnosis(int switch_no)
 {
-    int switchStatus = HSS.readDiagx(switch_no);
-    if(switchStatus & OPEN_LOAD)
+    DiagStatus_t switchStatus;
+
+    for(int i = 0; i<10; i++){
+        switchStatus = HSS.readDiagx(switch_no);            // Read the diagnosis function more than once to make sure the IS value is correct (internal exponential filter)
+    }
+
+    if(switchStatus == OPEN_LOAD)
     {
         Serial.println("Openload detected!");
     }
-    if(switchStatus & FAULT)
+    if(switchStatus == FAULT)
     {
         Serial.println("Short circuit to ground detected, Overtemperature or Overload detected!");
     }
-    if(switchStatus & FAULT_OL_IC)
+    if(switchStatus == FAULT_OL_IC)
     {
         Serial.println("Open load with active switch or inverse current detected!");
     }
-    if(switchStatus & SHORT_TO_VSS)
+    if(switchStatus == SHORT_TO_VSS)
     {
         Serial.println("Short circuit to Vss detected!");
     }
-    if(switchStatus & NORMAL)
+    if(switchStatus == NORMAL)
     {
         Serial.println("Normal operation!");
     }
@@ -167,7 +177,9 @@ void readDiagnosis(int switch_no)
 void readBatteryVoltage()
 {
     float batteryVoltage = 0.0;
-    batteryVoltage = HSS.readVss();
+    for(int i = 0; i<10; i++){
+        batteryVoltage = HSS.readVss();                 // Measure more than once to make use of the internal exponential filter
+    }
     Serial.print("Current battery voltage : ");
     Serial.print(batteryVoltage);
     Serial.println(" V");

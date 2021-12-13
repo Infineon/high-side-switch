@@ -7,8 +7,8 @@ file(GLOB Sources CONFIGURE_DEPENDS "*.cpp")
 # Test Sources
 # set(Sources
     # test_hss-shield-bts700x.cpp
-    # test_hss-shield-profet24v.cpp
-    # test_hss-shield-bts500xx.cpp
+    # test_hss-shield-btt60xx.cpp
+    # test_hss-shield-bts5001x.cpp
     # test_hss.cpp
 # )
 

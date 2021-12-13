@@ -1,10 +1,10 @@
 #include "test_hss-mock.hpp"
-#include "hss-shield-bts500xx.hpp"
+#include "hss-shield-bts5001x.hpp"
 
 /**
  *  Class C++ High-Side-Switch Profet 24V Class Test Suite
  */
-class Bts500xxShield_Test : public ::testing::Test
+class Bts5001xShield_Test : public ::testing::Test
 {
 
     public:
@@ -14,7 +14,7 @@ class Bts500xxShield_Test : public ::testing::Test
         NiceMock<MockTimer> timer;
 
         Hss * hsw;
-        Bts500xxShield * shield;
+        Bts5001xShield * shield;
 
         /**
          * Is called before every individual test is executed
@@ -22,7 +22,7 @@ class Bts500xxShield_Test : public ::testing::Test
         void SetUp()
         {
             hsw    = new Hss(&den, &in, &is, &timer, &BTS50015);
-            shield = new Bts500xxShield(hsw, &led1, &led2, &pushButton, &vBat);
+            shield = new Bts5001xShield(hsw, &led1, &led2, &pushButton, &vBat);
 
             ON_CALL(den,init())
             .WillByDefault(Return(OK));
@@ -54,7 +54,7 @@ class Bts500xxShield_Test : public ::testing::Test
          * Is called after every individual test was executed
          */
         void TearDown()
-        {   
+        {
             delete hsw;
             delete shield;
         }
@@ -64,7 +64,7 @@ class Bts500xxShield_Test : public ::testing::Test
  * init()
  */
 
-TEST_F(Bts500xxShield_Test, init_Error)
+TEST_F(Bts5001xShield_Test, init_Error)
 {
     EXPECT_CALL(den, init())
     .WillOnce(Return(INTF_ERROR));
@@ -72,14 +72,14 @@ TEST_F(Bts500xxShield_Test, init_Error)
     ASSERT_EQ(INTF_ERROR, shield->init());
 }
 
-TEST_F(Bts500xxShield_Test, init_Nullptr_Error)
+TEST_F(Bts5001xShield_Test, init_Nullptr_Error)
 {
-    Bts500xxShield shield2(nullptr, &led1, &led2, &pushButton, &vBat);
+    Bts5001xShield shield2(nullptr, &led1, &led2, &pushButton, &vBat);
 
     ASSERT_EQ(NULLPTR_ERROR, shield2.init());
 }
 
-TEST_F(Bts500xxShield_Test, init_Success)
+TEST_F(Bts5001xShield_Test, init_Success)
 {
     ASSERT_EQ(OK, shield->init());
 }
@@ -88,7 +88,7 @@ TEST_F(Bts500xxShield_Test, init_Success)
  * deinit()
  */
 
-TEST_F(Bts500xxShield_Test, deinit_Error)
+TEST_F(Bts5001xShield_Test, deinit_Error)
 {
     EXPECT_CALL(den, deinit())
     .WillOnce(Return(INTF_ERROR));
@@ -96,14 +96,14 @@ TEST_F(Bts500xxShield_Test, deinit_Error)
     ASSERT_EQ(INTF_ERROR, shield->deinit());
 }
 
-TEST_F(Bts500xxShield_Test, deinit_Nullptr_Error)
+TEST_F(Bts5001xShield_Test, deinit_Nullptr_Error)
 {
-    Bts500xxShield shield2(nullptr, &led1, &led2, &pushButton, &vBat);
+    Bts5001xShield shield2(nullptr, &led1, &led2, &pushButton, &vBat);
 
     ASSERT_EQ(NULLPTR_ERROR, shield2.deinit());
 }
 
-TEST_F(Bts500xxShield_Test, deinit_Success)
+TEST_F(Bts5001xShield_Test, deinit_Success)
 {
     ASSERT_EQ(OK, shield->deinit());
 }
@@ -112,7 +112,7 @@ TEST_F(Bts500xxShield_Test, deinit_Success)
  * switchHxOn()
  */
 
-TEST_F(Bts500xxShield_Test, switchHxOn_Error)
+TEST_F(Bts5001xShield_Test, switchHxOn_Error)
 {
     EXPECT_CALL(in, enable())
     .WillOnce(Return(INTF_ERROR));
@@ -122,7 +122,7 @@ TEST_F(Bts500xxShield_Test, switchHxOn_Error)
     ASSERT_EQ(INTF_ERROR, shield->switchHxOn());
 }
 
-TEST_F(Bts500xxShield_Test, switchHxOn_Success)
+TEST_F(Bts5001xShield_Test, switchHxOn_Success)
 {
     shield->init();
 
@@ -133,7 +133,7 @@ TEST_F(Bts500xxShield_Test, switchHxOn_Success)
  * switchHxOn()
  */
 
-TEST_F(Bts500xxShield_Test, switchHxOff_Error)
+TEST_F(Bts5001xShield_Test, switchHxOff_Error)
 {
     EXPECT_CALL(in, disable())
     .WillOnce(Return(INTF_ERROR));
@@ -143,7 +143,7 @@ TEST_F(Bts500xxShield_Test, switchHxOff_Error)
     ASSERT_EQ(INTF_ERROR, shield->switchHxOff());
 }
 
-TEST_F(Bts500xxShield_Test, switchHxOff_Success)
+TEST_F(Bts5001xShield_Test, switchHxOff_Success)
 {
     shield->init();
 
@@ -154,7 +154,7 @@ TEST_F(Bts500xxShield_Test, switchHxOff_Success)
  * readDiagx()
  */
 
-TEST_F(Bts500xxShield_Test, readDiagx_Error)
+TEST_F(Bts5001xShield_Test, readDiagx_Error)
 {
     shield->init();
 
@@ -165,7 +165,7 @@ TEST_F(Bts500xxShield_Test, readDiagx_Error)
  * readIsx()
  */
 
-TEST_F(Bts500xxShield_Test, readIsx_Success)
+TEST_F(Bts5001xShield_Test, readIsx_Success)
 {
     shield->init();
 
@@ -176,30 +176,30 @@ TEST_F(Bts500xxShield_Test, readIsx_Success)
  * readDiagx()
  */
 
-TEST_F(Bts500xxShield_Test, readDiagx_Success)
+TEST_F(Bts5001xShield_Test, readDiagx_Openload_InverseCurrent)
 {
     shield->init();
     shield->switchHxOn();
 
-    ASSERT_EQ(NORMAL, shield->readDiagx());
+    ASSERT_EQ(FAULT_OL_IC, shield->readDiagx());
 }
 
 /**
  * analogReadButton()
  */
 
-TEST_F(Bts500xxShield_Test, analogReadButton_true_Success)
+TEST_F(Bts5001xShield_Test, analogReadButton_true_Success)
 {
     shield->init();
 
     ASSERT_EQ(true, shield->analogReadButton());
 }
 
-TEST_F(Bts500xxShield_Test, analogReadButton_false_Success)
+TEST_F(Bts5001xShield_Test, analogReadButton_false_Success)
 {
     EXPECT_CALL(pushButton, ADCRead())
     .WillOnce(Return(30));
-    
+
     shield->init();
 
     ASSERT_EQ(false, shield->analogReadButton());

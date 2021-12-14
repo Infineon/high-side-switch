@@ -8,6 +8,8 @@
 #include "hss-arduino.hpp"
 #include <Arduino.h>
 
+using namespace hss;
+
 /**
  * @brief   Constructor of the Arduino High-Side-Switch class
  * @details This functions is the default constructor of the Arduino High-Side-Switch class.

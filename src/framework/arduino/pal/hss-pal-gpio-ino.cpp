@@ -10,6 +10,8 @@
 #include <Arduino.h>
 #include "hss-pal-gpio-ino.hpp"
 
+using namespace hss;
+
 /**
  * @brief   Constructor of the GPIO class for arduino
  * @details This function is setting the basics for a GPIO.

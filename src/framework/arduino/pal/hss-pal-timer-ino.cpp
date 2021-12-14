@@ -9,6 +9,8 @@
 #include <Arduino.h>
 #include "hss-pal-timer-ino.hpp"
 
+using namespace hss;
+
 /**
  * @brief Constructor of the Timer class for arduino
  */

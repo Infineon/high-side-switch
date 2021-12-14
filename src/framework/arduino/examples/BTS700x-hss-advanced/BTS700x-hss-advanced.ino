@@ -28,6 +28,8 @@
 
 #include <hss-shield-bts700x-ino.hpp>
 
+using namespace hss;
+
 /** Creation the hss board object */
 /** The user needs to specify the BTS700x variant in the constructor argument */
 Bts700xShieldIno HSS = Bts700xShieldIno(&BTS7002);

@@ -7,6 +7,8 @@
  */
 #include "hss-filter.hpp"
 
+using namespace hss;
+
 ExponentialFilter::ExponentialFilter()
 {
     this->y = 0.0;

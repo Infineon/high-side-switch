@@ -8,6 +8,9 @@
 
 #include "hss-shield-platf.hpp"
 
+namespace hss
+{
+
 #if (defined(XMC1100_Boot_Kit) || defined(ARDUINO_AVR_UNO))
 
 #include <Arduino.h>
@@ -15,7 +18,7 @@
 /**
  * @brief BTS700x Shield Arduino Uno Pin Configuration
  */
-Bts700xHwConfig_t BTS700X_HWCONFIG
+Bts700xHwConfig_t BTS700X_HWCONFIG = 
 {
     .led1 = 4,                      
     .led2 = 5,                      
@@ -43,7 +46,7 @@ Bts700xHwConfig_t BTS700X_HWCONFIG
 /**
  * @brief BTS5001x Shield Arduino Uno Pin Configuration 
  */
-BTS5001xHwConfig_t BTS5001X_HWCONFIG
+BTS5001xHwConfig_t BTS5001X_HWCONFIG = 
 {
     .led2 = 9,                      
     .led3 = 5,                      
@@ -59,7 +62,7 @@ BTS5001xHwConfig_t BTS5001X_HWCONFIG
 /**
  * @brief BTT60xx Shield Arduino Uno Pin Configuration 
  */
-Btt60xxHwConfig_t BTT60XX_HWCONFIG
+Btt60xxHwConfig_t BTT60XX_HWCONFIG = 
 {
     ///Profet0 - BTT6030 (2 channel) pin config
     .in0_0  = A3,
@@ -89,3 +92,5 @@ in hss-shield-platf.cpp, or use the non-default shield \
 constructor."
 
 #endif
+
+}

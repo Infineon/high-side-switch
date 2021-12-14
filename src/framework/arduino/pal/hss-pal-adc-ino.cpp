@@ -9,6 +9,8 @@
 #include <Arduino.h>
 #include "hss-pal-adc-ino.hpp"
 
+using namespace hss;
+
 /**
  * @brief Default constructor of the ADC class for arduino
  */

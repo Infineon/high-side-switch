@@ -80,7 +80,7 @@ exhale_args = {
     # These arguments are required
     "containmentFolder":     "./library-api-docs",
     "rootFileName":          "library_root.rst",
-    "rootFileTitle":         "",
+    "rootFileTitle":         "Library Hierarchy",
     "doxygenStripFromPath":  "..",
     # Suggested optional arguments
     "createTreeView":        True,

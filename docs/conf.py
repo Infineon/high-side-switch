@@ -80,20 +80,22 @@ exhale_args = {
     # These arguments are required
     "containmentFolder":     "./library-api-docs",
     "rootFileName":          "library_root.rst",
-    "rootFileTitle":         "Library Index",
+    # "rootFileTitle":         "API Reference",
     "doxygenStripFromPath":  "..",
     # Suggested optional arguments
-    "createTreeView":        False,
+    "createTreeView":        True,
     # TIP: if using the sphinx-bootstrap-theme, you need
     # "treeViewIsBootstrap": True,
     "exhaleExecutesDoxygen": True,
+    # "exhaleUseDoxyfile" : True,
     "exhaleDoxygenStdin":    textwrap.dedent('''
         INPUT            = ../src
         GENERATE_LATEX   = NO
+        GENERATE_HTML    = YES
         GENERATE_XML     = YES
         RECURSIVE        = YES
         VERBATIM_HEADERS = NO
-        EXCLUDE          = ./../src/framework/raspberrypi/examples ./../src/framework/raspberrypi/examples_py ./../../src/framework/arduino/examples ./../../src/framework/arduino/README.md
+        EXCLUDE          = ./../src/framework/raspberrypi/examples ./../src/framework/raspberrypi/examples_py ./../src/framework/arduino/examples ./../src/framework/arduino/README.md
     '''),
 
     # Configure what not to show in the API index page
@@ -137,7 +139,7 @@ html_static_path = ['_templates']
 # -- Breathe configuration -------------------------------------------------
 
 breathe_projects = {
-	"High-Side Switch": "_build/xml/"
+	"High-Side Switch": "build/xml/"
 }
 breathe_default_project = "High-Side Switch"
 breathe_default_members = ('members', 'undoc-members')

@@ -1,52 +1,64 @@
 /**
  * @file        hss-shield-platf.cpp
- * @details     Platform configurations for supported shields
+ * @brief       Hardware platform predefined Arduino configurations
+ * @copyright   Copyright (c) 2021 Infineon Technologies AG
+ *
+ * SPDX-License-Identifier: MIT
  */
 
 #include "hss-shield-platf.hpp"
+
+#if (defined(XMC1100_Boot_Kit) || defined(ARDUINO_AVR_UNO))
+
 #include <Arduino.h>
 
 /**
- * @brief BTS700x Shield Pin Cnfiguration
+ * @brief BTS700x Shield Arduino Uno Pin Configuration
  */
 Bts700xHwConfig_t BTS700X_HWCONFIG
 {
-    .led1 = 4,                      //LED 1
-    .led2 = 5,                      //LED 2
-    .led3 = 12,                     //LED 3
-    .led4 = 13,                     //LED 4
+    .led1 = 4,                      
+    .led2 = 5,                      
+    .led3 = 12,                     
+    .led4 = 13,                     
 
-    .in1 = 9,                       //IN 1
-    .in2 = 10,                      //IN 2
-    .in3 = 11,                      //IN 3
-    .in4 = 3,                       //IN 4
+    .in1 = 9,                       
+    .in2 = 10,                      
+    .in3 = 11,                      
+    .in4 = 3,                       
 
-    .oloff = 7,                     //OLOFF
+    .oloff = 7,                     
 
-    .den1_den3 = 6,                 //DEN 1_3
-    .den2_den4 = 8,                 //DEN 2_4
+    .den1_den3 = 6,                 
+    .den2_den4 = 8,                 
 
-    .pushButtonDigital = 2,         //PUSHBUTTONDIGITAL
+    .pushButtonDigital = 2,         
 
-    .pushButtonAnalog = A0,         //PUSHBUTTONANALOG
-    .vBat =             A1,         //VBAT
-    .is1_is2 =          A2,         //IS 1_2
-    .is3_is4 =          A3          //IS 3_4
+    .pushButtonAnalog = A0,         
+    .vBat =             A1,         
+    .is1_is2 =          A2,         
+    .is3_is4 =          A3          
 };
 
+/**
+ * @brief BTS5001x Shield Arduino Uno Pin Configuration 
+ */
 BTS5001xHwConfig_t BTS5001X_HWCONFIG
 {
-    .led2 = 9,                      //LED 2
-    .led3 = 5,                      //LED 3
+    .led2 = 9,                      
+    .led3 = 5,                      
 
-    .in = 6,                        //IN
+    .in = 6,                        
 
-    .pushButtonAnalog = A0,         //PUSHBUTTONANALOG
-    .vBat = A5,                     //VBAT
-    .is = A2,                       //IS 1
+    .pushButtonAnalog = A0,         
+    .vBat = A5,                     
+    .is = A2,                       
 
 };
 
+/**
+ * @brief BTT60xx Shield Arduino Uno Pin Configuration 
+ */
 Btt60xxHwConfig_t BTT60XX_HWCONFIG
 {
     ///Profet0 - BTT6030 (2 channel) pin config
@@ -68,3 +80,12 @@ Btt60xxHwConfig_t BTT60XX_HWCONFIG
     .den_2  = 9,
     .is_2   = A2,
 };
+
+#else
+
+#error "You did not define a supported platform! \
+Please make sure you're defining a custom default platform \
+in hss-shield-platf.cpp, or use the non-default shield \
+constructor."
+
+#endif

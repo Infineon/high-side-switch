@@ -1,6 +1,9 @@
 /**
- * @file        hss-pal-adc-ino.hpp
- * @details     Ino PAL for the ADC
+ * @file        hss-pal-adc-ino.cpp
+ * @brief       ADC platform abstraction layer Arduino class
+ * @copyright   Copyright (c) 2021 Infineon Technologies AG
+ *
+ * SPDX-License-Identifier: MIT
  */
 
 #include <Arduino.h>

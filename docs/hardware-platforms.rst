@@ -105,8 +105,8 @@ Chip only
 * `BTT6020-1EKA`_
 * `BTT6030-2EKA`_
 
-12V Protected Switches
-----------------------
+Power PROFET\ |trade|\ family
+-----------------------------
 
 .. image:: img/bts5001x_shield.png
     :width: 150
@@ -180,7 +180,7 @@ Chip only
 * `BTS50010-1TAD`_
 * `BTS50015-1TAD`_
 
-Smart High-Side Power Switches
+PROFET\ |trade|\ +2 12V family
 ------------------------------
 
 .. image:: img/bts700x_shield.jpg
@@ -192,10 +192,10 @@ Smart High-Side Power Switches
 Shields for Arduino
 """""""""""""""""""
 
-* `SHIELD_BTS7002-1EPP`_
-* `SHIELD_BTS7004-1EPP`_
-* `SHIELD_BTS7006-1EPP`_
-* `SHIELD_BTS7008-1EPP`_
+* `12V Smart Switch Shield with BTS7002-1EPP`_
+* `12V Smart Switch Shield with BTS7004-1EPP`_
+* `12V Smart Switch Shield with BTS7006-1EPP`_
+* `12V Smart Switch Shield with BTS7008-1EPP`_
 
 Pinout Diagram
 ^^^^^^^^^^^^^^
@@ -305,7 +305,7 @@ Chip only
 .. _`24V Protected Switch Shield with BTT6030-2EKA and BTT6020-1EKA`: https://www.infineon.com/cms/en/product/evaluation-boards/24v_shield_btt6030/
 .. _`12V Protected Switch Shield with BTS50010-1TAD`: https://www.infineon.com/cms/en/product/evaluation-boards/shield_bts50010-1tad/
 .. _`12V Protected Switch Shield with BTS50015-1TAD`: https://www.infineon.com/cms/en/product/evaluation-boards/shield_bts50015-1tad/
-.. _`SHIELD_BTS7002-1EPP`: https://www.infineon.com/cms/en/product/evaluation-boards/shield_bts7002-1epp/
-.. _`SHIELD_BTS7004-1EPP`: https://www.infineon.com/cms/en/product/evaluation-boards/shield_bts7004-1epp/
-.. _`SHIELD_BTS7006-1EPP`: https://www.infineon.com/cms/en/product/evaluation-boards/shield_bts7006-1epp/
-.. _`SHIELD_BTS7008-1EPP`: https://www.infineon.com/cms/en/product/evaluation-boards/shield_bts7008-1epp/
+.. _`12V Smart Switch Shield with BTS7002-1EPP`: https://www.infineon.com/cms/en/product/evaluation-boards/shield_bts7002-1epp/
+.. _`12V Smart Switch Shield with BTS7004-1EPP`: https://www.infineon.com/cms/en/product/evaluation-boards/shield_bts7004-1epp/
+.. _`12V Smart Switch Shield with BTS7006-1EPP`: https://www.infineon.com/cms/en/product/evaluation-boards/shield_bts7006-1epp/
+.. _`12V Smart Switch Shield with BTS7008-1EPP`: https://www.infineon.com/cms/en/product/evaluation-boards/shield_bts7008-1epp/

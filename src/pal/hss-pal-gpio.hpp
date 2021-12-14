@@ -1,13 +1,16 @@
 /**
  * @file        hss-pal-gpio.hpp
- * @details     PAL of the GPIO
+ * @brief       GPIO platform abstraction layer class
+ * @copyright   Copyright (c) 2021 Infineon Technologies AG
+ *
+ * SPDX-License-Identifier: MIT
  */
-
-#include <stdint.h>
-#include "hss-types.hpp"
 
 #ifndef HSS_PAL_GPIO_HPP_
 #define HSS_PAL_GPIO_HPP_
+
+#include <stdint.h>
+#include "hss-types.hpp"
 
 namespace hss
 {
@@ -18,15 +21,15 @@ namespace hss
  */
 
 /**
- * @class   ADCPAL
- * @details Abstract class declaration for ADC
+ * @class   GPIOPAL
+ * @brief   GPIO abstract API
  */
 class GPIOPAL
 {
     public:
 
         /**
-         * @name   Interrupt event
+         * @brief   Interrupt event
          * @{
          */
         enum IntEvent_t
@@ -37,7 +40,7 @@ class GPIOPAL
         /** @} */
 
         /**
-         * @name    Voltage level
+         * @brief   Voltage level
          * @{
          */
         enum VLevel_t
@@ -48,7 +51,7 @@ class GPIOPAL
         /** @} */
 
         /**
-         * @name    Voltage logic
+         * @brief   Voltage logic
          * @{
          */
         enum VLogic_t

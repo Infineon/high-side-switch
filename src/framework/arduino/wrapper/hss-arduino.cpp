@@ -1,8 +1,10 @@
 /**
  * @file        hss-arduino.cpp
- * @details     Definition of the High-Side-Switch in Arduino
+ * @brief       High side switch Arduino class
+ * @copyright   Copyright (c) 2021 Infineon Technologies AG
+ *
+ * SPDX-License-Identifier: MIT
  */
-
 #include "hss-arduino.hpp"
 #include <Arduino.h>
 

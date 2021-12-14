@@ -1,10 +1,11 @@
 /**
  * @file        hss-shield-btt60xx.hpp
- * @brief       Profet (24V) Shield with BTT6030-2EKA and BTT6020-1EKA Implementation
+ * @brief       Profet (24V) shield with BTT6030-2EKA and BTT6020-1EKA class
  * @copyright   Copyright (c) 2021 Infineon Technologies AG
  *
  * SPDX-License-Identifier: MIT
  */
+
 #ifndef HSS_SHIELD_BTT60XX_HPP_
 #define HSS_SHIELD_BTT60XX_HPP_
 
@@ -12,7 +13,17 @@
 #include "hss.hpp"
 #include "hss-variants.hpp"
 
-using namespace hss;
+namespace hss
+{
+
+/**
+ * @addtogroup hssCorelib
+ * @{
+ */
+
+/**
+ * @brief  Profet (24V) shield with BTT6030-2EKA and BTT6020-1EKA API
+ */
 
 class Btt60xxShield : HssShield
 {
@@ -33,12 +44,16 @@ class Btt60xxShield : HssShield
     protected:
 
         static constexpr uint8_t hssNum = 3;    /**< Number of high side switches in the board */
-        Hss      * switches[hssNum];
+        Hss * switches[hssNum];                 /**< Shield switches */
 
     private:
 
-        const uint16_t  rSense = 1200;
+        const uint16_t  rSense = 1200;          /**< Diagnosis current sense resistor */
 
 };
+
+/** @} */
+
+}
 
 #endif /** HSS_SHIELD_BTT60XX_HPP_ */

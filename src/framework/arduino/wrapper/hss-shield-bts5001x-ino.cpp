@@ -1,6 +1,6 @@
 /**
- * @file        hss-bts5001xShield-ino.cpp
- * @brief       BTS5001X Shield Implementation
+ * @file        hss-shield-bts5001x-ino.cpp
+ * @brief       Power Profet (12V) shield with BTS500xx Arduino class
  * @copyright   Copyright (c) 2021 Infineon Technologies AG
  *
  * SPDX-License-Identifier: MIT
@@ -10,6 +10,7 @@
 #include <Arduino.h>
 
 using namespace hss;
+
 /**
  * @brief High-Side-Switch-Board constructor
  * Initialize all protected class pointers with a null pointer.
@@ -24,6 +25,10 @@ Bts5001xShield(hss1 = new HssIno(BTS5001X_HWCONFIG.in, BTS5001X_HWCONFIG.is, var
 
 }
 
+/**
+ * @brief High-Side-Switch-Board constructor
+ * Initialize all protected class pointers with a null pointer.
+ */
 Bts5001xShieldIno::Bts5001xShieldIno(BtxVariants_t *variantSel, BTS5001xHwConfig_t config):
 Bts5001xShield(hss1 = new HssIno(config.in, config.is, variantSel),
                led2 = ((config.led2 == GPIOIno::unusedPin) ? NULL : new GPIOIno(config.led2, OUTPUT, GPIOIno::POSITIVE)),

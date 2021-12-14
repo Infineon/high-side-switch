@@ -1,6 +1,9 @@
 /**
  * @file        hss-types.hpp
- * @details     High-Side Switch Core Types
+ * @brief       High side switch types
+ * @copyright   Copyright (c) 2021 Infineon Technologies AG
+ *
+ * SPDX-License-Identifier: MIT
  */
 
 #ifndef HSS_TYPES_HPP_
@@ -8,16 +11,15 @@
 
 namespace hss
 {
+    /**
+     * @addtogroup hssCorelib
+     * @{
+     */
 
 	/**
-	* @addtogroup hsscorelib
-	* @{
-	*/
-
-	/**
-	* @name   Error codes
-	* @{
-	*/
+	 * @brief Error codes
+	 * @{
+	 */
 	enum Error_t
 	{
 		OK          	     =  0,   /**< No error */
@@ -33,9 +35,9 @@ namespace hss
 	/** @} */
 
 	/**
-	* @name   Channel numbers
-	* @{
-	*/
+	 * @brief Channel numbers
+	 * @{
+	 */
 	enum Channel_t
 	{
 		CHANNEL0 	 = 0,           /**< Channel 1 : Valid for BTT shields */
@@ -46,7 +48,7 @@ namespace hss
 	/** @} */
 
     /**
-     * @name Status
+     * @brief Switch status
      * @{
      */
     enum Status_t{
@@ -58,7 +60,7 @@ namespace hss
     /** @} */
 
     /**
-     * @name Diagnosis enabled
+     * @brief Diagnosis enable
      * @{
      */
     enum DiagEnable_t{
@@ -68,7 +70,7 @@ namespace hss
     /** @} */
 
     /**
-     * @name Diagnosis enabled
+     * @brief Diagnosis status
      * @{
      */
     enum DiagStatus_t{
@@ -82,11 +84,20 @@ namespace hss
         OPEN_LOAD           = 6,    /**< Open load detected */
     };
     /** @} */
+
 }
 
+/**
+ * @brief Asserts the HSS return code, returning if it is not OK
+ */
 #define HSS_ASSERT_RET(x)       if( x != OK ) { return x; }
+
+/**
+ * @brief Assert if a pointer is nullptr, returning NULLPTR error if null
+ */
 #define HSS_ASSERT_NULLPTR(x)   if( x == nullptr ) { return NULLPTR_ERROR; }
 
 /** @} */
+
 
 #endif /** HSS_TYPES_HPP_ **/

@@ -1,6 +1,9 @@
 /**
  * @file        hss-shield-bts700x.cpp
- * @details     BTS700x-1EPP (12V) Shield Implementation
+ * @brief       Profet +2 (12V) shield with BTS700x-1EPP class
+ * @copyright   Copyright (c) 2021 Infineon Technologies AG
+ *
+ * SPDX-License-Identifier: MIT
  */
 
 #include "hss-shield-bts700x.hpp"

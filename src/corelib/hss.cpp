@@ -1,6 +1,9 @@
 /**
  * @file        hss.cpp
- * @brief       Definition of the High-Side-Switch class functions
+ * @brief       High side switch class
+ * @copyright   Copyright (c) 2021 Infineon Technologies AG
+ *
+ * SPDX-License-Identifier: MIT
  */
 
 #include <stdint.h>
@@ -10,11 +13,11 @@ using namespace hss;
 
 /**
  * @brief   High-Side-Switch constructor
- * @details This constructor is used to define all necessary pins and the variant
- *          of the BTS700x - 12V PROFET.
- * @param[in]   den         Pin number of DEN
- * @param[in]   in          Pin number of IN
- * @param[in]   is          Pin number of IS
+ * @param[in]   den         Diagnosis enable GPIO instance
+ * @param[in]   in          Switch input GPIO instance
+ * @param[in]   is          Diagnose current ADC instance
+ * @param[in]   timer       Timer instance
+ * @param[in]   btxVariant  BTx variant
  */
 Hss::Hss(GPIOPAL *den, GPIOPAL *in, ADCPAL *is, TimerPAL *timer, BtxVariants_t *btxVariant)
 {
@@ -39,11 +42,13 @@ Hss::Hss(GPIOPAL *den, GPIOPAL *in, ADCPAL *is, TimerPAL *timer, BtxVariants_t *
  * @brief   High-Side-Switch constructor
  * @details This constructor is used to define all necessary pins
  *          of the 24V PROFET.
- * @param[in]   den         Pin number of DEN
- * @param[in]   in0         Pin number of IN0
- * @param[in]   in1         Pin number of IN1
- * @param[in]   dsel        Pin number of dsel
- * @param[in]   is          Pin number of IS
+ * @param[in]   den         Diagnosis enable GPIO instance
+ * @param[in]   in0         Switch input 0 GPIO instance
+ * @param[in]   in1         Switch input 1 GPIO instance
+ * @param[in]   dsel        Diagnosis select GPIO instance
+ * @param[in]   is          Diagnose current ADC instance
+ * @param[in]   timer       Timer instance
+ * @param[in]   btxVariant  BTx variant
  */
 Hss::Hss(GPIOPAL *den, GPIOPAL *in0, GPIOPAL *in1,  GPIOPAL *dsel, ADCPAL *is, TimerPAL *timer, BtxVariants_t *btxVariant)
 {
@@ -250,11 +255,9 @@ Error_t Hss::disable(Channel_t ch)
 }
 
 /**
- * @brief Enable diagnosis function
- *
- * This function is enabling the diagnosis function of the High-Side-Switch.
- *
- * @return Error_t
+ * @brief   Enable diagnosis function
+ * @details This function is enabling the diagnosis function of the High-Side-Switch.
+ * @return  Error_t
  */
 Error_t Hss::enableDiag()
 {
@@ -281,7 +284,7 @@ Error_t Hss::enableDiag()
 
 /**
  * @brief   Disable diagnosis function
- * @details This function is disabling the diagnosis function of the High-Side-Switch.
+ * @details This function is disabling the diagnosis function of the High-Side-Switch
  * @return  Error_t
  */
 Error_t Hss::disableDiag()

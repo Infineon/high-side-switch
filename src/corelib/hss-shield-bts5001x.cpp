@@ -1,6 +1,6 @@
 /**
  * @file        hss-shield-bts5001x.cpp
- * @brief       BTS500xx Shield Implementation
+ * @brief       Power Profet (12V) shield with BTS500xx class
  * @copyright   Copyright (c) 2021 Infineon Technologies AG
  *
  * SPDX-License-Identifier: MIT

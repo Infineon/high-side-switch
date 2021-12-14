@@ -1,6 +1,9 @@
 /**
- * @file        hss-bts700xShield-ino.hpp
- * @details     Class for BTS700x-1EPP (12V) Shield
+ * @file        hss-shield-bts700x-ino.hpp
+ * @brief       Profet +2 (12V) shield with BTS700x-1EPP Arduino class
+ * @copyright   Copyright (c) 2021 Infineon Technologies AG
+ *
+ * SPDX-License-Identifier: MIT
  */
 
 #ifndef HSS_SHIELD_BTS700X_INO_HPP_
@@ -11,12 +14,12 @@
 #include "hss-variants.hpp"
 #include "hss-shield-platf.hpp"
 
-using namespace hss;
+namespace hss
+{
 
-/** 
- * @class    Bts700xShieldIno
- * @details  Bts700xShield Wrapper Class Declaration
-*/
+/**
+ * @brief  Profet +2 (12V) shield with BTS700x-1EPP Arduino API
+ */
 
 class Bts700xShieldIno : public Bts700xShield
 {
@@ -25,5 +28,7 @@ class Bts700xShieldIno : public Bts700xShield
                         Bts700xShieldIno(BtxVariants_t *variantSel, Bts700xHwConfig_t config);
                         ~Bts700xShieldIno();
 };
+
+}
 
 #endif /** HSS_SHIELD_BTS700X_INO_HPP_ **/

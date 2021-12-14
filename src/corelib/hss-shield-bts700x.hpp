@@ -1,6 +1,9 @@
 /**
  * @file        hss-shield-bts700x.hpp
- * @details     Class for BTS700x-1EPP (12V) Shield
+ * @brief       Profet +2 (12V) shield with BTS700x-1EPP class
+ * @copyright   Copyright (c) 2021 Infineon Technologies AG
+ *
+ * SPDX-License-Identifier: MIT
  */
 
 #ifndef HSS_SHIELD_BTS700x_HPP_
@@ -10,12 +13,18 @@
 #include "hss-variants.hpp"
 #include "hss.hpp"
 
-using namespace hss;
+namespace hss
+{
 
 /**
- * @class    Bts700xShield
- * @details  Class implementing HSS functionalities for Bts700x Shield
+ * @addtogroup hssCorelib
+ * @{
  */
+
+/**
+ * @brief  Profet +2 (12V) shield with BTS700x-1EPP API
+ */
+
 class Bts700xShield : public HssShield
 {
     public:
@@ -43,34 +52,38 @@ class Bts700xShield : public HssShield
 
     protected:
 
-        ExponentialFilter   *filterVbat;
+        ExponentialFilter   *filterVbat;    /**< Battery voltage filter */
 
-        GPIOPAL             *led1;
-        GPIOPAL             *led2;
-        GPIOPAL             *led3;
-        GPIOPAL             *led4;
+        GPIOPAL             *led1;  /**< Shield LED 1 */
+        GPIOPAL             *led2;  /**< Shield LED 2 */
+        GPIOPAL             *led3;  /**< Shield LED 3 */
+        GPIOPAL             *led4;  /**< Shield LED 4 */
 
-        Hss                 *hss1;
-        Hss                 *hss2;
-        Hss                 *hss3;
-        Hss                 *hss4;
+        Hss                 *hss1;  /**< Shield switch 1 */
+        Hss                 *hss2;  /**< Shield switch 2 */
+        Hss                 *hss3;  /**< Shield switch 3 */
+        Hss                 *hss4;  /**< Shield switch 4 */
 
-        TimerPAL            *timer;
+        TimerPAL            *timer; /**< Timer instance */
 
-        GPIOPAL             *oloff;
-        GPIOPAL             *pushButtonDigital;
+        GPIOPAL             *oloff; /**< Output offset */
 
-        ADCPAL              *pushButtonAnalog;
-        ADCPAL              *vBat;
+        GPIOPAL             *pushButtonDigital; /**< Digital push button */
+        ADCPAL              *pushButtonAnalog;  /**< Analog push button */
+        ADCPAL              *vBat;              /**< Battery voltage */
 
-        BtxVariants_t       *btxVariant;
+        BtxVariants_t       *btxVariant;        /**< BTx switch variant */
 
     private:
 
         DiagStatus_t        diagnosisOff(float currentOn, float currentOff);
 
-        float               vBatOffset = 0.0;
-        const uint16_t      rSense = 1000;
+        float               vBatOffset = 0.0;   /**< Battery voltage offset */
+        const uint16_t      rSense = 1000;      /**< Diagnosis current sense resistor */
 };
+
+/** @} */
+
+}
 
 #endif /** HSS_SHIELD_BTS700x_HPP_ */

@@ -1,15 +1,18 @@
 /**
- * @file        hss-pal-gpio-pal.hpp
- * @details     Arduino PAL for the GPIO
+ * @file        hss-pal-gpio-ino.hpp
+ * @brief       GPIO platform abstraction layer Arduino class
+ * @copyright   Copyright (c) 2021 Infineon Technologies AG
+ *
+ * SPDX-License-Identifier: MIT
  */
-
 
 #ifndef HSS_PAL_GPIO_INO_HPP_
 #define HSS_PAL_GPIO_INO_HPP_
 
 #include "hss-pal-gpio.hpp"
 
-using namespace hss;
+namespace hss
+{
 
 /**
  * @addtogroup arduinoPal
@@ -17,8 +20,8 @@ using namespace hss;
  */
 
 /**
- * @class  GPIO ino class
- * @details Class implementing Arduino GPIO functionality
+ * @class  GPIOIno
+ * @brief  GPIO platform abstraction layer Arduino API
  */
 class GPIOIno: virtual public GPIOPAL
 {
@@ -30,7 +33,7 @@ private:
 
 public:
 
-    static constexpr uint8_t  unusedPin = 0xFFU;
+    static constexpr uint8_t  unusedPin = 0xFFU;    /**< Unused pin */
 
                 GPIOIno();
                 GPIOIno(uint8_t pin, uint8_t mode, VLogic_t logic);
@@ -44,5 +47,7 @@ public:
 };
 
 /** @} */
+
+}
 
 #endif /** HSS_PAL_GPIO_INO_HPP_ **/

@@ -1,6 +1,9 @@
 /**
  * @file        hss-pal-timer-ino.hpp
- * @brief       Ino Timer PAL
+ * @brief       Timer platform abstraction layer Arduino class
+ * @copyright   Copyright (c) 2021 Infineon Technologies AG
+ *
+ * SPDX-License-Identifier: MIT
  */
 
 #ifndef HSS_PAL_TIMER_INO_HPP_
@@ -8,15 +11,17 @@
 
 #include "hss-pal-timer.hpp"
 
-using namespace hss;
+namespace hss
+{
 
 /**
  * @addtogroup arduinoPal
  * @{
  */
+
 /**
- * @class Ino Timer class
- * @details Class implementing Timer functionality for arduino
+ * @class TimerIno
+ * @brief Timer platform abstraction layer Arduino API
  */
 class TimerIno: virtual public TimerPAL
 {
@@ -38,5 +43,7 @@ class TimerIno: virtual public TimerPAL
 };
 
 /** @} */
+
+}
 
 #endif /** HSS_PAL_TIMER_INO_HPP_ **/

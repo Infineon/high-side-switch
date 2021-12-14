@@ -1,6 +1,9 @@
 /**
  * @file        hss-pal-timer-ino.cpp
- * @details     Ino PAL for Timer
+ * @brief       Timer platform abstraction layer Arduino class
+ * @copyright   Copyright (c) 2021 Infineon Technologies AG
+ *
+ * SPDX-License-Identifier: MIT
  */
 
 #include <Arduino.h>

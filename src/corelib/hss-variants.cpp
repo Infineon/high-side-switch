@@ -1,7 +1,9 @@
 /**
  * @file        hss-variants.cpp
- * @brief       High-Side-Switch Variant Specific Defines
- * @details     Defines the characteristic values of the different high side switches variants
+ * @brief       High side switch hardware variants
+ * @copyright   Copyright (c) 2021 Infineon Technologies AG
+ *
+ * SPDX-License-Identifier: MIT
  */
 
 #include "hss-variants.hpp"

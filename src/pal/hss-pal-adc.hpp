@@ -1,6 +1,9 @@
 /**
  * @file        hss-pal-adc.hpp
- * @brief       PAL of the ADC
+ * @brief       ADC platform abstraction layer class
+ * @copyright   Copyright (c) 2021 Infineon Technologies AG
+ *
+ * SPDX-License-Identifier: MIT
  */
 
 #ifndef HSS_PAL_ADC_HPP_
@@ -19,7 +22,7 @@ namespace hss
 
 /**
  * @class   ADCPAL
- * @details Abstract class declaration for ADC
+ * @brief   ADC abstract API
  */
 class ADCPAL
 {

@@ -1,6 +1,9 @@
 /**
- * @file        hss-bts700xShield-ino.cpp
- * @details     BTS700x-1EPP (12V) Shield Implementation
+ * @file        hss-shield-bts700x-ino.cpp
+ * @brief       Profet +2 (12V) shield with BTS700x-1EPP Arduino class
+ * @copyright   Copyright (c) 2021 Infineon Technologies AG
+ *
+ * SPDX-License-Identifier: MIT
  */
 
 #include "hss-shield-bts700x-ino.hpp"

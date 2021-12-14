@@ -1,6 +1,9 @@
 /**
  * @file        hss-filter.hpp
- * @details     Definition of the filter class
+ * @brief       Exponential filter class
+ * @copyright   Copyright (c) 2021 Infineon Technologies AG
+ *
+ * SPDX-License-Identifier: MIT
  */
 
 #ifndef HSS_FILTER_HPP_
@@ -8,9 +11,16 @@
 
 #include <stdint.h>
 
+namespace hss
+{
+
 /**
  * @addtogroup hssCorelib
  * @{
+ */
+
+/**
+ * @brief  Exponential filter API
  */
 
 class ExponentialFilter
@@ -29,13 +39,15 @@ class ExponentialFilter
         uint16_t pow2(uint16_t p);
 
         private:
-        uint16_t tau;
+        uint16_t tau; 
 
-        float y;
-        float y_last;
+        float y;        
+        float y_last;   
         float x;
 };
 
 /** @} */
+
+}
 
 #endif /** FILTER_HPP_ **/

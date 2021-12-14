@@ -1,6 +1,9 @@
 /**
  * @file        hss-pal-adc-ino.hpp
- * @details     Ino PAL for the ADC
+ * @brief       ADC platform abstraction layer Arduino class
+ * @copyright   Copyright (c) 2021 Infineon Technologies AG
+ *
+ * SPDX-License-Identifier: MIT
  */
 
 #ifndef HSS_PAL_ADC_INO_HPP
@@ -8,7 +11,8 @@
 
 #include "hss-pal-adc.hpp"
 
-using namespace hss;
+namespace hss
+{
 
 /**
  * @addtogroup arduinoPal
@@ -16,14 +20,14 @@ using namespace hss;
  */
 
 /**
- * @class  ADC ino class
- * @details Class implementing arduino ADC functionality
+ * @class   ADCIno
+ * @brief   ADC platform abstraction layer Arduino API
  */
 class ADCIno : virtual public ADCPAL
 {
     private:
 
-        uint8_t     pin;
+        uint8_t     pin;   /**< ADC Pin number */
 
     public:
 
@@ -41,5 +45,7 @@ class ADCIno : virtual public ADCPAL
 };
 
 /** @} */
+
+}
 
 #endif /** HSS_PAL_ADC_INO_HPP **/

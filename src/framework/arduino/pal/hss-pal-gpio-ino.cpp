@@ -1,7 +1,11 @@
 /**
- * @file        hss-pal-gpio-ino.hpp
- * @details     Ino PAL for the GPIO
+ * @file        hss-pal-gpio-ino.cpp
+ * @brief       GPIO platform abstraction layer Arduino class
+ * @copyright   Copyright (c) 2021 Infineon Technologies AG
+ *
+ * SPDX-License-Identifier: MIT
  */
+
 
 #include <Arduino.h>
 #include "hss-pal-gpio-ino.hpp"

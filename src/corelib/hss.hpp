@@ -1,7 +1,11 @@
 /**
  * @file        hss.hpp
- * @brief       Definition of the High-Side-Switch class functions
+ * @brief       High side switch class
+ * @copyright   Copyright (c) 2021 Infineon Technologies AG
+ *
+ * SPDX-License-Identifier: MIT
  */
+
 #ifndef HSS_H_
 #define HSS_H_
 
@@ -15,7 +19,8 @@
 #include "hss-variants.hpp"
 #include "hss-filter.hpp"
 
-using namespace hss;
+namespace hss
+{
 
 /**
  * @addtogroup hssCorelib
@@ -23,8 +28,7 @@ using namespace hss;
  */
 
 /**
- * @class   High-Side-Switch class
- * @details This class defines the High-Side-Switch Class with all its functionality
+ * @brief  High side switch API
  */
 class Hss
 {
@@ -48,31 +52,33 @@ class Hss
 
     protected:
 
-        GPIOPAL             *den;
-        GPIOPAL             *in0;
-        GPIOPAL             *in1;
-        GPIOPAL             *dsel;
-        ADCPAL              *is;
+        GPIOPAL             *den;   /**< Diagnosis enable */
+        GPIOPAL             *in0;   /**< Switch input 0 */
+        GPIOPAL             *in1;   /**< Switch input 1 */
+        GPIOPAL             *dsel;  /**< Diagnosis select */
+        ADCPAL              *is;    /**< Diagnosis current */
 
-        TimerPAL            *timer;
+        TimerPAL            *timer; /**< Timer instace */
 
-        ExponentialFilter   *currentFilter;
+        ExponentialFilter   *currentFilter; /**< Current filter */
 
-        BtxVariants_t       *btxVariant;
-        Status_t            status;
-        Status_t            statusCh0;
-        Status_t            statusCh1;
+        BtxVariants_t       *btxVariant;    /**< BTx switch variant */
+        Status_t            status;         /**< Switch status */
+        Status_t            statusCh0;      /**< Channel 0 status */
+        Status_t            statusCh1;      /**< Channel 1 status */
 
-        DiagEnable_t        diagEnb;
-        DiagStatus_t        diagStatus;
+        DiagEnable_t        diagEnb;        /**< Diagnosis enabled flag */
+        DiagStatus_t        diagStatus;     /**< Diagnosis status */
 
         Error_t             selDiagCh(Channel_t ch);
 
     private:
 
-        float               currentOffset = 0.0;
+        float               currentOffset = 0.0;    /**< Diagnosis current offset */
 
 };
+
+}
 
 /** @} */
 

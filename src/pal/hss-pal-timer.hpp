@@ -1,6 +1,9 @@
 /**
  * @file        hss-pal-timer.hpp
- * @details     Timer Platform Abstraction Layer
+ * @brief       Timer platform abstraction layer class
+ * @copyright   Copyright (c) 2021 Infineon Technologies AG
+ *
+ * SPDX-License-Identifier: MIT
  */
 
 #include <stdint.h>
@@ -18,8 +21,8 @@ namespace hss
  */
 
 /**
- * @class   TimerPAL
- * @details Abstract class declaration for Timer
+ * @class TimerPAL
+ * @brief Timer abstract API 
  */
 class TimerPAL
 {

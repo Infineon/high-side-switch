@@ -2,7 +2,7 @@
 
 Arduino Examples
 ================
-To run these examples use either the Arduino IDE or something similar like the PlatformIO extension for Visual Code or Atom.
+You can find these examples also in the Arduino IDE by navigating to *File* -> *Examples* -> *high-side-switch*.
 
 .. list-table::
     :header-rows: 1
@@ -39,8 +39,6 @@ To run these examples use either the Arduino IDE or something similar like the P
     * - :code:`examples/BTS5001x-button-test`    
       - * Switch dependent on optional user button. 
         * Compatible with BTS50010 and BTS50015 variant.
-
-All Arduino sketches are also available for the other included frameworks. See below :code:`src/framework/FRAMEWORK` directory.
 
 BTT600x-hss-advanced
 """"""""""""""""""""

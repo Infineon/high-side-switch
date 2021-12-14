@@ -77,6 +77,6 @@ Now you only have to attach your load to the desired switch. For getting familia
 Ready To Go!
 """"""""""""
 
-- TODO: How to run example needs to be added -
+Now you can upload the provided example code to your Arduino compatible board. For this, navigate in your Arduino IDE to *File* -> *Examples* -> *high-side-switch* -> *BTS700x-hss-single-ch*.
 
 For a specific description and overview of all examples please refer to :ref:`Arduino examples <arduino-examples>`.

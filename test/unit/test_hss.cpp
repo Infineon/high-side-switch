@@ -53,7 +53,7 @@ TEST_F(Hss_Test, init_success)
     ASSERT_EQ(OK, hss.init());
 }
 
-TEST_F(Hss_Test, init_nullptr_error)
+TEST_F(Hss_Test, init_nullptr_den)
 {
     MockADC is;
     MockGPIO in;
@@ -61,7 +61,7 @@ TEST_F(Hss_Test, init_nullptr_error)
 
     Hss hss(nullptr, &in, &is, &timer, &BTS7002);
 
-    ASSERT_EQ(NULLPTR_ERROR, hss.init());
+    ASSERT_EQ(OK, hss.init());
 }
 
 TEST_F(Hss_Test, init_nullptr_error_2)
@@ -662,14 +662,14 @@ TEST_F(Hss_Test, readIs_value)
 
     EXPECT_CALL(is, ADCRead())
     .Times(1)
-    .WillOnce(Return(2000));
+    .WillOnce(Return(50));
 
     Hss hss(&den, &in, nullptr, &dsel, &is, &timer, &BTS7002);
     hss.init();
     hss.enable();
     hss.enableDiag();
 
-    // ASSERT_EQ(2000, hss.readIs());
+    ASSERT_NEAR(5.54199, hss.readIs(1000), 0.1);
 }
 
 TEST_F(Hss_Test, readIs_value_channel1)
@@ -685,14 +685,14 @@ TEST_F(Hss_Test, readIs_value_channel1)
 
     EXPECT_CALL(is, ADCRead())
     .Times(1)
-    .WillOnce(Return(2000));
+    .WillOnce(Return(50));
 
     Hss hss(&den, &in, nullptr, &dsel, &is, &timer, &BTS7002);
     hss.init();
     hss.enable();
     hss.enableDiag();
 
-    // ASSERT_EQ(2000, hss.readIs(CHANNEL1));
+    ASSERT_NEAR(5.54199, hss.readIs(1000, CHANNEL1), 0.1);
 }
 
 TEST_F(Hss_Test, readIs_not_init)

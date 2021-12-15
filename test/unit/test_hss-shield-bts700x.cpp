@@ -2169,8 +2169,8 @@ TEST_F(Hss_BTS700xShield_Test, readIsx_4)
 TEST_F(Hss_BTS700xShield_Test, readDiagx_1_on)
 {
     EXPECT_CALL(den1, enable())
-    .Times(1)
-    .WillOnce(Return(OK));
+    .Times(2)
+    .WillRepeatedly(Return(OK));
 
     Hss hsw1(&den1, &in1, nullptr, &dsel1, &is1, &timer1, &BTS7002);
     Hss hsw2(&den2, &in2, nullptr, &dsel2, &is2, &timer2, &BTS7002);
@@ -2181,14 +2181,14 @@ TEST_F(Hss_BTS700xShield_Test, readDiagx_1_on)
     hssShield.init();
     hssShield.switchHxOn(1);
 
-    ASSERT_EQ(OPEN_LOAD, hssShield.readDiagx(1));
+    ASSERT_EQ(FAULT_OL_IC, hssShield.readDiagx(1));
 }
 
 TEST_F(Hss_BTS700xShield_Test, readDiagx_2_on)
 {
     EXPECT_CALL(den2, enable())
-    .Times(1)
-    .WillOnce(Return(OK));
+    .Times(2)
+    .WillRepeatedly(Return(OK));
 
     Hss hsw1(&den1, &in1, nullptr, &dsel1, &is1, &timer1, &BTS7002);
     Hss hsw2(&den2, &in2, nullptr, &dsel2, &is2, &timer2, &BTS7002);
@@ -2199,14 +2199,14 @@ TEST_F(Hss_BTS700xShield_Test, readDiagx_2_on)
     hssShield.init();
     hssShield.switchHxOn(2);
 
-    ASSERT_EQ(OPEN_LOAD, hssShield.readDiagx(2));
+    ASSERT_EQ(FAULT_OL_IC, hssShield.readDiagx(2));
 }
 
 TEST_F(Hss_BTS700xShield_Test, readDiagx_3_on)
 {
     EXPECT_CALL(den3, enable())
-    .Times(1)
-    .WillOnce(Return(OK));
+    .Times(2)
+    .WillRepeatedly(Return(OK));
 
     Hss hsw1(&den1, &in1, nullptr, &dsel1, &is1, &timer1, &BTS7002);
     Hss hsw2(&den2, &in2, nullptr, &dsel2, &is2, &timer2, &BTS7002);
@@ -2217,14 +2217,14 @@ TEST_F(Hss_BTS700xShield_Test, readDiagx_3_on)
     hssShield.init();
     hssShield.switchHxOn(3);
 
-    ASSERT_EQ(OPEN_LOAD, hssShield.readDiagx(3));
+    ASSERT_EQ(FAULT_OL_IC, hssShield.readDiagx(3));
 }
 
 TEST_F(Hss_BTS700xShield_Test, readDiagx_4_on)
 {
     EXPECT_CALL(den4, enable())
-    .Times(1)
-    .WillOnce(Return(OK));
+    .Times(2)
+    .WillRepeatedly(Return(OK));
 
     Hss hsw1(&den1, &in1, nullptr, &dsel1, &is1, &timer1, &BTS7002);
     Hss hsw2(&den2, &in2, nullptr, &dsel2, &is2, &timer2, &BTS7002);
@@ -2235,14 +2235,14 @@ TEST_F(Hss_BTS700xShield_Test, readDiagx_4_on)
     hssShield.init();
     hssShield.switchHxOn(4);
 
-    ASSERT_EQ(OPEN_LOAD, hssShield.readDiagx(4));
+    ASSERT_EQ(FAULT_OL_IC, hssShield.readDiagx(4));
 }
 
 TEST_F(Hss_BTS700xShield_Test, readDiagx_1_off)
 {
     EXPECT_CALL(den1, enable())
-    .Times(1)
-    .WillOnce(Return(OK));
+    .Times(3)
+    .WillRepeatedly(Return(OK));
 
     Hss hsw1(&den1, &in1, nullptr, &dsel1, &is1, &timer1, &BTS7002);
     Hss hsw2(&den2, &in2, nullptr, &dsel2, &is2, &timer2, &BTS7002);
@@ -2258,8 +2258,8 @@ TEST_F(Hss_BTS700xShield_Test, readDiagx_1_off)
 TEST_F(Hss_BTS700xShield_Test, readDiagx_2_off)
 {
     EXPECT_CALL(den2, enable())
-    .Times(1)
-    .WillOnce(Return(OK));
+    .Times(3)
+    .WillRepeatedly(Return(OK));
 
     Hss hsw1(&den1, &in1, nullptr, &dsel1, &is1, &timer1, &BTS7002);
     Hss hsw2(&den2, &in2, nullptr, &dsel2, &is2, &timer2, &BTS7002);
@@ -2275,8 +2275,8 @@ TEST_F(Hss_BTS700xShield_Test, readDiagx_2_off)
 TEST_F(Hss_BTS700xShield_Test, readDiagx_3_off)
 {
     EXPECT_CALL(den3, enable())
-    .Times(1)
-    .WillOnce(Return(OK));
+    .Times(3)
+    .WillRepeatedly(Return(OK));
 
     Hss hsw1(&den1, &in1, nullptr, &dsel1, &is1, &timer1, &BTS7002);
     Hss hsw2(&den2, &in2, nullptr, &dsel2, &is2, &timer2, &BTS7002);
@@ -2292,8 +2292,8 @@ TEST_F(Hss_BTS700xShield_Test, readDiagx_3_off)
 TEST_F(Hss_BTS700xShield_Test, readDiagx_4_off)
 {
     EXPECT_CALL(den4, enable())
-    .Times(1)
-    .WillOnce(Return(OK));
+    .Times(3)
+    .WillRepeatedly(Return(OK));
 
     Hss hsw1(&den1, &in1, nullptr, &dsel1, &is1, &timer1, &BTS7002);
     Hss hsw2(&den2, &in2, nullptr, &dsel2, &is2, &timer2, &BTS7002);
@@ -2304,19 +2304,6 @@ TEST_F(Hss_BTS700xShield_Test, readDiagx_4_off)
     hssShield.init();
 
     ASSERT_EQ(NORMAL, hssShield.readDiagx(4));
-}
-
-TEST_F(Hss_BTS700xShield_Test, diagnosisOff_normal)
-{
-    Hss hsw1(&den1, &in1, nullptr, &dsel1, &is1, &timer1, &BTS7002);
-    Hss hsw2(&den2, &in2, nullptr, &dsel2, &is2, &timer2, &BTS7002);
-    Hss hsw3(&den3, &in3, nullptr, &dsel3, &is3, &timer3, &BTS7002);
-    Hss hsw4(&den4, &in4, nullptr, &dsel4, &is4, &timer4, &BTS7002);
-
-    Bts700xShield hssShield(&led1, &led2, &led3, &led4, &hsw1, &hsw2, &hsw3, &hsw4, &timer, &oloff, &pushButtonDigital, &pushButtonAnalog, &vBat, &BTS7002);
-    hssShield.init();
-
-    ASSERT_EQ(0, hssShield.diagnosisOff(5.0, 0.01));    //TODO!
 }
 
 TEST_F(Hss_BTS700xShield_Test, readVss)

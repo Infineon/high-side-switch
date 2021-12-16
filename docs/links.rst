@@ -1,13 +1,8 @@
-Related Links
-=============
-
 Related Products
 ----------------
 
 * `XMC1100 Boot Kit <https://www.infineon.com/cms/en/product/evaluation-boards/kit_xmc11_boot_001/#ispnTab1>`__
-* `XMC4700 Relax Kit <https://www.infineon.com/cms/en/product/evaluation-boards/kit_xmc47_relax_5v_ad_v1/>`__
 * `Arduino Uno Rev3 <https://store.arduino.cc/arduino-uno-rev3>`__
-* `Arduino MKR1000 <https://store.arduino.cc/arduino-mkr1000-wifi-with-headers-mounted>`__
 * `Arduino IDE <https://www.arduino.cc/en/software>`__
 * `PlatformIO <https://platformio.org/>`__
 

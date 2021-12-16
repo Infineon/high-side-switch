@@ -1,11 +1,8 @@
-
-Hardware Platforms
-==================
-
-.. |trade|    unicode:: U+2122 .. TRADEMARK SIGN
+The following Infineon products are supported with this library:
 
 PROFET\ |trade|\ + 24V family
 -----------------------------
+.. |trade|    unicode:: U+2122 .. TRADEMARK SIGN
 
 .. image:: img/btt6x_shield.jpg
     :width: 150
@@ -105,8 +102,8 @@ Chip only
 * `BTT6020-1EKA`_
 * `BTT6030-2EKA`_
 
-Power PROFET\ |trade|\ family
------------------------------
+Power PROFET\ |trade|\  family
+------------------------------
 
 .. image:: img/bts5001x_shield.png
     :width: 150
@@ -294,6 +291,7 @@ Chip only
 * `BTS7006-1EPP`_
 * `BTS7008-1EPP`_
 
+
 .. _`BTT6020-1EKA`: https://www.infineon.com/cms/en/product/power/smart-low-side-high-side-switches/high-side-switches/profet-plus-24v-automotive-smart-high-side-switch/btt6020-1era/
 .. _`BTT6030-2EKA`: https://www.infineon.com/cms/en/product/power/smart-low-side-high-side-switches/high-side-switches/profet-plus-24v-automotive-smart-high-side-switch/btt6030-2era/
 .. _`BTS50010-1TAD`: https://www.infineon.com/cms/en/product/power/smart-low-side-high-side-switches/high-side-switches/power-profet-automotive-smart-high-side-switch/bts50010-1tad/
@@ -302,6 +300,8 @@ Chip only
 .. _`BTS7004-1EPP`: https://www.infineon.com/cms/en/product/power/smart-low-side-high-side-switches/high-side-switches/profet-plus-2-12v-automotive-smart-high-side-switch/bts7004-1epp/
 .. _`BTS7006-1EPP`: https://www.infineon.com/cms/en/product/power/smart-low-side-high-side-switches/high-side-switches/profet-plus-2-12v-automotive-smart-high-side-switch/bts7006-1epp/
 .. _`BTS7008-1EPP`: https://www.infineon.com/cms/en/product/power/smart-low-side-high-side-switches/high-side-switches/profet-plus-2-12v-automotive-smart-high-side-switch/bts7008-1epp/
+
+
 .. _`24V Protected Switch Shield with BTT6030-2EKA and BTT6020-1EKA`: https://www.infineon.com/cms/en/product/evaluation-boards/24v_shield_btt6030/
 .. _`12V Protected Switch Shield with BTS50010-1TAD`: https://www.infineon.com/cms/en/product/evaluation-boards/shield_bts50010-1tad/
 .. _`12V Protected Switch Shield with BTS50015-1TAD`: https://www.infineon.com/cms/en/product/evaluation-boards/shield_bts50015-1tad/

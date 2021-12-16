@@ -78,9 +78,9 @@ suppress_warnings = ['autosectionlabel.*', 'epub.duplicated_toc_entry']
 # Setup the exhale extension
 exhale_args = {
     # These arguments are required
-    "containmentFolder":     "./library-api-docs",
-    "rootFileName":          "library_root.rst",
-    "rootFileTitle":         "Library Hierarchy",
+    "containmentFolder":     "./exhale-auto-docs",
+    "rootFileName":          "api_list.rst",
+    "rootFileTitle":         "API List",
     "doxygenStripFromPath":  "..",
     # Suggested optional arguments
     "createTreeView":        True,
@@ -100,7 +100,7 @@ exhale_args = {
 
     # Configure what not to show in the API index page
     "unabridgedOrphanKinds": {"function", "define", "dir","file", "variable", "namespace"},
-    "fullToctreeMaxDepth" : 2
+    "fullToctreeMaxDepth" : 4
     
 }
 

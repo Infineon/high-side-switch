@@ -81,12 +81,17 @@ Please find the license file for this library `here <https://github.com/Infineon
 
 .. toctree::
    :maxdepth: 3
-   :caption: Wiki Sections
+   :caption: Home
    :hidden:
 
    Introduction <self>
-   Hardware Platforms <hardware-platforms.rst>
-   Related Links <links.rst>
+
+.. toctree::
+   :maxdepth: 3
+   :caption: Hardware Platforms
+   :hidden:
+
+   hw-platforms
 
 .. toctree::
    :maxdepth: 3
@@ -100,19 +105,23 @@ Please find the license file for this library `here <https://github.com/Infineon
 
 .. toctree::
    :maxdepth: 3
-   :caption: Hardware Platforms
-   :hidden:
-
-.. toctree::
-   :maxdepth: 3
    :caption: Software Frameworks
    :hidden:
 
    sw-frmwk/arduino/index
 
 .. toctree::
-   :maxdepth: 3
+   :maxdepth: 5
    :caption: API Reference
    :hidden:
 
-   library-api-docs/library_root
+   Modules     <api-reference/modules.rst>
+   Full API    <exhale-auto-docs/unabridged_api.rst>
+   File List   <exhale-auto-docs/file_view_hierarchy.rst>
+
+.. toctree::
+   :maxdepth: 3
+   :caption: Related Links
+   :hidden:
+
+   links

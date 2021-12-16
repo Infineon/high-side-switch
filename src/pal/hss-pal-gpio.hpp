@@ -30,36 +30,30 @@ class GPIOPAL
 
         /**
          * @brief   Interrupt event
-         * @{
          */
         enum IntEvent_t
         {
             INT_FALLING_EDGE   = 0,     /**< Interrupt on falling edge */
             INT_RISING_EDGE    = 1,     /**< Interrupt on rising edge */
         };
-        /** @} */
 
         /**
          * @brief   Voltage level
-         * @{
          */
         enum VLevel_t
         {
             GPIO_LOW   = 0,        /**< Level low */
             GPIO_HIGH  = 1         /**< Level high */
         };
-        /** @} */
 
         /**
          * @brief   Voltage logic
-         * @{
          */
         enum VLogic_t
         {
             NEGATIVE = 1,       /**< Negative logic. 0 on voltage level high, 1 on voltage low */
             POSITIVE = 2,       /**< Positive logic. 1 on voltage level high, 0 on voltage low */
         };
-        /** @} */
 
         /**
          * @brief       Initializes the GPIO

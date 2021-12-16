@@ -1,4 +1,4 @@
-.. _arduino-examples:
+.. _arduino-getting-started:
 
 Arduino Getting Started
 =======================

@@ -72,12 +72,12 @@ Description
 This example shows the usage of the offered functionalities of the shield. 
 It has 2 parts:
 
-1. PART A:
+1. Part A:
   * Switches a channel ON
   * Reads current through the switch, battery voltage and performs diagnosis in 'ON' state
   * Switches the channel OFF
 
-2. PART B:
+2. Part B:
   * Switch multiple channels 'ON' at once
   * Switch multiple channels 'OFF' at once
  
@@ -228,13 +228,13 @@ Description
 This example shows the usage of all the offered functionalities of the shield. 
 It has 2 parts:
 
-1. PART A
+1. Part A
   * Switches a channel ON
   * Reads current through the switch, battery voltage and performs diagnosis in 'ON' state
   * Switches the channel OFF
   * Reads current through the switch, battery voltage and performs diagnosis in 'OFF' state
 
-2. PART B
+2. Part B
   * Switch multiple channels 'ON' at once
   * Switch multiple channels 'OFF' at once
 

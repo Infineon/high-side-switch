@@ -21,6 +21,7 @@ using ::testing::SaveArg;
 using ::testing::SafeMatcherCast;
 using ::testing::NotNull;
 
+using namespace hss;
 
 class MockADC : public ADCPAL
 {

@@ -1,24 +1,22 @@
 #include "test_hss-mock.hpp"
-// #include "hss.hpp"
-// #include "hss-variants.hpp"
-#include "hss-shield-profet24v.hpp"
+#include "hss-shield-btt60xx.hpp"
 
 /**
  *  Class C++ High-Side-Switch Profet 24V Class Test Suite
  */
-class Profet24VBTTShield_Test : public ::testing::Test
+class Btt60xxShield_Test : public ::testing::Test
 {
 
     public:
 
         NiceMock<MockGPIO> den[3];
-        NiceMock<MockGPIO> in[5];   
+        NiceMock<MockGPIO> in[5];
         NiceMock<MockGPIO> dsel[2];
         NiceMock<MockADC> is[3];
         NiceMock<MockTimer> timer[3];
 
         Hss * hsw[3];
-        Profet24VBTTShield * shieldProfet24V;
+        Btt60xxShield * btt60xxShield;
 
         /**
          * Is called before every individual test is executed
@@ -29,7 +27,7 @@ class Profet24VBTTShield_Test : public ::testing::Test
             {
                 if(2 == i)
                 {
-                    hsw[i] = new Hss(&den[i], &in[2*i], &is[i], &timer[i], &BTT6020);   
+                    hsw[i] = new Hss(&den[i], &in[2*i], &is[i], &timer[i], &BTT6020);
                 }
                 else
                 {
@@ -67,20 +65,20 @@ class Profet24VBTTShield_Test : public ::testing::Test
                 .WillByDefault(Return(OK));
             }
 
-            shieldProfet24V = new Profet24VBTTShield(hsw[0], hsw[1], hsw[2]);
+            btt60xxShield = new Btt60xxShield(hsw[0], hsw[1], hsw[2]);
         }
 
         /**
          * Is called after every individual test was executed
          */
         void TearDown()
-        {   
+        {
             for(uint8_t i = 0; i < 3; i++)
             {
                 delete hsw[i];
             }
 
-            delete shieldProfet24V;
+            delete btt60xxShield;
         }
 };
 
@@ -88,63 +86,63 @@ class Profet24VBTTShield_Test : public ::testing::Test
  * init()
  */
 
-TEST_F(Profet24VBTTShield_Test, init_Error)
+TEST_F(Btt60xxShield_Test, init_Error)
 {
     EXPECT_CALL(den[0],init())
     .WillOnce(Return(INTF_ERROR));
 
-    ASSERT_EQ(INTF_ERROR, shieldProfet24V->init());
+    ASSERT_EQ(INTF_ERROR, btt60xxShield->init());
 }
 
-TEST_F(Profet24VBTTShield_Test, init_Success)
+TEST_F(Btt60xxShield_Test, init_Success)
 {
-    ASSERT_EQ(OK, shieldProfet24V->init());
+    ASSERT_EQ(OK, btt60xxShield->init());
 }
 
 /**
  * deinit()
  */
 
-TEST_F(Profet24VBTTShield_Test, deinit_Error)
+TEST_F(Btt60xxShield_Test, deinit_Error)
 {
     EXPECT_CALL(den[0],deinit())
     .WillOnce(Return(INTF_ERROR));
 
-    ASSERT_EQ(INTF_ERROR, shieldProfet24V->deinit());
+    ASSERT_EQ(INTF_ERROR, btt60xxShield->deinit());
 }
 
-TEST_F(Profet24VBTTShield_Test, deinit_Success)
+TEST_F(Btt60xxShield_Test, deinit_Success)
 {
-    ASSERT_EQ(OK, shieldProfet24V->deinit());
+    ASSERT_EQ(OK, btt60xxShield->deinit());
 }
 
 /**
  * switchHxOn()
  */
 
-TEST_F(Profet24VBTTShield_Test, switchHxOn_Error)
+TEST_F(Btt60xxShield_Test, switchHxOn_Error)
 {
-    shieldProfet24V->init();
+    btt60xxShield->init();
 
     for(uint8_t i = 0; i < 5; i++)
     {
         EXPECT_CALL(in[i],enable())
         .WillOnce(Return(INTF_ERROR));
 
-        ASSERT_EQ(INTF_ERROR, shieldProfet24V->switchHxOn(i));
+        ASSERT_EQ(INTF_ERROR, btt60xxShield->switchHxOn(i));
     }
 }
 
-TEST_F(Profet24VBTTShield_Test, switchHxOn_Success)
+TEST_F(Btt60xxShield_Test, switchHxOn_Success)
 {
-    shieldProfet24V->init();
+    btt60xxShield->init();
 
     for(uint8_t i = 0; i < 5; i++)
     {
         EXPECT_CALL(in[i],enable())
         .WillOnce(Return(OK));
 
-        ASSERT_EQ(OK, shieldProfet24V->switchHxOn(i));
+        ASSERT_EQ(OK, btt60xxShield->switchHxOn(i));
     }
 }
 
@@ -152,29 +150,29 @@ TEST_F(Profet24VBTTShield_Test, switchHxOn_Success)
  * switchHxOff()
  */
 
-TEST_F(Profet24VBTTShield_Test, switchHxOff_Error)
+TEST_F(Btt60xxShield_Test, switchHxOff_Error)
 {
-    shieldProfet24V->init();
+    btt60xxShield->init();
 
     for(uint8_t i = 0; i < 5; i++)
     {
         EXPECT_CALL(in[i],disable())
         .WillOnce(Return(INTF_ERROR));
 
-        ASSERT_EQ(INTF_ERROR, shieldProfet24V->switchHxOff(i));
+        ASSERT_EQ(INTF_ERROR, btt60xxShield->switchHxOff(i));
     }
 }
 
-TEST_F(Profet24VBTTShield_Test, switchHxOff_Success)
+TEST_F(Btt60xxShield_Test, switchHxOff_Success)
 {
-    shieldProfet24V->init();
+    btt60xxShield->init();
 
     for(uint8_t i = 0; i < 5; i++)
     {
         EXPECT_CALL(in[i],disable())
         .WillOnce(Return(OK));
 
-        ASSERT_EQ(OK, shieldProfet24V->switchHxOff(i));
+        ASSERT_EQ(OK, btt60xxShield->switchHxOff(i));
     }
 }
 
@@ -182,17 +180,17 @@ TEST_F(Profet24VBTTShield_Test, switchHxOff_Success)
  * switchesHxOn()
  */
 
-TEST_F(Profet24VBTTShield_Test, switchesHxOn_Error)
+TEST_F(Btt60xxShield_Test, switchesHxOn_Error)
 {
     EXPECT_CALL(in[0],enable())
     .WillOnce(Return(INTF_ERROR));
 
-    shieldProfet24V->init();
-    
-    ASSERT_EQ(INTF_ERROR, shieldProfet24V->switchesHxOn(true, true, true, true, true));
+    btt60xxShield->init();
+
+    ASSERT_EQ(INTF_ERROR, btt60xxShield->switchesHxOn(true, true, true, true, true));
 }
 
-TEST_F(Profet24VBTTShield_Test, switchesHxOn_Success)
+TEST_F(Btt60xxShield_Test, switchesHxOn_Success)
 {
     for(uint8_t i = 0; i < 5; i++)
     {
@@ -200,26 +198,26 @@ TEST_F(Profet24VBTTShield_Test, switchesHxOn_Success)
         .WillOnce(Return(OK));
     }
 
-    shieldProfet24V->init();
+    btt60xxShield->init();
 
-    ASSERT_EQ(OK, shieldProfet24V->switchesHxOn(true, true, true, true, true));
+    ASSERT_EQ(OK, btt60xxShield->switchesHxOn(true, true, true, true, true));
 }
 
 /**
  * switchesHxOff()
  */
 
-TEST_F(Profet24VBTTShield_Test, switchesHxOff_Error)
+TEST_F(Btt60xxShield_Test, switchesHxOff_Error)
 {
     EXPECT_CALL(in[0],disable())
     .WillOnce(Return(INTF_ERROR));
 
-    shieldProfet24V->init();
-    
-    ASSERT_EQ(INTF_ERROR, shieldProfet24V->switchesHxOff(true, true, true, true, true));
+    btt60xxShield->init();
+
+    ASSERT_EQ(INTF_ERROR, btt60xxShield->switchesHxOff(true, true, true, true, true));
 }
 
-TEST_F(Profet24VBTTShield_Test, switchesHxOff_Success)
+TEST_F(Btt60xxShield_Test, switchesHxOff_Success)
 {
     for(uint8_t i = 0; i < 5; i++)
     {
@@ -227,22 +225,22 @@ TEST_F(Profet24VBTTShield_Test, switchesHxOff_Success)
         .WillOnce(Return(OK));
     }
 
-    shieldProfet24V->init();
+    btt60xxShield->init();
 
-    ASSERT_EQ(OK, shieldProfet24V->switchesHxOff(true, true, true, true, true));
+    ASSERT_EQ(OK, btt60xxShield->switchesHxOff(true, true, true, true, true));
 }
 
 /**
  * readIsx()
  */
 
-TEST_F(Profet24VBTTShield_Test, readIsx_Success)
+TEST_F(Btt60xxShield_Test, readIsx_Success)
 {
     for(uint8_t i = 0; i < 5; i++)
     {
-        shieldProfet24V->init();
-    
-        ASSERT_EQ(0, shieldProfet24V->readIsx(i));
+        btt60xxShield->init();
+
+        ASSERT_EQ(0, btt60xxShield->readIsx(i));
     }
 }
 
@@ -251,23 +249,23 @@ TEST_F(Profet24VBTTShield_Test, readIsx_Success)
  */
 
 
-TEST_F(Profet24VBTTShield_Test, readDiagx_NotPowerOn_Success)
+TEST_F(Btt60xxShield_Test, readDiagx_NotPowerOn_Success)
 {
     for(uint8_t i = 0; i < 5; i++)
     {
-        shieldProfet24V->init();
-    
-        ASSERT_EQ(0, shieldProfet24V->readDiagx(i));
+        btt60xxShield->init();
+
+        ASSERT_EQ(0, btt60xxShield->readDiagx(i));
     }
 }
 
-TEST_F(Profet24VBTTShield_Test, readDiagx_PowerOn_Success)
+TEST_F(Btt60xxShield_Test, readDiagx_PowerOn_Success)
 {
     for(uint8_t i = 0; i < 5; i++)
     {
-        shieldProfet24V->init();
-        shieldProfet24V->switchesHxOn(true, true, true, true, true);
-    
-        ASSERT_EQ(OPEN_LOAD, shieldProfet24V->readDiagx(i));
+        btt60xxShield->init();
+        btt60xxShield->switchesHxOn(true, true, true, true, true);
+
+        ASSERT_EQ(FAULT_OL_IC, btt60xxShield->readDiagx(i));
     }
 }

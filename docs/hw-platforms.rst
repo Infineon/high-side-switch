@@ -1,4 +1,4 @@
-The following Infineon products are supported with this library:
+The following Infineon products are supported by this library:
 
 PROFET\ |trade|\ + 24V family
 -----------------------------

@@ -19,7 +19,7 @@ These installation processes are conveniently described on the official `Arduino
 
 * **Arduino IDE Library Manager**
 
-Library name: ``arduino-high-side-switch``
+Library name: ``high-side-switch``
 
 * **Arduino IDE Manual Installation**
 

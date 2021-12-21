@@ -98,10 +98,8 @@ Please find the license file for this library `here <https://github.com/Infineon
    :caption: Library Details
    :hidden:
 
-   HSS API <lib-details/api.rst>
-   PAL Interface <lib-details/pal-interface.rst>
-   Source Tree Structure <lib-details/source-tree.rst>
-   lib-details/api-docs-index
+   Library Architecture <lib-details/library-architecture.rst>
+   Porting Guide <lib-details/porting-guide.rst>
 
 .. toctree::
    :maxdepth: 3

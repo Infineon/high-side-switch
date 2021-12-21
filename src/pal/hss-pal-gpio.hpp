@@ -57,7 +57,7 @@ class GPIOPAL
 
         /**
          * @brief       Initializes the GPIO
-         * @return      Error_t
+         * @return High-side switch error code 
          * @retval      OK          If success
          * @retval      INIT_ERROR  If initialization error
          */
@@ -65,7 +65,7 @@ class GPIOPAL
 
         /**
              * @brief       Deinitializes the GPIO
-             * @return      Error_t
+             * @return High-side switch error code 
              * @retval      OK          If success
              * @retval      INIT_ERROR  If deinitialization error
          */
@@ -82,7 +82,7 @@ class GPIOPAL
         /**
          * @brief       Writes the GPIO output voltage level
          * @param[in]   level  Voltage level
-         * @return      Error_t
+         * @return High-side switch error code 
          * @retval      OK              If success
          * @retval      WRITE_ERROR     If write error
          */
@@ -92,7 +92,7 @@ class GPIOPAL
          * @brief       Enables the GPIO output according to the GPIO logic
          *              - Low if negative
          *              - High if positive
-         * @return      Error_t
+         * @return High-side switch error code 
          * @retval      OK              If success
          * @retval      WRITE_ERROR     If write error
          */
@@ -102,7 +102,7 @@ class GPIOPAL
          * @brief       Disables the GPIO output according to the GPIO logic
          *              - Low if positive
          *              - High if negative
-         * @return      Error_t
+         * @return High-side switch error code 
          * @retval      OK              If success
          * @retval      WRITE_ERROR     If write error
          */

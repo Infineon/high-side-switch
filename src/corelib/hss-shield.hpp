@@ -35,34 +35,34 @@ class HssShield
 
         /**
          * @brief   Initializes the shield including it hardware instances
-         * @return  Error_t 
+         * @return High-side switch error code  
          */
         virtual Error_t      init()   = 0;
 
         /**
          * @brief   Deinitializes the shield including it hardware instances
-         * @return  Error_t 
+         * @return High-side switch error code  
          */
         virtual Error_t      deinit() = 0;
 
         /**
          * @brief       Turns on the specified shield switch output number
          * @param[in]   x   Switch output number
-         * @return      Error_t
+         * @return High-side switch error code 
          */
         virtual Error_t      switchHxOn (uint8_t x) = 0;
 
         /**
          * @brief       Turns off the specified shield switch output number
          * @param[in]   x   Switch output number
-         * @return      Error_t
+         * @return High-side switch error code 
          */
         virtual Error_t      switchHxOff(uint8_t x) = 0;
 
         /**
          * @brief       Reads the diagnose from the specified shield switch output number
          * @param[in]   x   Switch output number
-         * @return      Error_t
+         * @return High-side switch error code 
          */        
         virtual DiagStatus_t readDiagx  (uint8_t x) = 0;
 

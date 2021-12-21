@@ -10,8 +10,21 @@
 
 using namespace hss;
 /**
- * @brief   High-Side-Switch-Board constructor
- * @details Initialize all protected class pointers with a null pointer.
+ * @brief       High-Side-Switch-Board constructor
+ * @details     Initialize all protected class pointers with a null pointer
+ * @param[in]   led1    LED 1 instance
+ * @param[in]   led2    LED 2 instance
+ * @param[in]   led2    LED 3 instance
+ * @param[in]   hsw1    High-side switch 1 instance
+ * @param[in]   hsw2    High-side switch 2 instance
+ * @param[in]   hsw3    High-side switch 3 instance
+ * @param[in]   hsw4    High-side switch 4 instance
+ * @param[in]   timer   Timer instance
+ * @param[in]   oloff   Oloff instance
+ * @param[in]   pushButtonDigital   Push button GPIO instance
+ * @param[in]   pushButtonAnalog    Push button ADC instance
+ * @param[in]   vBat    Battery voltage
+ * @param[in]   btxVariant  Shield variant type
  */
 Bts700xShield::Bts700xShield(GPIOPAL *led1, GPIOPAL *led2, GPIOPAL *led3, GPIOPAL *led4, Hss *hsw1, Hss *hsw2, Hss *hsw3, Hss *hsw4, TimerPAL *timer,
                              GPIOPAL *oloff, GPIOPAL *pushButtonDigital, ADCPAL *pushButtonAnalog, ADCPAL *vBat, BtxVariants_t* btxVariant)
@@ -50,7 +63,7 @@ Bts700xShield::~Bts700xShield()
  * @brief   Initialize all necessary objects of the High-Side-Switch-Board
  * @details This function initializes all necessary objects of the High-Side-Switch-Board.
  *          It retruns an error code to see if everything was initialized correctly.
- * @return  Error_t
+ * @return High-side switch error code 
  */
 Error_t Bts700xShield::init()
 {
@@ -215,7 +228,7 @@ Error_t Bts700xShield::init()
  * @brief    Deinitialize all necessary objects of the High-Side-Switch-Board
  * @details  This function deinitializes all necessary objects of the High-Side-Switch-Board.
  *           It retruns an error code to see if everything was deinitialized correctly.
- * @return   Error_t
+ * @return High-side switch error code 
  */
 Error_t Bts700xShield::deinit()
 {
@@ -379,7 +392,7 @@ Error_t Bts700xShield::deinit()
  * @details This function turns on the desired High-Side-Switch.
  *          It also turns on the corresponding LED of the switch.
  * @param[in]   x   Number of the Switch the should be turned on (1-4)
- * @return          Error_t
+ * @return High-side switch error code 
  */
 Error_t Bts700xShield::switchHxOn(uint8_t x)
 {
@@ -420,7 +433,7 @@ Error_t Bts700xShield::switchHxOn(uint8_t x)
  * @details This function turns off the desired High-Side-Switch.
  *          It also turns off the corresponding LED of the switch.
  * @param[in]   x   Number of the Switch the should be turned off (1-4)
- * @return          Error_t
+ * @return High-side switch error code 
  */
 Error_t Bts700xShield::switchHxOff(uint8_t x)
 {
@@ -463,7 +476,7 @@ Error_t Bts700xShield::switchHxOff(uint8_t x)
  * @param[in] h2    Enable the second switch if h2 == true
  * @param[in] h3    Enable the third switch if h3 == true
  * @param[in] h4    Enable the fourth switch if h4 == true
- * @return          Error_t
+ * @return High-side switch error code 
  */
 Error_t Bts700xShield::switchesHxOn(bool h1, bool h2, bool h3, bool h4)
 {
@@ -513,7 +526,7 @@ Error_t Bts700xShield::switchesHxOn(bool h1, bool h2, bool h3, bool h4)
  * @param[in] h2    Disable the second switch if h2 == true
  * @param[in] h3    Disable the third switch if h3 == true
  * @param[in] h4    Disable the fourth switch if h4 == true
- * @return          Error_t
+ * @return High-side switch error code 
  */
 Error_t Bts700xShield::switchesHxOff(bool h1, bool h2, bool h3, bool h4)
 {

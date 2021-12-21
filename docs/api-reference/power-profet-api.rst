@@ -1,7 +1,9 @@
-Power PROFET\ |trade|\  Shield API
-----------------------------------
+.. _Bts5001xShield API:
+
+Power PROFET\ |trade|\  Shield
+------------------------------
 
 .. |trade|    unicode:: U+2122 .. TRADEMARK SIGN
 
-
-api
+.. doxygenclass:: hss::Bts5001xShield
+    :members:

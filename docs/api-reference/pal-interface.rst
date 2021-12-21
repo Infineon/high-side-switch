@@ -1,3 +1,5 @@
+.. _pal-intf:
+
 Platform Abstraction Layer Interface
 ------------------------------------
 

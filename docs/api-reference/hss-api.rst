@@ -1,4 +1,7 @@
-High Side Switch API
---------------------
+.. _Hss API:
 
-asdf
+High-side Switch 
+----------------
+
+.. doxygenclass:: hss::Hss
+    :members:

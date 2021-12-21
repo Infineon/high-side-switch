@@ -1,2 +1,7 @@
-High Side Switch Shield API
----------------------------
+.. _HssShield API:
+
+High-side Switch Shield
+-----------------------
+
+.. doxygenclass:: hss::HssShield
+    :members:

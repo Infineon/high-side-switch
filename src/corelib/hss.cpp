@@ -82,7 +82,7 @@ Hss::~Hss()
  * @brief   Initialize the High-Side-Switch
  * @details This function initializes all necessary objects of the High-Side-Switch.
  *          It retruns an error code to see if everything was initialized correctly.
- * @return  Error_t
+ * @return High-side switch error code 
  */
 Error_t Hss::init()
 {
@@ -129,7 +129,7 @@ Error_t Hss::init()
 
 /**
  * @brief Deinitialize the High-Side-Switch
- * @return Error_t
+ * @return High-side switch error code 
  */
 Error_t Hss::deinit()
 {
@@ -179,7 +179,7 @@ Error_t Hss::deinit()
  * @details  This function is turning on the High-Side-Switch.
  *           It is also setting the status of the switch to ON.
  * @param[in]   ch      Channel number. Default 0.
- * @return   Error_t
+ * @return High-side switch error code 
  */
 Error_t Hss::enable(Channel_t ch)
 {
@@ -217,7 +217,7 @@ Error_t Hss::enable(Channel_t ch)
  * @details This function turns off the High-Side-Switch.
  *          It is also setting the status of the switch to OFF.
  * @param[in]   ch      Channel number. Default 0.
- * @return  Error_t
+ * @return High-side switch error code 
  */
 Error_t Hss::disable(Channel_t ch)
 {
@@ -257,7 +257,7 @@ Error_t Hss::disable(Channel_t ch)
 /**
  * @brief   Enable diagnosis function
  * @details This function is enabling the diagnosis function of the High-Side-Switch.
- * @return  Error_t
+ * @return High-side switch error code 
  */
 Error_t Hss::enableDiag()
 {
@@ -285,7 +285,7 @@ Error_t Hss::enableDiag()
 /**
  * @brief   Disable diagnosis function
  * @details This function is disabling the diagnosis function of the High-Side-Switch
- * @return  Error_t
+ * @return High-side switch error code 
  */
 Error_t Hss::disableDiag()
 {
@@ -315,7 +315,7 @@ Error_t Hss::disableDiag()
  * @details This function is selecting the channel to perform diagnosis
  * @note    This function is accessed only if the shield is Profet24V
  * @param[in] ch    Channel number (in case of Profet 24V shield)
- * @return  Error_t
+ * @return High-side switch error code 
  */
 Error_t Hss::selDiagCh(Channel_t ch)
 {

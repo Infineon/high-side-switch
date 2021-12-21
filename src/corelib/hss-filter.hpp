@@ -22,7 +22,6 @@ namespace hss
 /**
  * @brief  Exponential filter API
  */
-
 class ExponentialFilter
 {
     public:
@@ -38,12 +37,13 @@ class ExponentialFilter
         float output();
         uint16_t pow2(uint16_t p);
 
-        private:
-        uint16_t tau; 
+    private:
 
-        float y;        
-        float y_last;   
-        float x;
+        uint16_t tau;   /**< Time constant */
+
+        float y;        /**< Output value */
+        float y_last;   /**< Last output value */
+        float x;        /**< Input value*/
 };
 
 /** @} */

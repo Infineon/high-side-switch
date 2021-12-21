@@ -12,8 +12,9 @@
 using namespace hss;
 
 /**
- * @brief High-Side-Switch-Board constructor
- * Initialize all protected class pointers with a null pointer.
+ * @brief       High-Side-Switch-Board constructor
+ * @details     Initialize all protected class pointers with a null pointer
+ * @param[in]   variantSel  Shield variant types 
  */
 Bts5001xShieldIno::Bts5001xShieldIno(BtxVariants_t *variantSel):
 Bts5001xShield(hss1 = new HssIno(BTS5001X_HWCONFIG.in, BTS5001X_HWCONFIG.is, variantSel),
@@ -26,8 +27,10 @@ Bts5001xShield(hss1 = new HssIno(BTS5001X_HWCONFIG.in, BTS5001X_HWCONFIG.is, var
 }
 
 /**
- * @brief High-Side-Switch-Board constructor
- * Initialize all protected class pointers with a null pointer.
+ * @brief       High-Side-Switch-Board constructor
+ * @details     Initialize all protected class pointers with a null pointer
+ * @param[in]   variantSel  Shield variant types 
+ * @param[in]   config  Pinout hardware configuration
  */
 Bts5001xShieldIno::Bts5001xShieldIno(BtxVariants_t *variantSel, BTS5001xHwConfig_t config):
 Bts5001xShield(hss1 = new HssIno(config.in, config.is, variantSel),

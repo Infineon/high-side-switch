@@ -27,7 +27,7 @@ In the following example, we use ...
 
     lib_deps=
     # Using a library name
-    high-side-switch
+    high-side-switch-ino
 
     # Using the repository URL
     https://github.com/Infineon/arduino-high-side-switch

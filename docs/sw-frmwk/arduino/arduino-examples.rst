@@ -2,7 +2,7 @@
 
 Arduino Examples
 ================
-You can find these examples also in the Arduino IDE by navigating to *File* -> *Examples* -> *high-side-switch*.
+You can find these examples also in the Arduino IDE by navigating to *File* -> *Examples* -> *high-side-switch-ino*.
 
 .. list-table::
     :header-rows: 1

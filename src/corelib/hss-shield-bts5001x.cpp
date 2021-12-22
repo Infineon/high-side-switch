@@ -1,6 +1,6 @@
 /**
  * @file        hss-shield-bts5001x.cpp
- * @brief       BTS500xx Shield Implementation
+ * @brief       Power Profet (12V) shield with BTS500xx class
  * @copyright   Copyright (c) 2021 Infineon Technologies AG
  *
  * SPDX-License-Identifier: MIT
@@ -11,8 +11,13 @@
 using namespace hss;
 
 /**
- * @brief   High-Side-Switch-Board constructor
- * @details Initialize all protected class pointers with a null pointer.
+ * @brief       High-Side-Switch-Board constructor
+ * @details     Initialize all protected class pointers with a null pointer.
+ * @param[in]   hsw1   High-side switch 1 instance
+ * @param[in]   led2   LED 2 instance
+ * @param[in]   led3   LED 3 instance
+ * @param[in]   pushButton Push button ADC instance
+ * @param[in]   vBat    Battery voltage ADC instance
  */
 Bts5001xShield::Bts5001xShield(Hss * hsw1, GPIOPAL * led2, GPIOPAL * led3, ADCPAL * pushButton, ADCPAL * vBat)
 :
@@ -40,7 +45,7 @@ Bts5001xShield::~Bts5001xShield()
  * This function initializes all necessary objects of the High-Side-Switch-Board.
  * It retruns an error code to see if everything was initialized correctly.
  *
- * @return Error_t
+ * @return hss::Error_t
  */
 Error_t Bts5001xShield::init()
 {
@@ -85,7 +90,7 @@ Error_t Bts5001xShield::init()
  * This function deinitializes all necessary objects of the High-Side-Switch-Board.
  * It retruns an error code to see if everything was deinitialized correctly.
  *
- * @return Error_t
+ * @return High-side switch error code 
  */
 Error_t Bts5001xShield::deinit()
 {
@@ -127,7 +132,7 @@ Error_t Bts5001xShield::deinit()
  * @details  This function turns on the desired High-Side-Switch.
  *           It also turns on the corresponding LED of the switch.
  * @param[in]   x   Number of the Switch the should be turned on (1-4)
- * @return          Error_t
+ * @return High-side switch error code 
  */
 Error_t Bts5001xShield::switchHxOn(uint8_t x)
 {
@@ -152,7 +157,7 @@ Error_t Bts5001xShield::switchHxOn(uint8_t x)
  * @details  This function turns off the desired High-Side-Switch.
  *           It also turns off the corresponding LED of the switch.
  * @param[in]   x   Number of the Switch the should be turned off (1-4)
- * @return          Error_t
+ * @return High-side switch error code 
  */
 Error_t Bts5001xShield::switchHxOff(uint8_t x)
 {

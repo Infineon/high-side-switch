@@ -18,6 +18,8 @@
 
 #include <hss-shield-btt60xx-ino.hpp>
 
+using namespace hss;
+
 Btt60xxShieldIno HSS = Btt60xxShieldIno();
 
 Error_t err = OK;

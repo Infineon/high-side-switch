@@ -35,8 +35,8 @@ PROFET\ |trade|\ + 24V family
 * `BTT6020-1EKA`_
 * `BTT6030-2EKA`_
 
-12V Protected Switches
-----------------------
+Power PROFET\ |trade|\  family
+------------------------------
 
 * `12V Protected Switch Shield with BTS50010-1TAD`_
 * `12V Protected Switch Shield with BTS50015-1TAD`_
@@ -44,13 +44,13 @@ PROFET\ |trade|\ + 24V family
 * `BTS50010-1TAD`_
 * `BTS50015-1TAD`_
 
-Smart High-Side Power Switches
+PROFET\ |trade|\ +2 12V family
 ------------------------------
 
-* `SHIELD_BTS7002-1EPP`_
-* `SHIELD_BTS7004-1EPP`_
-* `SHIELD_BTS7006-1EPP`_
-* `SHIELD_BTS7008-1EPP`_
+* `12V Smart Switch Shield with BTS7002-1EPP`_
+* `12V Smart Switch Shield with BTS7004-1EPP`_
+* `12V Smart Switch Shield with BTS7006-1EPP`_
+* `12V Smart Switch Shield with BTS7008-1EPP`_
 
 * `BTS7002-1EPP`_
 * `BTS7004-1EPP`_
@@ -68,10 +68,10 @@ Smart High-Side Power Switches
 .. _`24V Protected Switch Shield with BTT6030-2EKA and BTT6020-1EKA`: https://www.infineon.com/cms/en/product/evaluation-boards/24v_shield_btt6030/
 .. _`12V Protected Switch Shield with BTS50010-1TAD`: https://www.infineon.com/cms/en/product/evaluation-boards/shield_bts50010-1tad/
 .. _`12V Protected Switch Shield with BTS50015-1TAD`: https://www.infineon.com/cms/en/product/evaluation-boards/shield_bts50015-1tad/
-.. _`SHIELD_BTS7002-1EPP`: https://www.infineon.com/cms/en/product/evaluation-boards/shield_bts7002-1epp/
-.. _`SHIELD_BTS7004-1EPP`: https://www.infineon.com/cms/en/product/evaluation-boards/shield_bts7004-1epp/
-.. _`SHIELD_BTS7006-1EPP`: https://www.infineon.com/cms/en/product/evaluation-boards/shield_bts7006-1epp/
-.. _`SHIELD_BTS7008-1EPP`: https://www.infineon.com/cms/en/product/evaluation-boards/shield_bts7008-1epp/
+.. _`12V Smart Switch Shield with BTS7002-1EPP`: https://www.infineon.com/cms/en/product/evaluation-boards/shield_bts7002-1epp/
+.. _`12V Smart Switch Shield with BTS7004-1EPP`: https://www.infineon.com/cms/en/product/evaluation-boards/shield_bts7004-1epp/
+.. _`12V Smart Switch Shield with BTS7006-1EPP`: https://www.infineon.com/cms/en/product/evaluation-boards/shield_bts7006-1epp/
+.. _`12V Smart Switch Shield with BTS7008-1EPP`: https://www.infineon.com/cms/en/product/evaluation-boards/shield_bts7008-1epp/
 
 License
 =======
@@ -81,27 +81,25 @@ Please find the license file for this library `here <https://github.com/Infineon
 
 .. toctree::
    :maxdepth: 3
-   :caption: Wiki Sections
+   :caption: Home
    :hidden:
 
    Introduction <self>
-   Hardware Platforms <hardware-platforms.rst>
-   Related Links <links.rst>
+
+.. toctree::
+   :maxdepth: 3
+   :caption: Hardware Platforms
+   :hidden:
+
+   hw-platforms
 
 .. toctree::
    :maxdepth: 3
    :caption: Library Details
    :hidden:
 
-   HSS API <lib-details/api.rst>
-   PAL Interface <lib-details/pal-interface.rst>
-   Source Tree Structure <lib-details/source-tree.rst>
-   api-docs-index
-
-.. toctree::
-   :maxdepth: 3
-   :caption: Hardware Platforms
-   :hidden:
+   Library Architecture <lib-details/library-architecture.rst>
+   Porting Guide <lib-details/porting-guide.rst>
 
 .. toctree::
    :maxdepth: 3
@@ -109,3 +107,19 @@ Please find the license file for this library `here <https://github.com/Infineon
    :hidden:
 
    sw-frmwk/arduino/index
+
+.. toctree::
+   :maxdepth: 5
+   :caption: API Reference
+   :hidden:
+
+   Modules     <api-reference/modules.rst>
+   Full API    <exhale-auto-docs/unabridged_api.rst>
+   File List   <exhale-auto-docs/file_view_hierarchy.rst>
+
+.. toctree::
+   :maxdepth: 3
+   :caption: Related Links
+   :hidden:
+
+   links

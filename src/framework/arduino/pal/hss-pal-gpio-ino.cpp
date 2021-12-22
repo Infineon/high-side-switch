@@ -1,10 +1,16 @@
 /**
- * @file        hss-pal-gpio-ino.hpp
- * @details     Ino PAL for the GPIO
+ * @file        hss-pal-gpio-ino.cpp
+ * @brief       GPIO platform abstraction layer Arduino class
+ * @copyright   Copyright (c) 2021 Infineon Technologies AG
+ *
+ * SPDX-License-Identifier: MIT
  */
+
 
 #include <Arduino.h>
 #include "hss-pal-gpio-ino.hpp"
+
+using namespace hss;
 
 /**
  * @brief   Constructor of the GPIO class for arduino
@@ -32,7 +38,7 @@ GPIOIno::GPIOIno(uint8_t pin, uint8_t mode, VLogic_t logic)
 /**
  * @brief   Initialize the GPIO
  * @details This function is initializing the chosen pin.
- * @return  Error_t
+ * @return  High-side switch error code 
  */
 Error_t GPIOIno::init()
 {
@@ -43,7 +49,7 @@ Error_t GPIOIno::init()
 /**
  * @brief   Deinitialize the GPIO
  * @details This function is deinitializing the chosen pin.
- * @return  Error_t
+ * @return  High-side switch error code 
  */
 Error_t GPIOIno::deinit()
 {
@@ -67,7 +73,7 @@ GPIOIno::VLevel_t GPIOIno::read()
  * @brief   Set GPIO logic level
  * @details This functions sets the logic level of the chosen pin.
  * @param[in]   level   Desired logic level of the pin
- * @return      Error_t
+ * @return High-side switch error code 
  */
 Error_t GPIOIno::write(VLevel_t level)
 {
@@ -79,7 +85,7 @@ Error_t GPIOIno::write(VLevel_t level)
  * @brief   Enable the GPIO
  * @details This functions enable the chosen pin. Depending on the chosen logic of the pin
  *          it sets the right logic level of the pin.
- * @return  Error_t
+ * @return  High-side switch error code 
  */
 Error_t GPIOIno::enable()
 {
@@ -96,7 +102,7 @@ Error_t GPIOIno::enable()
  * @brief   Disable the GPIO
  * @details This functions disables the chosen pin. Depending on the chosen logic of the pin
  *          it sets the right logic level of the pin.
- * @return  Error_t
+ * @return  High-side switch error code 
  */
 Error_t GPIOIno::disable()
 {

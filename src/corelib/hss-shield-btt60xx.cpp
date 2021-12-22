@@ -1,6 +1,6 @@
 /**
  * @file        hss-shield-btt60xx.cpp
- * @brief       Profet (24V) Shield with BTT6030-2EKA and BTT6020-1EKA Implementation
+ * @brief       Profet (24V) shield with BTT6030-2EKA and BTT6020-1EKA class
  * @copyright   Copyright (c) 2021 Infineon Technologies AG
  *
  * SPDX-License-Identifier: MIT
@@ -11,7 +11,10 @@
 using namespace hss;
 
 /**
- * @brief   Profet 24V BTT60xx Shield constructor
+ * @brief       Profet 24V BTT60xx Shield constructor
+ * @param[in]   hsw0   High-side switch 0 instance
+ * @param[in]   hsw1   High-side switch 1 instance
+ * @param[in]   hsw2   High-side switch 2 instance
  */
 Btt60xxShield::Btt60xxShield(Hss *hsw0, Hss *hsw1, Hss *hsw2)
 {
@@ -33,7 +36,7 @@ Btt60xxShield::~Btt60xxShield()
  * @brief   Initialize all necessary objects of the Profet 24V Shield
  * @details This function initializes all necessary objects of the Profet 24V Shield.
  *          It returns an error code to see if everything was initialized correctly.
- * @return  Error_t
+ * @return High-side switch error code 
  */
 Error_t Btt60xxShield::init()
 {
@@ -55,7 +58,7 @@ Error_t Btt60xxShield::init()
  * This function deinitializes all necessary objects of the Profet 24V Shield.
  * It retruns an error code to see if everything was deinitialized correctly.
  *
- * @return Error_t
+ * @return High-side switch error code 
  */
 Error_t Btt60xxShield::deinit()
 {
@@ -80,7 +83,7 @@ Error_t Btt60xxShield::deinit()
  *                    Switch 2    -   Profet 1 (BTT6030 - channel 0) \n
  *                    Switch 3    -   Profet 1 (BTT6030 - channel 1) \n
  *                    Switch 4    -   Profet 2 (Single channel)
- * @return          Error_t
+ * @return High-side switch error code 
  */
 Error_t Btt60xxShield::switchHxOn(uint8_t x)
 {
@@ -103,7 +106,7 @@ Error_t Btt60xxShield::switchHxOn(uint8_t x)
  *                    Switch 2    -   Profet 1 (BTT6030 - channel 0) \n
  *                    Switch 3    -   Profet 1 (BTT6030 - channel 1) \n
  *                    Switch 4    -   Profet 2 (Single channel)
- * @return  Error_t
+ * @return High-side switch error code 
  */
 Error_t Btt60xxShield::switchHxOff(uint8_t x)
 {
@@ -125,7 +128,7 @@ Error_t Btt60xxShield::switchHxOff(uint8_t x)
  * @param[in] h0_1    Enable the Switch 1 - channel 0 if h0_1 = true
  * @param[in] h1_1    Enable the Switch 1 - channel 1 if h1_1 = true
  * @param[in] h2      Enable the Switch 2 - channel 0 if h2   = true
- * @return    Error_t
+ * @return High-side switch error code 
  */
 Error_t Btt60xxShield::switchesHxOn(bool h0_0, bool h1_0, bool h0_1, bool h1_1, bool h2)
 {
@@ -171,7 +174,7 @@ Error_t Btt60xxShield::switchesHxOn(bool h0_0, bool h1_0, bool h0_1, bool h1_1, 
  * @param[in] h0_1    Disable the Switch 1 - channel 0 if h0_1 = true
  * @param[in] h1_1    Disable the Switch 1 - channel 1 if h1_1 = true
  * @param[in] h2      Disable the Switch 2 - channel 0 if h2   = true
- * @return    Error_t
+ * @return High-side switch error code 
  */
 Error_t Btt60xxShield::switchesHxOff(bool h0_0, bool h1_0, bool h0_1, bool h1_1, bool h2)
 {

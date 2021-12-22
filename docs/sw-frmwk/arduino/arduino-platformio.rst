@@ -12,7 +12,7 @@ If you are new to PlatformIO, download and install Visual Studio Code first and 
 
 Library Installation
 --------------------
-With the project created, now the library and its dependencies can be configured in the Platform.ini Project File. This file, located in the project root folder, includes one(or several) building environments [env:__].
+With the project created, now the library and its dependencies can be configured in the Platform.ini Project File. This file, located in the project root folder, includes one (or several) building environments ``[env:__]``.
 
 In the environment section, the platform, board, and framework are specified. PlatformIO will take care of downloading and installing the dependencies.
 
@@ -27,7 +27,7 @@ In the following example, we use ...
 
     lib_deps=
     # Using a library name
-    high-side-switch
+    high-side-switch-ino
 
     # Using the repository URL
     https://github.com/Infineon/arduino-high-side-switch

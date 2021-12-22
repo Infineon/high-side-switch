@@ -15,13 +15,11 @@ set(CMAKE_CXX_FLAGS "-g -O0 -Wall -fprofile-arcs -ftest-coverage")
 set(CMAKE_C_FLAGS "-g -O0 -Wall -fprofile-arcs -ftest-coverage")
 
 include_directories(
-    src/config
     src/corelib
     src/pal
 )
 # Header & Source Files
 set(Headers
-    src/config
     src/corelib
     src/pal
     )

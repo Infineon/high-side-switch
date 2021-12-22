@@ -1,6 +1,6 @@
 /**
  * @file        hss-shield-btt60xx-ino.cpp
- * @brief       Profet (24V) BTT6030 Shield Implementation
+ * @brief       Profet (24V) shield with BTT6030-2EKA and BTT6020-1EKA Arduino class
  * @copyright   Copyright (c) 2021 Infineon Technologies AG
  *
  * SPDX-License-Identifier: MIT
@@ -26,8 +26,9 @@ Btt60xxShield  (
 }
 
 /**
- * @brief   Profet (24V) BTT6030 Shield constructor for custom configuration
- * @details Initialize all class pointers. This constructor allows to pass custom shield configuration.
+ * @brief       Profet (24V) BTT6030 Shield constructor for custom configuration
+ * @details     Initialize all class pointers. This constructor allows to pass custom shield configuration.
+ * @param[in]   config  Pinout hardware configuration
  */
 Btt60xxShieldIno::Btt60xxShieldIno(Btt60xxHwConfig_t config):
 Btt60xxShield  (

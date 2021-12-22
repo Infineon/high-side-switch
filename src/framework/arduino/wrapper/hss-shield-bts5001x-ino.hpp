@@ -1,10 +1,11 @@
 /**
- * @file        hss-bts5001xShield.hpp
- * @brief       Class for BTS5001x
+ * @file        hss-shield-bts5001x-ino.hpp
+ * @brief       Power Profet (12V) shield with BTS500xx Arduino class
  * @copyright   Copyright (c) 2021 Infineon Technologies AG
  *
  * SPDX-License-Identifier: MIT
  */
+
 #ifndef HSS_SHIELD_BTS5001X_INO_HPP_
 #define HSS_SHIELD_BTS5001X_INO_HPP_
 
@@ -13,7 +14,12 @@
 #include "hss-variants.hpp"
 #include "hss-shield-platf.hpp"
 
-using namespace hss;
+namespace hss
+{
+
+/**
+ * @brief  Power Profet (12V) shield with BTS500xx Arduino API
+ */
 
 class Bts5001xShieldIno : public Bts5001xShield
 {
@@ -23,5 +29,7 @@ class Bts5001xShieldIno : public Bts5001xShield
                         ~Bts5001xShieldIno();
 
 };
+
+}
 
 #endif /** HSS_SHIELD_BTS5001X_INO_HPP_ **/

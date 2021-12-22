@@ -1,13 +1,16 @@
 /**
  * @file        hss-pal-gpio.hpp
- * @details     PAL of the GPIO
+ * @brief       GPIO platform abstraction layer class
+ * @copyright   Copyright (c) 2021 Infineon Technologies AG
+ *
+ * SPDX-License-Identifier: MIT
  */
-
-#include <stdint.h>
-#include "hss-types.hpp"
 
 #ifndef HSS_PAL_GPIO_HPP_
 #define HSS_PAL_GPIO_HPP_
+
+#include <stdint.h>
+#include "hss-types.hpp"
 
 namespace hss
 {
@@ -18,49 +21,43 @@ namespace hss
  */
 
 /**
- * @class   ADCPAL
- * @details Abstract class declaration for ADC
+ * @class   GPIOPAL
+ * @brief   GPIO abstract API
  */
 class GPIOPAL
 {
     public:
 
         /**
-         * @name   Interrupt event
-         * @{
+         * @brief   Interrupt event
          */
         enum IntEvent_t
         {
             INT_FALLING_EDGE   = 0,     /**< Interrupt on falling edge */
             INT_RISING_EDGE    = 1,     /**< Interrupt on rising edge */
         };
-        /** @} */
 
         /**
-         * @name    Voltage level
-         * @{
+         * @brief   Voltage level
          */
         enum VLevel_t
         {
             GPIO_LOW   = 0,        /**< Level low */
             GPIO_HIGH  = 1         /**< Level high */
         };
-        /** @} */
 
         /**
-         * @name    Voltage logic
-         * @{
+         * @brief   Voltage logic
          */
         enum VLogic_t
         {
             NEGATIVE = 1,       /**< Negative logic. 0 on voltage level high, 1 on voltage low */
             POSITIVE = 2,       /**< Positive logic. 1 on voltage level high, 0 on voltage low */
         };
-        /** @} */
 
         /**
          * @brief       Initializes the GPIO
-         * @return      Error_t
+         * @return High-side switch error code 
          * @retval      OK          If success
          * @retval      INIT_ERROR  If initialization error
          */
@@ -68,7 +65,7 @@ class GPIOPAL
 
         /**
              * @brief       Deinitializes the GPIO
-             * @return      Error_t
+             * @return High-side switch error code 
              * @retval      OK          If success
              * @retval      INIT_ERROR  If deinitialization error
          */
@@ -85,7 +82,7 @@ class GPIOPAL
         /**
          * @brief       Writes the GPIO output voltage level
          * @param[in]   level  Voltage level
-         * @return      Error_t
+         * @return High-side switch error code 
          * @retval      OK              If success
          * @retval      WRITE_ERROR     If write error
          */
@@ -95,7 +92,7 @@ class GPIOPAL
          * @brief       Enables the GPIO output according to the GPIO logic
          *              - Low if negative
          *              - High if positive
-         * @return      Error_t
+         * @return High-side switch error code 
          * @retval      OK              If success
          * @retval      WRITE_ERROR     If write error
          */
@@ -105,7 +102,7 @@ class GPIOPAL
          * @brief       Disables the GPIO output according to the GPIO logic
          *              - Low if positive
          *              - High if negative
-         * @return      Error_t
+         * @return High-side switch error code 
          * @retval      OK              If success
          * @retval      WRITE_ERROR     If write error
          */

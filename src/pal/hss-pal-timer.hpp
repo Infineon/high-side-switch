@@ -1,6 +1,9 @@
 /**
  * @file        hss-pal-timer.hpp
- * @details     Timer Platform Abstraction Layer
+ * @brief       Timer platform abstraction layer class
+ * @copyright   Copyright (c) 2021 Infineon Technologies AG
+ *
+ * SPDX-License-Identifier: MIT
  */
 
 #include <stdint.h>
@@ -18,8 +21,8 @@ namespace hss
  */
 
 /**
- * @class   TimerPAL
- * @details Abstract class declaration for Timer
+ * @class TimerPAL
+ * @brief Timer abstract API 
  */
 class TimerPAL
 {
@@ -27,7 +30,7 @@ class TimerPAL
 
         /**
          * @brief   Initialize the timer
-         * @return  Error_t
+         * @return High-side switch error code 
          * @retval      OK          If success
          * @retval      INIT_ERROR  If hardware interface error
          */
@@ -35,7 +38,7 @@ class TimerPAL
 
         /**
          * @brief   Deinitialize the timer
-         * @return  Error_t
+         * @return High-side switch error code 
          * @retval      OK          If success
          * @retval      INIT_ERROR  If hardware interface error
          */
@@ -43,7 +46,7 @@ class TimerPAL
 
         /**
          * @brief   Starts the timer
-         * @return  Error_t
+         * @return High-side switch error code 
          * @retval      OK          If success
          * @retval      INIT_ERROR  If hardware interface error
          */
@@ -52,7 +55,7 @@ class TimerPAL
         /**
          * @brief       Elapsed time since the timer was started
          * @param[out]  elapsed Time in milliseconds
-         * @return      Error_t
+         * @return High-side switch error code 
          * @retval      OK          If success
          * @retval      INIT_ERROR  If hardware interface error
          */
@@ -60,7 +63,7 @@ class TimerPAL
 
         /**
          * @brief   Stops the timer
-         * @return  Error_t
+         * @return High-side switch error code 
          * @retval      OK          If success
          * @retval      INIT_ERROR  If hardware interface error
          */
@@ -69,7 +72,7 @@ class TimerPAL
         /**
          * @brief       Introduces a delay during the specified time
          * @param[in]   timeout    Delay time in milliseconds
-         * @return      Error_t
+         * @return High-side switch error code 
          * @retval      OK          If success
          * @retval      INIT_ERROR  If hardware interface error
          */
@@ -78,7 +81,7 @@ class TimerPAL
         /**
          * @brief       Introduces a delay during the specified time
          * @param[in]   timeout     Delay time in microseconds
-         * @return      Error_t
+         * @return High-side switch error code 
          * @retval      OK          If success
          * @retval      INIT_ERROR  If hardware interface error
          */

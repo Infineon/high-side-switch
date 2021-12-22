@@ -2,7 +2,7 @@
 
 Arduino Examples
 ================
-To run these examples use either the Arduino IDE or something similar like the PlatformIO extension for Visual Code or Atom.
+You can find these examples also in the Arduino IDE by navigating to *File* -> *Examples* -> *high-side-switch-ino*.
 
 .. list-table::
     :header-rows: 1
@@ -40,8 +40,6 @@ To run these examples use either the Arduino IDE or something similar like the P
       - * Switch dependent on optional user button. 
         * Compatible with BTS50010 and BTS50015 variant.
 
-All Arduino sketches are also available for the other included frameworks. See below :code:`src/framework/FRAMEWORK` directory.
-
 BTT600x-hss-advanced
 """"""""""""""""""""
 Summary
@@ -74,12 +72,12 @@ Description
 This example shows the usage of the offered functionalities of the shield. 
 It has 2 parts:
 
-1. PART A:
+1. Part A:
   * Switches a channel ON
   * Reads current through the switch, battery voltage and performs diagnosis in 'ON' state
   * Switches the channel OFF
 
-2. PART B:
+2. Part B:
   * Switch multiple channels 'ON' at once
   * Switch multiple channels 'OFF' at once
  
@@ -230,13 +228,13 @@ Description
 This example shows the usage of all the offered functionalities of the shield. 
 It has 2 parts:
 
-1. PART A
+1. Part A
   * Switches a channel ON
   * Reads current through the switch, battery voltage and performs diagnosis in 'ON' state
   * Switches the channel OFF
   * Reads current through the switch, battery voltage and performs diagnosis in 'OFF' state
 
-2. PART B
+2. Part B
   * Switch multiple channels 'ON' at once
   * Switch multiple channels 'OFF' at once
 

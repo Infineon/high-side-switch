@@ -1,10 +1,15 @@
 /**
- * @file        hss-pal-adc-ino.hpp
- * @details     Ino PAL for the ADC
+ * @file        hss-pal-adc-ino.cpp
+ * @brief       ADC platform abstraction layer Arduino class
+ * @copyright   Copyright (c) 2021 Infineon Technologies AG
+ *
+ * SPDX-License-Identifier: MIT
  */
 
 #include <Arduino.h>
 #include "hss-pal-adc-ino.hpp"
+
+using namespace hss;
 
 /**
  * @brief Default constructor of the ADC class for arduino
@@ -35,7 +40,7 @@ ADCIno::~ADCIno()
 
 /**
  * @brief  ADC initialization
- * @return Error_t
+ * @return High-side switch error code 
  */
 Error_t ADCIno::init()
 {
@@ -44,7 +49,7 @@ Error_t ADCIno::init()
 
 /**
  * @brief ADC deinitialization
- * @return Error_t
+ * @return High-side switch error code 
  */
 Error_t ADCIno::deinit()
 {
@@ -53,7 +58,7 @@ Error_t ADCIno::deinit()
 
 /**
  * @brief ADC enable
- * @return Error_t
+ * @return High-side switch error code 
  */
 Error_t ADCIno::enable()
 {
@@ -63,7 +68,7 @@ Error_t ADCIno::enable()
 
 /**
  * @brief ADC disable
- * @return Error_t
+ * @return High-side switch error code 
  */
 Error_t ADCIno::disable()
 {
@@ -77,7 +82,7 @@ Error_t ADCIno::disable()
  *          and have be looked up in the datasheet.
  *          The default resolution is set to 12 Bit, see constructor.
  * @param[in]   resolution  Value of the read resolution, default = 10 Bit
- * @return  Error_t
+ * @return High-side switch error code 
  */
 Error_t ADCIno::setReadResolution(uint8_t resolution)
 {
@@ -90,7 +95,7 @@ Error_t ADCIno::setReadResolution(uint8_t resolution)
  * @brief   Set the write resolution of the ADC
  * @details This function sets the write resolution of the ADC.
  * @param[in]   resolution  Value of the write resolution of the ADC
- * @return  Error_t
+ * @return High-side switch error code 
  */
 Error_t ADCIno::setWriteResolution(uint8_t resolution)
 {
@@ -116,7 +121,7 @@ uint16_t ADCIno::ADCRead()
  * @brief   Wirte on an analog pin
  * @details This functions writes the given value to the analog pin
  * @param[in] value Value to write
- * @return  Error_t
+ * @return  High-side switch error code 
  */
 Error_t ADCIno::ADCWrite(uint8_t value)
 {

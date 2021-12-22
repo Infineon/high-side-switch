@@ -1,7 +1,7 @@
 {  
     "name": "High-Side-Switch",
     "keywords": "high side switch, profet, smart switch",
-    "description": "This library provides an interface to interact with the PROFET-Family of IFX",
+    "description": "DEPRECATED. This library is continued as the new library \"high-side-switch-ino\". C++ library for the PROFET+2 12V. ",
     "repository":{  
        "type":"git",
        "url":"https://github.com/Infineon/high-side-switch",

@@ -1,0 +1,6 @@
+<map id="Bts5001xShield::deinit" name="Bts5001xShield::deinit">
+<area shape="rect" id="node1" title="Deinitialize all necessary objects of the High&#45;Side&#45;Switch&#45;Board." alt="" coords="5,56,173,83"/>
+<area shape="rect" id="node2" href="$de/d7e/classHss.html#ada2c325d48aa3873a1e8485175608301" title="Deinitialize the High&#45;Side&#45;Switch." alt="" coords="252,5,343,32"/>
+<area shape="rect" id="node3" href="$d6/daa/classhss_1_1ADCPAL.html#ab75b7a7dd6113fd215b30b01f5a0bd62" title="Deinitializes the ADC." alt="" coords="223,56,371,83"/>
+<area shape="rect" id="node4" href="$de/dfd/classhss_1_1GPIOPAL.html#a16325f100fbf793594937ccd48633a5d" title="Deinitializes the GPIO." alt="" coords="221,107,373,133"/>
+</map>

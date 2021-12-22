@@ -1,0 +1,4 @@
+<map id="Bts5001xShield::readIsx" name="Bts5001xShield::readIsx">
+<area shape="rect" id="node1" title="Read the desired current value of the chosen channel." alt="" coords="5,5,184,32"/>
+<area shape="rect" id="node2" href="$de/d7e/classHss.html#a5823ea793a86be645db7763389cd43cb" title="Read ADC value for IS." alt="" coords="232,5,327,32"/>
+</map>

@@ -1,0 +1,4 @@
+<map id="Bts5001xShield::analogReadButton" name="Bts5001xShield::analogReadButton">
+<area shape="rect" id="node1" title="Read the button state (analog)" alt="" coords="5,5,213,47"/>
+<area shape="rect" id="node2" href="$d6/daa/classhss_1_1ADCPAL.html#acd1b2636bf077509e1df63af68b4b13a" title="Reads the analog value on the ADC." alt="" coords="261,13,433,39"/>
+</map>

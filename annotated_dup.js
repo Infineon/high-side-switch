@@ -1,0 +1,26 @@
+var annotated_dup =
+[
+    [ "hss", "dc/d71/namespacehss.html", "dc/d71/namespacehss" ],
+    [ "ADC", "dc/db9/classADC.html", null ],
+    [ "ADCIno", "dd/d7c/classADCIno.html", "dd/d7c/classADCIno" ],
+    [ "BTS5001xHwConfig_t", "d0/d03/structBTS5001xHwConfig__t.html", "d0/d03/structBTS5001xHwConfig__t" ],
+    [ "Bts5001xShield", "d0/db2/classBts5001xShield.html", "d0/db2/classBts5001xShield" ],
+    [ "Bts5001xShieldIno", "d5/d50/classBts5001xShieldIno.html", "d5/d50/classBts5001xShieldIno" ],
+    [ "Bts700xHwConfig_t", "d3/d5f/structBts700xHwConfig__t.html", "d3/d5f/structBts700xHwConfig__t" ],
+    [ "Bts700xShield", "d6/d15/classBts700xShield.html", "d6/d15/classBts700xShield" ],
+    [ "Bts700xShieldIno", "da/d27/classBts700xShieldIno.html", "da/d27/classBts700xShieldIno" ],
+    [ "Btt60xxHwConfig_t", "dd/db4/structBtt60xxHwConfig__t.html", "dd/db4/structBtt60xxHwConfig__t" ],
+    [ "Btt60xxShield", "db/d62/classBtt60xxShield.html", "db/d62/classBtt60xxShield" ],
+    [ "Btt60xxShieldIno", "db/d8c/classBtt60xxShieldIno.html", "db/d8c/classBtt60xxShieldIno" ],
+    [ "BtxVariants_t", "d2/d47/structBtxVariants__t.html", "d2/d47/structBtxVariants__t" ],
+    [ "ExponentialFilter", "d1/da7/classExponentialFilter.html", "d1/da7/classExponentialFilter" ],
+    [ "GPIO", "d7/dde/classGPIO.html", null ],
+    [ "GPIOIno", "d6/dfc/classGPIOIno.html", "d6/dfc/classGPIOIno" ],
+    [ "High", "dc/d8d/classHigh.html", null ],
+    [ "Hss", "de/d7e/classHss.html", "de/d7e/classHss" ],
+    [ "HssIno", "dc/d75/classHssIno.html", "dc/d75/classHssIno" ],
+    [ "HssShield", "da/d60/classHssShield.html", "da/d60/classHssShield" ],
+    [ "Ino", "d9/d74/classIno.html", null ],
+    [ "Profet24VBTTShieldIno", "d5/d04/classProfet24VBTTShieldIno.html", "d5/d04/classProfet24VBTTShieldIno" ],
+    [ "TimerIno", "dd/d9b/classTimerIno.html", "dd/d9b/classTimerIno" ]
+];

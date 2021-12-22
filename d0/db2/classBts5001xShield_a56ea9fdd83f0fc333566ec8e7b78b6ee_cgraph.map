@@ -1,0 +1,6 @@
+<map id="Bts5001xShield::init" name="Bts5001xShield::init">
+<area shape="rect" id="node1" title="Initialize all necessary objects of the High&#45;Side&#45;Switch&#45;Board." alt="" coords="5,56,157,83"/>
+<area shape="rect" id="node2" href="$d6/daa/classhss_1_1ADCPAL.html#a0ead554fd13361ce3122c229e65a03e3" title="Initializes the ADC." alt="" coords="207,5,339,32"/>
+<area shape="rect" id="node3" href="$de/d7e/classHss.html#a896ef6080b683701ffdcd6d87e4a3ca0" title="Initialize the High&#45;Side&#45;Switch." alt="" coords="236,56,311,83"/>
+<area shape="rect" id="node4" href="$de/dfd/classhss_1_1GPIOPAL.html#a034f25543967849640cfc859e282dcf2" title="Initializes the GPIO." alt="" coords="205,107,341,133"/>
+</map>

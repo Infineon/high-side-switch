@@ -1,0 +1,6 @@
+<map id="Bts5001xShield::readDiagx" name="Bts5001xShield::readDiagx">
+<area shape="rect" id="node1" title="Read the diagnosis of the chosen channel." alt="" coords="5,56,204,83"/>
+<area shape="rect" id="node2" href="$de/d7e/classHss.html#ac501ac70b7a7ba42fe54f6382369c687" title="Diagnosis of the Sensor." alt="" coords="274,5,389,32"/>
+<area shape="rect" id="node3" href="$de/d7e/classHss.html#a6fa4a65ab066c58aa245b0626818d245" title="Get the switch status." alt="" coords="252,56,411,83"/>
+<area shape="rect" id="node4" href="$de/d7e/classHss.html#a5823ea793a86be645db7763389cd43cb" title="Read ADC value for IS." alt="" coords="284,107,379,133"/>
+</map>

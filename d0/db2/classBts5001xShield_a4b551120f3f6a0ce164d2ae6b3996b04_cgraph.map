@@ -1,0 +1,5 @@
+<map id="Bts5001xShield::switchHxOff" name="Bts5001xShield::switchHxOff">
+<area shape="rect" id="node1" title="Switch off the selected High&#45;Side&#45;Switch." alt="" coords="5,31,216,57"/>
+<area shape="rect" id="node2" href="$de/d7e/classHss.html#abf23168deac20ba2130494c7db95e7cf" title="Disable the High&#45;Side&#45;Switch." alt="" coords="295,5,396,32"/>
+<area shape="rect" id="node3" href="$de/dfd/classhss_1_1GPIOPAL.html#a2a8b19f5fa6bdebe2de5c2f24275204b" title="Disables the GPIO output according to the GPIO logic." alt="" coords="264,56,427,83"/>
+</map>

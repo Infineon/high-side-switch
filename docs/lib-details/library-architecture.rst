@@ -16,8 +16,8 @@ The support for the multiple hardware platforms is then provided by each develop
 
 The specific High-side Switch library modules are depicted more specifically below:
 
-.. image:: ../img/btt6x_shield.jpg
-    :height: 75
+.. image:: ../img/hss-stack.png
+    :height: 600
 
 In the next sections, the information of the main architecture modules for the High-side Switch library is extended.
 To explore the specific code implementation, navigate to the :ref:`Reference API <modules>` section

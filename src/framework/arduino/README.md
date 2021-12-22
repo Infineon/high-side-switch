@@ -6,9 +6,9 @@ Arduino library for Infineon's Arduino shields for **PROFET™ Smart High-Side P
 
 <table>
     <tr>
-        <td><img src="docs/img/BTT6020-1EKA.jpg" width="300"></td>
-        <td><img src="docs/img/BTS50015-1TAD.jpg" width="300"></td>
-        <td><img src="docs/img/Profet+2.png" width="300"></td>
+        <td><img src="https://github.com/Infineon/high-side-switch/blob/master/docs/img/BTT6020-1EKA.jpg" width="300"></td>
+        <td><img src="https://github.com/Infineon/high-side-switch/blob/master/docs/img/BTS50015-1TAD.jpg" width="300"></td>
+        <td><img src="https://github.com/Infineon/high-side-switch/blob/master/docs/img/Profet%2B2.png" width="300"></td>
     </tr>
     <tr>
         <td style="test-align : center"><a href="https://high-side-switch.readthedocs.io/en/latest/hw-platforms.html#profettrade-24v-family">PROFET™+ 24V BTT60xx Arduino Shield</a></td>

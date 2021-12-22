@@ -18,6 +18,7 @@ C++ library for Infineon's Arduino shields for **PROFET™ Smart High-Side Power
 </table>
 
 ## Supported Frameworks
+
 <table>
     <tr>
         <td><img src="img/../docs/img/arduino-logo.png" width="200"></td>
@@ -38,7 +39,9 @@ C++ library for Infineon's Arduino shields for **PROFET™ Smart High-Side Power
 </table>
 
 ## More information
+
 The complete documentation of the library as well as detailed information about the PROFET-shield, can be found in the [Wiki](https://high-side-switch.readthedocs.io/en/latest/index.html).
 
 ## License
+
 This project is licensed under the MIT License - click [here](https://github.com/Infineon/high-side-switch/blob/master/LICENSE) for details.

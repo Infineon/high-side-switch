@@ -1,0 +1,631 @@
+/*
+ * ##################################################################################
+ *
+ * XFP internal build pipeline
+ * should run fast (<10min) with following parts
+ * - unit test and report
+ * - SonarQube report
+ * - compilation (if for more than one framework, than in parallel)
+ * - doxygen build and deploy on internal server
+ *
+ */
+library("jenkins-pipeline-ifx-library")
+
+def send_email(email_subject, email_to, email_body) {
+	providers = [culprits(), developers(), requestor()]
+	emailext recipientProviders: providers, body: email_body, subject: email_subject, to: email_to, compressLog: true, attachLog: true
+}
+
+// Artifactory settings
+def artifactoryServer = 'Artifactory'
+def artifactoryRepo   = 'gen-des-epe-sw-development-local'
+def artifactoryTarget = 'gen-des-tools-prod-eden-local'
+def artifactorySW     = 'https://artifactory.intra.infineon.com/artifactory/gen-des-epe-sw-development-local/'
+// Arduino settings
+def inoVER      = '0.18.3'
+def cliLinux    = 'arduino-cli_0.18.3_Linux_64bit.tar.gz'
+def cliWindows  = 'arduino-cli_0.18.3_Windows_64bit.tar.gz'
+def brdLTGZ     = 'arduino-board-package_0.18.3_Linux_64bit.tar.gz'
+def brdWTGZ     = 'arduino-board-package_0.18.3_Windows_64bit.tar.gz'
+// Common settings
+def linuxTools  = '/home/xfpjenki/tools'
+def winTools    = 'D:/tools'
+
+pipeline {
+	/**
+	 * node where to run on
+	 */
+	agent any
+
+	/**
+	 * Parameter choice settings for manual start 
+	 */
+	parameters {
+		choice(name: 'SERVER',            choices:['vihlarazweb3','vihlarazweb2'], description: 'server')
+		choice(name: 'SONARINSTANCE',     choices:['Sonar-Dev','Sonar-Prod'],      description: 'SonarQube instance')
+
+		booleanParam(name: 'ARDUINO',     defaultValue: true,                      description: 'should we do a Arduino compilation?')
+		booleanParam(name: 'PLATFORMIO',  defaultValue: false,                     description: 'should we do a PlatformIO compilation?')
+		booleanParam(name: 'MTB',         defaultValue: false,                     description: 'should we do a ModusToolbox compilation?')
+		booleanParam(name: 'RASPBERRYPI', defaultValue: false,                     description: 'should we do a RaspberryPI compilation?')
+		booleanParam(name: 'WICED',       defaultValue: false,                     description: 'should we do a WiCED compilation?')
+		booleanParam(name: 'DOCU',        defaultValue: true,                      description: 'should we generate the documentation?')
+
+		booleanParam(name: 'ALLHARDWARE', defaultValue: false,                     description: 'should we do a compilation for all availabe or default hardware platforms?')
+	}
+
+	/**
+	 * Environment settings for shell calls
+	 */
+	environment {
+		WEB_ROOT         = "/home/razweb/htdocs-${params.SERVER}"
+		REPO_NAME        = "${JOB_NAME.replaceFirst(/^.*\/XFP (.*)\/.*$/, '$1')}"
+		DOCS_TARGET      = "${env.WEB_ROOT}/itec/xfp/high-side-switch-test/${env.BRANCH_NAME}"
+		DOCS_SOURCE      = "${env.WORKSPACE}/docs/doxygen/build"
+		ROOT_URL         = "https://${params.SERVER}.vih.infineon.com"
+		SONARINSTANCE    = "${params.SONARINSTANCE}"
+
+		cliPath          = "arduinoCLI/${-> inoVER}"
+		boardPath        = "arduinoBoardPackage/${-> inoVER}"
+	}
+
+	/**
+	 * Keep only the last 2 artifacts on the server to prevent from
+	 * locking massive amount of disk space. The number should <= 5.
+	 */
+	options {
+		ansiColor('xterm')
+		buildDiscarder(
+			logRotator(
+				numToKeepStr: '2',
+				artifactNumToKeepStr: '2'
+			)
+		)
+		disableConcurrentBuilds()
+	}
+
+	/**
+	 * Set up cron triggers for constant pipeline builds if this is needed
+	 */
+	/*
+	triggers {
+		cron('H H(0-1) * * *')
+	}
+	*/
+
+	stages {
+
+		// *
+		// * ************************************************************DevCI TRIGGER
+		// *
+		stage('Vars') {
+			steps {
+				cleanWs()
+				script {
+					def result = sh(
+						script: '''
+							echo "WEB_ROOT             :" ${WEB_ROOT}
+							echo "ROOT_URL             :" ${ROOT_URL}
+							echo "BRANCH_NAME          :" ${BRANCH_NAME}
+							echo "BUILD_NUMBER         :" ${BUILD_NUMBER}
+							echo "WORKSPACE            :" ${WORKSPACE}
+							echo "SONARINSTANCE        :" ${SONARINSTANCE}
+							echo "SERVER               :" ${SERVER}
+							echo "REPO_NAME            :" ${REPO_NAME}
+							echo "JOB_URL              :" ${JOB_URL}
+							echo "DOCS_SOURCE          :" ${DOCS_SOURCE}
+							echo "DOCS_TARGET          :" ${DOCS_TARGET}
+							echo "BOOLEAN ARDUINO      :" ${ARDUINO}
+							echo "BOOLEAN PLATFORMIO   :" ${PLATFORMIO}
+							echo "BOOLEAN MTB          :" ${MTB}
+							echo "BOOLEAN RASPBERRYPI  :" ${RASPBERRYPI}
+							echo "BOOLEAN WICED        :" ${WICED}
+							echo "BOOLEAN DOCUMETATION :" ${DOCU}
+							echo "/"${REPO_NAME}"/"${BRANCH_NAME}"/"
+							echo "/"${REPO_NAME}"/"${BRANCH_NAME}"/documentation"
+							echo "/"${REPO_NAME}"/"${BRANCH_NAME}"/build/html"
+							echo "/"${REPO_NAME}"/"${BRANCH_NAME}"/build/doxygen-log.txt"
+							echo "_"${REPO_NAME}
+						''',
+						returnStdout: true
+					).trim()
+					echo "$result"
+				}
+			} // end steps
+		} // end DevCI trigger
+
+		// *
+		// * ************************************************************DevCI UNITTEST
+		// *
+		stage('Check') {
+			parallel {
+				/*-----------------------------------------------------------------------------
+				 * cppcheck
+				 * -----------------------------------------------------------------------------
+				 */
+				stage('CPP') {
+					agent {
+						node {
+							label 'epelinux3'
+						}
+					}
+					steps {
+						echo "cppcheck"
+						script {
+							def result = sh(
+								script: '''
+									cd ./
+									export PATH=/opt/sofit/cppcheck/1.76.1/bin:$PATH
+									mkdir -p build
+									/opt/sofit/cppcheck/1.76.1/bin/cppcheck -v --enable=all --xml-version=2 -I src test 2> build/cppcheck-report.xml
+								''',
+								returnStdout: true
+							).trim()
+							echo "$result"
+						}
+					} // end steps
+				} // end cppcheck
+
+				/*-----------------------------------------------------------------------------
+				* unit test
+				*-----------------------------------------------------------------------------
+				*/
+				stage('unit test') {
+					steps {
+						echo "unit test"
+						//sh ("export DOXY_BIN_PATH=/usr/local/bin/;cd ${env.WORKSPACE}/docs;/usr/bin/make html")
+					}
+				}
+
+			} // parallel
+		} // end stage
+
+
+
+
+		stage('build') {
+			parallel {
+
+				/*-----------------------------------------------------------------------------
+				 * Arduino Linux CLI
+				 *-----------------------------------------------------------------------------
+				 */
+				stage('INO') {
+					agent {
+						node {
+							label 'epelinux2'
+						}
+					}
+					when {
+						beforeAgent true
+						expression { params.ARDUINO }
+					}
+
+					stages('Arduino') {
+
+						// Artifactory
+						stage('Arduino CLI') {
+
+							steps {
+								script {
+									if (isUnix()) {
+										env.toolsA = linuxTools
+										env.cli    = cliLinux
+										env.board  = brdLTGZ
+										echo "Linux"
+									}else{
+										env.toolsA = winTools
+										env.cli    = cliWindows
+										env.board  = brdWTGZ
+										echo "Windows"
+									}
+								}
+								// ArduinoCLI package
+								rtDownload (
+									serverId: artifactoryServer,
+									spec: """
+										{ "files": [
+												{
+													"pattern": "${artifactoryRepo}/${env.cliPath}/${env.cli}",
+													"target": "${env.toolsA}/"
+												}
+											]
+										}
+									"""
+								)
+								// Arduino Board package
+								rtDownload (
+									serverId: artifactoryServer,
+									spec: """
+										{ "files": [
+												{
+													"pattern": "${artifactoryRepo}/${env.boardPath}/${env.board}",
+													"target": "${env.toolsA}/",
+													"flat": "true"
+												}
+											]
+										}
+									"""
+								)
+								// Arduino library package
+								rtDownload (
+									serverId: artifactoryServer,
+									spec: """
+										{ "files": [
+												{
+													"pattern": "${artifactoryRepo}/arduino/libraries/",
+													"target": "${env.toolsA}/arduino/libraries/",
+													"flat": "true",
+													"explode": "true"
+												}
+											]
+										}
+									"""
+								)
+								// unpacking
+								sh(
+									script: '''
+										cd ${toolsA}
+										tar -xf ${board}
+										tar -xf ${cliPath}/${cli} --directory ${cliPath}
+										rm ${cliPath}/${cli}
+										rm ${board}
+									'''
+								)
+
+							}
+							when {
+								beforeAgent true
+								expression { return fileExists ('${env.toolsA}/${env.boardPath}/arduino-cli')}
+							}
+
+						}
+
+						// INO generation
+						stage('Generate INO') {
+							steps {
+								// prepares the build directory and runs
+								// xfp-dev to generate the arduino only directory structure
+								script {
+									if (isUnix()) {
+										env.toolsA1 = linuxTools
+										echo "Linux"
+									}else{
+										env.toolsA1 = winTools
+										echo "Windows"
+									}
+								}
+								echo "NODE_NAME = ${env.NODE_NAME}"
+								script {
+									def result = sh(
+										script: '''
+											cd ./
+											export PATH=/opt/python/3.9/linux/RHEL60/bin:$PATH
+											export PYTHONPATH=/opt/python/3.9/linux//RHEL60//../pyperl/python/lib/python3.9/site-packages:/home/xfpjenki/tools/python3
+											rm -rf ./build/Arduino
+											mkdir -p ./build/Arduino
+											${toolsA1}/python3/bin/xfp-dev arduino lib-pack --path=./build/Arduino
+										''',
+										returnStdout: true
+									).trim()
+									echo "$result"
+								}
+							} // end xfp-dev
+						}
+
+						// example compilation
+						stage('CLI Build') {
+							steps {
+								// checks for OS system and than compiles all
+								// examples  with the arduino-cli tool
+								script {
+									if (isUnix()) {
+										env.toolsA2 = linuxTools
+									}else{
+										env.toolsA2 = winTools
+									}
+								}
+								echo "NODE_NAME = ${env.NODE_NAME}"
+								script {
+									def result = sh(
+										script: '''
+											cd ./
+											export lib=`ls -1 ./build/Arduino/`
+											export examples=(`ls -1 ./build/Arduino/${lib}/examples/`)
+
+											#export fqbn=(arduino:avr:uno Infineon:arm:XMC1100_Boot_Kit Infineon:arm:XMC4700_Relax_Kit)
+											export fqbn=(arduino:avr:uno)
+
+											echo $examples
+											for a in "${fqbn[@]}"
+											do
+												for i in "${examples[@]}"
+												do
+													echo "Board: $a, Example: $i";
+													${toolsA2}/${cliPath}/arduino-cli compile --config-file ${toolsA2}/.arduino15/arduino-cli.yaml --verbose --fqbn $a --libraries=./build/Arduino/${lib} build/Arduino/${lib}/examples/$i
+													echo "===================="
+												done
+											done
+										''',
+										returnStdout: true
+									).trim()
+									echo "$result"
+								}
+							} // end CLI Build
+						}
+
+					}
+
+				}
+
+
+				/*-----------------------------------------------------------------------------
+				 * ModusToolbox Build
+				 *-----------------------------------------------------------------------------
+				 */
+				stage('MTB') {
+
+					when {
+						beforeAgent true
+						expression { params.MTB }
+					}
+
+					stages('ModusToolbox') {
+
+						stage('Trigger MTB') {
+							steps {
+								script {
+									def result = sh(
+										script: '''
+											SERVER=pssswgov-jenkins.icp.infineon.com
+											JOB_NAME=PSSDevOps/job/MTB%20Code%20Example%20validator/job/master
+											COOKIEJAR="$(mktemp)"
+											crumb=$(curl --cookie-jar "$COOKIEJAR" "https://$SERVER/crumbIssuer/api/xml?xpath=concat(//crumbRequestField,%22:%22,//crumb)")
+											curl -v --cookie "$COOKIEJAR" -H $crumb -X POST "https://$SERVER/job/$JOB_NAME/buildWithParameters?CE_REPO=git@devops-git.aus.cypress.com:wpp/ce/mtb/mtb-example-psoc6-multi-half-bridge.git&CE_BRANCH=${BRANCH_NAME}"
+										''',
+										returnStdout: true
+									).trim()
+									echo "$result"
+								}
+
+							}
+						}
+
+					}
+
+				}
+
+				// /*-----------------------------------------------------------------------------
+				//  * PlatformIO build
+				//  *-----------------------------------------------------------------------------
+				//  */
+				stage('PIO') {
+					agent {
+						node {
+							label 'epelinux3'
+						}
+					}
+
+					when {
+						beforeAgent true
+						expression { params.PLATFORMIO }
+					}
+
+					stages('PlatformIO') {
+
+						stage('Trigger PIO') {
+							steps {
+								echo "PlatformIO"
+								/*
+								sh ("export DOXY_BIN_PATH=/usr/local/bin/;cd ${env.WORKSPACE}/docs;/usr/bin/make pdf")
+								build(
+									job: 'dev/doxy_maker_pdf',
+									propagate: true,
+									parameters: [
+										[
+											$class: 'StringParameterValue',
+											name: 'WORKSPACE',
+											value: "${env.WORKSPACE}"
+										],
+									]
+								)
+								*/
+							}
+						}
+					}
+				}
+
+				/*-----------------------------------------------------------------------------
+				 * doxygen
+				 *-----------------------------------------------------------------------------
+				 */
+				stage('docu') {
+					agent {
+						node {
+							label 'epelinux2'
+						}
+					}
+
+					when {
+						beforeAgent true
+						expression { params.DOCU }
+					}
+
+					stages {
+
+						stage('doxygen') {
+							steps {
+								echo "doxygen"
+								echo "NODE_NAME = ${env.NODE_NAME}"
+								// doxygen runs always, therefore it
+								// 1. removes the documentation target directory
+								// 2. generates it new
+								// 3. copies the doxygen build directory into the target directory
+								script {
+									def result = sh(
+										script: '''
+											cd ./
+											export DOCS_SOURCE=${WORKSPACE}/docs/doxygen/build
+											export PATH=/opt/doxygen/1.8.14/bin:/opt/python/anaconda/4.2.0/py3.5.2:$PATH
+											rm -rf infineondoxygenerator
+											git clone https://bitbucket.vih.infineon.com/scm/ghmm/infineondoxygenerator.git
+											cd ./infineondoxygenerator
+											python3 doxyifx.py html
+											rm -rf ${DOCS_TARGET}
+											mkdir -p ${DOCS_TARGET}
+											cp -R ${DOCS_SOURCE}/ ${DOCS_TARGET}/.
+										''',
+										returnStdout: true
+									).trim()
+									echo "$result"
+								}
+							} // end doxygen
+						} // end stage
+
+						stage('Sphinx') {
+							when { expression { return fileExists ('./docs/index.rst') } }
+							steps {
+								echo "ReadTheDocs"
+								// Sphinx runs only if the index.rst exists and it
+								// 1. removes the documentation directory below the target directory
+								// 2. copies the new Sphinx documentation into new documentation directory
+								script {
+									def result = sh(
+										script: '''
+											export PATH=/opt/python/3.9/linux/RHEL60/bin:$PATH
+											cd docs
+											sphinx-build ./ ./documentation
+											mkdir -p ${DOCS_TARGET}
+											rm -rf ${DOCS_TARGET}/documentation
+											cp -R ./documentation ${DOCS_TARGET}/.
+										''',
+										returnStdout: true
+									).trim()
+									echo "$result"
+								}
+							} // end ReadTheDocs
+						} // end sphinx
+
+					 } // end stages
+
+				} // end docu
+
+			} // end parallel
+		} // end docu build
+
+		/*-----------------------------------------------------------------------------
+		 * SonarQube stage runs the sonar scanner and collects all reports
+		 *-----------------------------------------------------------------------------
+		 */
+		stage('SonarQube') {
+			agent {
+				node {
+					label 'epelinux2'
+				}
+			}
+
+			steps {
+				echo "SonarQube"
+
+				catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
+					withSonarQubeEnv(
+						installationName: "${params.SONARINSTANCE}"
+					){
+						script {
+							if (isUnix()) {
+								env.scannerHome = tool 'sonar-scanner-cli-4.2.0.1873-linux'
+							}else{
+								env.scannerHome = tool 'sonar-scanner-4.2.0.1873'
+							}
+								echo "NODE_NAME = ${env.NODE_NAME}"
+							def result = sh(
+								script: '''
+									cp ./devops/xfpbuild/sonar-project.properties ./.;
+									${scannerHome}/bin/sonar-scanner -X
+								''',
+								returnStdout: true
+							).trim()
+							echo "$result"
+						}
+					}
+				} // end catch
+				catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
+					timeout(time: 200, unit: 'MINUTES') {
+						waitForQualityGate abortPipeline: true
+					}
+				} // end catch
+			} // end steps
+
+		} // end SonarQube
+
+	} // end stages
+
+	/*-----------------------------------------------------------------------------
+	 * post
+	 *-----------------------------------------------------------------------------
+	 */
+	
+	post {
+		failure {
+			send_email('[XFPBUILD] build failing on branch "' + env.BRANCH_NAME + '"','$DEFAULT_RECIPIENTS',
+				'''
+					${SCRIPT}
+					<BODY>
+					<!-- LINKS -->
+					<table class="section">
+						<tr class="tr-title">
+							<td class="td-title-main" colspan=2>LINKS</td>
+						</tr>
+						<tr>
+							<td>SonarQube results:</td>
+							<td>https://sonardev.vih.infineon.com/dashboard?id=XFP_Build${BUILD_LOG_REGEX, regex="^_.*$",showTruncatedLines=false}</td>
+						</tr>
+						<tr>
+							<td>Documentation all:</td>
+							<td>https://vihlarazweb3.vih.infineon.com/itec/xfp${BUILD_LOG_REGEX, regex="^/.*/$",showTruncatedLines=false}</td>
+						</tr>
+						<tr>
+							<td>Doxygen:</td>
+							<td>https://vihlarazweb3.vih.infineon.com/itec/xfp${BUILD_LOG_REGEX, regex="^/.*html$",showTruncatedLines=false}</td>
+						</tr>
+						<tr>
+							<td>Sphinx (if availabe):</td>
+							<td>https://vihlarazweb3.vih.infineon.com/itec/xfp${BUILD_LOG_REGEX, regex="^/.*documentation$",showTruncatedLines=false}</td>
+						</tr>
+					</table>
+					</body>
+				''')
+		}
+		success {
+			send_email('[XFPBUILD] build on branch "' + env.BRANCH_NAME + '" OK', '' ,
+				'''
+					${SCRIPT}
+					<BODY>
+					<!-- LINKS -->
+					<table class="section">
+						<tr class="tr-title">
+							<td class="td-title-main" colspan=2>LINKS</td>
+						</tr>
+						<tr>
+							<td>SonarQube results:</td>
+							<td>https://sonardev.vih.infineon.com/dashboard?id=XFP_Build${BUILD_LOG_REGEX, regex="^_.*$",showTruncatedLines=false}</td>
+						</tr>
+						<tr>
+							<td>Documentation all:</td>
+							<td>https://vihlarazweb3.vih.infineon.com/itec/xfp${BUILD_LOG_REGEX, regex="^/.*/$",showTruncatedLines=false}</td>
+						</tr>
+						<tr>
+							<td>Doxygen:</td>
+							<td>https://vihlarazweb3.vih.infineon.com/itec/xfp${BUILD_LOG_REGEX, regex="^/.*html$",showTruncatedLines=false}</td>
+						</tr>
+						<tr>
+							<td>Sphinx (if availabe):</td>
+							<td>https://vihlarazweb3.vih.infineon.com/itec/xfp${BUILD_LOG_REGEX, regex="^/.*documentation$",showTruncatedLines=false}</td>
+						</tr>
+					</table>
+					</body>
+				''')
+		}
+	}
+
+}

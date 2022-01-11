@@ -1,37 +1,47 @@
 # Smart High-Side Switch
 
-[![Build Status](https://travis-ci.com/Infineon/high-side-switch.svg?branch=master)](https://travis-ci.com/github/Infineon/high-side-switch)
+C++ library for Infineon's Arduino shields for **PROFET™ Smart High-Side Power Switches** Automotive grade
 
-C++ library for Infineon's Arduino shield SHIELD_BTS700x-1EPP with the **Smart High-Side Power Switch BTS700x-1EPP**
+## Supported Products
 
-## Supported Hardware
+<table>
+    <tr>
+        <td><img src="docs/img/BTT6020-1EKA.jpg" width="300"></td>
+        <td><img src="docs/img/BTS50015-1TAD.jpg" width="300"></td>
+        <td><img src="docs/img/Profet+2.png" width="300"></td>
+    </tr>
+    <tr>
+        <td style="test-align : center"><a href="https://high-side-switch.readthedocs.io/en/latest/hw-platforms.html#profettrade-24v-family">PROFET™+ 24V BTT60xx Arduino Shield</a></td>
+        <td style="test-align : center"><a href="https://high-side-switch.readthedocs.io/en/latest/hw-platforms.html#power-profettrade-family">Power PROFET™ BTS5001x-1TAD Arduino Shield</a></td>
+        <td style="test-align : center"><a href="https://high-side-switch.readthedocs.io/en/latest/hw-platforms.html#profettrade-2-12v-family">PROFET™+2 12V BTS700x-1EPP Arduino Shield</a></td>
+    </tr>
+</table>
 
-### SHIELD_BTS7002-1EPP
-The library has been customized for the Arduino-Adapter-Shield ***SHIELD_BTS700x-1EPP*** and for the Arduino environment. It works with all available versions of the board (SHIELD_BTS7002-1EPP, SHIELD_BTS7004-1EPP, SHIELD_BTS7006-1EPP, SHIELD_BTS7008-1EPP).
+## Supported Frameworks
 
-<img src="docs/img/Profet+2.png" width="250px">
-
-A detailed explanation of the board and its features can be found in the [user manual](https://www.infineon.com/dgdl/Infineon-PROFET+2_12V_Arduino_Shield-UserManual-v01_00-EN.pdf?fileId=5546d4626df6ee62016dfe3f1eff118b). The user manual also contains the pinout as well as the schematics of the board. The data sheet of the BTS7002-1EPP can be found [here](https://www.infineon.com/dgdl/Infineon-BTS7002-1EPP-DataSheet-v01_04-EN.pdf?fileId=5546d4626eab8fbf016ead699aef00b3).
-
-### Verified Hardware
-The shield is designed to be directly stacked on boards which have the Arduino UNO form factor.
-Therefore, the library has been built and successfully deployed to the following platforms:
-
-MCU Platforms |
----           |
-[XMC1100 Boot Kit](https://www.infineon.com/cms/en/product/evaluation-boards/kit_xmc11_boot_001/#ispnTab1) |
-[Arduino Uno Rev3](https://store.arduino.cc/arduino-uno-rev3) |
-
-### Additional hardware platforms
-The library should be directly compatible with other platforms that support the Arduino API (Arduino reference language). The library is also written in a way that porting the library to another platform requires the developer only to provide a API for the specific platform, using the platform specific low level drivers. A porting guide is available in the [Wiki](https://github.com/Infineon/high-side-switch/wiki).
-
-## Software documentation
-A detailed explanation of the software structure as well as the API can be found [here](https://github.com/Infineon/high-side-switch/wiki/Library-Details). And there is also a ***Doxygen-File*** available, which can be found [here](https://infineon.github.io/high-side-switch/).
+<table>
+    <tr>
+        <td><img src="img/../docs/img/arduino-logo.png" width="200"></td>
+        <td><img src="img/../docs/img/cross-platform.png" width="200"></td>
+    </tr>
+    <tr>
+        <td style="text-align: center"><a href="https://high-side-switch.readthedocs.io/en/latest/sw-frmwk/arduino/arduino-api.html#arduino-api">Arduino API</a></td>
+        <td style="text-align: center">
+            <a href="https://high-side-switch.readthedocs.io/en/latest/api-reference/profet-24-api.html#btt60xxshield-api">PROFET™+ 24V BTT60xx API</a><br>
+            <a href="https://high-side-switch.readthedocs.io/en/latest/api-reference/power-profet-api.html#power-profettrade-shield">Power PROFET™ BTS5001x API</a><br>
+            <a href="https://high-side-switch.readthedocs.io/en/latest/api-reference/profet2-12-api.html#profettrade-2-12v-shield">PROFET™+2 12V BTS700x API</a>
+        </td>
+    </tr>
+    <tr>
+        <td style="text-align: center"><a href="https://high-side-switch.readthedocs.io/en/latest/sw-frmwk/arduino/arduino-getting-started.html#arduino-getting-started">Getting Started</a></td>
+        <td style="text-align: center"><a href="https://high-side-switch.readthedocs.io/en/latest/lib-details/porting-guide.html#porting-guide">Porting Guide</a></td>
+    </tr>
+</table>
 
 ## More information
-The complete documentation of the library as well as detailed information about the PROFET-shield, can be found in the [Wiki](https://github.com/Infineon/high-side-switch/wiki).
+
+The complete documentation of the library as well as detailed information about the PROFET-shield, can be found in the [Wiki](https://high-side-switch.readthedocs.io/en/latest/index.html).
 
 ## License
+
 This project is licensed under the MIT License - click [here](https://github.com/Infineon/high-side-switch/blob/master/LICENSE) for details.
-
-

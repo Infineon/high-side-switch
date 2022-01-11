@@ -1,121 +1,85 @@
-/** 
+/**
  * @file        hss.hpp
- * @brief       Definition of the High-Side-Switch class functions
- * @date        May 2020
- * @copyright   Copyright (c) 2019-2020 Infineon Technologies AG
- * 
+ * @brief       High side switch class
+ * @copyright   Copyright (c) 2021 Infineon Technologies AG
+ *
  * SPDX-License-Identifier: MIT
  */
+
 #ifndef HSS_H_
 #define HSS_H_
 
 #include <stdlib.h>
 #include <stdint.h>
 #include <unistd.h>
-#include "../pal/timer.hpp"
-#include "../pal/gpio.hpp"
-#include "../pal/adc.hpp"
-#include "../config/variants.hpp"
-#include "../utils/filter.hpp"
+#include "hss-types.hpp"
+#include "hss-pal-timer.hpp"
+#include "hss-pal-gpio.hpp"
+#include "hss-pal-adc.hpp"
+#include "hss-variants.hpp"
+#include "hss-filter.hpp"
+
+namespace hss
+{
 
 /**
  * @addtogroup hssCorelib
  * @{
  */
 
-
 /**
- * @brief High-Side-Switch class
- * This class defines the High-Side-Switch Class with all its functionality
+ * @brief  High side switch API
  */
 class Hss
 {
     public:
 
-    /**
-     * @name Error codes
-     * @{
-     */
-    enum Error_t{
-        OK          = 0,     /**< No error */
-        INTF_ERROR  = -1,    /**< Interface error */
-        CONF_ERROR  = -2,    /**< Configuration error */
-    };
-    /** @} */
+                            Hss(GPIOPAL *den, GPIOPAL *in, ADCPAL *is, TimerPAL *timer, BtxVariants_t *btxVariant);
+                            Hss(GPIOPAL *den, GPIOPAL *in0, GPIOPAL *in1, GPIOPAL *dsel, ADCPAL *is, TimerPAL *timer, BtxVariants_t *btxVariant);
+                            ~Hss();
+        Error_t             init();
+        Error_t             deinit();
+        Error_t             enable(Channel_t ch=CHANNEL0);
+        Error_t             disable(Channel_t ch=CHANNEL0);
+        Error_t             enableDiag();
+        Error_t             disableDiag();
 
-    /**
-     * @name Status
-     * @{
-     */
-    enum Status_t{
-        UNINITED    = 0,    /**< Not initialized */
-        INITED      = 1,    /**< Initiliazed */
-        POWER_ON    = 2,    /**< Power on */
-        POWER_OFF   = 3,    /**< Power off */
-    };
-    /** @} */
+        Status_t            getSwitchStatus();
+        DiagStatus_t        diagRead(float senseCurrent, Channel_t ch=CHANNEL0);
+        float               readIs(uint16_t rSense, Channel_t ch=CHANNEL0);
 
-    /**
-     * @name Diagnosis enabled
-     * @{
-     */
-    enum DiagEnable_t{
-        DIAG_EN      = 0,    /**< Enabled */
-        DIAG_DIS     = 1,    /**< Disabled */
-    };
-    /** @} */
+        void                setCurrentOffset(float offset);
 
-    /**
-     * @name Diagnosis enabled
-     * @{
-     */
-    enum DiagStatus_t{
-        READ_ERROR = -1,        /**< Read Error */
-        NOT_ENABLED = -2,       /**< Diagnosis not enabled */
-        NORMAL = 0,             /**< Switch works correctly */
-        OVERLOAD = 1,           /**< Overload of the Switch */
-        SHORT_TO_GND = 2,       /**< Short to the ground */
-        OVERTEMPERATURE = 3,    /**< Overtemperature */
-        SHORT_TO_VSS = 4,       /**< Short to the supply voltage */
-        OPEN_LOAD = 5,          /**< Open load detected */
-        UNDER_LOAD = 6,         /**< Under load condition */
-        INVERSE_CURRENT = 7,    /**< Inverse current */
-    };
-    /** @} */
-
-                    Hss();
-                    Hss(GPIO *den, GPIO *in, AnalogDigitalConverter *is, BtsVariants_t *variant);
-                    ~Hss();
-    Error_t         init();
-    Error_t         deinit();
-    Error_t         enable();
-    Error_t         disable();
-    Error_t         enableDiag();
-    Error_t         disableDiag();
-    Error_t         diagReset();
-
-    Status_t        getSwitchStatus();
-
-    DiagStatus_t    diagRead();
-
-    float           readIs();
-    
     protected:
-    GPIO                    *den;
-    GPIO                    *in;
-    AnalogDigitalConverter  *is;
 
-    Timer                   *timer;
+        GPIOPAL             *den;   /**< Diagnosis enable */
+        GPIOPAL             *in0;   /**< Switch input 0 */
+        GPIOPAL             *in1;   /**< Switch input 1 */
+        GPIOPAL             *dsel;  /**< Diagnosis select */
+        ADCPAL              *is;    /**< Diagnosis current */
 
-    ExponentialFilter       *currentFilter;
+        TimerPAL            *timer; /**< Timer instace */
 
-    BtsVariants_t           *btsVariant;
-    Status_t                status;
-    DiagEnable_t            diagEnb;
-    DiagStatus_t            diagStatus;
-    
+        ExponentialFilter   *currentFilter; /**< Current filter */
+
+        BtxVariants_t       *btxVariant;    /**< BTx switch variant */
+        Status_t            status;         /**< Switch status */
+        Status_t            statusCh0;      /**< Channel 0 status */
+        Status_t            statusCh1;      /**< Channel 1 status */
+
+        DiagEnable_t        diagEnb;        /**< Diagnosis enabled flag */
+        DiagStatus_t        diagStatus;     /**< Diagnosis status */
+
+        Error_t             selDiagCh(Channel_t ch);
+
+    private:
+
+        float               currentOffset = 0.0;    /**< Diagnosis current offset */
+
 };
+
+}
+
 /** @} */
 
 #endif /** HSS_H_ **/
- 

@@ -38,7 +38,7 @@ pipeline {
 	agent any
 
 	/**
-	 * Parameter choice settings for manual start 
+	 * Parameter choice settings for manual start
 	 */
 	parameters {
 		choice(name: 'SERVER',            choices:['vihlarazweb3','vihlarazweb2'], description: 'server')
@@ -138,46 +138,32 @@ pipeline {
 		// * ************************************************************DevCI UNITTEST
 		// *
 		stage('Check') {
-			parallel {
-				/*-----------------------------------------------------------------------------
-				 * cppcheck
-				 * -----------------------------------------------------------------------------
-				 */
-				stage('CPP') {
-					agent {
-						node {
-							label 'epelinux3'
-						}
-					}
-					steps {
-						echo "cppcheck"
-						script {
-							def result = sh(
-								script: '''
-									cd ./
-									export PATH=/opt/sofit/cppcheck/1.76.1/bin:$PATH
-									mkdir -p build
-									/opt/sofit/cppcheck/1.76.1/bin/cppcheck -v --enable=all --xml-version=2 -I src test 2> build/cppcheck-report.xml
-								''',
-								returnStdout: true
-							).trim()
-							echo "$result"
-						}
-					} // end steps
-				} // end cppcheck
 
-				/*-----------------------------------------------------------------------------
-				* unit test
-				*-----------------------------------------------------------------------------
-				*/
-				stage('unit test') {
-					steps {
-						echo "unit test"
-						//sh ("export DOXY_BIN_PATH=/usr/local/bin/;cd ${env.WORKSPACE}/docs;/usr/bin/make html")
-					}
+			agent {
+				node {
+					label 'epelinux1_7'
 				}
+			}
+			steps {
+				echo "unit test"
+				sh(
+					script:'''
+						cd ./
+						export PATH=/opt/gcc_10.3.0/linux70_64/bin:/home/xfpjenki/tools/python3/bin:/opt/sofit/cppcheck/1.76.1/bin:$PATH
+						export LD_LIBRARY_PATH=/opt/gcc_10.3.0/linux70_64/lib:/opt/gcc_10.3.0/linux70_64/lib64:$LD_LIBRARY_PATH
 
-			} // parallel
+						rm -rf googletest/
+						git clone https://github.com/google/googletest
+
+						/opt/cmake/3.14.5/linux/bin/cmake --no-warn-unused-cli -DCMAKE_EXPORT_COMPILE_COMMANDS:BOOL=TRUE -DCMAKE_BUILD_TYPE=Debug -DCMAKE_C_COMPILER:FILEPATH=/opt/gcc_10.3.0/linux70_64/bin/gcc -DCMAKE_CXX_COMPILER:FILEPATH=/opt/gcc_10.3.0/linux70_64/bin/g++ -H. -B./build -G "Unix Makefiles"
+						/opt/cmake/3.14.5/linux/bin/cmake --build ./build --config Debug --target hss-test -j 6 --
+						/opt/cmake/3.14.5/linux/bin/cmake --build ./build --config Debug --target gcov -j 6 --
+
+						cppcheck -v --enable=all --xml-version=2 -I src test 2> ./build/cppcheck-report.xml
+					'''
+				)
+			}
+
 		} // end stage
 
 
@@ -442,7 +428,7 @@ pipeline {
 				stage('docu') {
 					agent {
 						node {
-							label 'epelinux2'
+							label 'epelinux3'
 						}
 					}
 
@@ -520,14 +506,14 @@ pipeline {
 		stage('SonarQube') {
 			agent {
 				node {
-					label 'epelinux2'
+					label 'epelinux1_7'
 				}
 			}
 
 			steps {
 				echo "SonarQube"
 
-				catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
+				catchError(buildResult: 'SUCCESS', stageResult: 'SUCCESS') {
 					withSonarQubeEnv(
 						installationName: "${params.SONARINSTANCE}"
 					){
@@ -549,7 +535,7 @@ pipeline {
 						}
 					}
 				} // end catch
-				catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
+				catchError(buildResult: 'SUCCESS', stageResult: 'SUCCESS') {
 					timeout(time: 200, unit: 'MINUTES') {
 						waitForQualityGate abortPipeline: true
 					}
@@ -564,7 +550,7 @@ pipeline {
 	 * post
 	 *-----------------------------------------------------------------------------
 	 */
-	
+
 	post {
 		failure {
 			send_email('[XFPBUILD] build failing on branch "' + env.BRANCH_NAME + '"','$DEFAULT_RECIPIENTS',

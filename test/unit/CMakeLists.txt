@@ -4,14 +4,6 @@ set(prjtest hss-test)
 
 file(GLOB Sources CONFIGURE_DEPENDS "*.cpp")
 
-# Test Sources
-# set(Sources
-    # test_hss-shield-bts700x.cpp
-    # test_hss-shield-btt60xx.cpp
-    # test_hss-shield-bts5001x.cpp
-    # test_hss.cpp
-# )
-
 # GCOV Coverage Targets
 set(CMAKE_CXX_OUTPUT_EXTENSION_REPLACE ON)
 set(GCOV_FILES_DIR ${CMAKE_BINARY_DIR}/CMakeFiles/${corelib}.dir/src)
@@ -29,7 +21,10 @@ add_custom_target(gcov
 # Coverage Command
 add_custom_command(TARGET gcov
 COMMAND ${CMAKE_COMMAND} -E echo "=================== GCOVR ===================="
-COMMAND gcovr -r ${CMAKE_SOURCE_DIR}/src/corelib/ ${GCOV_FILES_DIR}/corelib -b -k --gcov-ignore-parse-errors --html --html-details -o ${CMAKE_BINARY_DIR}/coverage/coverage.html
+COMMAND ${CMAKE_COMMAND} -E echo ${CMAKE_SOURCE_DIR}
+COMMAND ${CMAKE_COMMAND} -E echo ${GCOV_FILES_DIR}
+
+COMMAND gcovr -r ${CMAKE_SOURCE_DIR} ${GCOV_FILES_DIR}/corelib -b -k --gcov-ignore-parse-errors --sonarqube -o ${CMAKE_BINARY_DIR}/coverage/coverage.xml
 COMMAND ${CMAKE_COMMAND} -E echo "-- Coverage files have been output to ${CMAKE_BINARY_DIR}/coverage"
 WORKING_DIRECTORY ${CMAKE_BINARY_DIR}/coverage
 )

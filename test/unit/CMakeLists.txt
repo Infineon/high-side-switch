@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.12.4)
 
-set(prjtest hss-test)
+set(prjtest unit-test)
 
 file(GLOB Sources CONFIGURE_DEPENDS "*.cpp")
 

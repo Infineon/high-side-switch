@@ -722,6 +722,34 @@ TEST_F(Hss_Test, calibrateIs_success)
     // ASSERT_FLOAT_EQ(2.4, hss.calibrateIs(20, 100, 0, 1.2));
 }
 
+TEST_F(Hss_Test, ExponentialFilter_standard_constructor)
+{
+    ExponentialFilter test_filter = ExponentialFilter();
+}
+
+TEST_F(Hss_Test, ExponentialFilter_simple_constructor)
+{
+    ExponentialFilter test_filter = ExponentialFilter(0.0);
+}
+
+TEST_F(Hss_Test, ExponentialFilter_setFilter)
+{
+    ExponentialFilter test_filter = ExponentialFilter(0.0, 0.3);
+    test_filter.setFilter(0.0, 0.5);
+}
+
+TEST_F(Hss_Test, ExponentialFilter_setTau)
+{
+    ExponentialFilter test_filter = ExponentialFilter(0.0, 0.3);
+    test_filter.setTau(2);
+}
+
+TEST_F(Hss_Test, ExponentialFilter_setToNewValue)
+{
+    ExponentialFilter test_filter = ExponentialFilter(0.0, 0.3);
+    test_filter.setToNewValue(0.0);
+}
+
 // TEST_F(Hss_Test, diagRead_not_enabled)
 // {
 //     NiceMock<MockADC> is;

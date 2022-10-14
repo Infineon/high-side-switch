@@ -140,7 +140,7 @@ Pin Description
     * - D5
       - TP COMP 1
       - Output/digital
-      - Input to check state of comperator 1, can be measured at tespoint TP_COMP1.
+      - Input to check state of comparator 1, can be measured at test point TP_COMP1.
     * - D6
       - IN - BTS500xx
       - Input/PWM

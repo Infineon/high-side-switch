@@ -364,7 +364,7 @@ TEST_F(Bts500xxShield_Test, switchHxOff_Disable_Success2)
 }
 
 /**
- * readDiagx(unit8_t x)
+ * readDiagx(uint8_t x)
  */
 TEST_F(Bts500xxShield_Test, readDiagx_Out_Of_Boundaries)
 {

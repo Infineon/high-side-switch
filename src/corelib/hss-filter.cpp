@@ -98,7 +98,7 @@ float ExponentialFilter::output()
 
 
 /**
- * @brief       Calculates power two 
+ * @brief       Calculates power two
  * @param[in]   p  base to apply power 2
  * @return      Power two result
  */

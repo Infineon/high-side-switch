@@ -16,36 +16,36 @@ namespace hss
      * @{
      */
 
-	/**
-	 * @brief Error codes
-	 * @{
-	 */
-	enum Error_t
-	{
-		OK          	     =  0,   /**< No error */
-		INTF_ERROR  	     = -1,   /**< Interface error */
-		CONF_ERROR  	     = -2,   /**< Configuration error */
-		READ_ERROR  	     = -3,   /**< Read error */
-		WRITE_ERROR 	     = -4,   /**< Write error */
-		NULLPTR_ERROR        = -5,   /**< Null pointer error */
-		INVALID_CH_ERROR     = -6,   /**< Invalid channel error */
+    /**
+     * @brief Error codes
+     * @{
+     */
+    enum Error_t
+    {
+        OK                   =  0,   /**< No error */
+        INTF_ERROR           = -1,   /**< Interface error */
+        CONF_ERROR           = -2,   /**< Configuration error */
+        READ_ERROR           = -3,   /**< Read error */
+        WRITE_ERROR          = -4,   /**< Write error */
+        NULLPTR_ERROR        = -5,   /**< Null pointer error */
+        INVALID_CH_ERROR     = -6,   /**< Invalid channel error */
         UNSUPPORTED_OP_ERROR = -7,   /**< Invalid channel error */
         INIT_ERROR           = -8    /**< Not initialized */
-	};
-	/** @} */
+    };
+    /** @} */
 
-	/**
-	 * @brief Channel numbers
-	 * @{
-	 */
-	enum Channel_t
-	{
-		CHANNEL0 	 = 0,           /**< Channel 1 : Valid for BTT shields */
-		CHANNEL1 	 = 1,           /**< Channel 2 : Valid for BTT shields */
-		ALL_CHANNELS = 2,           /**< Select all channels : Valid for BTT shields */
+    /**
+     * @brief Channel numbers
+     * @{
+     */
+    enum Channel_t
+    {
+        CHANNEL0     = 0,           /**< Channel 1 : Valid for BTT shields */
+        CHANNEL1     = 1,           /**< Channel 2 : Valid for BTT shields */
+        ALL_CHANNELS = 2,           /**< Select all channels : Valid for BTT shields */
         NO_CHANNEL   = 3            /**< No channel to select */
-	};
-	/** @} */
+    };
+    /** @} */
 
     /**
      * @brief Switch status

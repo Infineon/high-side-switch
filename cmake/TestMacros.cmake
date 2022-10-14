@@ -20,7 +20,7 @@ FOREACH( arg ${ARGN} )
   ELSE( ${arg} STREQUAL "LIBRARIES" )
     set( ${CurrentVar} ${${CurrentVar}} ${arg} )
   ENDIF( ${arg} STREQUAL "LIBRARIES" )
-          
+
 ENDFOREACH( arg ${ARGN} )
 
 
@@ -28,7 +28,7 @@ string( TOUPPER ${CMAKE_BUILD_TYPE} MY_LOCAL_BUILD_TYPE )
 
 
 IF( ${MY_LOCAL_BUILD_TYPE} STREQUAL "DEBUG" )
- 
+
     message( STATUS "#############################" )
     message( STATUS "ARGN        = ${ARGN}" )
     message( STATUS "TestList    = ${TestList}" )
@@ -36,13 +36,13 @@ IF( ${MY_LOCAL_BUILD_TYPE} STREQUAL "DEBUG" )
     message( STATUS "SourceList  = ${SourceList}" )
     message( STATUS "LabelList   = ${LabelList}" )
     message( STATUS "#############################" )
-    
+
 ENDIF( ${MY_LOCAL_BUILD_TYPE} STREQUAL "DEBUG" )
-    
+
 
 FOREACH( TestName ${TestList} )
 
-  IF( ${MY_LOCAL_BUILD_TYPE} STREQUAL "DEBUG" )    
+  IF( ${MY_LOCAL_BUILD_TYPE} STREQUAL "DEBUG" )
 
     message( STATUS "###" )
     message( STATUS "Testname  = ${TestName}" )

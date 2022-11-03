@@ -383,7 +383,7 @@ TEST_F(Bts500xxShield_Test, readDiagx_Switch1_Off_Short_To_Vss)
 
     EXPECT_CALL(is1, ADCRead())
     .Times(1)
-    .WillOnce(Return(662));
+    .WillOnce(Return(1000));
 
     EXPECT_CALL(vs, ADCRead())
     .Times(1)
@@ -409,7 +409,7 @@ TEST_F(Bts500xxShield_Test, readDiagx_Switch1_Off_Open_Load_With_Issfault)
 
     EXPECT_CALL(is1, ADCRead())
     .Times(1)
-    .WillOnce(Return(662));
+    .WillOnce(Return(1000));
 
     EXPECT_CALL(vs, ADCRead())
     .Times(1)
@@ -435,7 +435,7 @@ TEST_F(Bts500xxShield_Test, readDiagx_Switch1_Off_Open_Load_Without_Issfault)
 
     EXPECT_CALL(is1, ADCRead())
     .Times(1)
-    .WillRepeatedly(Return(330));
+    .WillRepeatedly(Return(1000));
 
     EXPECT_CALL(vs, ADCRead())
     .Times(1)
@@ -448,7 +448,7 @@ TEST_F(Bts500xxShield_Test, readDiagx_Switch1_Off_Open_Load_Without_Issfault)
     shield->init();
     shield->switchHxOff(1);
 
-    ASSERT_NEAR(1.0, shield->readVOut(), 0.1);
+    ASSERT_NEAR(0.60, shield->readVOut(), 0.1);
     ASSERT_EQ(OPEN_LOAD, shield->readDiagx(1));
 }
 
@@ -463,7 +463,7 @@ TEST_F(Bts500xxShield_Test, readDiagx_Switch1_On_Short_To_GND_Or_Ot)
 
     EXPECT_CALL(is1, ADCRead())
     .Times(1)
-    .WillOnce(Return(662));
+    .WillOnce(Return(1000));
 
     EXPECT_CALL(vs, ADCRead())
     .Times(1)
@@ -541,7 +541,7 @@ TEST_F(Bts500xxShield_Test, readDiagx_Switch2_Off_Fault)
 
     EXPECT_CALL(is2, ADCRead())
     .Times(1)
-    .WillOnce(Return(662));
+    .WillOnce(Return(1000));
 
     shield->init();
     shield->switchHxOff(2);
@@ -559,7 +559,7 @@ TEST_F(Bts500xxShield_Test, readDiagx_Switch2_On_Fault)
 
     EXPECT_CALL(is2, ADCRead())
     .Times(1)
-    .WillOnce(Return(662));
+    .WillOnce(Return(1000));
 
     shield->init();
     shield->switchHxOn(2);
@@ -715,10 +715,10 @@ TEST_F(Bts500xxShield_Test, readVs_Success)
 {
     EXPECT_CALL(vs, ADCRead())
     .Times(1)
-    .WillOnce(Return(131));
+    .WillRepeatedly(Return(131));
 
     shield->init();
-    ASSERT_NEAR(12.02, shield->readVs(), 0.1);
+    ASSERT_NEAR(7.21, shield->readVs(), 0.1);
 }
 
 /**
@@ -731,7 +731,7 @@ TEST_F(Bts500xxShield_Test, readVOut_Success)
     .WillOnce(Return(54));
 
     shield->init();
-    ASSERT_NEAR(5.0, shield->readVOut(), 0.1);
+    ASSERT_NEAR(2.97, shield->readVOut(), 0.1);
 }
 
 /**
@@ -748,5 +748,5 @@ TEST_F(Bts500xxShield_Test, readTemperature_Success)
     .WillOnce(Return(131));
 
     shield->init();
-    ASSERT_NEAR(25.0, shield->readTemperature(), 0.2);
+    ASSERT_NEAR(23.21, shield->readTemperature(), 0.2);
 }

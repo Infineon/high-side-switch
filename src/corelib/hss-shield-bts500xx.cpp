@@ -77,6 +77,10 @@ Error_t Bts500xxShield::init()
         HSS_ASSERT_RET(err);
     }
 
+    filterVs = new ExponentialFilter(0.0, 0.4);
+    filterVOut = new ExponentialFilter(0.0, 0.4);
+    filterTemp = new ExponentialFilter(0.0, 0.4);
+
     return(err);
 }
 
@@ -218,13 +222,6 @@ DiagStatus_t Bts500xxShield::readDiagx(uint8_t x)
                         diagStatus = SHORT_TO_VSS;
                     }
                     else
-                    {
-                        diagStatus = OPEN_LOAD;
-                    }
-                }
-                else
-                {
-                    if((outputVoltage > 0.0) && (outputVoltage < 2.0))
                     {
                         diagStatus = OPEN_LOAD;
                     }
@@ -375,8 +372,9 @@ float Bts500xxShield::readVs()
     float supVol = 0.0;
 
     supVol = vs->ADCRead() * (5.0/1024.0) * (10562.0/562.0);
+    filterVs->input(supVol);
 
-    return supVol;
+    return filterVs->output();
 }
 
 /**
@@ -389,8 +387,9 @@ float Bts500xxShield::readVOut()
     float outVol = 0.0;
 
     outVol = vOut->ADCRead() * (5.0/1024.0) * (10562.0/562.0);
+    filterVOut->input(outVol);
 
-    return outVol;
+    return filterVOut->output();
 }
 
 /**
@@ -405,10 +404,11 @@ float Bts500xxShield::readTemperature()
     float resisNTC = 0.0;
 
     adcMeas = temp->ADCRead() * (5.0/1024.0);
-    resisNTC = (75 * (readVs()/adcMeas)) - 75;
+    resisNTC = (75.0 * (readVs()/adcMeas)) - 75.0;
+    temperature = (1.0/298.15) + ((1.0/3380.0) * log(resisNTC/10000.0));
+    temperature = (1.0/temperature) - 273.15;
 
-    temperature = (1.0/298.15) + ((1/3380) * log(resisNTC/10000.0));
-    temperature = (1/temperature) - 273.15;
+    filterTemp->input(temperature);
 
-    return temperature;
+    return filterTemp->output();
 }

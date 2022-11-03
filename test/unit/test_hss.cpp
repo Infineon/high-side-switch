@@ -669,7 +669,7 @@ TEST_F(Hss_Test, readIs_value)
     hss.enable();
     hss.enableDiag();
 
-    ASSERT_NEAR(5.54199, hss.readIs(1000), 0.1);
+    ASSERT_NEAR(3.87939453125, hss.readIs(1000), 0.1);
 }
 
 TEST_F(Hss_Test, readIs_value_channel1)
@@ -692,7 +692,7 @@ TEST_F(Hss_Test, readIs_value_channel1)
     hss.enable();
     hss.enableDiag();
 
-    ASSERT_NEAR(5.54199, hss.readIs(1000, CHANNEL1), 0.1);
+    ASSERT_NEAR(3.87939453125, hss.readIs(1000, CHANNEL1), 0.1);
 }
 
 TEST_F(Hss_Test, readIs_not_init)
@@ -738,10 +738,10 @@ TEST_F(Hss_Test, ExponentialFilter_setFilter)
     test_filter.setFilter(0.0, 0.5);
 }
 
-TEST_F(Hss_Test, ExponentialFilter_setTau)
+TEST_F(Hss_Test, ExponentialFilter_setAlpha)
 {
     ExponentialFilter test_filter = ExponentialFilter(0.0, 0.3);
-    test_filter.setTau(2);
+    test_filter.setAlpha(0.2);
 }
 
 TEST_F(Hss_Test, ExponentialFilter_setToNewValue)

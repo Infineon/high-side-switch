@@ -20,17 +20,17 @@ void setup()
 {
     /** Serial initialization */
     Serial.begin(9600);
-    Serial.println("Serial initialized");
+    Serial.println(F("Serial initialized"));
 
     /** Initialization of the High-Side-Switch-Board */
     err = HSS.init();
     if(OK != err)
     {
-        Serial.println("Initialization failed");
+        Serial.println(F("Initialization failed"));
     }
     else
     {
-        Serial.println("Initialization successful!");
+        Serial.println(F("Initialization successful!"));
     }
     delay(1000);
 }
@@ -38,7 +38,7 @@ void setup()
 void loop()
 {
     /** Turn on both switches at once */
-    Serial.println("\nTurn on switch 1 and 2");
+    Serial.println(F("\nTurn on switch 1 and 2"));
     err = HSS.switchesHxOn(true, true);
     if(OK != err)
     {
@@ -49,7 +49,7 @@ void loop()
     delay(3000);
 
     /** Turn off both switches at once */
-    Serial.println("Turn off switch 1 and 2");
+    Serial.println(F("Turn off switch 1 and 2"));
     err = HSS.switchesHxOff(true, true);
     if(OK != err)
     {
@@ -66,35 +66,35 @@ void showErrorStatus(Error_t error)
     switch (error)
     {
     case INTF_ERROR:
-        Serial.println("You have encountered an interface error");
+        Serial.println(F("You have encountered an interface error"));
         break;
 
     case CONF_ERROR:
-        Serial.println("You have encountered a configuration error");
+        Serial.println(F("You have encountered a configuration error"));
         break;
 
     case READ_ERROR:
-        Serial.println("You have encountered a reading error");
+        Serial.println(F("You have encountered a reading error"));
         break;
 
     case WRITE_ERROR:
-        Serial.println("You have encountered a writing error");
+        Serial.println(F("You have encountered a writing error"));
         break;
 
     case NULLPTR_ERROR:
-        Serial.println("You have encountered a null pointer error");
+        Serial.println(F("You have encountered a null pointer error"));
         break;
 
     case INVALID_CH_ERROR:
-        Serial.println("You have encountered an invalid channel error");
+        Serial.println(F("You have encountered an invalid channel error"));
         break;
 
     case UNSUPPORTED_OP_ERROR:
-        Serial.println("You have encountered an unsupported operation error");
+        Serial.println(F("You have encountered an unsupported operation error"));
         break;
 
     case INIT_ERROR:
-        Serial.println("You have encountered an initialization error");
+        Serial.println(F("You have encountered an initialization error"));
         break;
 
     default:

@@ -30,28 +30,37 @@ void setup()
 {
     /** Serial initialization */
     Serial.begin(9600);
-    Serial.println("Serial initialized");
+    Serial.println(F("Serial initialized"));
 
     /** Initialization of the High-Side-Switch-Board */
     err = HSS.init();
     if(OK != err)
     {
-        Serial.println("Initialization failed");
+        Serial.println(F("Initialization failed"));
     }
     else
     {
-        Serial.println("Initialization successful!");
+        Serial.println(F("Initialization successful!"));
     }
+    delay(1000);
+
+    /** Make sure both switches are turned off */
+    HSS.switchesHxOff(1,1);
     delay(1000);
 }
 
 void loop()
 {
+    Serial.println(F("########### Checking Switch 1 ###########\n\n"));
     /** Diagnosis with switch 1 turned off */
-    diagStatus = HSS.readDiagx(1);
+    Serial.println(F("Reading the diagnosis status of switch 1 (switch off):"));
+    for(int i=0; i<10; i++){
+        diagStatus = HSS.readDiagx(1);
+    }
     showDiagStatus(diagStatus);
 
     /** Turn on switch 1 */
+    Serial.println(F("Turn on switch 1\n"));
     err = HSS.switchHxOn(1);
     if(OK != err)
     {
@@ -60,26 +69,54 @@ void loop()
     delay(2000);
 
     /** Read current through switch 1 */
+    Serial.println(F("Measure the current through switch 1:"));
     for(int i=0; i<10; i++)
     {
         readCurrent = HSS.readIsx(1);
     }
-    Serial.print("Current flowing through switch 1: ");
+    Serial.print(F("Current flowing through switch 1: "));
     Serial.print(readCurrent);
-    Serial.println(" A");
+    Serial.println(F(" A\n"));
     delay(2000);
 
     /** Diagnosis with switch 1 turned on */
-    diagStatus = HSS.readDiagx(1);
+    Serial.println(F("Reading the diagnosis status of switch 1 (switch on):"));
+    for(int i=0; i<10; i++){
+        diagStatus = HSS.readDiagx(1);
+    }
     showDiagStatus(diagStatus);
     delay(2000);
 
+    /** Measure the output voltage of switch 1 */
+    Serial.println(F("Measuring the output voltage of switch 1:"));
+    for(int i=0; i<10; i++){
+        outputVoltage = HSS.readVOut();
+    }
+    Serial.print(F("The output voltage of switch 1 is "));
+    Serial.print(outputVoltage);
+    Serial.println(F(" V\n"));
+    delay(2000);
+
+    /** Turn off switch 1 */
+    Serial.println(F("Turn off switch 1\n"));
+    err = HSS.switchHxOff(1);
+    if(OK != err)
+    {
+        showErrorStatus(err);
+    }
+    delay(2000);
+
+    Serial.println(F("########### Checking Switch 2 ###########\n\n"));
     /** Diagnosis with switch 2 turned off */
-    diagStatus = HSS.readDiagx(2);
+    Serial.println(F("Reading the diagnosis status of switch 2 (switch off):"));
+    for(int i=0; i<10; i++){
+        diagStatus = HSS.readDiagx(2);
+    }
     showDiagStatus(diagStatus);
     delay(2000);
 
     /** Turn on switch 2 */
+    Serial.println(F("Turn on switch 2\n"));
     err = HSS.switchHxOn(2);
     if(OK != err)
     {
@@ -88,47 +125,54 @@ void loop()
     delay(2000);
 
     /** Read current through switch 2 */
+    Serial.println(F("Measure the current through switch 2:"));
     for(int i=0; i<10; i++)
     {
         readCurrent = HSS.readIsx(2);
     }
-    Serial.print("Current flowing through switch 2: ");
+    Serial.print(F("Current flowing through switch 2: "));
     Serial.print(readCurrent);
-    Serial.println(" A");
+    Serial.println(F(" A\n"));
     delay(2000);
 
     /** Diagnosis with switch 2 turned on */
-    diagStatus = HSS.readDiagx(2);
+    Serial.println(F("Reading the diagnosis status of switch 2 (switch on):"));
+    for(int i=0; i<10; i++){
+        diagStatus = HSS.readDiagx(2);
+    }
     showDiagStatus(diagStatus);
     delay(2000);
 
-    /** Measure the output voltage of switch 1 */
-    outputVoltage = HSS.readVOut();
-    Serial.print("The output voltage of switch 1 is ");
-    Serial.print(outputVoltage);
-    Serial.println(" V");
-    delay(2000);
-
-    /** Check the board temperature */
-    temperature = HSS.readTemperature();
-    Serial.print("The board temperature is ");
-    Serial.print(temperature);
-    Serial.println(" °C");
-    delay(2000);
-
-    /** Measure the battery voltage */
-    batteryVoltage = HSS.readVs();
-    Serial.print("The battery voltage is ");
-    Serial.print(batteryVoltage);
-    Serial.println(" V");
-    delay(2000);
-
-    /** Turn off both switches */
-    err = HSS.switchesHxOff(true, true);
+    /** Turn off switch 2 */
+    Serial.println(F("Turn off switch 2\n\n"));
+    err = HSS.switchHxOff(2);
     if(OK != err)
     {
         showErrorStatus(err);
     }
+
+    Serial.println(F("########### Check the board temperature and input voltage ###########\n\n"));
+    /** Check the board temperature */
+    Serial.println(F("Measuring the board temperature:"));
+    for(int i=0; i<10; i++){
+        temperature = HSS.readTemperature();
+    }
+    Serial.print(F("The board temperature is "));
+    Serial.print(temperature);
+    Serial.println(F(" °C\n"));
+    delay(2000);
+
+    /** Measure the battery voltage */
+    Serial.println(F("Measuring the battery voltage:"));
+    for(int i=0; i<10; i++){
+        batteryVoltage = HSS.readVs();
+    }
+    Serial.print(F("The battery voltage is "));
+    Serial.print(batteryVoltage);
+    Serial.println(F(" V\n"));
+    delay(2000);
+
+    Serial.println(F("Wait for five seconds and then start again ...\n\n\n"));
     delay(5000);
 }
 
@@ -138,28 +182,28 @@ void showDiagStatus(DiagStatus_t diagState)
     switch (diagState)
     {
     case SHORT_TO_VSS:
-        Serial.println("You have a short to the supply voltage at this switch");
+        Serial.println(F("You have a short to the supply voltage at this switch\n"));
         break;
 
     case OPEN_LOAD:
-        Serial.println("You have an open load at this switch. You should check your connection");
+        Serial.println(F("You have an open load at this switch. You should check your connection\n"));
         break;
 
     case SHORT_TO_GND_OR_OT:
-        Serial.println("You have a short to the ground or an over-temperature at this switch");
+        Serial.println(F("You have a short to the ground or an over-temperature at this switch\n"));
         break;
 
     case FAULT:
-        Serial.println("You have a detected fault condition at this switch. Please check the data sheet for more information [page 19-20]");
+        Serial.println(F("You have a detected fault condition at this switch. Please check the data sheet for more information [page 19-20]\n"));
         break;
 
     case DIAG_READ_ERROR:
-        Serial.println("You have a diagnosis read error, which means you have chosen a channel that is invalid");
-        Serial.println("Only channel 1 and 2 are valid channels!");
+        Serial.println(F("You have a diagnosis read error, which means you have chosen a channel that is invalid"));
+        Serial.println(F("Only channel 1 and 2 are valid channels!\n"));
         break;
 
     default:
-        Serial.println("Everything is working correctly");
+        Serial.println(F("Everything is working correctly\n"));
         break;
     }
 }
@@ -170,35 +214,35 @@ void showErrorStatus(Error_t error)
     switch (error)
     {
     case INTF_ERROR:
-        Serial.println("You have encountered an interface error");
+        Serial.println("You have encountered an interface error\n");
         break;
 
     case CONF_ERROR:
-        Serial.println("You have encountered a configuration error");
+        Serial.println("You have encountered a configuration error\n");
         break;
 
     case READ_ERROR:
-        Serial.println("You have encountered a reading error");
+        Serial.println("You have encountered a reading error\n");
         break;
 
     case WRITE_ERROR:
-        Serial.println("You have encountered a writing error");
+        Serial.println("You have encountered a writing error\n");
         break;
 
     case NULLPTR_ERROR:
-        Serial.println("You have encountered a null pointer error");
+        Serial.println("You have encountered a null pointer error\n");
         break;
 
     case INVALID_CH_ERROR:
-        Serial.println("You have encountered an invalid channel error");
+        Serial.println("You have encountered an invalid channel error\n");
         break;
 
     case UNSUPPORTED_OP_ERROR:
-        Serial.println("You have encountered an unsupported operation error");
+        Serial.println("You have encountered an unsupported operation error\n");
         break;
 
     case INIT_ERROR:
-        Serial.println("You have encountered an initialization error");
+        Serial.println("You have encountered an initialization error\n");
         break;
 
     default:

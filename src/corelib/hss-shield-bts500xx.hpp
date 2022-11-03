@@ -57,6 +57,9 @@ class Bts500xxShield: public HssShield
         ADCPAL * temp;                          /**< Temperature */
         BtxVariants_t * btxVariant1;            /**< Variant of the High-Side-Switch 1 */
         BtxVariants_t * btxVariant2;            /**< Variant of the High-Side-Switch 2 */
+        ExponentialFilter * filterVs;           /**< Filter for the supply voltage */
+        ExponentialFilter * filterVOut;         /**< Filter for the output voltage for switch 1*/
+        ExponentialFilter * filterTemp;         /**< Filter for the temperature */
 
 };
 

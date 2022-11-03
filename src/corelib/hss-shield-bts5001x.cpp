@@ -79,7 +79,7 @@ Error_t Bts5001xShield::init()
         HSS_ASSERT_RET(err);
     }
 
-    filterVbat = new ExponentialFilter(0.0, 0.3);
+    filterVbat = new ExponentialFilter(0.0, 0.4);
 
     return OK;
 }

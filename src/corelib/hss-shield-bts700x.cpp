@@ -213,7 +213,7 @@ Error_t Bts700xShield::init()
             break;
         }
 
-        filterVbat = new ExponentialFilter(0.0, 0.3);
+        filterVbat = new ExponentialFilter(0.0, 0.4);
 
         if(NULL == btxVariant){
             return NULLPTR_ERROR;

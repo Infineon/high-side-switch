@@ -9,8 +9,13 @@
 #ifndef HSS_SHIELD_PLATF_HPP_
 #define HSS_SHIELD_PLATF_HPP_
 
-#include <stdint.h>
-
+#ifdef __AVR__
+    #include <stdint.h>
+#else    
+    #include <cmath>
+    #include <cstdint>
+    #include <cstdlib>
+#endif
 namespace hss
 {
 

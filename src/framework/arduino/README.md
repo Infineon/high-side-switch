@@ -9,14 +9,13 @@ Arduino library for Infineon's Arduino shields for **PROFET™ Smart High-Side P
         <td><img src="https://github.com/Infineon/high-side-switch/blob/master/docs/img/BTT6020-1EKA.jpg?raw=true" width="300"></td>
         <td><img src="https://github.com/Infineon/high-side-switch/blob/master/docs/img/BTS50015-1TAD.jpg?raw=true" width="300"></td>
         <td><img src="https://github.com/Infineon/high-side-switch/blob/master/docs/img/Profet+2.png?raw=true" width="300"></td>
-        <td><img src="" width="300"></td> <!-- TODO: Add picture -->
+        <td><img src="../../../docs/img/Power_PROFET_BTS500xx_1LUA.png" width="300"></td>
     </tr>
     <tr>
         <td style="test-align : center"><a href="https://high-side-switch.readthedocs.io/en/latest/hw-platforms.html#profettrade-24v-family">PROFET™+ 24V BTT60xx Arduino Shield</a></td>
         <td style="test-align : center"><a href="https://high-side-switch.readthedocs.io/en/latest/hw-platforms.html#power-profettrade-family">Power PROFET™ BTS5001x-1TAD Arduino Shield</a></td>
         <td style="test-align : center"><a href="https://high-side-switch.readthedocs.io/en/latest/hw-platforms.html#profettrade-2-12v-family">PROFET™+2 12V BTS700x-1EPP Arduino Shield</a></td>
-        <td style="test-align: center"><a href="">Power PROFET™ + 12 V BTS500xx-1LUA</a></td>
-
+        <td style="test-align: center"><a href="https://high-side-switch.readthedocs.io/en/latest/hw-platforms.html#id5">Power PROFET™ + 12 V BTS500xx-1LUA Arduino Shield</a></td>
     </tr>
 </table>
 

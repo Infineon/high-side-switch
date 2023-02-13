@@ -102,6 +102,8 @@ Chip only
 * `BTT6020-1EKA`_
 * `BTT6030-2EKA`_
 
+-----------
+
 Power PROFET\ |trade|\  family
 ------------------------------
 
@@ -120,7 +122,7 @@ Shields for Arduino
 Pinout Diagram
 ^^^^^^^^^^^^^^
 
-.. image:: img/shield_bts500xx_pinout.png
+.. image:: img/shield_bts5001x_pinout.png
     :width: 450
 
 Pin Description
@@ -176,6 +178,79 @@ Chip only
 
 * `BTS50010-1TAD`_
 * `BTS50015-1TAD`_
+
+---------------
+
+.. image:: img/Power_PROFET_BTS500xx_1LUA.png
+  :width: 150
+
+.. image:: img/BTS50005_1LUA_Chip.jpg
+  :width: 150
+
+.. image:: img/BTS50010_1LUA_Chip.jpg
+  :width: 150
+
+Shields for Arduino
+"""""""""""""""""""
+* `2V Protected Switch Shield with BTS50005-1LUA and BTS50010-1LUA`_
+
+Pinout Diagram
+^^^^^^^^^^^^^^
+.. image:: img/shield_bts500xx_pinout.png
+  :width: 450
+
+Pin Description
+^^^^^^^^^^^^^^^
+.. list-table::
+    :header-rows: 1
+
+    * - Arduino Pin
+      - Symbol
+      - Type
+      - Function
+    * - D9
+      - DEN2
+      - Output/digital
+      - Diagnosis enable pin for switch 2
+    * - D10
+      - IN2
+      - Output/digital
+      - Enable pin for switch 2
+    * - D11
+      - DEN1
+      - Output/digital
+      - Diagnosis enable pin for switch 1
+    * - D12
+      - IN1
+      - Output/digital
+      - Enable pin for switch 1
+    * - A0
+      - IS1
+      - Input/analog
+      - Analog measurement of the current through switch 1
+    * - A1
+      - VS_M
+      - Input/analog
+      - Analog measurement of the supply voltage
+    * - A2
+      - TEMP_M
+      - Input/analog
+      - Analog measurement of the PCB temperature
+    * - A3
+      - VOUT_M
+      - Input/analog
+      - Analog measurement of the output voltage of switch 1
+    * - A4
+      - IS2
+      - Input/analog
+      - Analog measurement of the current through switch 2
+
+Chip only
+^^^^^^^^^
+* `BTS50005-1LUA`_
+* `BTS50010-1LUA`_
+
+------------------------------
 
 PROFET\ |trade|\ +2 12V family
 ------------------------------
@@ -296,7 +371,9 @@ Chip only
 .. _`BTT6030-2EKA`: https://www.infineon.com/cms/en/product/power/smart-low-side-high-side-switches/high-side-switches/profet-plus-24v-automotive-smart-high-side-switch/btt6030-2era/
 .. _`BTS50010-1TAD`: https://www.infineon.com/cms/en/product/power/smart-low-side-high-side-switches/high-side-switches/power-profet-automotive-smart-high-side-switch/bts50010-1tad/
 .. _`BTS50015-1TAD`: https://www.infineon.com/cms/en/product/power/smart-low-side-high-side-switches/high-side-switches/power-profet-automotive-smart-high-side-switch/bts50015-1tad/
-.. _`BTS7002-1EPP`: https://www.infineon.com/cms/en/product/power/smart-low-side-high-side-switches/high-side-switches/profet-plus-2-12v-automotive-smart-high-side-switch/bts7002-1epp/?redirId=103258
+.. _`BTS50005-1LUA`: https://www.infineon.com/cms/de/product/power/smart-power-switches/high-side-switches/power-profet-plus-12v-automotive-smart-high-side-switch/bts50005-1lua/
+.. _`BTS50010-1LUA`: https://www.infineon.com/cms/de/product/power/smart-power-switches/high-side-switches/power-profet-plus-12v-automotive-smart-high-side-switch/bts50010-1lua/
+.. _`BTS7002-1EPP`: https://www.infineon.com/cms/en/product/power/smart-power-switches/high-side-switches/profet-plus-2-12v-automotive-smart-high-side-switch/bts7002-1epp/
 .. _`BTS7004-1EPP`: https://www.infineon.com/cms/en/product/power/smart-low-side-high-side-switches/high-side-switches/profet-plus-2-12v-automotive-smart-high-side-switch/bts7004-1epp/
 .. _`BTS7006-1EPP`: https://www.infineon.com/cms/en/product/power/smart-low-side-high-side-switches/high-side-switches/profet-plus-2-12v-automotive-smart-high-side-switch/bts7006-1epp/
 .. _`BTS7008-1EPP`: https://www.infineon.com/cms/en/product/power/smart-low-side-high-side-switches/high-side-switches/profet-plus-2-12v-automotive-smart-high-side-switch/bts7008-1epp/
@@ -305,6 +382,7 @@ Chip only
 .. _`24V Protected Switch Shield with BTT6030-2EKA and BTT6020-1EKA`: https://www.infineon.com/cms/en/product/evaluation-boards/24v_shield_btt6030/
 .. _`12V Protected Switch Shield with BTS50010-1TAD`: https://www.infineon.com/cms/en/product/evaluation-boards/shield_bts50010-1tad/
 .. _`12V Protected Switch Shield with BTS50015-1TAD`: https://www.infineon.com/cms/en/product/evaluation-boards/shield_bts50015-1tad/
+.. _`12V Protected Switch Shield with BTS50005-1LUA and BTS50010-1LUA`: https://www.infineon.com/cms/en/product/evaluation-boards/board-bts50005-1lua/
 .. _`12V Smart Switch Shield with BTS7002-1EPP`: https://www.infineon.com/cms/en/product/evaluation-boards/shield_bts7002-1epp/
 .. _`12V Smart Switch Shield with BTS7004-1EPP`: https://www.infineon.com/cms/en/product/evaluation-boards/shield_bts7004-1epp/
 .. _`12V Smart Switch Shield with BTS7006-1EPP`: https://www.infineon.com/cms/en/product/evaluation-boards/shield_bts7006-1epp/

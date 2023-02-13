@@ -12,6 +12,7 @@ The main APIs are derived from the HSS Shield API, as per shield type:
 
 - :ref:`Btt60xxShield API`
 - :ref:`Bts5001xShield API`
+- :ref:`Bts500xxShield API`
 - :ref:`Bts700xShield API`
 
 .. toctree::
@@ -22,4 +23,5 @@ The main APIs are derived from the HSS Shield API, as per shield type:
     hss-shield-api
     profet-24-api
     power-profet-api
-    profet2-12-api.rst
+    power-profet-1LUA-api
+    profet2-12-api

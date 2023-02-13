@@ -9,7 +9,7 @@ C++ library for Infineon's Arduino shields for **PROFET™ Smart High-Side Power
         <td><img src="docs/img/BTT6020_1EKA.jpg" width="300"></td>
         <td><img src="docs/img/BTS50015_1TAD.jpg" width="300"></td>
         <td><img src="docs/img/Profet+2.png" width="300"></td>
-        <td><img src="docs/img/" width="300"></td> <!-- TODO:Insert picture of the new BTS -->
+        <td><img src="docs/img/Power_PROFET_BTS500xx_1LUA.png" width="300"></td>
     </tr>
     <tr>
         <td style="test-align : center"><a href="https://high-side-switch.readthedocs.io/en/latest/hw-platforms.html#profettrade-24v-family">PROFET™+ 24V BTT60xx Arduino Shield</a></td>

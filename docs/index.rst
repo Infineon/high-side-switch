@@ -21,6 +21,20 @@ Welcome to the Infineon Smart High-Side Switch library docs!
 .. image:: img/bts700x_chip.png
     :height: 75
 
+.. role:: raw-html(raw)
+    :format: html
+
+:raw-html:`<br />`
+
+.. image:: img/Power_PROFET_BTS500xx_1LUA.png
+    :height: 75
+
+.. image:: img/BTS50005_1LUA_Chip.jpg
+    :height: 75
+
+.. image:: img/BTS50010_1LUA_Chip.jpg
+    :height: 75
+
 Scope
 =====
 This library covers the following products:
@@ -40,9 +54,12 @@ Power PROFET\ |trade|\  family
 
 * `12V Protected Switch Shield with BTS50010-1TAD`_
 * `12V Protected Switch Shield with BTS50015-1TAD`_
-
 * `BTS50010-1TAD`_
 * `BTS50015-1TAD`_
+*
+* `12V Protected Switch Shield with BTS50005-1LUA and BTS50010-1LUA`_
+* `BTS50010-1LUA`_
+* `BTS50005-1LUA`_
 
 PROFET\ |trade|\ +2 12V family
 ------------------------------
@@ -61,6 +78,8 @@ PROFET\ |trade|\ +2 12V family
 .. _`BTT6030-2EKA`: https://www.infineon.com/cms/en/product/power/smart-low-side-high-side-switches/high-side-switches/profet-plus-24v-automotive-smart-high-side-switch/btt6030-2era/
 .. _`BTS50010-1TAD`: https://www.infineon.com/cms/en/product/power/smart-low-side-high-side-switches/high-side-switches/power-profet-automotive-smart-high-side-switch/bts50010-1tad/
 .. _`BTS50015-1TAD`: https://www.infineon.com/cms/en/product/power/smart-low-side-high-side-switches/high-side-switches/power-profet-automotive-smart-high-side-switch/bts50015-1tad/
+.. _`BTS50005-1LUA`: https://www.infineon.com/cms/de/product/power/smart-power-switches/high-side-switches/power-profet-plus-12v-automotive-smart-high-side-switch/bts50005-1lua/
+.. _`BTS50010-1LUA`: https://www.infineon.com/cms/de/product/power/smart-power-switches/high-side-switches/power-profet-plus-12v-automotive-smart-high-side-switch/bts50010-1lua/
 .. _`BTS7002-1EPP`: https://www.infineon.com/cms/en/product/power/smart-low-side-high-side-switches/high-side-switches/profet-plus-2-12v-automotive-smart-high-side-switch/bts7002-1epp/?redirId=103258
 .. _`BTS7004-1EPP`: https://www.infineon.com/cms/en/product/power/smart-low-side-high-side-switches/high-side-switches/profet-plus-2-12v-automotive-smart-high-side-switch/bts7004-1epp/
 .. _`BTS7006-1EPP`: https://www.infineon.com/cms/en/product/power/smart-low-side-high-side-switches/high-side-switches/profet-plus-2-12v-automotive-smart-high-side-switch/bts7006-1epp/
@@ -68,6 +87,7 @@ PROFET\ |trade|\ +2 12V family
 .. _`24V Protected Switch Shield with BTT6030-2EKA and BTT6020-1EKA`: https://www.infineon.com/cms/en/product/evaluation-boards/24v_shield_btt6030/
 .. _`12V Protected Switch Shield with BTS50010-1TAD`: https://www.infineon.com/cms/en/product/evaluation-boards/shield_bts50010-1tad/
 .. _`12V Protected Switch Shield with BTS50015-1TAD`: https://www.infineon.com/cms/en/product/evaluation-boards/shield_bts50015-1tad/
+.. _`12V Protected Switch Shield with BTS50005-1LUA and BTS50010-1LUA` : https://www.infineon.com/cms/en/product/evaluation-boards/board-bts50005-1lua/
 .. _`12V Smart Switch Shield with BTS7002-1EPP`: https://www.infineon.com/cms/en/product/evaluation-boards/shield_bts7002-1epp/
 .. _`12V Smart Switch Shield with BTS7004-1EPP`: https://www.infineon.com/cms/en/product/evaluation-boards/shield_bts7004-1epp/
 .. _`12V Smart Switch Shield with BTS7006-1EPP`: https://www.infineon.com/cms/en/product/evaluation-boards/shield_bts7006-1epp/

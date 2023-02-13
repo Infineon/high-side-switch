@@ -192,7 +192,7 @@ Chip only
 
 Shields for Arduino
 """""""""""""""""""
-* `2V Protected Switch Shield with BTS50005-1LUA and BTS50010-1LUA`_
+* `12V Protected Switch Shield with BTS50005-1LUA and BTS50010-1LUA`_
 
 Pinout Diagram
 ^^^^^^^^^^^^^^

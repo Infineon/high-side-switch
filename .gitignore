@@ -12,3 +12,4 @@ docs/doxygen/doxyfile_auto
 docs/doxyoutput
 .pio/
 /workflow/
+/Arduinobuild

@@ -4,7 +4,7 @@ Platform Abstraction Layer Interface
 ------------------------------------
 
 The high side switch library requires ADCs, GPIOs and timer resources from the platform.
-These are implemented in terms of the following abstract class APIs for each supporteed software framework:
+These are implemented in terms of the following abstract class APIs for each supported software framework:
 
 - :ref:`ADC PAL`
 - :ref:`GPIO PAL`

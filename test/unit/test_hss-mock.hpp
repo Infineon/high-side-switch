@@ -30,8 +30,6 @@ class MockADC : public ADCPAL
         MOCK_METHOD(Error_t, deinit, (), (override));
         MOCK_METHOD(Error_t, enable, (), (override));
         MOCK_METHOD(Error_t, disable, (), (override));
-        MOCK_METHOD(Error_t, setReadResolution, (uint8_t resolution), (override));
-        MOCK_METHOD(Error_t, setWriteResolution, (uint8_t resolution), (override));
         MOCK_METHOD(uint16_t, ADCRead, (), (override));
         MOCK_METHOD(Error_t, ADCWrite, (uint8_t value), (override));
 };

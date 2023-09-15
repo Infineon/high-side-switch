@@ -11,6 +11,7 @@ The core library provides 2 base APIs:
 The main APIs are derived from the HSS Shield API, as per shield type:
 
 - :ref:`Btt60xxShield API`
+- :ref:`Bth500xxShield API`
 - :ref:`Bts5001xShield API`
 - :ref:`Bts500xxShield API`
 - :ref:`Bts700xShield API`
@@ -22,6 +23,7 @@ The main APIs are derived from the HSS Shield API, as per shield type:
     hss-api
     hss-shield-api
     profet-24-api
+    power-profet-1LUA-api
     power-profet-api
     power-profet-1LUA-api
     profet2-12-api

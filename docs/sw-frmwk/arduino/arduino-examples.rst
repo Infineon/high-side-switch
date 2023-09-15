@@ -39,6 +39,15 @@ You can find these examples also in the Arduino IDE by navigating to *File* -> *
     * - :code:`examples/BTS5001x-button-test`
       - * Switch dependent on optional user button.
         * Compatible with BTS50010 and BTS50015 variant.
+    * - :code:`examples/BTH500xx-hss-single-ch`
+      - * High-Side-Switch example to operate a single switch.
+        * Compatible with the BTH50015-1LUA and BTH50030-1LUA variant
+    * - :code:`examples/BTH500xx-hss-multiple-ch`
+      - * High-Side-Switch example to operate multiple switches at once.
+        * Compatible with the BTH50015-1LUA and BTH50030-1LUA variant
+    * - :code:`examples/BTH500xx-hss-advanced`
+      - * High-Side-Switch example which demonstrates the full functionality of the board.
+        * Compatible with the BTH50015-1LUA and BTH50030-1LUA variant
     * - :code:`examples/BTS500xx-hss-single-ch`
       - * High-Side-Switch example to operate a single switch.
         * Compatible with BTS50010-1LUA and BTS50005-1LUA variant.
@@ -221,16 +230,16 @@ Compatibility
       - Covered by
     * - Shield
       - BTS7002
-      - :code:`hss-bts700xShield-ino.hpp`
+      - :code:`hss-shield-bts700x-ino.hpp`
     * - Shield
       - BTS7004
-      - :code:`hss-bts700xShield-ino.hpp`
+      - :code:`hss-shield-bts700x-ino.hpp`
     * - Shield
       - BTS7006
-      - :code:`hss-bts700xShield-ino.hpp`
+      - :code:`hss-shield-bts700x-ino.hpp`
     * - Shield
       - BTS7008
-      - :code:`hss-bts700xShield-ino.hpp`
+      - :code:`hss-shield-bts700x-ino.hpp`
 
 Description
 ^^^^^^^^^^^
@@ -266,16 +275,16 @@ Compatibility
       - Covered by
     * - Shield
       - BTS7002
-      - :code:`hss-bts700xShield-ino.hpp`
+      - :code:`hss-shield-bts700x-ino.hpp`
     * - Shield
       - BTS7004
-      - :code:`hss-bts700xShield-ino.hpp`
+      - :code:`hss-shield-bts700x-ino.hpp`
     * - Shield
       - BTS7006
-      - :code:`hss-bts700xShield-ino.hpp`
+      - :code:`hss-shield-bts700x-ino.hpp`
     * - Shield
       - BTS7008
-      - :code:`hss-bts700xShield-ino.hpp`
+      - :code:`hss-shield-bts700x-ino.hpp`
 
 Description
 ^^^^^^^^^^^
@@ -322,16 +331,16 @@ Compatibility
       - Covered by
     * - Shield
       - BTS7002
-      - :code:`hss-bts700xShield-ino.hpp`
+      - :code:`hss-shield-bts700x-ino.hpp`
     * - Shield
       - BTS7004
-      - :code:`hss-bts700xShield-ino.hpp`
+      - :code:`hss-shield-bts700x-ino.hpp`
     * - Shield
       - BTS7006
-      - :code:`hss-bts700xShield-ino.hpp`
+      - :code:`hss-shield-bts700x-ino.hpp`
     * - Shield
       - BTS7008
-      - :code:`hss-bts700xShield-ino.hpp`
+      - :code:`hss-shield-bts700x-ino.hpp`
 
 Description
 ^^^^^^^^^^^
@@ -378,16 +387,16 @@ Compatibility
       - Covered by
     * - Shield
       - BTS7002
-      - :code:`hss-bts700xShield-ino.hpp`
+      - :code:`hss-shield-bts700x-ino.hpp`
     * - Shield
       - BTS7004
-      - :code:`hss-bts700xShield-ino.hpp`
+      - :code:`hss-shield-bts700x-ino.hpp`
     * - Shield
       - BTS7006
-      - :code:`hss-bts700xShield-ino.hpp`
+      - :code:`hss-shield-bts700x-ino.hpp`
     * - Shield
       - BTS7008
-      - :code:`hss-bts700xShield-ino.hpp`
+      - :code:`hss-shield-bts700x-ino.hpp`
 
 Description
 ^^^^^^^^^^^
@@ -428,10 +437,10 @@ Compatibility
       - Covered by
     * - Shield
       - BTS50010
-      - :code:`hss-bts500xxShield-ino.hpp`
+      - :code:`hss-shield-bts500xx-ino.hpp`
     * - Shield
       - BTS50015
-      - :code:`hss-bts500xxShield-ino.hpp`
+      - :code:`hss-shield-bts500xx-ino.hpp`
 
 Description
 ^^^^^^^^^^^
@@ -461,10 +470,10 @@ Compatibility
       - Covered by
     * - Shield
       - BTS50010
-      - :code:`hss-bts500xxShield-ino.hpp`
+      - :code:`hss-shield-bts500xx-ino.hpp`
     * - Shield
       - BTS50015
-      - :code:`hss-bts500xxShield-ino.hpp`
+      - :code:`hss-shield-bts500xx-ino.hpp`
 
 Description
 ^^^^^^^^^^^
@@ -490,15 +499,96 @@ Compatibility
       - Covered by
     * - Shield
       - BTS50010
-      - :code:`hss-bts500xxShield-ino.hpp`
+      - :code:`hss-shield-bts500xx-ino.hpp`
     * - Shield
       - BTS50015
-      - :code:`hss-bts500xxShield-ino.hpp`
+      - :code:`hss-shield-bts500xx-ino.hpp`
 
 Description
 ^^^^^^^^^^^
 BTS5001x-1TAD Shields have optional user button to perform switching.
 This example demonstrates the use of optional user button.
+
+BTH500xx-hss-single-ch
+""""""""""""""""""""""
+Summary
+^^^^^^^
+Switches one switch of the shield at a time.
+
+Compatibility
+^^^^^^^^^^^^^
+.. image:: ../../img/Power_PROFET_BTS500xx_1LUA.png
+    :width: 150
+
+.. list-table::
+    :header-rows: 1
+
+    * - Type
+      - Variant
+      - Covered by
+    * - Shield
+      - BTH50015-1LUA, BTH50030-1LUA
+      - :code:`hss-shield-bth500xx-ino.hpp`
+
+Description
+^^^^^^^^^^^
+This example demonstrates how you can switch on/off one switch at a time.
+There are two switches available on the board.
+
+BTH500xx-hss-multiple-ch
+""""""""""""""""""""""""
+Summary
+^^^^^^^
+Switches multiple switches at once.
+
+Compatibility
+^^^^^^^^^^^^^
+.. image:: ../../img/Power_PROFET_BTS500xx_1LUA.png
+    :width: 150
+
+.. list-table::
+    :header-rows: 1
+
+    * - Type
+      - Variant
+      - Covered by
+    * - Shield
+      - BTH50015-1LUA, BTH50030-1LUA
+      - :code:`hss-shield-bth500xx-ino.hpp`
+
+Description
+^^^^^^^^^^^
+This example demonstrates how you can switch on/off multiple switches at once.
+There are two switches available on the board.
+
+BTH500xx-hss-advanced
+"""""""""""""""""""""
+Summary
+^^^^^^^
+Shows the complete functionality of the shield.
+
+Compatibility
+^^^^^^^^^^^^^
+.. image:: ../../img/Power_PROFET_BTS500xx_1LUA.png
+    :width: 150
+
+.. list-table::
+    :header-rows: 1
+
+    * - Type
+      - Variant
+      - Covered by
+    * - Shield
+      - BTH50015-1LUA, BTH50030-1LUA
+      - :code:`hss-shield-bth500xx-ino.hpp`
+
+Description
+^^^^^^^^^^^
+This example demonstrates how you can use the full feature set of the shield.
+It shows you how to use the diagnosis function, the temperature measurement (if NTC is populated),
+the output voltage measurement of switch 1 and the supply voltage measurement.
+The example is also measuring the current which is flowing through the switch
+and prints the value to the serial monitor.
 
 BTS500xx-hss-single-ch
 """"""""""""""""""""""
@@ -519,7 +609,7 @@ Compatibility
       - Covered by
     * - Shield
       - BTS50010-1LUA, BTS50005-1LUA
-      - :code:`hss-bts500xx_Shield-ino.hpp`
+      - :code:`hss-shield-bts500xx-ino.hpp`
 
 Description
 ^^^^^^^^^^^
@@ -545,7 +635,7 @@ Compatibility
       - Covered by
     * - Shield
       - BTS50010-1LUA, BTS50005-1LUA
-      - :code:`hss-bts500xx_Shield-ino.hpp`
+      - :code:`hss-shield-bts500xx-ino.hpp`
 
 Description
 ^^^^^^^^^^^
@@ -571,7 +661,7 @@ Compatibility
       - Covered by
     * - Shield
       - BTS50010-1LUA, BTS50005-1LUA
-      - :code:`hss-bts500xx_Shield-ino.hpp`
+      - :code:`hss-shield-bts500xx-ino.hpp`
 
 Description
 ^^^^^^^^^^^

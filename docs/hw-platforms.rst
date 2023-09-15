@@ -1,5 +1,78 @@
 The following Infineon products are supported by this library:
 
+PROFET\ |trade|\ + 24V/48V family
+---------------------------------
+.. image:: img/Power_PROFET_BTS500xx_1LUA.png
+    :width: 150
+
+.. TODO: Change picture when available
+.. image:: img/bth500xx_1LUA.png
+    :width: 150
+
+Shields for Arduino
+"""""""""""""""""""
+.. TODO: Change link when available
+* `24V/48V Protected Switch Shield with BTH50015-1LUA and BTH50030-1LUA`_ 
+  
+Pinout Diagram
+^^^^^^^^^^^^^^
+.. image:: img/shield_bts500xx_pinout.png
+    :width: 450
+
+Pin Description
+^^^^^^^^^^^^^^^
+.. list-table::
+    :header-rows: 1
+
+    * - Arduino Pin
+      - Symbol
+      - Type
+      - Function
+    * - D9
+      - DEN2
+      - Input/PWM
+      - Diagnosis enable pin for switch 2
+    * - D10
+      - IN2
+      - Input/PWM
+      - Enable pin for switch 2
+    * - D11
+      - DEN1
+      - Input/PWM
+      - Diagnosis enable pin for switch 1
+    * - D12
+      - IN1
+      - Input/digital
+      - Enable pin for switch 1
+    * - A0
+      - IS1
+      - Output/analog
+      - Analog measurement of the current through switch 1
+    * - A1
+      - VS_M
+      - Output/analog
+      - Analog measurement of the supply voltage
+    * - A2
+      - TEMP_M
+      - Output/analog
+      - Analog measurement of the PCB temperature
+    * - A3
+      - VOUT_M
+      - Output/analog
+      - Analog measurement of the output voltage of switch 1
+    * - A4
+      - IS2
+      - Output/analog
+      - Analog measurement of the current through switch 2
+
+Chip only
+"""""""""
+
+* `BTH50015-1LUA`_
+* `BTH50030-1LUA`_
+
+------------
+
 PROFET\ |trade|\ + 24V family
 -----------------------------
 .. |trade|    unicode:: U+2122 .. TRADEMARK SIGN
@@ -210,39 +283,39 @@ Pin Description
       - Function
     * - D9
       - DEN2
-      - Output/digital
+      - Input/PWM
       - Diagnosis enable pin for switch 2
     * - D10
       - IN2
-      - Output/digital
+      - Input/PWM
       - Enable pin for switch 2
     * - D11
       - DEN1
-      - Output/digital
+      - Input/PWM
       - Diagnosis enable pin for switch 1
     * - D12
       - IN1
-      - Output/digital
+      - Input/digital
       - Enable pin for switch 1
     * - A0
       - IS1
-      - Input/analog
+      - Output/analog
       - Analog measurement of the current through switch 1
     * - A1
       - VS_M
-      - Input/analog
+      - Output/analog
       - Analog measurement of the supply voltage
     * - A2
       - TEMP_M
-      - Input/analog
+      - Output/analog
       - Analog measurement of the PCB temperature
     * - A3
       - VOUT_M
-      - Input/analog
+      - Output/analog
       - Analog measurement of the output voltage of switch 1
     * - A4
       - IS2
-      - Input/analog
+      - Output/analog
       - Analog measurement of the current through switch 2
 
 Chip only
@@ -366,7 +439,8 @@ Chip only
 * `BTS7006-1EPP`_
 * `BTS7008-1EPP`_
 
-
+.. _`BTH50015-1LUA`_TODO Add link
+.. _BTH50030-1LUA`_TODO Add link
 .. _`BTT6020-1EKA`: https://www.infineon.com/cms/en/product/power/smart-low-side-high-side-switches/high-side-switches/profet-plus-24v-automotive-smart-high-side-switch/btt6020-1era/
 .. _`BTT6030-2EKA`: https://www.infineon.com/cms/en/product/power/smart-low-side-high-side-switches/high-side-switches/profet-plus-24v-automotive-smart-high-side-switch/btt6030-2era/
 .. _`BTS50010-1TAD`: https://www.infineon.com/cms/en/product/power/smart-low-side-high-side-switches/high-side-switches/power-profet-automotive-smart-high-side-switch/bts50010-1tad/
@@ -378,7 +452,7 @@ Chip only
 .. _`BTS7006-1EPP`: https://www.infineon.com/cms/en/product/power/smart-low-side-high-side-switches/high-side-switches/profet-plus-2-12v-automotive-smart-high-side-switch/bts7006-1epp/
 .. _`BTS7008-1EPP`: https://www.infineon.com/cms/en/product/power/smart-low-side-high-side-switches/high-side-switches/profet-plus-2-12v-automotive-smart-high-side-switch/bts7008-1epp/
 
-
+.. _`24V/48V Protected Switch Shield with BTH50015-1LUA and BTH50030-1LUA`_TODO Add link when available
 .. _`24V Protected Switch Shield with BTT6030-2EKA and BTT6020-1EKA`: https://www.infineon.com/cms/en/product/evaluation-boards/24v_shield_btt6030/
 .. _`12V Protected Switch Shield with BTS50010-1TAD`: https://www.infineon.com/cms/en/product/evaluation-boards/shield_bts50010-1tad/
 .. _`12V Protected Switch Shield with BTS50015-1TAD`: https://www.infineon.com/cms/en/product/evaluation-boards/shield_bts50015-1tad/

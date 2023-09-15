@@ -35,6 +35,17 @@ Welcome to the Infineon Smart High-Side Switch library docs!
 .. image:: img/BTS50010_1LUA_Chip.jpg
     :height: 75
 
+:raw-html:`<br />`
+
+.. image:: img/Power_PROFET_BTS500xx_1LUA.png
+    :height: 75
+
+.. image:: img/bth500xx_1LUA.png
+    :height: 75
+
+.. image:: img/bth500xx_1LUA.png
+    :height: 75
+
 Scope
 =====
 This library covers the following products:
@@ -48,6 +59,14 @@ PROFET\ |trade|\ + 24V family
 
 * `BTT6020-1EKA`_
 * `BTT6030-2EKA`_
+  
+PROFET\ |trade| \ +24/48V family
+--------------------------------
+
+* `24/48V Smart High-Side Power Switch Shield with the BTH50015-1LUA and the BTH50030-1LUA`_
+
+* `BTH50015-1LUA`_
+* `BTH50030-1LUA`_
 
 Power PROFET\ |trade|\  family
 ------------------------------
@@ -56,7 +75,7 @@ Power PROFET\ |trade|\  family
 * `12V Protected Switch Shield with BTS50015-1TAD`_
 * `BTS50010-1TAD`_
 * `BTS50015-1TAD`_
-*
+* 
 * `12V Protected Switch Shield with BTS50005-1LUA and BTS50010-1LUA`_
 * `BTS50010-1LUA`_
 * `BTS50005-1LUA`_
@@ -92,6 +111,9 @@ PROFET\ |trade|\ +2 12V family
 .. _`12V Smart Switch Shield with BTS7004-1EPP`: https://www.infineon.com/cms/en/product/evaluation-boards/shield_bts7004-1epp/
 .. _`12V Smart Switch Shield with BTS7006-1EPP`: https://www.infineon.com/cms/en/product/evaluation-boards/shield_bts7006-1epp/
 .. _`12V Smart Switch Shield with BTS7008-1EPP`: https://www.infineon.com/cms/en/product/evaluation-boards/shield_bts7008-1epp/
+.. _`12/48V Smart High-Side Power Switch with the BTH50015-1LUA and the BTH50030-1LUA`:
+.. _`BTH50015-1LUA`:
+.. _`BTH50030-1LUA`:
 
 License
 =======

@@ -10,12 +10,14 @@ C++ library for Infineon's Arduino shields for **PROFET™ Smart High-Side Power
         <td><img src="docs/img/BTS50015_1TAD.jpg" width="300"></td>
         <td><img src="docs/img/Profet+2.png" width="300"></td>
         <td><img src="docs/img/Power_PROFET_BTS500xx_1LUA.png" width="300"></td>
+        <td><img src="docs/img/Power_PROFET_BTS500xx_1LUA.png" width="300"></td>
     </tr>
     <tr>
         <td style="test-align : center"><a href="https://high-side-switch.readthedocs.io/en/latest/hw-platforms.html#profettrade-24v-family">PROFET™+ 24V BTT60xx Arduino Shield</a></td>
         <td style="test-align : center"><a href="https://high-side-switch.readthedocs.io/en/latest/hw-platforms.html#power-profettrade-family">Power PROFET™ BTS5001x-1TAD Arduino Shield</a></td>
         <td style="test-align : center"><a href="https://high-side-switch.readthedocs.io/en/latest/hw-platforms.html#profettrade-2-12v-family">PROFET™+2 12V BTS700x-1EPP Arduino Shield</a></td>
         <td style="test-align: center"><a href="https://high-side-switch.readthedocs.io/en/latest/hw-platforms.html#id5">Power PROFET™ + 12 V BTS500xx-1LUA</a></td>
+        <td style="test-align : center"><a href="">Power PROFET™ + 24V/48V BTH500xx-1LAU</a></td>
     </tr>
 </table>
 
@@ -32,7 +34,8 @@ C++ library for Infineon's Arduino shields for **PROFET™ Smart High-Side Power
             <a href="https://high-side-switch.readthedocs.io/en/latest/api-reference/profet-24-api.html#btt60xxshield-api">PROFET™+ 24V BTT60xx API</a><br>
             <a href="https://high-side-switch.readthedocs.io/en/latest/api-reference/power-profet-api.html#power-profettrade-shield">Power PROFET™ BTS5001x API</a><br>
             <a href="https://high-side-switch.readthedocs.io/en/latest/api-reference/profet2-12-api.html#profettrade-2-12v-shield">PROFET™+2 12V BTS700x API</a><br>
-            <a href="https://high-side-switch.readthedocs.io/en/latest/api-reference/power-profet-1LUA-api.html#power-profettrade-shield-1lua">Power PROFET™ + 12 V BTS500xx API</a>
+            <a href="https://high-side-switch.readthedocs.io/en/latest/api-reference/power-profet-1LUA-api.html#power-profettrade-shield-1lua">Power PROFET™ + 12 V BTS500xx API</a><br>
+            <a href="">Power PROFET™ + 24V/48V BTH500xx API</a>
         </td>
     </tr>
     <tr>

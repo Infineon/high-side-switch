@@ -44,6 +44,25 @@ Bts700xHwConfig_t BTS700X_HWCONFIG =
 };
 
 /**
+ * @brief BTH500xx Shield Arduino Uno pin configuration
+ */
+Bth500xxHwConfig_t BTH500XX_HWCONFIG =
+{
+    .in1 = 12,
+    .in2 = 10,
+
+    .den1 = 11,
+    .den2 = 9,
+
+    .is1 = A0,
+    .is2 = A4,
+
+    .vs =   A1,
+    .vOut = A3,
+    .temp = A2
+};
+
+/**
  * @brief BTS500xx Shield Arduino Uno pin configuration
  */
 Bts500xxHwConfig_t BTS500XX_HWCONFIG =
@@ -131,6 +150,25 @@ Bts700xHwConfig_t BTS700X_HWCONFIG =
     .vBat =             A1,
     .is1_is2 =          A2,
     .is3_is4 =          A3
+};
+
+/**
+ * @brief BTH500xx Shield Arduino Uno pin configuration
+ */
+Bth500xxHwConfig_t BTH500XX_HWCONFIG =
+{
+    .in1 = 12,
+    .in2 = 10,
+
+    .den1 = 11,
+    .den2 = 9,
+
+    .is1 = A0,
+    .is2 = A4,
+
+    .vs = A1,
+    .vOut = A2,
+    .temp = A3
 };
 
 /**

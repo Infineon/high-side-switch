@@ -52,7 +52,7 @@ This library covers the following products:
 
 .. |trade|    unicode:: U+2122 .. TRADEMARK SIGN
 
-PROFET\ |trade|\ +2 12V family
+PROFET\ |trade|\  +2 12V family
 ------------------------------
 
 * `12V Smart Switch Shield with BTS7002-1EPP`_
@@ -64,14 +64,14 @@ PROFET\ |trade|\ +2 12V family
 * `BTS7006-1EPP`_
 * `BTS7008-1EPP`_
 
-PROFET\ |trade|\ + 24V family
+PROFET\ |trade|\  + 24V family
 -----------------------------
 
 * `24V Protected Switch Shield with BTT6030-2EKA and BTT6020-1EKA`_
 * `BTT6020-1EKA`_
 * `BTT6030-2EKA`_
 
-Power PROFET\ |trade|\ family
+Power PROFET\ |trade|\  family
 ------------------------------
 
 * `12V Protected Switch Shield with BTS50010-1TAD`_
@@ -79,14 +79,14 @@ Power PROFET\ |trade|\ family
 * `BTS50010-1TAD`_
 * `BTS50015-1TAD`_
 
-Power PROFET\ |trade|\ + 12V family
+Power PROFET\ |trade|\  + 12V family
 -----------------------------------
 
 * `12V Protected Switch Shield with BTS50005-1LUA and BTS50010-1LUA`_
 * `BTS50010-1LUA`_
 * `BTS50005-1LUA`_
 
-Power PROFET\ |trade| \ +24/48V family
+Power PROFET\ |trade| \  + 24/48V family
 --------------------------------
 
 * `24/48V Smart High-Side Power Switch Shield with the BTH50015-1LUA and the BTH50030-1LUA`_
@@ -111,7 +111,7 @@ Power PROFET\ |trade| \ +24/48V family
 .. _`12V Smart Switch Shield with BTS7004-1EPP`: https://www.infineon.com/cms/en/product/evaluation-boards/shield_bts7004-1epp/
 .. _`12V Smart Switch Shield with BTS7006-1EPP`: https://www.infineon.com/cms/en/product/evaluation-boards/shield_bts7006-1epp/
 .. _`12V Smart Switch Shield with BTS7008-1EPP`: https://www.infineon.com/cms/en/product/evaluation-boards/shield_bts7008-1epp/
-.. _`12/48V Smart High-Side Power Switch with the BTH50015-1LUA and the BTH50030-1LUA`: https://www.infineon.com/cms/en/product/evaluation-boards/board-bth50015-1lua/
+.. _`24/48V Smart High-Side Power Switch Shield with the BTH50015-1LUA and the BTH50030-1LUA`: https://www.infineon.com/cms/en/product/evaluation-boards/board-bth50015-1lua/
 .. _`BTH50015-1LUA`: https://www.infineon.com/cms/de/product/power/smart-power-switches/high-side-switches/power-profet-plus-12v-automotive-smart-high-side-switch/bth50015-1lua/
 .. _`BTH50030-1LUA`: https://www.infineon.com/cms/de/product/power/smart-power-switches/high-side-switches/power-profet-plus-12v-automotive-smart-high-side-switch/bth50030-1lua/
 

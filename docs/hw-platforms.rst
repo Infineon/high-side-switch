@@ -1,6 +1,6 @@
 The following Infineon products are supported by this library:
 
-PROFET\ |trade|\ +2 12V family
+PROFET\ |trade|\  +2 12V family
 ------------------------------
 
 .. image:: img/bts700x_shield.jpg
@@ -116,7 +116,7 @@ Chip only
 
 ---------------
 
-PROFET\ |trade|\ + 24V family
+PROFET\ |trade|\  + 24V family
 -----------------------------
 .. |trade|    unicode:: U+2122 .. TRADEMARK SIGN
 
@@ -220,7 +220,7 @@ Chip only
 
 -----------
 
-Power PROFET\ |trade|\ family
+Power PROFET\ |trade|\  family
 -----------------------------
 
 .. image:: img/bts5001x_shield.png
@@ -296,8 +296,9 @@ Chip only
 * `BTS50015-1TAD`_
 
 ---------------
-Power PROFET\ |trade|\ + 12V family
------------------------------------
+
+Power PROFET\ |trade|\  + 12V family
+------------------------------------
 
 .. image:: img/Power_PROFET_BTS500xx_1LUA.png
   :width: 150
@@ -370,8 +371,8 @@ Chip only
 
 -----------
 
-Power PROFET\ |trade|\ + 24V/48V family
----------------------------------
+Power PROFET\ |trade|\  + 24V/48V family
+----------------------------------------
 .. image:: img/Power_PROFET_BTS500xx_1LUA.png
     :width: 150
 

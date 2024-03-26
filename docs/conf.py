@@ -22,7 +22,7 @@ read_the_docs_build = os.environ.get('READTHEDOCS', None) == 'True'
 # -- Project information -----------------------------------------------------
 
 project = 'High-Side Switch'
-copyright = '2021 Infineon Technologies AG'
+copyright = '2024 Infineon Technologies AG'
 author = 'Infineon Technologies AG'
 
 # -- General configuration ---------------------------------------------------

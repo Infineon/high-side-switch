@@ -30,6 +30,14 @@ Power PROFET\ |trade|\  Shield Ino
 
 .. _Bts500xxShieldIno API:
 
+Power PROFET\ |trade| \ + 24/48V Shield Ino
+"""""""""""""""""""""""""""""""""""""""""""
+
+.. doxygenclass:: hss::Bth500xxShieldIno
+    :members:
+
+.. _Bth500xxShieldIno API:
+
 Power PROFET\ |trade|\  Shield Ino - 1LUA
 """""""""""""""""""""""""""""""""""""""""
 

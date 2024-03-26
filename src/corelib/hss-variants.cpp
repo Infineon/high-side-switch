@@ -18,7 +18,7 @@ namespace hss
 BtxVariants_t BTH50015_1LUA = {
     .type = BTH500XX,
     .kilis = 52000,
-    .iisFault = 0.0023, //TODO: issFault the same as in the 50030 version?
+    .iisFault = 0.0023,
     .iisOl = 0.0,
     .iisEn = 0.0,
     .iisO = 0.0

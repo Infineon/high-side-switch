@@ -21,30 +21,21 @@ read_the_docs_build = os.environ.get('READTHEDOCS', None) == 'True'
 
 # -- Project information -----------------------------------------------------
 
-project = 'High-Side Switch'
-copyright = '2024 Infineon Technologies AG'
+project = 'HIGH-SIDE-SWITCH'
+copyright = '2022 Infineon Technologies AG'
 author = 'Infineon Technologies AG'
+
+# The full version, including alpha/beta/rc tags
+release = '1.1.0'
+
 
 # -- General configuration ---------------------------------------------------
 
 # Add any Sphinx extension module names here, as strings. They can be
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
-#...
-
-# At top on conf.py (with other import statements)
-# import recommonmark
-# from recommonmark.transform import AutoStructify
-
-# # At the bottom of conf.py
-# def setup(app):
-#     app.add_config_value('recommonmark_config', {
-#             'url_resolver': lambda url: github_doc_root + url,
-#             'auto_toc_tree_section': 'Contents',
-#             }, True)
-#     app.add_transform(AutoStructify)
-
 extensions = [
+    'sphinx_rtd_theme',
     'sphinx.ext.autodoc',
     'sphinxemoji.sphinxemoji',
     'sphinx_tabs.tabs',
@@ -60,17 +51,12 @@ extensions = [
     'sphinx.ext.inheritance_diagram',
     'breathe',
     'exhale'
-    
 ]
 
 autosectionlabel_prefix_document = True
-# source_parsers = {
-#    '.md': 'recommonmark.parser.CommonMarkParser',
-# }
 
 source_suffix = [
     '.rst',
-    # '.md'
 ]
 
 suppress_warnings = ['autosectionlabel.*', 'epub.duplicated_toc_entry']
@@ -84,31 +70,23 @@ exhale_args = {
     "doxygenStripFromPath":  "..",
     # Suggested optional arguments
     "createTreeView":        True,
-    # TIP: if using the sphinx-bootstrap-theme, you need
-    # "treeViewIsBootstrap": True,
     "exhaleExecutesDoxygen": True,
-    # "exhaleUseDoxyfile" : True,
     "exhaleDoxygenStdin":    textwrap.dedent('''
-        INPUT            = ../src
+        INPUT            = ../src 
         GENERATE_LATEX   = NO
-        GENERATE_HTML    = YES
+        GENERATE_HTML    = NO
         GENERATE_XML     = YES
         RECURSIVE        = YES
-        VERBATIM_HEADERS = NO
-        EXCLUDE          = ./../src/framework/raspberrypi/examples ./../src/framework/raspberrypi/examples_py ./../src/framework/arduino/examples ./../src/framework/arduino/README.md
+        VERBATIM_HEADERS = YES                                
     '''),
 
     # Configure what not to show in the API index page
     "unabridgedOrphanKinds": {"function", "define", "dir","file", "variable", "namespace"},
     "fullToctreeMaxDepth" : 4
-    
 }
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
-
-# Tell sphinx what the primary language being documented is.
-primary_domain = 'cpp'
 
 # List of patterns, relative to source directory, that match files and
 # directories to ignore when looking for source files.
@@ -121,13 +99,8 @@ highlight_language = 'c++'
 
 # The theme to use for HTML and HTML Help pages.  See the documentation for
 # a list of builtin themes.
-
-html_theme = 'sphinx_rtd_theme'
-# html_theme_options = {
-# 	"head_font_family" : "Source Sans Pro",
-# 	"font_family" : "Source Sans Pro",
-# 	"body_text_align" : "justify",
-# }
+#
+html_theme = "sphinx_rtd_theme"
 
 html_logo = 'img/ifx_logo_white_green_s.png'
 
@@ -139,7 +112,7 @@ html_static_path = ['_templates']
 # -- Breathe configuration -------------------------------------------------
 
 breathe_projects = {
-	"High-Side Switch": "build/xml/"
+	"HIGH-SIDE-SWITCH": "build/xml/"
 }
-breathe_default_project = "High-Side Switch"
+breathe_default_project = "HIGH-SIDE-SWITCH"
 breathe_default_members = ('members', 'undoc-members')

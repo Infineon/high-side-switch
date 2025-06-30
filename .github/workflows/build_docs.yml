@@ -12,4 +12,4 @@ concurrency:
 
 jobs:
   makers-devops:
-    uses: Infineon/makers-devops/.github/workflows/docs_build.yml@main
+    uses: Infineon/makers-devops/.github/workflows/docs_build.yml@workflows/docs-add-doxygen

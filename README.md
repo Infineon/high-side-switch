@@ -1,5 +1,7 @@
 # Smart High-Side Switch
 
+[![Build docs](https://github.com/Infineon/high-side-switch/actions/workflows/build_docs.yml/badge.svg?branch=adddocscheck)](https://github.com/Infineon/high-side-switch/actions/workflows/build_docs.yml)
+
 C++ library for Infineon's Arduino shields for **PROFET™ Smart High-Side Power Switches** Automotive grade
 
 ## Supported Products

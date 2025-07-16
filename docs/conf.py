@@ -25,10 +25,6 @@ project = 'High-Side Switch'
 copyright = '2024 Infineon Technologies AG'
 author = 'Infineon Technologies AG'
 
-# The full version, including alpha/beta/rc tags
-release = '1.1.0'
-
-
 # -- General configuration ---------------------------------------------------
 
 # Add any Sphinx extension module names here, as strings. They can be

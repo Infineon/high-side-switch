@@ -25,10 +25,6 @@ project = 'High-Side Switch'
 copyright = '2024 Infineon Technologies AG'
 author = 'Infineon Technologies AG'
 
-# The full version, including alpha/beta/rc tags
-release = '1.1.0'
-
-
 # -- General configuration ---------------------------------------------------
 
 # Add any Sphinx extension module names here, as strings. They can be
@@ -112,7 +108,7 @@ html_static_path = ['_templates']
 # -- Breathe configuration -------------------------------------------------
 
 breathe_projects = {
-	"HIGH-SIDE-SWITCH": "build/xml/"
+	"High-Side Switch": "build/xml/"
 }
-breathe_default_project = "HIGH-SIDE-SWITCH"
+breathe_default_project = "High-Side Switch"
 breathe_default_members = ('members', 'undoc-members')

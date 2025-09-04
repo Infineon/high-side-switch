@@ -1,3 +1,5 @@
+[![Check links](https://github.com/Infineon/XMC-for-Arduino/actions/workflows/check_links.yml/badge.svg)](https://github.com/Infineon/XMC-for-Arduino/actions/workflows/check_links.yml)
+
 # Smart High-Side Switch
 
 C++ library for Infineon's Arduino shields for **PROFET™ Smart High-Side Power Switches** Automotive grade

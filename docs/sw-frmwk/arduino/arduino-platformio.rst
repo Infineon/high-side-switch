@@ -8,7 +8,7 @@ Introduction
 If you are new to PlatformIO, download and install Visual Studio Code first and then the PlatformIO plugin. Please follow the instructions on the `official website`_. Then go through `this tutorial`_ to get started with PlatformIO in VSCode and create a new project.
 
 .. _`official website`: https://docs.platformio.org/en/latest/integration/ide/pioide.html
-.. _`this tutorial`: https://diyprojects.io/install-ide-platformio-extension-visual-studio-code-vscode-windows-32-bit-linux/#.XOVQP44zYnI
+.. _`this tutorial`: https://docs.platformio.org/en/stable/integration/ide/vscode.html
 
 Library Installation
 --------------------

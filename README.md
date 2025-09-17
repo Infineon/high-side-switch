@@ -1,4 +1,4 @@
-[![Check links](https://github.com/Infineon/XMC-for-Arduino/actions/workflows/check_links.yml/badge.svg)](https://github.com/Infineon/XMC-for-Arduino/actions/workflows/check_links.yml)
+[![Check links](https://github.com/Infineon/high-side-switch/actions/workflows/check_links.yml/badge.svg)](https://github.com/Infineon/high-side-switch/actions/workflows/check_links.yml)
 
 # Smart High-Side Switch
 

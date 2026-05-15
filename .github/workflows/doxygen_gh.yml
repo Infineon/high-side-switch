@@ -1,0 +1,16 @@
+name: Doxygen GH
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+permissions:
+  contents: write
+
+jobs:
+  call-doxygen-gh-pages:
+    uses: Infineon/makers-devops/.github/workflows/doxygen_gh_pages.yml@main
+    permissions:
+      contents: write
